@@ -1,0 +1,8 @@
+{
+  "template": "10",
+  "name": "Machine gun",
+  "description": "It's a weapon that goes RATATATATATA", 
+  "image": "https://team3d.io/inventory/json/10.png",
+  "ipfs": "",
+  "slot": "3"
+}

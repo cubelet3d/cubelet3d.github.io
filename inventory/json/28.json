@@ -1,0 +1,8 @@
+{
+  "template": "28",
+  "name": "Hypercube",
+  "description": "Minimum requirements: 128MB RAM", 
+  "image": "https://team3d.io/inventory/json/28.png",
+  "ipfs": "",
+  "slot": "4"
+}

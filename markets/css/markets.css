@@ -1,0 +1,11 @@
+#markets {
+    position: absolute;
+    bottom: 64px;
+    right: 0;
+    width: 100px;
+    padding: .25rem;
+}
+
+.widget {
+    background: transparent;
+}

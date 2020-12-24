@@ -1,0 +1,8 @@
+{
+  "template": "29",
+  "name": "Bug",
+  "description": "It's a bug I found", 
+  "image": "https://team3d.io/inventory/json/29.png",
+  "ipfs": "",
+  "slot": "2"
+}

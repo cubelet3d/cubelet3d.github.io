@@ -1,0 +1,1228 @@
+<!doctype html>
+<html lang="en" class="no-overflow">
+	<head>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-96377317-9"></script>
+		<script>
+			window.dataLayer = window.dataLayer || []
+			function gtag() {dataLayer.push(arguments)}
+			gtag('js', new Date())
+			gtag('config', 'UA-96377317-9')
+		</script>
+		<title>Team3D</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/layout.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+		<!-- Web3, blockies -->
+		<script src="js/web3.min.js"></script>
+		<script src="js/blockies.js"></script>
+		<!-- Settings -->
+		<link rel="stylesheet" href="settings/css/settings.css">
+		<script src="settings/js/settings.js"></script>
+		<!-- <script src="settings/js/context_menu.js"></script> -->
+		<script src="settings/js/jscolor.js"></script>
+		<!-- Inventory -->
+		<link rel="stylesheet" href="inventory/css/inventory.css">
+		<script src="inventory/js/ABI.js"></script>
+		<script src="inventory/js/distABI.js"></script>
+		<script src="inventory/js/inventory.js"></script>
+		<!-- Uniswap integration -->
+		<link rel="stylesheet" href="uniswap/css/uniswap.css">
+		<script src="uniswap/js/routerABI.js"></script>
+		<script src="uniswap/js/uniswap.js"></script>
+		<!-- Main -->
+		<script src="js/main.js"></script>
+		<!-- Favicons etc. -->
+		<link rel="apple-touch-icon" sizes="57x57" href="img/icons/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="img/icons/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="img/icons/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="img/icons/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="img/icons/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="img/icons/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="img/icons/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="img/icons/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="img/icons/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192" href="img/icons/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="img/icons/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon-16x16.png">
+		<link rel="manifest" href="img/icons/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="img/icons/ms-icon-144x144.png">
+		<meta name="theme-color" content="#5F085F">
+	</head>
+	<body class="no-overflow">
+		<div class="wrapper relative no-overflow">
+			<!-- Loading screen -->
+			<div id="Loading" class="absolute top right bottom left">
+				<div class="cube-outer absolute">
+					<div class="cube-inner relative">
+						<div class="cube-front face absolute top left"></div>
+						<div class="cube-back face absolute top left"></div>
+						<div class="cube-top face absolute top left"></div>
+						<div class="cube-bottom face absolute top left"></div>
+						<div class="cube-left face absolute top left"></div>
+						<div class="cube-right face absolute top left"></div>
+					</div>
+				</div>
+				<div class="margin-top-1rem">Loading... Please <span id="x">wait</span></div>
+			</div>
+			<!-- Main content wrapper -->
+			<div id="Main" class="main-content-wrapper absolute top right bottom left">
+				<div class="panel absolute top right bottom left flex-box flex-center">
+					<div id="about" class="console absolute bottom draggable" data="about">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon icon-console-prompt"></div>
+								<div class="consoleTitle default">C:\team3d\about.exe</div>
+							</div>
+							<button class="close_button">X</button>
+						</div>
+						<div class="console-content scrollbar">
+							<div class="full-height">
+								<div class="paragraph-wrapper flex-box full-height">
+									<div class="full-width">
+										<div class="paragraph margin-bottom-5rem">
+											<img class="p-float-left margin-right-1rem max-width-300px" src="https://team3d.io/img/aesthetics/vidyawallet.png">
+											<div>
+												<h2>What is Vidya</h2>
+												<p>Vidya is a DeFi gaming token and escrow solution for multiplayer
+													player-versus-player games, wagering, and esports betting.
+													The medium of exchange for games and platforms that use VIDYA
+													is a liquid, market-backed ERC-20 token, uniquely also named VIDYA.
+													Through in-game and on-chain mechanics, VIDYA enjoys the unique
+													position of providing entertainment and finance wrapped together
+													as one to an emergent market of decentralized products and services.
+													Decentralized gaming and finance are massive and growing markets
+													with few notable attempts at an innovative merge of industries.
+												</p>
+											</div>
+										</div>
+										<h2>How it works</h2>
+										<p class="paragraph margin-bottom-5rem">
+											With open source, decentralized software hosted on the Ethereum
+											blockchain in the form of smart contracts as escrow for players' wagers,
+											holding them upon deposit and releasing them upon completion of
+											prerequisite conditions that are agreed to on entry. Each session is
+											subject to a rake from the pool that's distributed among VIDYA stakers,
+											who will receive rewards proportional to the amount of tokens they've
+											deposited and held within the staking platform. Games will be able to
+											implement our immutable intermediary at ease, with the requirement of
+											interacting with the contracts via Web3 user interface and the use of
+											VIDYA tokens.
+										</p>
+										<div class="paragraph margin-bottom-5rem">
+											<img class="p-float-left margin-right-1rem max-width-300px" src="https://team3d.io/img/aesthetics/wolf.png">
+											<div>
+												<h2>System in practice</h2>
+												<p> Player created lobbies are made by Web3 enabled users after they pick
+													the deposit other users must make before being able to join their lobby.
+													The user will then be charged this amount in order to start the lobby,
+													securing the initial wager instantly, and the rest upon entry of other
+													players. Users will be refunded in the event of a lobby closure. Staking
+													fees will only ever be deducted from the pool following successful match
+													completion.
+												</p>
+											</div>
+										</div>
+										<h2>The DeFi angle</h2>
+										<p class="paragraph margin-bottom-5rem">
+											Our aesthetic nuance and love of designing games doesn't count us out of
+											financial experimentation, it only gives us the chance to do it with style.
+											We present new ways of designing an interconnected and highly interactable
+											environment for our users. Our Vidya token is advantaged by providing unique
+											markets and tokenomic models within our products and games via the creative
+											utilization of deflationary mechanics, non-fungibility, item degredation and
+											token staking all easily accessbile to you from a single personalized hub,
+											TeamOS.
+										</p>
+										<h2>TeamOS</h2>
+										<p class="paragraph margin-bottom-5rem">
+											TeamOS refers to the team3d.io website and delivers all things Team3D through
+											its user interface. You can check out your holdings, stats, cross-game inventory
+											and a plethora of information unique to the public key you use to connect with
+											TeamOS. You can play our games with other users, check market data, buy and sell VIDYA
+											and keep up with new additions to the project.
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="token_sale" class="console absolute bottom draggable" data="token_sale">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon icon-console-prompt"></div>
+								<div class="consoleTitle default">C:\team3d\tokenomics.nfo</div>
+							</div>
+							<button class="close_button">X</button>
+						</div>
+						<div class="console-content scrollbar">
+							<div class="full-height">
+								<div class="paragraph-wrapper flex-box full-height">
+									<div class="width-70-percent mobile-width-100-percent">
+										<h2>Vidya Token (VIDYA)</h2>
+										<p class="paragraph margin-bottom-5rem">
+											<span class="highlight">Token supply</span><br>
+											<span>50,000,000</span><br><br>
+											<span class="highlight">Circulating supply</span><br>
+											<span><a href="https://etherscan.io/token/tokenholderchart/0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30" target="_blank">View on Etherscan</a></span><br><br>
+											<span class="highlight">Distribution</span><br>
+											<span>30/35/35</span><br>
+											<span>30% development team/marketing costs/game rewards (15,000,000)</span><br>
+											<span>35% presale (17,500,000)</span><br>
+											<span>35% public sale (17,500,000)</span><br><br>
+											<span class="highlight">Starting price</span><br>
+											<span>Started trading on Uniswap at 43,750 tokens for 1 ETH (0.000022857 ETH for 1 token)</span><br><br>
+											<span class="highlight">Began trading</span><br>
+											<span>August 22, 2020</span><br><br>
+											<span class="highlight">Uniswap liquidity</span><br>
+											<span>Locked</span><br><br>
+										</p>
+									</div>
+									<div class="full-height width-30-percent non-mobile">
+										<div class="full-height margin-top-3rem sadgrill icon"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="roadmap" class="console absolute bottom no-overflow draggable" data="roadmap">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon icon-console-prompt"></div>
+								<div class="consoleTitle default">C:\team3d\roadmap.exe</div>
+							</div>
+							<button class="close_button">X</button>
+						</div>
+						<div class="console-content scrollbar">
+							<div class="full-height scrollbar-adjust">
+								<div id="testarossa" class="icon car paragraph-icon no-pointer-events"></div>
+								<div class="flex-box center-vertical slide full-height min-height-100">
+									<div class="width-70-percent mobile-width-100-percent margin-bottom-3rem">
+										<h2>2020 Q2</h2>
+										<p class="paragraph">June: Community outreach, marketing</p>
+										<p class="paragraph">We grew our community through promotional art & content
+											competitions, awarding the most active and creative members.
+										</p>
+									</div>
+									<div class="full-height width-30-percent non-mobile">
+										<div class="full-height margin-top-3rem computer icon icon-cover"></div>
+									</div>
+								</div>
+								<div class="slide min-height-100">
+									<div class="max-width-640px margin-0-auto">
+										<h2 class="no-margin-left">2020 Q3</h2>
+										<span class="row">TeamOS development</span>
+										<span class="row strikeout">Vidya token launch</span>
+										<span class="row strikeout">HotBit listing</span>
+										<span class="row strikeout">WhiteBit listing</span>
+										<span class="row strikeout">P2PB2B listing</span>
+										<span class="row strikeout">CoinGecko</span>
+										<span class="row strikeout">CoinMarketCap</span>
+										<span class="row strikeout">Blockfolio</span>
+										<span class="row">Staking system</span>
+										<span class="row strikeout">Cross-game item inventory and equip system</span>
+										<span class="row strikeout">Easter-egg hunt</span>
+										<span class="row strikeout">Website information update</span>
+										<span class="row strikeout">NFT distribution</span>
+										<span class="row">FPS game testing</span>
+										<span class="row">Influencer & Press campaign</span>
+										<span class="row strikeout">Giants Digital partnership</span>
+										<span class="row strikeout">Quotidian Marketing partnership</span>
+										<br>
+										<h2 class="no-margin-left">2020 Q4</h2>
+										<span class="row">Blockchain game release</span>
+										<span class="row">Escrow system development</span>
+										<span class="row">NFT market creation</span>
+										<span class="row">Vidya implementation</span>
+									</div>
+								</div>
+								<div class="slide full-height min-height-100 flex-box col flex-center">
+									<h2>In the future...</h2>
+									<p class="paragraph">You will definitely be seeing some shit.</p>
+								</div>
+								<div class="diamonds icon icon-cover slide full-height min-height-100 flex-box col flex-center margin-bottom-5rem">
+									<h2>But for now</h2>
+									<p class="paragraph">Diamonds</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="faq" class="console absolute bottom draggable" data="faq">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon icon-console-prompt"></div>
+								<div class="consoleTitle default">C:\team3d\media.exe</div>
+							</div>
+							<button class="close_button">X</button>
+						</div>
+						<div class="console-content scrollbar">
+							<div class="full-height">
+								<div class="paragraph-wrapper flex-box full-height">
+									<div class="mobile-width-100-percent">
+										<h2>Media</h2>
+										<p class="paragraph"><span class="highlight">Publications</span></p>
+										<p id="publications" class="paragraph margin-bottom-5rem">
+											<a href="https://apnews.com/ts-newswire/b3b89f6bc7f3242d28b8b09ef78032f3" target="_blank"><img src="img/media/associated_press.png" alt="Associated Press"/></a>
+											<a href="https://news.bitcoin.com/vidyas-public-sale-marks-the-dawn-of-a-new-blockchain-gaming-era/" target="_blank"><img src="img/media/bitcoin_com.png" alt="Bitcoin.com"/></a>
+											<a href="https://finance.yahoo.com/news/team3ds-public-listing-vidya-heralds-183800417.html" target="_blank"><img src="img/media/yahoo_finance.png" alt="Yahoo Finance"/></a>
+											<a href="https://markets.businessinsider.com/news/stocks/team3d-s-public-listing-of-vidya-heralds-the-beginning-of-blockchain-gaming-s-future-1029616877" target="_blank"><img src="img/media/business_insider.png" alt="Business Insider"/></a>
+											<a href="https://www.benzinga.com/pressreleases/20/09/g17628369/team3ds-public-listing-of-vidya-heralds-the-beginning-of-blockchain-gamings-future" target="_blank"><img src="img/media/benzinga.png" alt="Benzinga"/></a>
+											<a href="https://thebitcoindesk.com/2020/09/team3ds-public-listing-of-vidya-heralds-the-beginning-of-blockchain-gamings-future/" target="_blank"><img src="img/media/the_bitcoin_desk.png" alt="The Bitcoin Desk"/></a>
+											<a href="http://www.digitaljournal.com/pr/4816579" target="_blank"><img src="img/media/digital_journal.png" alt="Digital Journal"/></a>
+											<a href="https://cointelegraph.com/press-releases/the-public-sale-of-vidya-marks-team3ds-push-for-a-gaming-revolution" target="_blank"><img src="img/media/cointelegraph.png" alt="CoinTelegraph"/></a>
+											<a href="https://www.forbes.com/sites/nealtaparia/2020/10/02/3-areas-of-the-booming-gaming-industry-ripe-for-entrepreneurial-opportunities/#7aaa24a8317e" target="_blank"><img src="img/media/forbes.jpg" alt="Forbes"/></a>
+											<a href="https://www.thewolfofallstreets.io/the-vidya-platform-an-overview/" target="_blank"><img src="img/media/wolf.png" alt="Wolf of All Streets"/></a>
+										</p>
+									</div>
+									<div id="shame" class="full-height no-pointer-events non-mobile">
+										<div class="full-height facepalm icon"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div id="vidyaflux" class="console absolute bottom draggable hidden" data="vidyaflux">
+					    <div class="fluxStartTimer flex-box flex-center">
+					        <div id="hehe"></div>
+					    </div>
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon icon-console-prompt"></div>
+								<div class="consoleTitle default">C:\team3d\vidyaflux.exe</div>
+							</div>
+							<button class="close_button">X</button>
+						</div>
+							<div class="flux-header-wrapper flex-box col full-width">
+								<div class="flux-header flex-box full-width space-between center-vertical margin-bottom-05rem">
+									<div class="flux-nav no-select no-margin padding-top-05rem padding-btm-05rem uniswap-title font-quickzag uniswap-title" data="welcome">VidyaFlux</div>
+									<div class="flex-box">
+									    <div class="flux-nav inventory-button margin-01rem font-size-70p default no-select" data="buy">Buy</div>
+									    <div class="flux-nav inventory-button margin-01rem font-size-70p default no-select" data="sell">Sell</div>
+									    <div class="flux-nav inventory-button margin-01rem font-size-70p default no-select" data="stats">Stats</div>
+									    <div class="flux-nav inventory-button margin-01rem font-size-70p default no-select" data="magic">Magic</div>
+									</div>
+								</div>
+								<div class="font-monospace flex-box col text-align-center">
+								    <div>Total contract balance</div>
+								    <div class="flex-box font-size-70p center-horizontal">
+    								    <div class="flex-box margin-right-1rem">
+    								        <div>FLUX: </div><div class="totalStakeBalance">0</div>
+    								    </div>
+    								    <div class="flex-box">
+    								        <div>VIDYA: </div><div class="totalTokenBalance">0</div>
+    								    </div>
+								    </div>
+								</div>
+							</div>
+						<div class="console-content flex-box col relative scrollbar">
+						    
+                            <div class="flux-welcome flux-content flex-box col absolute top right bottom left full-width full-height" data="welcome">
+                                <div class="margin-top-1rem margin-bottom-1rem">Welcome</div>
+                                <div class="row">This right here is a backup UI for the VidyaFlux community project led by @PocketAces</div>
+                                <div class="margin-top-1rem margin-bottom-1rem">How it works</div>
+                                <div class="row">VidyaFlux is essentially a stable hourglass game with mechanics known to many.</div>
+                                <div class="row">Players stake their VIDYA tokens and get the FLUX token in return. The price of FLUX is stable and 
+                                is not affected by buys and sells.</div>
+                                <div class="row">There is a 5% buy and 5% sell fee that the player pays in VIDYA upon entering and exiting the game.</div>
+                                <div class="row">This fee is distributed to all FLUX holders relative to their stake percent.</div>
+                                <div class="row">Additionally 0.5% of all volume is pooled towards our Inventory contract. If you like, you may cast a magic
+                                spell to send currently pooled funds to the Inventory contract. Doing so will reward you with 1% of the total current Inventory pool.</div>
+                            </div>
+                            
+                            <!-- BUY -->
+                            <div class="flux-content absolute top right bottom left full-width full-height hidden" data="buy">
+                                <div class="flux-tab-content flex-box col">
+                                    <div>
+                                        <div class="title buy-icon flux-icons">Buy</div>
+                                        <div class="separator"></div>
+                                    </div>
+                                    <div id="uniswapPrompt">
+                                        <div class="flex-box col">
+                                        <div class="flex-box col margin-bottom-1rem">
+                                            <div class="row flex-box space-between">
+                                                <div>Balance</div>
+                                                <div><span class="balance">0</span> <span>VIDYA</span></div>
+                                            </div>
+                                            <div class="row flex-box space-between">
+                                                <div>Approved</div>
+                                                <div><span class="approved">0</span> <span>VIDYA</span></div>
+                                            </div>
+                                            <div class="row font-monospace">Note: this dapp always buys the approved amount shown above.</div>
+                                        </div>
+                                            <div class="flex-box">
+                                                <div>Spend <span id="tokenToSpend" contenteditable="true" class="flux-input">0</span> <span>VIDYA</span></div>
+                                            </div>
+                                            <div id="buyPercent" class="percent-btn-wrapper flex-box no-select center-horizontal">
+                                                <div class="inventory-button btn" data="25">25%</div>
+                                                <div class="inventory-button btn" data="50">50%</div>
+                                                <div class="inventory-button btn" data="75">75%</div>
+                                                <div class="inventory-button btn" data="100">100%</div>
+                                            </div>
+                                            <div class="flex-box space-between">
+                                                <div>Receive</div>
+                                                <div class="text-align-right"><span id="buyEstimate">0</span> <span>FLUX</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="flex-box flex-center margin-bottom-3rem">
+                                            <div class="flex-box col">
+                                                <button id="approve" class="inventory-button btn">Approve</button>
+                                                <button id="buy" class="inventory-button btn">Buy</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- SELL -->
+                            <div class="flux-content absolute top right bottom left full-width full-height hidden" data="sell">
+                                <div class="flux-tab-content flex-box col">
+                                    <div>
+                                        <div class="title sell-icon flux-icons">Sell</div>
+                                        <div class="separator"></div>
+                                    </div>
+                                    <div id="buyStakePrompt" class="absolute top right bottom left no-pointer-events hidden">
+                                        <div><div>Nothing to sell :(</div><div><br>Check out the buy section <br> to get some!</div></div>
+                                    </div>
+                                    <div>
+                                        <div class="flex-box col">
+                                        <div class="flex-box col margin-bottom-1rem">
+                                            <div class="row flex-box space-between">
+                                                <div>Balance</div>
+                                                <div><span class="stakeBalance">0</span> <span>FLUX</span></div>
+                                            </div>
+                                        </div>
+                                            <div id="sellInput" class="flex-box">
+                                                <div>Spend <span id="stakeToSpend" contenteditable="true" class="flux-input">0</span> <span>FLUX</span></div>
+                                            </div>
+                                            <div id="sellPercent" class="percent-btn-wrapper flex-box no-select center-horizontal">
+                                                <div class="inventory-button btn" data="25">25%</div>
+                                                <div class="inventory-button btn" data="50">50%</div>
+                                                <div class="inventory-button btn" data="75">75%</div>
+                                                <div class="inventory-button btn" data="100">100%</div>
+                                            </div>
+                                            <div class="flex-box space-between">
+                                                <div>Receive</div>
+                                                <div class="text-align-right"><span id="sellEstimate">0</span> <span>VIDYA</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="flex-box flex-center margin-bottom-3rem">
+                                            <div class="flex-box col">
+                                                <button id="sell" class="inventory-button btn">Sell</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- STATS -->
+                            <div class="flux-content absolute top right bottom left full-width full-height hidden" data="stats">
+                                <div class="flux-tab-content flex-box col">
+                                    <div>
+                                        <div class="title stats-icon flux-icons">Stats</div>
+                                        <div class="separator"></div>
+                                    </div>
+                                    
+                                    <div class="flex-box col">
+                                        <div class="flex-box space-between">
+                                            <div>Dividends</div>
+                                            <div class="text-align-right"><span class="dividends">0</span> <span>VIDYA</span></div>
+                                        </div>
+                                        <div class="flex-box space-between">
+                                            <div>Ref Earnings</div>
+                                            <div class="text-align-right"><span class="refEarnings">0</span> <span>VIDYA</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-box flex-center margin-top-1rem margin-bottom-1rem">
+                                        <div class="flex-box">
+                                            <button id="reinvest" class="inventory-button btn">Reinvest</button>
+                                            <button id="withdraw" class="inventory-button btn">Withdraw</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="row flex-box space-between">
+                                            <div><span>VIDYA</span> Balance</div>
+                                            <div class="text-align-right"><span class="balance">0</span></div>
+                                        </div>
+                                        <div class="row flex-box space-between">
+                                            <div><span>FLUX</span> Balance</div>
+                                            <div class="text-align-right"><span class="stakeBalance">0</span></div>
+                                        </div>
+                                        <div class="row flex-box space-between">
+                                            <div>Stake Percent</div>
+                                            <div class="text-align-right"><span class="stakePercent">0</span></div>
+                                        </div>
+                                        <div class="row flex-box space-between">
+                                            <div>Total Invested</div>
+                                            <div class="text-align-right"><span class="totalInvested">0</span></div>
+                                        </div>
+                                        <div class="row flex-box space-between">
+                                            <div>Total Withdrawn</div>
+                                            <div class="text-align-right"><span class="totalWithdrawn">0</span></div>
+                                        </div>
+                                        <div class="row flex-box space-between">
+                                            <div>Total ref earnings</div>
+                                            <div class="text-align-right"><span class="allTimeRefEarnings">0</span></div>
+                                        </div>
+                                        <div class="flex-box full-width col margin-top-1rem margin-bottom-3rem">
+                                            <div class="label">Earn 1% Ref Commission</div>
+                                            <div class="ref-outer full-width no-overflow input">
+                                                <div id="reflink" class="ref-inner no-overflow"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Magic -->
+                            <div class="flux-content flex-box col absolute top right bottom left full-width full-height hidden" data="magic">
+                                <div class="flux-tab-content flex-box col">
+                                    <div>
+                                        <div class="title spell-icon flux-icons">Magic</div>
+                                        <div class="separator"></div>
+                                    </div>
+                                    <div>
+                                        <div class="row">Every time a player interacts with VidyaFlux, 0.5% of their transaction value is reserved
+                                        for the Inventory fund.</div>
+                                        <div class="row">In order for the funds to be transferred out from VidyaFlux and into the Inventory
+                                        contract, someone needs to call the fundInventory() function.</div>
+                                        <div class="row">We don't expect players to spend their gas for nothing, so in return 1% of the current 
+                                        accumulated pot is sent to whoever calls the function.</div>
+                                    </div>
+                                    <div class="flex-box col margin-top-1rem">
+                                        <div class="flex-box space-between">
+                                            <div>Accumulated</div>
+                                            <div class="text-align-right"><span class="inventory-pot">0</span> <span>VIDYA</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-box flex-center margin-top-1rem margin-bottom-3rem">
+                                        <div class="flex-box">
+                                            <button id="btn-magic" class="inventory-button btn">Cast spell</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                </div>
+                            </div>
+						</div>
+						
+						</div>
+					</div>
+					
+					<div id="settings" class="console absolute bottom draggable" data="settings">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon icon-console-prompt"></div>
+								<div class="consoleTitle default">C:\team3d\settings.exe</div>
+							</div>
+							<button class="close_button">X</button>
+						</div>
+						<div class="console-content flex-box scrollbar">
+							<div class="flex-box col padding-1rem">
+								<h2 class="no-margin">Settings</h2>
+								<div class="flex-box col margin-top-1rem">
+									<div>
+										<span>Wallpaper</span>
+									</div>
+									<div>
+										<p class="font-size-70p">Set a custom wallpaper.</p>
+										<p class="font-size-70p">Note: if you leave this field empty, the current system wallpaper will be saved instead.</p>
+										<div class="flex-box">
+											<input placeholder="https://example.com/wallpaper.jpg" class="input input-wallpaper full-width">
+											<button id="save-wallpaper" class="inventory-button">save</button>
+										</div>
+									</div>
+								</div>
+								<div class="flex-box col margin-top-1rem">
+									<div>
+										<span>Grid animation</span>
+									</div>
+									<div>
+										<p class="font-size-70p">Enable or disable the grid animation effect</p>
+										<div class="flex-box">
+											<button id="enable-animation" class="inventory-button">Enable</button>
+											<button id="disable-animation" class="inventory-button">Disable</button>
+										</div>
+									</div>
+								</div>
+								<div class="flex-box col margin-top-1rem">
+									<div>
+										<span>Branding</span>
+									</div>
+									<div>
+										<p class="font-size-70p">Enable or disable the Team3D branding</p>
+										<div class="flex-box">
+											<button id="enable-branding" class="inventory-button">Enable</button>
+											<button id="disable-branding" class="inventory-button">Disable</button>
+										</div>
+									</div>
+								</div>
+								<div class="flex-box col margin-top-1rem">
+									<div>
+										<span>Texture overlay</span>
+									</div>
+									<div>
+										<p class="font-size-70p">Enable or disable the texture overlay</p>
+										<div class="flex-box">
+											<button id="enable-texture" class="inventory-button">Enable</button>
+											<button id="disable-texture" class="inventory-button">Disable</button>
+										</div>
+									</div>
+								</div>
+								<div class="flex-box col margin-top-1rem">
+									<div>
+										<span>Colors</span>
+									</div>
+									<div id="color-picker-area" class="font-size-70p">
+										<script>
+											jscolor.presets.default = {
+												format:'any', backgroundColor:'rgba(255,255,255,0)', padding:0, 
+												closeButton:false, shadow:false
+											};
+										</script>
+										<div class="flex-box center-vertical space-between margin-bottom-05rem">
+											<div class="half-width">Taskbar</div>
+											<input class="input half-width color-picker" data="0" data-jscolor="{value:'#5F085F'}">
+										</div>
+										<div class="flex-box center-vertical space-between margin-bottom-05rem">
+											<div class="half-width">Console headers</div>
+											<input class="input half-width color-picker" data="1" data-jscolor="{value:'rgba(95,8,95,.7)'}">
+										</div>
+										<div class="flex-box center-vertical space-between margin-bottom-05rem">
+											<div class="half-width">Console backgrounds</div>
+											<input class="input half-width color-picker" data="2" data-jscolor="{value:'rgba(4, 4, 4, 0.9)'}">
+										</div>
+										<div class="flex-box center-vertical space-between margin-bottom-05rem">
+											<div class="half-width">Menu backgrounds</div>
+											<input class="input half-width color-picker" data="3" data-jscolor="{value:'#5F085F'}">
+										</div>
+										<div class="flex-box center-vertical space-between margin-bottom-05rem">
+											<div class="half-width">Borders 1</div>
+											<input class="input half-width color-picker" data="4" data-jscolor="{value:'#800080'}">
+										</div>
+										<div class="flex-box center-vertical space-between margin-bottom-05rem">
+											<div class="half-width">Borders 2</div>
+											<input class="input half-width color-picker" data="5" data-jscolor="{value:'#aa09aa'}">
+										</div>
+										<div class="flex-box center-vertical space-between margin-bottom-05rem">
+											<div class="half-width">Border accents</div>
+											<input class="input half-width color-picker" data="6" data-jscolor="{value:'#040404'}">
+										</div>
+										<div class="flex-box center-vertical space-between margin-bottom-05rem">
+											<div class="half-width">Input fields</div>
+											<input class="input half-width color-picker" data="7" data-jscolor="{value:'rgba(95,8,95,0.7)'}">
+										</div>
+										<div class="flex-box center-vertical space-between margin-bottom-05rem">
+											<div class="half-width">Font</div>
+											<input class="input half-width color-picker" data="8" data-jscolor="{value:'#FFFFFF'}">
+										</div>
+										<div class="flex-box center-vertical space-between margin-bottom-05rem">
+											<div class="half-width">Button backgrounds</div>
+											<input class="input half-width color-picker" data="9" data-jscolor="{value:'#2d042e'}">
+										</div>
+										<div class="flex-box center-vertical space-between margin-bottom-05rem">
+											<div class="half-width">Button borders</div>
+											<input class="input half-width color-picker" data="10" data-jscolor="{value:'#7b0b84'}">
+										</div>
+										
+										<div class="flex-box center-vertical space-between margin-bottom-05rem">
+											<div class="half-width">Start button color</div>
+											<input class="input half-width color-picker" data="11" data-jscolor="{value:'rgba(255,255,255,0.5)'}">
+										</div>
+										<div class="flex-box center-vertical space-between margin-bottom-05rem">
+											<div class="half-width">Start button accent</div>
+											<input class="input half-width color-picker" data="12" data-jscolor="{value:'rgba(255, 31, 220, 0.5)'}">
+										</div>
+									</div>
+								</div>
+								<div class="flex-box col margin-top-1rem">
+									<div>
+										<span>Clear all settings</span>
+									</div>
+									<div>
+										<p class="font-size-70p">Clears saved wallpapers, window positions, etc.</p>
+										<button id="clear-settings" class="inventory-button">clear</button>
+									</div>
+								</div>
+								<div class="flex-box col margin-top-1rem">
+									<div>
+										<span>Save as</span>
+									</div>
+									<div>
+										<p class="font-size-70p">Download the current settings configuration file to your computer</p>
+										<button id="downloadSettings" class="inventory-button">download</button>
+									</div>
+								</div>
+								<div class="flex-box col margin-top-1rem">
+									<div>
+										<span>Restore</span>
+									</div>
+									<div>
+										<p class="font-size-70p">Restore previously saved configurations from a settings.json file.
+										Disclaimer: Files sent by other people might not be safe.</p>
+                                        <div class="file-upload">
+                                            <div class="file-select no-overflow flex-box center-vertical relative">
+                                                <button class="file-select-button inventory-button" id="fileName">Choose File</button>
+                                                <div class="file-select-name font-size-70p" id="noFile">No file chosen...</div> 
+                                                <input type="file" name="selectFile" id="selectFile" class="full-width">
+                                            </div>
+                                        </div>
+									</div>
+								</div>
+								<div class="flex-box col margin-top-1rem padding-btm-05rem">
+									<div>
+										<span>About</span>
+									</div>
+									<div class="font-monospace">
+										<p>TeamOS &copy; 2020 Vidya Games Incorporated, LLC</p>
+										<p>Business inquiries hello@team3d.io</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="vidyaswap" class="console absolute draggable" data="vidyaswap">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon icon-console-prompt"></div>
+								<div class="consoleTitle default">C:\team3d\vidyaswap.exe</div>
+							</div>
+							<button class="close_button">X</button>
+						</div>
+						<div class="console-content flex-box col flex-center padding-1rem scrollbar vidyaswap-bg-image">
+							<div class="flex-box full-width center-horizontal">
+								<div class="flex-box full-width center-horizontal margin-bottom-05rem clever-pepe">
+									<div class="no-margin padding-top-05rem padding-btm-05rem uniswap-title font-quickzag uniswap-title">VidyaSwap</div>
+								</div>
+							</div>
+							<div class="flex-box col full-width center-horizontal">
+								<div class="flex-box font-size-70p margin-bottom-01rem">
+									<div id="approved" class="flex-box"></div>
+								</div>
+								<div class="flex-box col uniswap-exchange">
+									<div id="approve-overlay" class="flex-box col flex-center">
+										<div class="font-size-70p">Approve VIDYA for trading on Uniswap</div>
+										<button id="approve-button" class="inventory-button margin-top-1rem">Approve</button>
+									</div>
+									<div class="input-wrapper">
+										<div class="flex-box space-between font-size-70p margin-bottom-01rem">
+											<div id="input-currency-label" class="input-label">ETH</div>
+											<div id="input-currency-balance" class="input-label">0.0000</div>
+										</div>
+										<div class="flex-box uniswap-input">
+											<input id="input-currency-amount" class="input" type="number">
+											<button id="input-currency-max-button" class="inventory-button">MAX</button>
+										</div>
+									</div>
+									<div class="flex-box flex-center">
+										<div id="uniswap-switch" class="uniswap-arrow-down" data="eth-to-vidya"></div>
+									</div>
+									<div class="input-wrapper">
+										<div class="flex-box space-between font-size-70p margin-bottom-01rem">
+											<div id="output-currency-label" class="output-label">VIDYA</div>
+											<div id="output-currency-balance" class="output-label">0.0000</div>
+										</div>
+										<div class="flex-box uniswap-input">
+											<input id="output-currency-amount" class="input" type="number" disabled>
+										</div>
+									</div>
+									<div class="input-wrapper">
+										<div class="flex-box space-between font-size-70p margin-bottom-01rem">
+											<div class="output-label">Minimum received</div>
+											<div id="minimum-received" class="output-label">0.0000</div>
+										</div>
+										<button id="uniswap-swap" class="inventory-button">Swap</button>
+									</div>
+									<div class="font-size-70p"><a href="https://app.uniswap.org/#/swap?outputCurrency=0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30" target="_blank">Click here to trade on UniSwap</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="teaser" class="console absolute bottom draggable" data="teaser">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon icon-console-prompt"></div>
+								<div class="consoleTitle default">C:\team3d\teaser.mp4</div>
+							</div>
+							<button class="close_button">X</button>
+						</div>
+						<div class="console-content flex-box flex-center scrollbar">
+							<video class="full-height full-width" controls>
+								<source src="img/media/Teaser.mp4" type="video/mp4">
+								Your browser does not support the video tag.
+							</video>
+						</div>
+					</div>
+					<div id="wolf3d" class="console absolute bottom draggable" data="wolf3d">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon icon-console-prompt"></div>
+								<div class="consoleTitle default">C:\team3d\wolf3d.exe</div>
+							</div>
+							<button class="close_button">X</button>
+						</div>
+						<div class="console-content flex-box flex-center scrollbar">
+							<div>
+								<p class="paragraph">
+								</p>
+							</div>
+						</div>
+					</div>
+					<!-- Inventory -->
+					<div id="inventory" class="console absolute bottom draggable hidden" data="inventory">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon icon-console-prompt"></div>
+								<div class="consoleTitle">C:\team3d\inventory.exe</div>
+							</div>
+							<button class="close_button">X</button>
+						</div>
+						<div class="flex-box col console-content padding-1rem scrollbar">
+							<div class="flex-box full-width">
+								<div class="flex-box col">
+									<h2 class="no-margin padding-top-05rem padding-btm-05rem">Inventory</h2>
+								</div>
+							</div>
+							<div class="flex-box col full-width">
+								<!-- Inventory & Character -->
+								<div class="flex-box">
+									<div id="inventory-items" class="inventory-items flex-box margin-right-1rem">
+										<div class="flex-box col">
+											<div class="inventory-item flex-box row" data="0"><span class="amount"></span></div>
+											<div class="inventory-item flex-box row" data="1"><span class="amount"></span></div>
+											<div class="inventory-item flex-box row" data="2"><span class="amount"></span></div>
+											<div class="inventory-item flex-box row" data="3"><span class="amount"></span></div>
+											<div class="inventory-item flex-box row" data="4"><span class="amount"></span></div>
+										</div>
+										<div class="flex-box col">
+											<div class="inventory-item flex-box row" data="5"><span class="amount"></span></div>
+											<div class="inventory-item flex-box row" data="6"><span class="amount"></span></div>
+											<div class="inventory-item flex-box row" data="7"><span class="amount"></span></div>
+											<div class="inventory-item flex-box row" data="8"><span class="amount"></span></div>
+											<div class="inventory-item flex-box row" data="9"><span class="amount"></span></div>
+										</div>
+										<div class="flex-box col">
+											<div class="inventory-item flex-box row" data="10"><span class="amount"></span></div>
+											<div class="inventory-item flex-box row" data="11"><span class="amount"></span></div>
+											<div class="inventory-item flex-box row" data="12"><span class="amount"></span></div>
+											<div class="inventory-item flex-box row" data="13"><span class="amount"></span></div>
+											<div class="inventory-item flex-box row" data="14"><span class="amount"></span></div>
+										</div>
+										<div class="flex-box col">
+											<div class="inventory-item flex-box row" data="15"><span class="amount"></span></div>
+											<div class="inventory-item flex-box row" data="16"><span class="amount"></span></div>
+											<div class="inventory-item flex-box row" data="17"><span class="amount"></span></div>
+											<div class="inventory-item flex-box row" data="18"><span class="amount"></span></div>
+											<div class="inventory-item flex-box row" data="19"><span class="amount"></span></div>
+										</div>
+									</div>
+									<div id="character" class="flex-box col">
+										<div class="flex-box col">
+											<div class="flex-box center-horizontal relative">
+												<div id="head-slot" class="head-slot no-margin"></div>
+												<!-- actual head slot -->
+											</div>
+											<div class="flex-box center-horizontal">
+												<div class="equipment profile-picture body-part no-margin" data="0"></div>
+												<!-- head -->
+											</div>
+											<div class="flex-box">
+												<div class="equipment body-part" data="1"></div>
+												<!-- Left hand -->
+												<div class="equipment body-part" data="2"></div>
+												<!-- Neck -->
+												<div class="equipment body-part" data="3"></div>
+												<!-- Right hand -->
+											</div>
+											<div class="flex-box center-horizontal">
+												<div class="equipment body-part" data="4"></div>
+												<!-- Chest -->
+											</div>
+											<div class="flex-box center-horizontal">
+												<div class="equipment body-part" data="5"></div>
+												<!-- Legs -->
+											</div>
+										</div>
+										<div class="userinfo flex-box col">
+											<span class="username"></span>
+											<span>Level <span id="inventoryUserLevel" class="level">0</span></span>
+											<div id="balance" class="inventory-item flex-box row" data="balance">
+												<div class="amount"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Inventory & Character -->
+								<!-- Details -->
+								<div id="item-details-wrapper" class="flex-box col">
+									<!-- Item info text -->
+									<div class="flex-box col full-width">
+										<div id="examine" class="examine">Highlight an item to inspect it</div>
+									</div>
+									<div id="item-submenu-wrapper" class="flex-box">
+										<!-- Submenu of all items sharing a particular template -->
+										<div id="item-submenu" class="flex-box col inventoryScrollbar margin-right-1rem">
+											<div class="user-items flex-box"></div>
+										</div>
+										<div class="flex-box col actions-wrapper">
+											<!-- Actions with selected items -->
+											<div id="actions" class="actions flex-box col"></div>
+										</div>
+									</div>
+									<!-- Additional details like ERC721 id, features, etc -->
+									<div id="item-submenu-detailed" class="item-submenu-detailed flex-box col full-width"></div>
+								</div>
+								<!-- Details -->
+							</div>
+						</div>
+					</div>
+					<div id="cubelog" class="console absolute bottom draggable" data="cubelog">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon icon-console-prompt"></div>
+								<div class="consoleTitle default">C:\team3d\cubelog.txt</div>
+							</div>
+							<button class="close_button">X</button>
+						</div>
+						<div class="console-content scrollbar">
+							<div class="full-height">
+								<div class="paragraph-wrapper flex-box full-height">
+									<div class="width-70-percent mobile-width-100-percent">
+										<h2>cubelog</h2>
+										
+										<p class="paragraph">
+											<span class="highlight">Dec 16'th</span>
+										</p>
+										<div class="paragraph">
+											<div class="row margin-bottom-05rem">You can now save and restore your custom theme as settings.json file. Bug reports appreciated!</div>
+											<div class="row margin-bottom-05rem">Note that uploading a custom theme file might be dangerous if it's sent by an attacker. More research is needed 
+											for this, but if it's your own backup it's fine.</div>
+										</div>
+										
+										<p class="paragraph">
+											<span class="highlight">Dec 14'th</span>
+										</p>
+										<div class="paragraph">
+											<div class="row margin-bottom-05rem">Lots of UI updates and more to come soon!</div>
+											<div class="row margin-bottom-05rem">Removed a lot of clutter from "behind the scenes" scripts and tried to make things more optimal. We'll see how it turned out.</div>
+											<div class="row margin-bottom-05rem">Restarted work on Merchant and Astronaut systems from scratch so it's gonna take a while longer. Personally I can't wait for VidyaFlux, hope I get a good entry. We
+											discussed it with @ghost3d and agreed that I won't be getting any advantage over others which is fair.</div>
+											<div class="row margin-bottom-05rem">Man... the FPS. I AM HYPED</div>
+										</div>
+										<p class="paragraph">
+											<span class="highlight">Dec 1'st</span>
+										</p>
+										<div class="paragraph">
+											<div class="row margin-bottom-05rem">Bruh.. Christmas is less than a month away! *runs around in panic*</div>
+											<div class="row margin-bottom-05rem">Fixed some minor mobile usabiliy issues (again)</div>
+											<div class="row margin-bottom-05rem">Added more settings. Let the customization begin!!! Would really love to see your desktops, just post them in #general for now. When @ghost3d gets around announcing the actual contest, there
+												will be a dedicated channel for desktops.
+											</div>
+										</div>
+										<p class="paragraph">
+											<span class="highlight">Nov 24'th</span>
+										</p>
+										<div class="paragraph">
+											<div class="row margin-bottom-05rem">Lots of stuff being done behind the scenes.</div>
+											<div class="row margin-bottom-05rem">You may have found Vidyaswap already. It's a tool that lets you execute trades on Uniswap without leaving TeamOS. FYI it uses 1% slippage by default, but you can adjust it (if you're a pro gamer)
+												by opening F12 console and setting the "slippage" variable to whatever. For example: slippage = 10 (integer, not string)
+											</div>
+											<div class="row margin-bottom-05rem">Aah yes! Cleaned up the desktop for you and piled the less relevant stuff all together in Start Menu.</div>
+											<div class="row margin-bottom-05rem">Fixed scrolling past footer bug on mobile devices.</div>
+										</div>
+										<p class="paragraph">
+											<span class="highlight">Nov 2'nd</span>
+										</p>
+										<div class="paragraph">
+											<div class="row margin-bottom-05rem">Whale detection prompt bug fix #2 should only show when not verified, then never again.</div>
+											<div class="row margin-bottom-05rem">User profile icons offset by 2px fixed</div>
+										</div>
+										<p class="paragraph">
+											<span class="highlight">Oct 30'th</span>
+										</p>
+										<div class="paragraph">
+											<div class="row margin-bottom-05rem">Multiple prompts bug fix</div>
+											<div class="row margin-bottom-05rem">Whale detection and confirmation for auto-adding to Vidyan role</div>
+											<div class="row margin-bottom-05rem">Generator: Base contract math completed for inflow/outflow</div>
+											<div class="row margin-bottom-05rem">Generator: Inventory contract acquisition and distribution</div>
+										</div>
+										<p class="paragraph">
+											<span class="highlight">Oct 10'th</span>
+										</p>
+										<div class="paragraph">
+											<div class="row margin-bottom-05rem">
+												* Distributor system added and only works for distributing dark matter right now. If you held any amount of VIDYA on 9/29/2020 you should see a new icon on desktop. This is a one time event to distribute FREE dark matter to loyal followers. Note that gas fees still apply.
+											</div>
+										</div>
+										<p class="paragraph">
+											<span class="highlight">Sept 30'th</span>
+										</p>
+										<div class="paragraph">
+											<div class="row margin-bottom-05rem">* NFT distributor contract is finished and waiting for audit from 2 separate devs</div>
+											<div class="row margin-bottom-05rem">* Generator contract is under construction, waiting input from another dev on how to move forward</div>
+											<div class="row margin-bottom-05rem">* @Ghost3D is writing up a wiki page for all the current discovered (and undiscovered) easter eggs</div>
+										</div>
+									</div>
+									<div class="full-height width-30-percent non-mobile">
+										<div class="full-height margin-top-3rem cubelog icon"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Stuff -->
+					<div class="branding font-quickzag absolute top-2half">
+						<div>Team3D</div>
+					</div>
+					<div class="texture absolute top right bottom left"></div>
+					<!-- Desktop icons -->
+					<div id="desktop_icons" class="flex-box col center-horizontal absolute top right above-grid">
+						<div class="flex-box col">
+							<div class="flex-box row flex-end">
+								<div id="teaser_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="teaser">
+									<div class="icon desktop-icon tv no-pointer-events shortcut"></div>
+									<span class="font-monospace text-align-center">teaser</span>
+								</div>
+								<div id="wolf3d_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="wolf3d">
+									<div class="icon desktop-icon desktop-exe no-pointer-events game"></div>
+									<span class="font-monospace text-align-center">wolf3d</span>
+								</div>
+								<div id="inventory_button_wrapper" class="inventory_button_wrapper hidden non-mobile">
+									<div id="inventory_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="inventory">
+										<div class="icon desktop-icon desktop-inventory no-pointer-events"></div>
+										<span class="font-monospace text-align-center">inventory</span>
+									</div>
+								</div>
+								<div id="uniswap-button-wrapper" class="flex-box row flex-end uniswap-button-wrapper non-mobile">
+									<div id="uniswap_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="uniswap">
+										<div class="icon desktop-icon uniswap-exe no-pointer-events shortcut"></div>
+										<span class="font-monospace text-align-center">uniswap</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="flex-box col">
+						    <div class="flex-box row flex-end">
+						        <div id="vidyaflux_button_wrapper" class="hidden">
+    								<div id="vidyaflux_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="vidyaflux">
+    									<div class="icon desktop-icon vidyaflux-icon no-pointer-events shortcut"></div>
+    									<span class="font-monospace text-align-center">vidyaflux</span>
+    								</div>
+    							</div>
+						    </div>
+						</div>
+					</div>
+					<!-- Desktop icons 2nd row at the bottom -->
+					<div id="desktop_icons_2" class="flex-box center-horizontal absolute bottom left above-grid">
+						<div class="flex-box col">
+							<div class="flex-box row">
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Mobile menu -->
+				<div id="mobileMenu" class="flex-box col center-horizontal absolute top right above-grid">
+					<div class="flex-box">
+						<div id="about_button" class="desktop-icon-container flex-box col center-vertical" data="about">
+							<div class="icon desktop-icon desktop-exe no-pointer-events"></div>
+							<span class="font-monospace text-align-center">about</span>
+						</div>
+						<div id="token_sale_button" class="desktop-icon-container flex-box col center-vertical" data="token_sale">
+							<div class="icon desktop-icon desktop-exe no-pointer-events"></div>
+							<span class="font-monospace text-align-center">tokenomics</span>
+						</div>
+						<div id="roadmap_button" class="desktop-icon-container flex-box col center-vertical" data="roadmap">
+							<div class="icon desktop-icon desktop-exe no-pointer-events"></div>
+							<span class="font-monospace text-align-center">roadmap</span>
+						</div>
+						<div id="faq_button" class="desktop-icon-container flex-box col center-vertical" data="faq">
+							<div class="icon desktop-icon desktop-exe no-pointer-events"></div>
+							<span class="font-monospace text-align-center">Media</span>
+						</div>
+					</div>
+					<div class="flex-box">
+						<div id="twitter_button" class="desktop-icon-container flex-box col center-vertical" data="twitter">
+							<div class="icon desktop-icon twitter no-pointer-events shortcut"></div>
+							<span class="font-monospace text-align-center">twitter</span>
+						</div>
+						<div id="telegram_button" class="desktop-icon-container flex-box col center-vertical" data="telegram">
+							<div class="icon desktop-icon telegram no-pointer-events shortcut"></div>
+							<span class="font-monospace text-align-center">telegram</span>
+						</div>
+						<div id="discord_button" class="desktop-icon-container flex-box col center-vertical" data="discord">
+							<div class="icon desktop-icon discord no-pointer-events shortcut"></div>
+							<span class="font-monospace text-align-center">discord</span>
+						</div>
+						<div class="uniswap-button-wrapper flex-box row flex-end uniswap-button-wrapper">
+							<div id="uniswap_button" class="desktop-icon-container flex-box col center-vertical" data="uniswap">
+								<div class="icon desktop-icon uniswap-exe no-pointer-events shortcut"></div>
+								<span class="font-monospace text-align-center">uniswap</span>
+							</div>
+						</div>
+					</div>
+					<div class="flex-box">
+    					<div class="inventory_button_wrapper hidden">
+    						<div class="inventory_button desktop-icon-container flex-box col center-vertical" data="inventory">
+    							<div class="icon desktop-icon desktop-inventory no-pointer-events"></div>
+    							<span class="font-monospace text-align-center">inventory</span>
+    						</div>
+    					</div>
+				        <div class="vidyaflux_button_wrapper hidden">
+							<div class="vidyaflux_button desktop-icon-container flex-box col center-vertical" data="vidyaflux">
+								<div class="icon desktop-icon vidyaflux-icon no-pointer-events shortcut"></div>
+								<span class="font-monospace text-align-center">vidyaflux</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Menu -->
+			<div id="Menu" class="menu absolute left top-30per flex-box col above-grid">
+				<div id="Cube" class="absolute hidden" data="cubelog">
+					<div class="cube-inner relative no-pointer-events">
+						<div class="cube-front face absolute top left"></div>
+						<div class="cube-back face absolute top left"></div>
+						<div class="cube-top face absolute top left"></div>
+						<div class="cube-bottom face absolute top left"></div>
+						<div class="cube-left face absolute top left"></div>
+						<div class="cube-right face absolute top left"></div>
+					</div>
+				</div>
+				<div class="menu-item pointer noselect no-overflow" data="about">
+					<span class="label no-pointer-events">About</span>
+					<div class="glass absolute top right bottom left hidden no-pointer-events"></div>
+				</div>
+				<div class="menu-item pointer noselect no-overflow" data="token_sale">
+					<span class="label no-pointer-events">Tokenomics</span>
+					<div class="glass absolute top right bottom left hidden no-pointer-events"></div>
+				</div>
+				<div class="menu-item pointer noselect no-overflow" data="roadmap">
+					<span class="label no-pointer-events">Roadmap</span>
+					<div class="glass absolute top right bottom left hidden no-pointer-events"></div>
+				</div>
+				<div class="menu-item pointer noselect no-overflow" data="faq">
+					<span class="label no-pointer-events">Media</span>
+					<div class="glass absolute top right bottom left hidden no-pointer-events"></div>
+				</div>
+			</div>
+			<div class="grid-wrapper no-overflow">
+				<div class="m-grid is-animating"></div>
+			</div>
+		</div>
+		<div id="bar" class="flex-box center-vertical above-grid absolute left right bottom">
+			<div id="start-button" class="flex-box col center-vertical start-button-wrapper">
+				<div class="start-button font-quickzag noselect">Start</div>
+			</div>
+			<div id="connect" class="flex-box flex-center absolute right pointer margin-right-1rem hidden">
+				<div class="connect icon"></div>
+			</div>
+		</div>
+		<!-- Start Menu -->
+		<div id="startmenu" class="flex-box col startmenu hidden">
+			<div class="flex-box col font-quickzag startmenu-title">
+				<div class="start-item-label noselect no-pointer-events">Start Menu</div>
+			</div>
+			<div class="startmenu-content scrollbar">
+				<div class="flex-box col item" data="links">
+					<div class="start-item-label noselect no-pointer-events flex-box center-vertical">
+						<div class="links icon"></div>
+						<div>Links</div>
+					</div>
+				</div>
+				<div id="links" class="submenu hidden">
+					<div id="opensea_button" class="button flex-box center-vertical item" data="opensea">
+						<div class="start-opensea-icon start-icon"></div>
+						<div class="noselect no-pointer-events">Opensea</div>
+					</div>
+					<div id="medium_button" class="button flex-box center-vertical item" data="medium">
+						<div class="start-medium-icon start-icon"></div>
+						<div class="noselect no-pointer-events">Medium</div>
+					</div>
+					<div id="bitcoin_button" class="button flex-box center-vertical item" data="bitcoin">
+						<div class="start-bitcointalk-icon start-icon"></div>
+						<div class="noselect no-pointer-events">BitcoinTalk</div>
+					</div>
+					<div id="rarible_button" class="button flex-box center-vertical item" data="rarible">
+						<div class="start-rarible-icon start-icon"></div>
+						<div class="noselect no-pointer-events">Rarible</div>
+					</div>
+					<div id="coingecko_button" class="button flex-box center-vertical item" data="coingecko">
+						<div class="start-coingecko-icon start-icon"></div>
+						<div class="noselect no-pointer-events">CoinGecko</div>
+					</div>
+					<div id="dextools_button" class="button flex-box center-vertical item" data="dextools">
+						<div class="start-dextools-icon start-icon"></div>
+						<div class="noselect no-pointer-events">DexTools</div>
+					</div>
+				</div>
+				<div class="flex-box col item" data="social">
+					<div class="start-item-label noselect no-pointer-events flex-box center-vertical">
+						<div class="social icon"></div>
+						<div>Social</div>
+					</div>
+				</div>
+				<div id="social" class="submenu hidden">
+					<div id="twitter_button" class="button flex-box center-vertical item" data="twitter">
+						<div class="start-twitter-icon start-icon"></div>
+						<div class="noselect no-pointer-events">Twitter</div>
+					</div>
+					<div id="telegram_button" class="button flex-box center-vertical item" data="telegram">
+						<div class="start-telegram-icon start-icon"></div>
+						<div class="noselect no-pointer-events">Telegram</div>
+					</div>
+					<div id="discord_button" class="button flex-box center-vertical item" data="discord">
+						<div class="start-discord-icon start-icon"></div>
+						<div class="noselect no-pointer-events">Discord</div>
+					</div>
+				</div>
+				<div class="flex-box col item data-button" data="settings">
+					<div class="start-item-label noselect no-pointer-events flex-box center-vertical">
+						<div class="settings icon"></div>
+						<div>Settings</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="markets" class="flex-box col widget font-size-70p">
+			<div class="flex-box space-between">
+				<div class="ticker">ETH</div>
+				<div id="eth-price" class="price">0.00</div>
+			</div>
+			<div class="flex-box space-between">
+				<div class="ticker">VIDYA</div>
+				<div id="vidya-price" class="price">0.00</div>
+			</div>
+			<div id="gas-price-wrapper" class="flex-box space-between hidden">
+				<div class="ticker">Gas</div>
+				<div id="gas-price" class="price">0.00</div>
+			</div>
+		</div>
+		<div id="context-menu" class="context-menu flex-box col font-size-70p hidden above-all">
+		    <div class="item" data="fullscreen">Full screen</div>
+		    <div class="item" data="reload">Reload</div>
+		    <div class="item" data="settings">Settings</div>
+		</div>
+		<!-- Markets.js -->
+		<link rel="stylesheet" href="markets/css/markets.css">
+		<script src="markets/js/markets.js"></script>
+		<!-- Sign.js -->
+		<script src="js/sign.js"></script>
+		<!-- Notify -->
+		<link rel="stylesheet" href="notify/css/notify.css">
+		<script src="notify/js/notify.js"></script>
+		<!-- Start Menu -->
+		<link rel="stylesheet" href="startmenu/css/startmenu.css">
+		<script src="startmenu/js/startmenu.js"></script>
+		<!-- Vidya Flux -->
+		<link rel="stylesheet" href="vidyaflux/css/vidyaflux.css">
+		<script src="vidyaflux/js/abi_stake.js"></script>
+		<script src="vidyaflux/js/bignumber.js"></script>
+		<script src="vidyaflux/js/vidyaflux.js"></script>
+		<!-- DOSBox -->
+		<script src="https://js-dos.com/6.22/current/js-dos.js"></script>
+		<!-- Connect web3 dapp -->
+		<script src="js/conn.js"></script>
+	</body>
+</html>

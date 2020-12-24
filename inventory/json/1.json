@@ -1,0 +1,8 @@
+{
+  "template": "1",
+  "name": "Torch",
+  "description": "It's a torch", 
+  "image": "https://team3d.io/inventory/json/1.png",
+  "ipfs": "",
+  "slot": "1"
+}

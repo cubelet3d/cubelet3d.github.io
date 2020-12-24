@@ -1,0 +1,67 @@
+.file-upload .file-select input[type="file"] {
+    z-index: 100;
+    cursor: default;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.file-upload .file-select input[type="file"]:active {
+    outline: none;
+}
+.file-select-name {
+    margin-left: .5rem;
+}
+
+#settings {
+    width: 420px;
+    height: 512px;
+    display: none;
+}
+
+@media all and (max-width: 400px) {
+    #settings {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+#settings .inventory-button {
+    padding: .5rem;
+    border-left: 2px solid var(--indigo);
+    border-top: 2px solid var(--indigo);
+    border-right: 2px solid var(--black);
+    border-bottom: 2px solid var(--black);
+    outline: 0;
+    color: var(--white);
+    background: var(--indigo-dark);
+    font-family: "Audiowide", monospace;
+}
+
+#settings .inventory-button:active {
+    border-left: 2px solid var(--black);
+    border-top: 2px solid var(--black);
+    border-right: 2px solid var(--indigo);
+    border-bottom: 2px solid var(--indigo)
+}
+
+.context-menu {
+    border: 2px solid var(--neon-magenta);
+    background: var(--bg-black-transparent);
+    position: absolute;
+    width: 150px;
+    height: auto;
+}
+
+.context-menu .item {
+    padding: .3rem;
+    width: 100%;
+    cursor: default;
+}
+
+.context-menu .item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}

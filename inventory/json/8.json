@@ -1,0 +1,8 @@
+{
+  "template": "8",
+  "name": "Floppy disk",
+  "description": "TeamOS bootable", 
+  "image": "https://team3d.io/inventory/json/8.png",
+  "ipfs": "",
+  "slot": ""
+}

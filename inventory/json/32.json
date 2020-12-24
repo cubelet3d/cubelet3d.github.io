@@ -1,0 +1,12 @@
+{
+  "template": "32",
+  "name": "Santa hat",
+  "description": "It's a santa hat", 
+  "image": "https://team3d.io/inventory/json/32.png",
+  "ipfs": "",
+  "slot": "0",
+  "left" : "19",
+  "top" : "-25",
+  "width" : "60",
+  "height" : "50"
+}

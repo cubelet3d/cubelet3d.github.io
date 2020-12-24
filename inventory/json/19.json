@@ -1,0 +1,8 @@
+{
+  "template": "19",
+  "name": "Tinkerer's wrench",
+  "description": "The solution to a problem I've not yet found", 
+  "image": "https://team3d.io/inventory/json/19.png",
+  "ipfs": "",
+  "slot": "3"
+}

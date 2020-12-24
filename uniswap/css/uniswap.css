@@ -1,0 +1,92 @@
+#vidyaswap {
+    display: none;
+    width: 420px;
+    height: 512px;
+}
+
+#vidyaswap .inventory-button {
+    padding: .5rem;
+    border-left: 2px solid var(--indigo);
+    border-top: 2px solid var(--indigo);
+    border-right: 2px solid var(--black);
+    border-bottom: 2px solid var(--black);
+    outline: 0;
+    color: var(--white);
+    background: var(--indigo-dark);
+    font-family: "Audiowide", monospace;
+}
+
+#vidyaswap .inventory-button:active {
+    border-left: 2px solid var(--black);
+    border-top: 2px solid var(--black);
+    border-right: 2px solid var(--indigo);
+    border-bottom: 2px solid var(--indigo)
+}
+
+#uniswap-swap {
+    width: 100%;
+}
+
+.uniswap-input {
+    height: 40px;
+    width: 100%;
+}
+
+.uniswap-input > .input {
+    width: 100%;
+}
+
+.uniswap-exchange {
+    position: relative;
+    background: var(--black);
+    background: var(--bg-black-transparent);
+    border: 3px solid var(--purple);
+    padding: 1rem 2rem;
+}
+
+.uniswap-arrow-down {
+    width: 32px;
+    height: 32px;
+    background: url(../img/arrow.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.uniswap-title {
+    font-size: 3rem;
+    font-weight: normal;
+}
+
+#approve-overlay {
+    border-radius: .5rem;
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    z-index: 999;
+    background: var(--black);
+    opacity: 0;
+    pointer-events: none
+}
+
+.clever-pepe {
+    background: url(../img/clever-pepe.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.uniswap-title {
+    transform: skewY(-5deg);
+    text-align: center;
+    font-size: 4rem;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.5);
+    text-shadow: 3px 3px rgba(255, 31, 220, 0.5);
+}
+
+.vidyaswap-bg-image {
+    background-image: url(../img/vidyaswap-op.png);
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+

@@ -1,0 +1,8 @@
+{
+  "template": "4",
+  "name": "RAM 128MB",
+  "description": "Perhaps this will fix BSOD...", 
+  "image": "https://team3d.io/inventory/json/4.png",
+  "ipfs": "",
+  "slot": ""
+}

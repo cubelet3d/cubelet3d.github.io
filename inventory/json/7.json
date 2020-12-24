@@ -1,0 +1,8 @@
+{
+  "template": "7",
+  "name": "Wizard's hat",
+  "description": "Worn by high level mages", 
+  "image": "https://team3d.io/inventory/json/7.png",
+  "ipfs": "",
+  "slot": "0"
+}

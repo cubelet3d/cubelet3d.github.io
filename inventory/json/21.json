@@ -1,0 +1,8 @@
+{
+  "template": "21",
+  "name": "Mobile phone",
+  "description": "Useful for calling 1-800 numbers", 
+  "image": "https://team3d.io/inventory/json/21.png",
+  "ipfs": "",
+  "slot": "1"
+}
