@@ -257,19 +257,19 @@ canvas#jsdos        {width: 640px; height: 400px}
 }
 #opensea,
 .opensea {
-    background: url(https://team3d.io/img/icons/opensea-logo.png);
+    background: url(../img/icons/opensea-logo.png);
 }
 #medium,
 .medium {
-    background: url(https://team3d.io/img/icons/medium.png);
+    background: url(../img/icons/medium.png);
 }
 #bitcoin,
 .bitcoin {
-    background: url(https://team3d.io/img/icons/bitcoin.png);
+    background: url(../img/icons/bitcoin.png);
 }
 #rarible,
 .rarible {
-    background: url(https://team3d.io/img/icons/rarible.jpg);
+    background: url(../img/icons/rarible.jpg);
 }
 #opensea,
 #medium,
@@ -799,7 +799,7 @@ canvas#jsdos        {width: 640px; height: 400px}
 
 #bar {
     border-top: 3px solid var(--neon-magenta);
-    background: url(https://team3d.io/img/aesthetics/bg_tile.bmp);
+    background: url(../img/aesthetics/bg_tile.bmp);
     height: 64px;
 }
 .username {
