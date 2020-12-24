@@ -213,7 +213,7 @@ function loadGame(game) {
     Dos(document.getElementById("jsdos"), { 
         wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js" 
     }).ready((fs, main) => {
-      fs.extract("https://team3d.io/games/"+game+".zip", "/game").then(() => {
+      fs.extract("../games/"+game+".zip", "/game").then(() => {
         main(["-c", "CD game/"+game+"", "-c", ""+game+".exe"]).then((ci) => {
             cmd = ci;
         });
@@ -339,7 +339,7 @@ $(window).on('load', function() {
 
 // Randomize wallpapers
 const numberOfWallpapers = 9;
-const wallpapersDirectory = "https://team3d.io/img/wallpapers/";
+const wallpapersDirectory = "../img/wallpapers/";
 
 function randomWallpapers() {
     
