@@ -85,7 +85,7 @@ async function loadDistributor() {
             
             /*  Christmas event 2020
                 Available until 12/27/2020 @ 12:00am (UTC)
-            */
+            
             
             if(i = 32) {
                 let now = Math.round(new Date().getTime()/1000)
@@ -105,6 +105,8 @@ async function loadDistributor() {
                     console.log("Event is over..")
                 }
             }
+			
+			*/
             
             
             
