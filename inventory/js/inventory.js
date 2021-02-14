@@ -83,22 +83,22 @@ async function loadDistributor() {
             })
             
             
-            /*  Christmas event 2020
-                Available until 12/27/2020 @ 12:00am (UTC)
+            /*  Valentine's Day 2021
+                Available until Tue Feb 16 2021 21:00:00 GMT+0000
             
             
-            if(i = 32) {
+            if(i = 34) {
                 let now = Math.round(new Date().getTime()/1000)
-                if(now < 1609027200) {
-                await Distributor.methods.claimed(32,inventoryUser).call().then(function(r) {
+                if(now < 1613509200) {
+                await Distributor.methods.claimed(34,inventoryUser).call().then(function(r) {
                     if(!r) {
                         let msg = "<div class=\"flex-box col flex-center\">\
-                        <div class=\"margin-bottom-05rem\">Merry Christmas!!</div>\
-                        <div id=\"claimTimedNFT\" data=\"32\" name=\"Santa hat\" slot=\"0\"><img class=\"full-width full-height\" src=\"https://team3d.io/inventory/json/32.png\" alt=\"Santa hat\"/></div>\
+                        <div class=\"margin-bottom-05rem\">Happy Valentine's Day!</div>\
+                        <div id=\"claimTimedNFT\" data=\"34\" name=\"Box of Chocolates\" slot=\"0\"><img class=\"full-width full-height\" src=\"https://team3d.io/inventory/json/34.png\" alt=\"Box of Chocolates\"/></div>\
                         </div>"
                         notify(msg)
                     } else {
-                        console.log("Santa hat already claimed!")
+                        console.log("Box of Chocolates already claimed!")
                     }
                 })
                 } else {
