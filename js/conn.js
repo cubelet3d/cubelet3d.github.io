@@ -35,7 +35,20 @@ async function init() {
         }
     
         else {
-            // Non-dapp browser..
+			// Is any provider given to us at all please? 
+            if(Web3.givenProvider != void 0) {
+				$("#connect").addClass("disabled")
+				$("#connect").html('<div class="user-icon user-picture margin-right-1rem">\
+				</div><div class="margin-right-1rem"><span id="web3-loading">Loading...</span></div>')
+				$(".user-picture").html('<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>');
+				
+				await setup()
+				
+				// Subscribe to accounts change
+				window.ethereum.on("accountsChanged", (accounts) => {
+					setup()
+				})
+			}
         }
     }
     
