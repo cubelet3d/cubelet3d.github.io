@@ -85,7 +85,7 @@ async function loadDistributor() {
             
             /*  Valentine's Day 2021
                 Available until Tue Feb 16 2021 21:00:00 GMT+0000
-            */
+            
             
             if(i = 34) {
                 let now = Math.round(new Date().getTime()/1000)
@@ -105,6 +105,8 @@ async function loadDistributor() {
                     console.log("Event is over..")
                 }
             }
+			
+			*/
 			
 			
             
