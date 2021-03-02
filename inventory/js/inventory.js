@@ -83,22 +83,23 @@ async function loadDistributor() {
             })
             
             
-            /*  Valentine's Day 2021
-                Available until Tue Feb 16 2021 21:00:00 GMT+0000
+            /*  Oxygen Tank 
+                Available until 42 are claimed 
+            */
             
-            
-            if(i = 34) {
+            if(i = 36) {
                 let now = Math.round(new Date().getTime()/1000)
-                if(now < 1613509200) {
-                await Distributor.methods.claimed(34,inventoryUser).call().then(function(r) {
+				let amt = await Distributor.methods.amtClaimed(36).call()
+                if(amt < parseFloat(web3.utils.fromWei(amt))) {
+                await Distributor.methods.claimed(36,inventoryUser).call().then(function(r) {
                     if(!r) {
                         let msg = "<div class=\"flex-box col flex-center\">\
-                        <div class=\"margin-bottom-05rem\">Happy Valentine's Day!</div>\
-                        <div id=\"claimTimedNFT\" data=\"34\" name=\"Box of Chocolates\" slot=\"0\"><img class=\"full-width full-height\" src=\"https://team3d.io/inventory/json/34.png\" alt=\"Box of Chocolates\"/></div>\
+                        <div class=\"margin-bottom-05rem\">Supply drop!</div>\
+                        <div id=\"claimTimedNFT\" data=\"36\" name=\"Oxygen Tank\" slot=\"0\"><img class=\"full-width full-height\" src=\"https://team3d.io/inventory/json/36.png\" alt=\"Oxygen Tank\"/></div>\
                         </div>"
                         notify(msg)
                     } else {
-                        console.log("Box of Chocolates already claimed!")
+                        console.log("Oxygen Tank already claimed!")
                     }
                 })
                 } else {
@@ -106,7 +107,7 @@ async function loadDistributor() {
                 }
             }
 			
-			*/
+			
 			
 			
             
