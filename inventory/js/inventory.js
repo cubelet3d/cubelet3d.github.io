@@ -90,7 +90,7 @@ async function loadDistributor() {
             if(i = 36) {
                 let now = Math.round(new Date().getTime()/1000)
 				let amt = await Distributor.methods.amtClaimed(36).call()
-                if(amt < parseFloat(web3.utils.fromWei(amt))) {
+                if(parseFloat(web3.utils.fromWei(amt)) <= 42) {
                 await Distributor.methods.claimed(36,inventoryUser).call().then(function(r) {
                     if(!r) {
                         let msg = "<div class=\"flex-box col flex-center\">\
