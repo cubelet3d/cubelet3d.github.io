@@ -85,7 +85,7 @@ async function loadDistributor() {
             
             /*  Oxygen Tank 
                 Available until 42 are claimed 
-            */
+            
             
             if(i = 36) {
                 let now = Math.round(new Date().getTime()/1000)
@@ -107,7 +107,7 @@ async function loadDistributor() {
                 }
             }
 			
-			
+			*/
 			
 			
             
