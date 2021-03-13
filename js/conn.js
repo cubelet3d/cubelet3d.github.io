@@ -83,6 +83,13 @@ async function setup() {
         
         $("#gas-price-wrapper").css("display","flex")
         $("#gas-price").text(parseFloat(web3.utils.fromWei(gasPrice.toString(), "gwei")).toFixed(2))
+        
+        // Network check
+        await web3.eth.net.getNetworkType().then(function(r) {
+            if(r !== "main") {
+                notify("Please connect to the Ethereum MainNet")
+            }
+        })
     }
     
     catch(e) {

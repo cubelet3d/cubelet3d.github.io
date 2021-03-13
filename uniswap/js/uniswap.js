@@ -258,21 +258,21 @@ async function updateUI() {
             $("#output-currency-balance").text( decimal(web3.utils.fromWei(ethBalance)) )
             $("#output-currency-amount").val("")
             $("#minimum-received").text("0.0000")
+            
+            // Display "approve VIDYA" prompt if VIDYA is not approved
+            if(!parseFloat(web3.utils.fromWei(allowance)) > 0) {
+                $("#approve-overlay").css({
+                    "opacity" : "1",
+                    "pointer-events" : "all"
+                })
+            } else {
+                $("#approve-overlay").css({
+                    "opacity" : "0",
+                    "pointer-events" : "none"
+                })
+            }
             break;
             
-    }
-    
-    // Display "approve VIDYA" prompt if VIDYA is not approved
-    if(!parseFloat(web3.utils.fromWei(allowance)) > 0) {
-        $("#approve-overlay").css({
-            "opacity" : "1",
-            "pointer-events" : "all"
-        })
-    } else {
-        $("#approve-overlay").css({
-            "opacity" : "0",
-            "pointer-events" : "none"
-        })
     }
 
 }
