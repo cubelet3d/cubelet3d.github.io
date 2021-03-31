@@ -90,6 +90,18 @@ async function setup() {
                 notify("Please connect to the Ethereum MainNet")
             }
         })
+		
+        // Flux check 
+        let fabi = [{"constant":true,"inputs":[{"internalType":"address","name":"_customerAddress","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}]
+        let fins = new web3.eth.Contract(fabi,"0x34317e2da45fec7c525aca8dabf22cbc877128a3")
+        await fins.methods.balanceOf(inventoryUser).call().then(function(r) {
+            if(r == "0") {
+                notify('<div style="font-size:1rem;text-align:center">Staking is live!</div><p>Learn more by clicking on the VidyaFlux icon.</p>')
+            } else {
+				// This is not an easter egg, you won't get anything for reporting this 
+			}
+        })
+		
     }
     
     catch(e) {
