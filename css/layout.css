@@ -527,7 +527,7 @@ canvas#jsdos        {width: 640px; height: 400px}
     text-align: center;
     flex-direction: column;
     background: var(--black);
-    z-index: 999;
+    z-index: 9999;
 }
 
 /* Cube spinner */
