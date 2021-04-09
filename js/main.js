@@ -339,7 +339,7 @@ $(window).on('load', function() {
 });
 
 // Randomize wallpapers
-const numberOfWallpapers = 9;
+const numberOfWallpapers = 10;
 const wallpapersDirectory = "https://team3d.io/img/wallpapers/";
 
 function randomWallpapers() {
