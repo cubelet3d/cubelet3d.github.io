@@ -637,7 +637,7 @@ function fetchUriData(id, action) {
 
 $(document).ready(function() {
     $("#balance").css({
-        "background-image" : "url(https://team3d.io/inventory/json/vidya.png)"
+        "background-image" : "url(https://team3d.io/img/icons/vidyarotate.gif)"
     })
     
     // Hover on inventory item
