@@ -79,7 +79,7 @@ let Token,
     StakeContract = "0x34317e2Da45FeC7c525aCa8dAbF22CbC877128a3",
     fluxuniswapURL = "https://uniswap.exchange/swap?outputCurrency="
     
-let defaultRef = "0x5aB60F304Bf66027A173D0888a454CbCEEaC3B6d"
+let defaultRef = "0xf56345338Cb4CddaF915ebeF3bfde63E70FE3053"
 
 let inventoryFund
 
