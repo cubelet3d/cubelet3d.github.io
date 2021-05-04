@@ -148,7 +148,7 @@ $(function() {
 })
 
 $(document).ready(function() {
-	$.getScript("https://web3.builders/src/web3.min.js")
+	//$.getScript("https://web3.builders/src/web3.min.js")
     let elements = $(".draggable")
     for(let i = 0; i < elements.length; i++) {
         let elementID = $(elements[i]).attr("id")
