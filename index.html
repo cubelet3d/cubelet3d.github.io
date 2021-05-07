@@ -313,6 +313,33 @@
 						</div>
 					</div>
 					
+					<!-- VIDEOS FOLDER -->
+					<div id="videos_folder" class="console absolute bottom draggable" data="videos_folder">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon icon-console-prompt"></div>
+								<div class="consoleTitle default">C:\team3d\videos</div>
+							</div>
+							<button class="close_button">X</button>
+						</div>
+						<div class="console-content flex-box scrollbar">
+							<div id="videos_icons" class="flex-box">
+								<div class="flex-box">
+									<div class="flex-box row flex-start">
+										<div id="teaser_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="teaser">
+											<div class="icon desktop-icon tv no-pointer-events shortcut"></div>
+											<span class="font-monospace text-align-center">teaser.mp4</span>
+										</div>
+										<div id="aimbots_video_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="aimbots_video">
+											<div class="icon desktop-icon tv no-pointer-events shortcut"></div>
+											<span class="font-monospace text-align-center">aimbots.avi</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
 					<div id="vidyaflux" class="console absolute bottom draggable hidden" data="vidyaflux">
 					    <div class="fluxStartTimer flex-box flex-center">
 					        <div id="hehe"></div>
@@ -704,7 +731,7 @@
 										<span>About</span>
 									</div>
 									<div class="font-monospace">
-										<p>TeamOS &copy; 2020 Vidya Games Incorporated, LLC</p>
+										<p>TeamOS &copy; 2020 - 2021 Vidya Games Incorporated, LLC</p>
 										<p>Business inquiries hello@team3d.io</p>
 									</div>
 								</div>
@@ -779,6 +806,21 @@
 						<div class="console-content flex-box flex-center scrollbar">
 							<video class="full-height full-width" controls>
 								<source src="img/media/Teaser.mp4" type="video/mp4">
+								Your browser does not support the video tag.
+							</video>
+						</div>
+					</div>
+					<div id="aimbots_video" class="console absolute bottom draggable" data="aimbots_video">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon icon-console-prompt"></div>
+								<div class="consoleTitle default">C:\team3d\aimbots.avi</div>
+							</div>
+							<button class="close_button">X</button>
+						</div>
+						<div class="console-content flex-box flex-center scrollbar">
+							<video class="full-height full-width" controls>
+								<source src="img/media/aimbots.mp4" type="video/mp4">
 								Your browser does not support the video tag.
 							</video>
 						</div>
@@ -921,6 +963,15 @@
 										<h2>cubelog</h2>
 										
 										<p class="paragraph">
+											<span class="highlight">May 8, 2021</span>
+										</p>
+										<div class="paragraph">
+											<div class="row margin-bottom-05rem">I'm not dead. Just hit a bit of a snag on the whole Merchant + Astronaut duo. It's coming, but I might need to rethink a lot of the 
+											inner workings of things. Thankfully we have a math genius on board now so should be chill. Why is nobody sharing their custom themes?</div>
+											<img style="width:50%" src="img/merchant.png">
+										</div>
+										
+										<p class="paragraph">
 											<span class="highlight">March 28'th</span>
 										</p>
 										<div class="paragraph">
@@ -1024,9 +1075,15 @@
 					<div id="desktop_icons" class="flex-box col center-horizontal absolute top right above-grid">
 						<div class="flex-box col">
 							<div class="flex-box row flex-end">
-								<div id="teaser_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="teaser">
+								<!-- <div id="teaser_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="teaser">
 									<div class="icon desktop-icon tv no-pointer-events shortcut"></div>
 									<span class="font-monospace text-align-center">teaser</span>
+								</div> -->
+								<div id="videos-folder-button-wrapper" class="flex-box row flex-end videos-folder-button-wrapper">
+									<div id="videos_folder_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="videos_folder">
+										<div class="icon desktop-icon folder-icon no-pointer-events shortcut"></div>
+										<span class="font-monospace text-align-center">xxx</span>
+									</div>
 								</div>
 								<div id="wolf3d_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="wolf3d">
 									<div class="icon desktop-icon desktop-exe no-pointer-events game"></div>

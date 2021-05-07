@@ -53,7 +53,9 @@ a {text-decoration: none; color: var(--white);}
 #wolf3d,
 #mobileMenu,
 #cubelog,
-#teaser {
+#teaser,
+#aimbots_video,
+#videos_folder {
     display: none;
 }
 
@@ -248,10 +250,14 @@ canvas#jsdos        {width: 640px; height: 400px}
 .connect3               {background: url(../img/icons/connect3.png)}
 .tv                     {background: url(../img/icons/tv.png)}
 .vidyaswap              {background: url(../img/icons/newlogo.png)}
+.folder-icon			{background: url(../img/icons/folder.png)}
 
 .p-float-left           {clear: right; float: left;}
 .p-float-right          {clear: left; float: right;}
 
+#videos_folder {
+	width: 512px; height: 512px;
+}
 #desktop_icons_2 {
     bottom: 0;
 }

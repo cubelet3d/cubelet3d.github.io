@@ -323,6 +323,7 @@ function hideAll() {
     
     // pause video
     $("video")[0].pause()
+	$("video")[1].pause()
 }
 
 $(window).on('load', function() {
