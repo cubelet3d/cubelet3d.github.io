@@ -9,6 +9,7 @@ var bitcoinURL = "https://bitcointalk.org/index.php?topic=5272225"
 var raribleURL = "https://app.rarible.com/vidyamemes/"
 var coinGeckoURL = "https://www.coingecko.com/en/coins/vidya"
 var dextoolsURL = "https://www.dextools.io/app/uniswap/pair-explorer/0xda3706c9a099077e6bc389d1baf918565212a54d"
+var quickswapURL = "https://quickswap.exchange/#/swap?outputCurrency=0xFe9CA7Cf13E33b23aF63Fea696f4AAe1b7A65585"
 
 var isMobile = false
 
@@ -203,6 +204,9 @@ function loadShortcut(shortcut) {
         case "dextools":
             window.open(dextoolsURL)
             break;
+		case "quickswap":
+			window.open(quickswapURL)
+			break;
     }
 }
 

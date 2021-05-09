@@ -572,7 +572,7 @@ function fetchUriData(id, action) {
     if(id == "balance") {
         
         $("#examine").html('<div class="item-name">VIDYA</div>\
-        <div class="item-description">Backed by nothing other than a promise from anonymous devs to continue developing games</div>')
+        <div class="item-description">'+printQuote()+'</div>')
         
         if(action == "click") {
             
@@ -634,6 +634,18 @@ function fetchUriData(id, action) {
         }
     }
 }
+
+// Quotes
+let quotes = [
+"Vidya token will send your parents to space",
+"Vidya token will bring world peace",
+"Vidya token will solve world hunger",
+"Vidya token will reverse global warming",
+"Vidya token has information that will lead to the arrest of Hillary Clinton",
+"Backed by nothing other than a promise from anonymous devs to continue developing games" // Sorry Ghost, I can't remove this line. It's wrong. Fuck the normies.
+]
+function printQuote() {return quotes[randInt(0, quotes.length - 1)]}
+function randInt(min,max) {return Math.floor(Math.random() * (max - min + 1) + min)}
 
 $(document).ready(function() {
     $("#balance").css({

@@ -112,6 +112,10 @@
     background: url(../../img/icons/dextools.png);
 }
 
+.start-quickswap-icon {
+	background: url(../../img/icons/quickswap.png);
+}
+
 .start-icon {
     background-size: cover;
     width: 32px;
