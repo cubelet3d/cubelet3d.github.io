@@ -90,7 +90,10 @@ async function setup() {
 			// This is Polygon
             replaceUniswapLink("quickswap")
             $("#inventory_button_wrapper").fadeOut()
-        }
+			$("#vidyaflux_button_wrapper").fadeOut()
+        } else {
+			notify("Please connect either to Ethereum mainNet or Polygon")
+		}
 
         // Hide spinner
         $(".user-picture").html('')
@@ -106,25 +109,6 @@ async function setup() {
         
         $("#gas-price-wrapper").css("display","flex")
         $("#gas-price").text(parseFloat(web3.utils.fromWei(gasPrice.toString(), "gwei")).toFixed(2))
-        
-        // Network check
-        await web3.eth.net.getNetworkType().then(function(r) {
-            if(r !== "main") {
-                notify("Please connect to the Ethereum MainNet")
-            }
-        })
-		
-        // Flux check 
-        let fabi = [{"constant":true,"inputs":[{"internalType":"address","name":"_customerAddress","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}]
-        let fins = new web3.eth.Contract(fabi,"0x34317e2da45fec7c525aca8dabf22cbc877128a3")
-        await fins.methods.balanceOf(inventoryUser).call().then(function(r) {
-            if(r == "0") {
-                notify('<div style="font-size:1rem;text-align:center">Staking is live!</div><p>Learn more by clicking on the VidyaFlux icon.</p>')
-            } else {
-				// This is not an easter egg, you won't get anything for reporting this 
-			}
-        })
-		
     }
     
     catch(e) {
