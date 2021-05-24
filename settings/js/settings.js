@@ -3,6 +3,18 @@ let disableBranding = localStorage.getItem("disableBranding")
 let disableTexture = localStorage.getItem("disableTexture")
 let customColors = localStorage.getItem("customColors")
 
+const polygonSettings = [{
+    chainId: '0x89',
+    chainName: 'Matic Mainnet',
+    nativeCurrency: {
+        name: 'Polygon',
+        symbol: 'MATIC',
+        decimals: 18
+    },
+    rpcUrls: ['https://rpc-mainnet.maticvigil.com/'],
+    blockExplorerUrls: ['https://rpc-mainnet.maticvigil.com/']
+}]
+
 const elements = 
 [
 "--dark-purple",
@@ -54,6 +66,10 @@ if(customColors !== null) {
     if(disableTexture == "yes") {
         $(".texture").addClass("hidden")
     }
+	
+    $("#add-polygon-support").click(function() {
+        window.ethereum.request({ method: 'wallet_addEthereumChain', params: polygonSettings })
+    })
     
     $("#save-wallpaper").click(function() {
         saveWallpaper(wallpaperID())
