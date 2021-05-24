@@ -118,7 +118,7 @@ async function setup() {
 
 // Replaces Uniswap link
 function replaceUniswapLink(what) {
-    $("#uniswap-button-wrapper, .uniswap-button-wrapper").html('<div id="'+what+'_button" class="desktop-icon-container flex-box col center-vertical" data="'+what+'"> \
+    $("#uniswap-button-wrapper, .uniswap-button-wrapper").html('<div id="'+what+'_button" class="flex-box col center-vertical" data="'+what+'"> \
     <div class="icon desktop-icon '+what+' no-pointer-events shortcut"></div> \
     <span class="font-monospace text-align-center">'+what+'</span> \
     </div>')

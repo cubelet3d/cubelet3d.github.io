@@ -48,7 +48,7 @@ $(document).ready(function() {
     
     randomWallpapers();
     
-    $(".menu-item, .desktop-icon-container, #Cube").on("click", function(e) {
+    $(".menu-item, .desktop-icon-container, #Cube, .uniswap-button-wrapper").on("click", function(e) {
         let clickedMenuItem = $(e.target).attr("data");
         let activeMenuItem = $(".active");
         

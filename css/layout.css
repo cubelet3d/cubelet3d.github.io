@@ -321,7 +321,8 @@ canvas#jsdos        {width: 640px; height: 400px}
     background-position: center;
 }
 
-.desktop-icon-container {
+.desktop-icon-container,
+.uniswap-button-wrapper {
     margin: 1rem;
     font-size: 80%;
 }
@@ -720,7 +721,8 @@ canvas#jsdos        {width: 640px; height: 400px}
         height: 42px;
     }
     
-    .desktop-icon-container {
+    .desktop-icon-container,
+	.uniswap-button-wrapper {
         width: 100%;
         margin: .5rem;
     }
