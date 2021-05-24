@@ -358,7 +358,7 @@ function getMinimumReceived() {
     
 }
 
-function replaceUniswapLink() {
+/*function replaceUniswapLink() {
     $("#uniswap-button-wrapper, .uniswap-button-wrapper").html('<div id="vidyaswap_button" class="desktop-icon-container flex-box col center-vertical" data="vidyaswap"> \
     <div class="icon desktop-icon vidyaswap no-pointer-events shortcut"></div> \
     <span class="font-monospace text-align-center">vidyaswap</span> \
@@ -387,7 +387,7 @@ function replaceUniswapLink() {
     setTimeout(function() {
         $(elem).css({"opacity":"1"})
     }, 500)
-}
+}*/
 
 // when document is ready 
 $(document).ready(function() {

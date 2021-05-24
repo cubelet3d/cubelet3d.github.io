@@ -32,9 +32,14 @@ async function init() {
             window.ethereum.on("accountsChanged", (accounts) => {
                 setup()
             })
+			
+            // Subscribe to network change 
+            window.ethereum.on('networkChanged', function(networkId) {
+                setup()
+            })
         }
     
-        else {
+        /*else {
 			// Is any provider given to us at all please? 
             if(Web3.givenProvider != void 0) {
 				$("#connect").addClass("disabled")
@@ -49,7 +54,7 @@ async function init() {
 					setup()
 				})
 			}
-        }
+        }*/
     }
     
     catch(e) {
@@ -63,11 +68,29 @@ async function setup() {
     try {
         web3 = new Web3(window.ethereum)
         accounts = await web3.eth.getAccounts()
-        
-        await loadInventory()
-        // await loadExchange()
-        replaceUniswapLink() // replace uniswap link with vidyaswap icon
-        $("#vidyaflux_button_wrapper, .vidyaflux_button_wrapper").show("scale") // show vidyaflux icon
+		
+        // Network check
+        let chainID = await web3.eth.getChainId()
+        if(chainID == 1) {
+			// This is Ethereum MainNet
+            await loadInventory() // We only have inventory on MainNet right now
+            replaceUniswapLink("vidyaswap")
+            $("#vidyaflux_button_wrapper, .vidyaflux_button_wrapper").show("scale") // show vidyaflux icon
+            
+            // Flux check 
+            let fabi = [{"constant":true,"inputs":[{"internalType":"address","name":"_customerAddress","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}]
+            let fins = new web3.eth.Contract(fabi,"0x34317e2da45fec7c525aca8dabf22cbc877128a3")
+            await fins.methods.balanceOf(inventoryUser).call().then(function(r) {
+                if(r == "0") {
+                    notify('<div style="font-size:1rem;text-align:center">Staking is live!</div><p>Learn more by clicking on the VidyaFlux icon.</p>')
+                }
+            })
+        }
+        else if(chainID == 137) {
+			// This is Polygon
+            replaceUniswapLink("quickswap")
+            $("#inventory_button_wrapper").fadeOut()
+        }
 
         // Hide spinner
         $(".user-picture").html('')
@@ -108,4 +131,19 @@ async function setup() {
         console.error(e)
     }
     
+}
+
+// Replaces Uniswap link
+function replaceUniswapLink(what) {
+    $("#uniswap-button-wrapper, .uniswap-button-wrapper").html('<div id="'+what+'_button" class="desktop-icon-container flex-box col center-vertical" data="'+what+'"> \
+    <div class="icon desktop-icon '+what+' no-pointer-events shortcut"></div> \
+    <span class="font-monospace text-align-center">'+what+'</span> \
+    </div>')
+    let elem = $('#'+what+'_button')
+    $(elem).css({"opacity":"0"})
+    setTimeout(function() {$(elem).css({"opacity":"1"})}, 100)
+    setTimeout(function() {$(elem).css({"opacity":"0"})}, 200)
+    setTimeout(function() {$(elem).css({"opacity":"1"})}, 300)
+    setTimeout(function() {$(elem).css({"opacity":"0"})}, 400)
+    setTimeout(function() {$(elem).css({"opacity":"1"})}, 500)
 }
