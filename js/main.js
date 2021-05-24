@@ -83,8 +83,7 @@ $(document).ready(function() {
         if($(this).find("div").hasClass("distributor")) {
             distribute(clickedMenuItem)
         }
-		
-		console.log(clickedMenuItem)
+
     });
 
     // Close button handler 
