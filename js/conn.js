@@ -89,8 +89,7 @@ async function setup() {
         else if(chainID == 137) {
 			// This is Polygon
             replaceUniswapLink("quickswap")
-            $("#inventory_button_wrapper").fadeOut()
-			$("#vidyaflux_button_wrapper").fadeOut()
+			$(".mainnet_object").fadeOut() // Hide all mainnet things
         } else {
 			notify("Please connect either to Ethereum mainNet or Polygon")
 		}
