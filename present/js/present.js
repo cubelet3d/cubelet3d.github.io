@@ -285,6 +285,7 @@ async function claimPresent() {
 		})
 		.on("receipt", function(receipt) {
 			$("#present_button_wrapper").hide()
+			$(".present_button_wrapper").hide()
 			loadInventory() // refresh 
 			notify('<div class="text-align-center">Present claimed!</div>')
 		})
