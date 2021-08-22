@@ -272,6 +272,10 @@ $(document).ready(function() {
     $("#present_button").click(function() {
         claimPresent()
     })
+	
+	$("#PresentMobile").click(function() {
+		claimPresent()
+	})
 })
 async function claimPresent() {
     try {
@@ -320,6 +324,9 @@ async function checkIfEligible() {
 		// Final check, both need to be true 
 		if(a && b) {
 			$("#present_button_wrapper").show("scale")
+			if(isMobile) {
+				$(".present_button_wrapper").show("scale")
+			}
 		} else {
 			// Can't claim
 		}
