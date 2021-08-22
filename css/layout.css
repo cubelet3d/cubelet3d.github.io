@@ -245,13 +245,13 @@ canvas#jsdos        {width: 640px; height: 400px}
 .uniswap-exe            {background: url(../img/icons/uniswap.png)}
 .twitter                {background: url(../img/icons/twitter.png)}
 .generato2r             {background: url(../img/icons/generator.png)}
-.present-icon           {background: url(../img/icons/present.png)}
 .connect                {background: url(../img/icons/connect.png)}
 .connect3               {background: url(../img/icons/connect3.png)}
 .tv                     {background: url(../img/icons/tv.png)}
 .vidyaswap              {background: url(../img/icons/newlogo.png)}
 .folder-icon			{background: url(../img/icons/folder.png)}
 .quickswap				{background: url(../img/icons/quickswap2.png)}
+.present-icon 			{background: url(../img/icons/present.png)}
 .p-float-left           {clear: right; float: left;}
 .p-float-right          {clear: left; float: right;}
 

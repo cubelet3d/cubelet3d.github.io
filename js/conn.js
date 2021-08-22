@@ -71,7 +71,7 @@ async function setup() {
 		
         // Network check
         let chainID = await web3.eth.getChainId()
-        if(chainID == 1) {
+        if(chainID == 1 || chainID == 1337) {
 			// This is Ethereum MainNet
             await loadInventory() // We only have inventory on MainNet right now
             replaceUniswapLink("vidyaswap")
