@@ -1,0 +1,39 @@
+#commandprompt {
+	width: 512px;
+	height: 256px;
+	right: 0;
+}
+
+#commandprompt div {
+	line-height: 21px;
+}
+
+.cmdhighlight {
+	color: green;
+}
+
+.commandprompt-content {
+	padding: 0 5px;
+	position: relative;
+	padding-bottom: 40px;
+	font-size: 90%;
+	padding-top: 150px;
+}
+
+#commandprompt-input {
+	width: 495px;
+	height: 40px;
+	position: fixed;
+	bottom: 67px;
+	line-height: 40px;
+	overflow: hidden;
+	outline: none;
+}
+
+#commandprompt-input:focus {
+	outline: none;
+}
+
+#commandprompt-input:after {
+    content: '\200B';
+}
