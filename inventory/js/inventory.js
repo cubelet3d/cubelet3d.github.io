@@ -284,6 +284,16 @@ async function load() {
                     })
                 })
             }
+			
+			// Custom CSS for phats... yes I know, please give me a break. 
+			if(filename == "46.json" || filename == "47.json" || filename == "48.json" || filename == "49.json" || filename == "50.json" || filename == "51.json") {
+				$(".head-slot").css({
+					"transform" : "rotate(25deg)",
+					"width" : "42px",
+					"height" : "42px",
+					"top" : "-28px"
+				})
+			}
         }
 
     }
