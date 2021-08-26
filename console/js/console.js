@@ -12,7 +12,9 @@ const consoleUI = '<div id="commandprompt" class="console absolute bottom dragga
 </div>'
 
 const commands = [
-	"info"
+	"info",
+	"clear",
+	"log"
 ]
 
 var command = "cmd";
@@ -73,6 +75,19 @@ function processCommand(cmd) {
 					cmdmsg("<div>Usage: info tokenid INT</div>")
 				}
 			break;
+			case "clear": 
+				$("#consoleContent").find("*").not("#commandprompt-input").remove()
+				cmdmsg("<div>Cleared...</div>")
+			break;
+			case "log":
+				if(split[1] == "vidya") {
+					logTransfers(vidya)
+				} else if(split[1] == "inventory") {
+					logTransfers(inventoryContract)
+				} else {
+					cmdmsg("<div>Usage: log [vidya, inventory]</div>")
+				}
+			break;
 		}
 	} else {
 		cmdmsg('<div>"'+cmd+'" is not a recognized command.</div>')
@@ -96,6 +111,7 @@ async function getTokenInfo(tokenId) {
 		try {
 			await Inventory.methods.tokenURI(tokenId).call().then(function(r) {
 				$.getJSON(r, function(result) {
+					cmdmsg('<div><img src="../../inventory/json/'+result.template+'.png" style="width: 42px; height: 42px"></div>')
 					cmdmsg("<div><span class='cmdhighlight'>Template:</span> "+result.template+"</div>")
 					cmdmsg("<div><span class='cmdhighlight'>Name:</span> "+result.name+"</div>")
 					cmdmsg("<div><span class='cmdhighlight'>Description:</span> "+result.description+"</div>")
@@ -106,6 +122,44 @@ async function getTokenInfo(tokenId) {
 		}
 		catch(e) {
 			cmdmsg("<div>error...</div>")
+			console.error(e)
+		}
+	}
+}
+
+async function logTransfers(what) {
+	if(!Inventory) {
+		cmdmsg("<div>Please connect to Ethereum mainNet</div>")
+	} else {
+		cmdmsg("<div>Listening for Transfer events...</div>")
+		try {
+			let block = await web3.eth.getBlockNumber() 
+			let sub = web3.eth.subscribe("logs", {
+				fromBlock: block,
+				address: what,
+				topics: ["0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"]
+			})
+			.on("data", async function(r) {
+				try {
+					let from = "0x"+r.topics[1].substring(26)
+					let to = "0x"+r.topics[2].substring(26)
+					
+					if(what == vidya) {
+						let amt = parseFloat(web3.utils.fromWei(web3.utils.hexToNumberString(r.data))).toFixed(4)
+						cmdmsg('<div style="font-size:90%">---New transfer---<br><span class="cmdhighlight">From:</span> '+formatAddress(from)+', <span class="cmdhighlight">To:</span>: '+formatAddress(to)+', <span class="cmdhighlight">Amt:</span>: '+amt+' [<a href="https://etherscan.io/tx/'+r.transactionHash+'" target="_blank">View</a>]</div>')
+					}
+					
+					if(what == inventoryContract) {
+						let tokenId = r.topics[3]
+						cmdmsg('<div style="font-size:90%">---New transfer---<br><span class="cmdhighlight">From:</span> '+formatAddress(from)+', <span class="cmdhighlight">To:</span>: '+formatAddress(to)+', <span class="cmdhighlight">TokenId:</span>: '+web3.utils.hexToNumberString(tokenId)+' [<a href="https://etherscan.io/tx/'+r.transactionHash+'" target="_blank">View</a>]</div>')
+					}
+				}
+				catch(e) {
+					console.error(e)
+				}
+			})
+		}
+		catch(e) {
 			console.error(e)
 		}
 	}
