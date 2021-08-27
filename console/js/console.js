@@ -12,14 +12,17 @@ const consoleUI = '<div id="commandprompt" class="console absolute bottom dragga
 </div>'
 
 const commands = [
+	"help",
 	"info",
 	"clear",
-	"log"
+	"log",
+	"get"
 ]
 
-var command = "cmd";
-var buffer  = "";
-var consoleOpen = false;
+var command = "cmd"
+var buffer  = ""
+var consoleOpen = false
+var pastedData
 
 $("html").keyup(function(e) {
 	if(!consoleOpen) {
@@ -32,6 +35,9 @@ $("html").keyup(function(e) {
 				buffer = ""
 				$("#Main .panel").append(consoleUI)
 				$("#commandprompt-input").focus()
+				$("#commandprompt-input").bind("paste", function(e) {
+					pastedData = e.originalEvent.clipboardData.getData('text')
+				})
 				$('#commandprompt-input').keydown(function(e) {
 					// Limit to 40 chars
 					if($(this).text().length === 40 && event.keyCode != 8) {
@@ -68,11 +74,14 @@ function processCommand(cmd) {
 	let split = cmd.split(" "); // Split after space
 	if(commands.includes(split[0])) {
 		switch(split[0]) {
+			case "help":
+				cmdmsg("<div>"+JSON.stringify(commands)+"</div>")
+			break;
 			case "info":
 				if(split[1] == "tokenid" && split[2] > 0) {
 					getTokenInfo(split[2])
 				} else {
-					cmdmsg("<div>Usage: info tokenid INT</div>")
+					cmdmsg("<div>Usage: info [tokenid][INT]</div>")
 				}
 			break;
 			case "clear": 
@@ -85,7 +94,14 @@ function processCommand(cmd) {
 				} else if(split[1] == "inventory") {
 					logTransfers(inventoryContract)
 				} else {
-					cmdmsg("<div>Usage: log [vidya, inventory]</div>")
+					cmdmsg("<div>Usage: log [vidya,inventory]</div>")
+				}
+			break;
+			case "get":
+				if(split[1].substring(0,9) == "equipment" && web3.utils.isAddress(pastedData)) { // because who tf types addresses out? 
+					getEquipment(pastedData)
+				} else {
+					cmdmsg("<div>Usage: get [equipment][address]</div>")
 				}
 			break;
 		}
@@ -146,12 +162,12 @@ async function logTransfers(what) {
 					
 					if(what == vidya) {
 						let amt = parseFloat(web3.utils.fromWei(web3.utils.hexToNumberString(r.data))).toFixed(4)
-						cmdmsg('<div style="font-size:90%">---New transfer---<br><span class="cmdhighlight">From:</span> '+formatAddress(from)+', <span class="cmdhighlight">To:</span>: '+formatAddress(to)+', <span class="cmdhighlight">Amt:</span>: '+amt+' [<a href="https://etherscan.io/tx/'+r.transactionHash+'" target="_blank">View</a>]</div>')
+						cmdmsg('<div style="font-size:90%">---VIDYA Transfer---<br><span class="cmdhighlight">From:</span> '+formatAddress(from)+', <span class="cmdhighlight">To:</span>: '+formatAddress(to)+', <span class="cmdhighlight">Amt:</span>: '+amt+' [<a href="https://etherscan.io/tx/'+r.transactionHash+'" target="_blank">View</a>]</div>')
 					}
 					
 					if(what == inventoryContract) {
 						let tokenId = r.topics[3]
-						cmdmsg('<div style="font-size:90%">---New transfer---<br><span class="cmdhighlight">From:</span> '+formatAddress(from)+', <span class="cmdhighlight">To:</span>: '+formatAddress(to)+', <span class="cmdhighlight">TokenId:</span>: '+web3.utils.hexToNumberString(tokenId)+' [<a href="https://etherscan.io/tx/'+r.transactionHash+'" target="_blank">View</a>]</div>')
+						cmdmsg('<div style="font-size:90%">---ITEM Transfer---<br><span class="cmdhighlight">From:</span> '+formatAddress(from)+', <span class="cmdhighlight">To:</span>: '+formatAddress(to)+', <span class="cmdhighlight">TokenId:</span>: '+web3.utils.hexToNumberString(tokenId)+' [<a href="https://etherscan.io/tx/'+r.transactionHash+'" target="_blank">View</a>]</div>')
 					}
 				}
 				catch(e) {
@@ -161,6 +177,41 @@ async function logTransfers(what) {
 		}
 		catch(e) {
 			console.error(e)
+		}
+	}
+}
+
+async function getEquipment(address) {
+	if(!Inventory) {
+		cmdmsg("<div>Please connect to Ethereum mainNet</div>")
+	} else {
+		try {
+			cmdmsg("<div>Fetching equipment info...</div>")
+			let equippedTokenIds
+			let eq = []
+			await Inventory.methods.getEquipment(address).call().then(function(result) {
+				equippedTokenIds = result 
+			})
+			await Inventory.methods.getTemplateIDsByTokenIDs(equippedTokenIds).call().then(async function(result) {
+				for(let i = 0; i < result.length; i++) {
+					if(result[i] > 0) {
+						await $.getJSON('https://team3d.io/inventory/json/'+result[i]+'.json', function(r) {
+							eq[i] = r["name"]
+						})
+					} else {
+						eq[i] = "N/A"
+					}
+				}
+				cmdmsg('<div><span class="cmdhighlight">Head:</span> '+eq[0]+'</div>')
+				cmdmsg('<div><span class="cmdhighlight">Left hand:</span> '+eq[1]+'</div>')
+				cmdmsg('<div><span class="cmdhighlight">Neck:</span> '+eq[2]+'</div>')
+				cmdmsg('<div><span class="cmdhighlight">Right hand:</span> '+eq[3]+'</div>')
+				cmdmsg('<div><span class="cmdhighlight">Chest:</span> '+eq[4]+'</div>')
+				cmdmsg('<div><span class="cmdhighlight">Legs:</span> '+eq[5]+'</div>')
+			})
+		}
+		catch(e) {
+			console.log(e)
 		}
 	}
 }
