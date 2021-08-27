@@ -97,9 +97,24 @@ function processCommand(cmd) {
 					cmdmsg("<div>Usage: log [vidya,inventory]</div>")
 				}
 			break;
+			
+			// What the fuck even is this... lmao
 			case "get":
-				if(split[1].substring(0,9) == "equipment" && web3.utils.isAddress(pastedData)) { // because who tf types addresses out? 
-					getEquipment(pastedData)
+				if(split[1] && pastedData) {
+					if(Inventory) {
+						if(split[1].substring(0,9) == "equipment") {
+							if(web3.utils.isAddress(pastedData)) {
+								getEquipment(pastedData)
+								pastedData = null
+							} else {
+								cmdmsg("<div>Invalid address...</div>")
+							}
+						} else {
+							cmdmsg("<div>Usage: get [equipment][address]</div>")
+						}
+					} else {
+						cmdmsg("<div>Please connect to Ethereum mainNet</div>")
+					}
 				} else {
 					cmdmsg("<div>Usage: get [equipment][address]</div>")
 				}
@@ -182,36 +197,32 @@ async function logTransfers(what) {
 }
 
 async function getEquipment(address) {
-	if(!Inventory) {
-		cmdmsg("<div>Please connect to Ethereum mainNet</div>")
-	} else {
-		try {
-			cmdmsg("<div>Fetching equipment info...</div>")
-			let equippedTokenIds
-			let eq = []
-			await Inventory.methods.getEquipment(address).call().then(function(result) {
-				equippedTokenIds = result 
-			})
-			await Inventory.methods.getTemplateIDsByTokenIDs(equippedTokenIds).call().then(async function(result) {
-				for(let i = 0; i < result.length; i++) {
-					if(result[i] > 0) {
-						await $.getJSON('https://team3d.io/inventory/json/'+result[i]+'.json', function(r) {
-							eq[i] = r["name"]
-						})
-					} else {
-						eq[i] = "N/A"
-					}
+	try {
+		cmdmsg("<div>Fetching equipment info...</div>")
+		let equippedTokenIds
+		let eq = []
+		await Inventory.methods.getEquipment(address).call().then(function(result) {
+			equippedTokenIds = result 
+		})
+		await Inventory.methods.getTemplateIDsByTokenIDs(equippedTokenIds).call().then(async function(result) {
+			for(let i = 0; i < result.length; i++) {
+				if(result[i] > 0) {
+					await $.getJSON('https://team3d.io/inventory/json/'+result[i]+'.json', function(r) {
+						eq[i] = r["name"]
+					})
+				} else {
+					eq[i] = "N/A"
 				}
-				cmdmsg('<div><span class="cmdhighlight">Head:</span> '+eq[0]+'</div>')
-				cmdmsg('<div><span class="cmdhighlight">Left hand:</span> '+eq[1]+'</div>')
-				cmdmsg('<div><span class="cmdhighlight">Neck:</span> '+eq[2]+'</div>')
-				cmdmsg('<div><span class="cmdhighlight">Right hand:</span> '+eq[3]+'</div>')
-				cmdmsg('<div><span class="cmdhighlight">Chest:</span> '+eq[4]+'</div>')
-				cmdmsg('<div><span class="cmdhighlight">Legs:</span> '+eq[5]+'</div>')
-			})
-		}
-		catch(e) {
-			console.log(e)
-		}
+			}
+			cmdmsg('<div><span class="cmdhighlight">Head:</span> '+eq[0]+'</div>')
+			cmdmsg('<div><span class="cmdhighlight">Left hand:</span> '+eq[1]+'</div>')
+			cmdmsg('<div><span class="cmdhighlight">Neck:</span> '+eq[2]+'</div>')
+			cmdmsg('<div><span class="cmdhighlight">Right hand:</span> '+eq[3]+'</div>')
+			cmdmsg('<div><span class="cmdhighlight">Chest:</span> '+eq[4]+'</div>')
+			cmdmsg('<div><span class="cmdhighlight">Legs:</span> '+eq[5]+'</div>')
+		})
+	}
+	catch(e) {
+		console.log(e)
 	}
 }
