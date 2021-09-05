@@ -85,6 +85,8 @@ async function setup() {
                     notify('<div style="font-size:1rem;text-align:center">Staking is live!</div><p>Learn more by clicking on the VidyaFlux icon.</p>')
                 }
             })
+			
+			$("#cubelets_button_wrapper").show("scale")
         }
         else if(chainID == 137) {
 			// This is Polygon

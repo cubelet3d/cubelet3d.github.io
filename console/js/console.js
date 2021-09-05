@@ -16,7 +16,8 @@ const commands = [
 	"info",
 	"clear",
 	"log",
-	"get"
+	"get",
+	"cubelets"
 ]
 
 var command = "cmd"
@@ -118,6 +119,10 @@ function processCommand(cmd) {
 				} else {
 					cmdmsg("<div>Usage: get [equipment][address]</div>")
 				}
+			break;
+			
+			case "cubelets":
+				loadCubelets()
 			break;
 		}
 	} else {
