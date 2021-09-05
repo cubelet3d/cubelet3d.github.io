@@ -1,1 +1,376 @@
-const _0x4e0597=_0x54d0;(function(_0x35a349,_0x46033b){const _0xc3d876=_0x54d0,_0xe9fe3b=_0x35a349();while(!![]){try{const _0x12681a=-parseInt(_0xc3d876(0x1ee))/0x1*(-parseInt(_0xc3d876(0x1e1))/0x2)+-parseInt(_0xc3d876(0x1ae))/0x3+parseInt(_0xc3d876(0x1d7))/0x4+parseInt(_0xc3d876(0x1c9))/0x5+parseInt(_0xc3d876(0x14e))/0x6*(parseInt(_0xc3d876(0x187))/0x7)+parseInt(_0xc3d876(0x1e8))/0x8*(parseInt(_0xc3d876(0x1a0))/0x9)+parseInt(_0xc3d876(0x139))/0xa*(-parseInt(_0xc3d876(0x1e7))/0xb);if(_0x12681a===_0x46033b)break;else _0xe9fe3b['push'](_0xe9fe3b['shift']());}catch(_0x908e08){_0xe9fe3b['push'](_0xe9fe3b['shift']());}}}(_0x4047,0x40e94));let aCubeThingLoaded=![],publicKey,privateKey,imgData,MoralisUser,Cubelets={'interval':null,'allowance':null,'instance':null,'address':'0x433285CF6e73E91A915CD4C8CB0c447C9F359fE1','abi':[{'anonymous':![],'inputs':[{'indexed':!![],'internalType':_0x4e0597(0x163),'name':_0x4e0597(0x134),'type':'address'},{'indexed':!![],'internalType':_0x4e0597(0x163),'name':_0x4e0597(0x150),'type':_0x4e0597(0x163)},{'indexed':!![],'internalType':_0x4e0597(0x145),'name':_0x4e0597(0x160),'type':_0x4e0597(0x145)}],'name':'Approval','type':_0x4e0597(0x176)},{'anonymous':![],'inputs':[{'indexed':!![],'internalType':_0x4e0597(0x163),'name':_0x4e0597(0x134),'type':_0x4e0597(0x163)},{'indexed':!![],'internalType':_0x4e0597(0x163),'name':_0x4e0597(0x195),'type':_0x4e0597(0x163)},{'indexed':![],'internalType':_0x4e0597(0x142),'name':_0x4e0597(0x150),'type':_0x4e0597(0x142)}],'name':'ApprovalForAll','type':_0x4e0597(0x176)},{'anonymous':![],'inputs':[{'indexed':!![],'internalType':_0x4e0597(0x163),'name':_0x4e0597(0x1ad),'type':'address'},{'indexed':!![],'internalType':_0x4e0597(0x163),'name':_0x4e0597(0x1b0),'type':_0x4e0597(0x163)}],'name':'OwnershipTransferred','type':'event'},{'anonymous':![],'inputs':[{'indexed':!![],'internalType':_0x4e0597(0x163),'name':_0x4e0597(0x135),'type':_0x4e0597(0x163)},{'indexed':!![],'internalType':'address','name':'to','type':_0x4e0597(0x163)},{'indexed':!![],'internalType':_0x4e0597(0x145),'name':_0x4e0597(0x160),'type':_0x4e0597(0x145)}],'name':_0x4e0597(0x15a),'type':_0x4e0597(0x176)},{'inputs':[{'internalType':'address','name':'to','type':_0x4e0597(0x163)},{'internalType':_0x4e0597(0x145),'name':'tokenId','type':_0x4e0597(0x145)}],'name':_0x4e0597(0x179),'outputs':[],'stateMutability':_0x4e0597(0x19c),'type':_0x4e0597(0x18e)},{'inputs':[{'internalType':'string','name':_0x4e0597(0x196),'type':_0x4e0597(0x17e)}],'name':_0x4e0597(0x1b9),'outputs':[],'stateMutability':_0x4e0597(0x19c),'type':_0x4e0597(0x18e)},{'inputs':[{'internalType':_0x4e0597(0x145),'name':_0x4e0597(0x196),'type':_0x4e0597(0x145)}],'name':_0x4e0597(0x17f),'outputs':[],'stateMutability':_0x4e0597(0x19c),'type':_0x4e0597(0x18e)},{'inputs':[{'internalType':_0x4e0597(0x17e),'name':_0x4e0597(0x151),'type':_0x4e0597(0x17e)}],'name':_0x4e0597(0x171),'outputs':[{'internalType':_0x4e0597(0x145),'name':'','type':_0x4e0597(0x145)}],'stateMutability':_0x4e0597(0x19c),'type':'function'},{'inputs':[],'name':'renounceOwnership','outputs':[],'stateMutability':_0x4e0597(0x19c),'type':_0x4e0597(0x18e)},{'inputs':[{'internalType':_0x4e0597(0x163),'name':_0x4e0597(0x135),'type':'address'},{'internalType':_0x4e0597(0x163),'name':'to','type':'address'},{'internalType':_0x4e0597(0x145),'name':_0x4e0597(0x160),'type':_0x4e0597(0x145)}],'name':'safeTransferFrom','outputs':[],'stateMutability':_0x4e0597(0x19c),'type':_0x4e0597(0x18e)},{'inputs':[{'internalType':_0x4e0597(0x163),'name':'from','type':_0x4e0597(0x163)},{'internalType':'address','name':'to','type':_0x4e0597(0x163)},{'internalType':_0x4e0597(0x145),'name':'tokenId','type':_0x4e0597(0x145)},{'internalType':_0x4e0597(0x164),'name':_0x4e0597(0x1ba),'type':_0x4e0597(0x164)}],'name':_0x4e0597(0x16a),'outputs':[],'stateMutability':_0x4e0597(0x19c),'type':_0x4e0597(0x18e)},{'inputs':[{'internalType':_0x4e0597(0x163),'name':'operator','type':'address'},{'internalType':_0x4e0597(0x142),'name':_0x4e0597(0x150),'type':'bool'}],'name':_0x4e0597(0x1e4),'outputs':[],'stateMutability':'nonpayable','type':_0x4e0597(0x18e)},{'inputs':[{'internalType':_0x4e0597(0x163),'name':_0x4e0597(0x135),'type':_0x4e0597(0x163)},{'internalType':_0x4e0597(0x163),'name':'to','type':_0x4e0597(0x163)},{'internalType':_0x4e0597(0x145),'name':'tokenId','type':'uint256'}],'name':_0x4e0597(0x1dd),'outputs':[],'stateMutability':_0x4e0597(0x19c),'type':_0x4e0597(0x18e)},{'inputs':[{'internalType':_0x4e0597(0x163),'name':_0x4e0597(0x1b0),'type':_0x4e0597(0x163)}],'name':'transferOwnership','outputs':[],'stateMutability':'nonpayable','type':_0x4e0597(0x18e)},{'inputs':[{'internalType':_0x4e0597(0x163),'name':_0x4e0597(0x17b),'type':_0x4e0597(0x163)}],'name':_0x4e0597(0x152),'outputs':[],'stateMutability':_0x4e0597(0x19c),'type':_0x4e0597(0x18e)},{'inputs':[{'internalType':_0x4e0597(0x17e),'name':_0x4e0597(0x181),'type':'string'},{'internalType':_0x4e0597(0x145),'name':'_price','type':'uint256'}],'stateMutability':_0x4e0597(0x19c),'type':_0x4e0597(0x1b7)},{'inputs':[],'name':_0x4e0597(0x148),'outputs':[{'internalType':_0x4e0597(0x145),'name':_0x4e0597(0x184),'type':_0x4e0597(0x145)}],'stateMutability':_0x4e0597(0x1ef),'type':'function'},{'inputs':[{'internalType':_0x4e0597(0x163),'name':_0x4e0597(0x134),'type':_0x4e0597(0x163)}],'name':'balanceOf','outputs':[{'internalType':'uint256','name':'','type':'uint256'}],'stateMutability':_0x4e0597(0x1ef),'type':_0x4e0597(0x18e)},{'inputs':[],'name':'base','outputs':[{'internalType':_0x4e0597(0x17e),'name':'','type':'string'}],'stateMutability':_0x4e0597(0x1ef),'type':'function'},{'inputs':[{'internalType':'uint256','name':_0x4e0597(0x160),'type':'uint256'}],'name':_0x4e0597(0x1b1),'outputs':[{'internalType':_0x4e0597(0x163),'name':'','type':_0x4e0597(0x163)}],'stateMutability':_0x4e0597(0x1ef),'type':_0x4e0597(0x18e)},{'inputs':[{'internalType':_0x4e0597(0x163),'name':_0x4e0597(0x134),'type':_0x4e0597(0x163)},{'internalType':_0x4e0597(0x163),'name':'operator','type':_0x4e0597(0x163)}],'name':_0x4e0597(0x17a),'outputs':[{'internalType':_0x4e0597(0x142),'name':'','type':'bool'}],'stateMutability':_0x4e0597(0x1ef),'type':_0x4e0597(0x18e)},{'inputs':[],'name':_0x4e0597(0x162),'outputs':[{'internalType':_0x4e0597(0x17e),'name':'','type':_0x4e0597(0x17e)}],'stateMutability':_0x4e0597(0x1ef),'type':_0x4e0597(0x18e)},{'inputs':[],'name':_0x4e0597(0x134),'outputs':[{'internalType':_0x4e0597(0x163),'name':'','type':_0x4e0597(0x163)}],'stateMutability':_0x4e0597(0x1ef),'type':_0x4e0597(0x18e)},{'inputs':[{'internalType':_0x4e0597(0x145),'name':_0x4e0597(0x160),'type':_0x4e0597(0x145)}],'name':'ownerOf','outputs':[{'internalType':_0x4e0597(0x163),'name':'','type':'address'}],'stateMutability':_0x4e0597(0x1ef),'type':_0x4e0597(0x18e)},{'inputs':[],'name':'price','outputs':[{'internalType':_0x4e0597(0x145),'name':'','type':_0x4e0597(0x145)}],'stateMutability':_0x4e0597(0x1ef),'type':_0x4e0597(0x18e)},{'inputs':[{'internalType':_0x4e0597(0x19a),'name':'interfaceId','type':_0x4e0597(0x19a)}],'name':_0x4e0597(0x1ac),'outputs':[{'internalType':'bool','name':'','type':_0x4e0597(0x142)}],'stateMutability':_0x4e0597(0x1ef),'type':_0x4e0597(0x18e)},{'inputs':[],'name':'symbol','outputs':[{'internalType':_0x4e0597(0x17e),'name':'','type':_0x4e0597(0x17e)}],'stateMutability':_0x4e0597(0x1ef),'type':'function'},{'inputs':[{'internalType':'uint256','name':_0x4e0597(0x160),'type':'uint256'}],'name':_0x4e0597(0x138),'outputs':[{'internalType':_0x4e0597(0x17e),'name':'','type':_0x4e0597(0x17e)}],'stateMutability':_0x4e0597(0x1ef),'type':_0x4e0597(0x18e)},{'inputs':[],'name':_0x4e0597(0x1cc),'outputs':[{'internalType':_0x4e0597(0x145),'name':'','type':_0x4e0597(0x145)}],'stateMutability':_0x4e0597(0x1ef),'type':_0x4e0597(0x18e)}]};const aCubeThingUI=_0x4e0597(0x19f);async function loadCubelets(){const _0x1207ce=_0x4e0597;$(_0x1207ce(0x14f))[_0x1207ce(0x170)](_0x1207ce(0x1e2));if(!aCubeThingLoaded)$[_0x1207ce(0x1eb)](_0x1207ce(0x1a9),function(){const _0x3d42d1=_0x1207ce;$['getScript'](_0x3d42d1(0x1c2),function(){const _0x1f182e=_0x3d42d1;$['getScript'](_0x1f182e(0x14c),function(){const _0x25abe5=_0x1f182e;$[_0x25abe5(0x1eb)](_0x25abe5(0x1d5),async function(){const _0x377b9c=_0x25abe5;$(_0x377b9c(0x193))[_0x377b9c(0x1bd)]('<script\x20id=\x22vertexShader\x22\x20type=\x22x-shader/x-vertex\x22>\x20\x09\x09\x09\x09\x09\x09varying\x20vec2\x20vUv;\x20\x09\x09\x09\x09\x09\x09void\x20main()\x20{\x20\x09\x09\x09\x09\x09\x09vUv\x20=\x20uv;\x20\x09\x09\x09\x09\x09\x09gl_Position\x20=\x20projectionMatrix\x20*\x20modelViewMatrix\x20*\x20vec4(position,1.0);\x20\x09\x09\x09\x09\x09\x09}\x20\x09\x09\x09\x09\x09\x09</script>\x20\x09\x09\x09\x09\x09\x09<script\x20id=\x22fragmentShader\x22\x20type=\x22x-shader/x-fragment\x22>\x20\x09\x09\x09\x09\x09\x09uniform\x20vec3\x20color1;\x20\x09\x09\x09\x09\x09\x09uniform\x20vec3\x20color2;\x20\x09\x09\x09\x09\x09\x09varying\x20vec2\x20vUv;\x20\x09\x09\x09\x09\x09\x09void\x20main()\x20{\x20\x09\x09\x09\x09\x09\x09gl_FragColor\x20=\x20vec4(mix(color1,\x20color2,\x20vUv.y),1.0);\x20\x09\x09\x09\x09\x09\x09}\x20\x09\x09\x09\x09\x09\x09</script>'),$(_0x377b9c(0x140))[_0x377b9c(0x1bd)](aCubeThingUI),$(_0x377b9c(0x16f))[_0x377b9c(0x15b)](_0x377b9c(0x167),'1'),$(_0x377b9c(0x14d))[_0x377b9c(0x144)]('fold'),$(_0x377b9c(0x14d))['addClass'](_0x377b9c(0x185)),$(_0x377b9c(0x14d))[_0x377b9c(0x19d)]({'containment':_0x377b9c(0x1ab),'handle':_0x377b9c(0x1a3),'snap':!![],'start':function(_0x578ecd,_0x459af5){const _0x2efe43=_0x377b9c;$(this)[_0x2efe43(0x170)](_0x2efe43(0x137));},'stop':function(_0x146280,_0x4feb0c){const _0x52d3e1=_0x377b9c;localStorage['setItem']($(this)['attr']('id'),JSON[_0x52d3e1(0x13f)](_0x4feb0c[_0x52d3e1(0x1d8)])),setTimeout(function(){const _0x59868f=_0x52d3e1;$(_0x146280['target'])[_0x59868f(0x198)](_0x59868f(0x137));},0x64);}}),putCube(accounts[0x0]),Moralis['initialize'](_0x377b9c(0x1b5)),Moralis[_0x377b9c(0x157)]=_0x377b9c(0x1db),Cubelets[_0x377b9c(0x1cf)]=new web3[(_0x377b9c(0x17c))][(_0x377b9c(0x175))](Cubelets[_0x377b9c(0x14b)],Cubelets[_0x377b9c(0x163)]);let _0x567d76=$(_0x377b9c(0x14d))[_0x377b9c(0x13b)]()-($('#acubething\x20.consoleHeader')[_0x377b9c(0x13b)]()+$(_0x377b9c(0x1a8))['outerHeight']()+$(_0x377b9c(0x143))[_0x377b9c(0x13b)]());$(_0x377b9c(0x173))[_0x377b9c(0x15b)]({'height':''+_0x567d76+'px','overflow-x':_0x377b9c(0x1e3),'overflow-y':_0x377b9c(0x1a6),'font-size':_0x377b9c(0x147),'padding':_0x377b9c(0x1ea),'color':_0x377b9c(0x1b8)}),Cubelets[_0x377b9c(0x186)]=setInterval(cubeletsVidyaAllowance,0x3e8),writeToConsole('Generate\x20wallets\x20and\x20save\x20them\x20to\x20disk.\x20Mint\x20as\x20NFT\x20costs\x20100\x20VIDYA\x20+\x20Gas.'),aCubeThingLoaded=!![],$(_0x377b9c(0x14f))[_0x377b9c(0x198)]('disabled');});});});});else{$(_0x1207ce(0x140))[_0x1207ce(0x1bd)](aCubeThingUI),$(_0x1207ce(0x16f))['css'](_0x1207ce(0x167),'1'),$(_0x1207ce(0x14d))[_0x1207ce(0x144)](_0x1207ce(0x1c4)),$('#acubething')[_0x1207ce(0x170)](_0x1207ce(0x185)),$(_0x1207ce(0x14d))[_0x1207ce(0x19d)]({'containment':'parent','handle':'.handle','snap':!![],'start':function(_0x28597e,_0x4d500c){const _0x1d93be=_0x1207ce;$(this)[_0x1d93be(0x170)]('dragging');},'stop':function(_0x18f1fe,_0x5a364e){const _0x8966f9=_0x1207ce;localStorage[_0x8966f9(0x191)]($(this)[_0x8966f9(0x178)]('id'),JSON[_0x8966f9(0x13f)](_0x5a364e[_0x8966f9(0x1d8)])),setTimeout(function(){const _0x3e78dc=_0x8966f9;$(_0x18f1fe[_0x3e78dc(0x1d0)])[_0x3e78dc(0x198)](_0x3e78dc(0x137));},0x64);}}),putCube(accounts[0x0]);let _0x3c17d4=$(_0x1207ce(0x14d))[_0x1207ce(0x13b)]()-($(_0x1207ce(0x13c))[_0x1207ce(0x13b)]()+$(_0x1207ce(0x1a8))['outerHeight']()+$(_0x1207ce(0x143))[_0x1207ce(0x13b)]());$('#cubeletsConsole')[_0x1207ce(0x15b)]({'height':''+_0x3c17d4+'px','overflow-x':_0x1207ce(0x1e3),'overflow-y':'auto','font-size':'80%','padding':_0x1207ce(0x1ea),'color':'green'}),Cubelets[_0x1207ce(0x186)]=setInterval(cubeletsVidyaAllowance,0x3e8),writeToConsole(_0x1207ce(0x19b)),$(_0x1207ce(0x14f))[_0x1207ce(0x198)](_0x1207ce(0x1e2));}}async function cubeletsVidyaAllowance(){const _0x1e1dd6=_0x4e0597;await VIDYA['methods'][_0x1e1dd6(0x141)](accounts[0x0],Cubelets['address'])[_0x1e1dd6(0x1d4)]()[_0x1e1dd6(0x1c7)](function(_0x33f187){const _0x4ed5c1=_0x1e1dd6;Cubelets[_0x4ed5c1(0x141)]=_0x33f187,Cubelets[_0x4ed5c1(0x141)]>=web3[_0x4ed5c1(0x1aa)][_0x4ed5c1(0x154)]('100')?($(_0x4ed5c1(0x1b4))[_0x4ed5c1(0x180)](_0x4ed5c1(0x1bc)),$('#mintNFT')[_0x4ed5c1(0x198)](_0x4ed5c1(0x1e2)),clearInterval(Cubelets[_0x4ed5c1(0x186)]),Cubelets[_0x4ed5c1(0x186)]=null):($(_0x4ed5c1(0x1b4))[_0x4ed5c1(0x180)](_0x4ed5c1(0x16c)),$(_0x4ed5c1(0x1b4))[_0x4ed5c1(0x198)]('disabled'));});}function writeToConsole(_0x1d109c){const _0x396b70=_0x4e0597;$(_0x396b70(0x173))['append'](_0x396b70(0x161)+_0x1d109c+_0x396b70(0x189)),$('#cubeletsConsole')['scrollTop']($(_0x396b70(0x173))[0x0][_0x396b70(0x1d2)]);}async function mintCubelet(){const _0x5a76f9=_0x4e0597;Cubelets[_0x5a76f9(0x141)]=='0'?VIDYA[_0x5a76f9(0x1dc)][_0x5a76f9(0x179)](Cubelets[_0x5a76f9(0x163)],_0x5a76f9(0x153))[_0x5a76f9(0x197)]({'from':accounts[0x0]})['on'](_0x5a76f9(0x1a2),function(_0xfee971){const _0x17e477=_0x5a76f9;writeToConsole(_0x17e477(0x1be));})['on'](_0x5a76f9(0x1b3),function(_0x50ed68){const _0x193ad2=_0x5a76f9;writeToConsole(_0x193ad2(0x15e));}):await VIDYA[_0x5a76f9(0x1dc)]['balanceOf'](accounts[0x0])[_0x5a76f9(0x1d4)]()[_0x5a76f9(0x1c7)](async function(_0x23c580){const _0x3b6322=_0x5a76f9;parseFloat(web3[_0x3b6322(0x1aa)][_0x3b6322(0x158)](_0x23c580))>=0x64?await uploadFile():writeToConsole(_0x3b6322(0x188));});}async function uploadFile(){const _0x2b2a2d=_0x4e0597;writeToConsole(_0x2b2a2d(0x15f)),Moralis[_0x2b2a2d(0x1e5)][_0x2b2a2d(0x166)]()[_0x2b2a2d(0x1c7)](async function(_0x53eb33){const _0x1082b2=_0x2b2a2d;MoralisUser=Moralis[_0x1082b2(0x1a4)][_0x1082b2(0x18b)]();if(imgData){writeToConsole(_0x1082b2(0x169));let _0x201987=new Moralis[(_0x1082b2(0x15d))](_0x1082b2(0x1b2),{'base64':imgData});await _0x201987[_0x1082b2(0x1a5)]();let _0x445386={'name':'Cubelet','description':accounts[0x0],'image':_0x201987[_0x1082b2(0x174)]},_0x2edbc9=new Moralis[(_0x1082b2(0x15d))](_0x1082b2(0x146),{'base64':btoa(JSON[_0x1082b2(0x13f)](_0x445386))});await _0x2edbc9['saveIPFS']();let _0x174aed=_0x2edbc9['_ipfs'],_0x44446f=_0x2edbc9[_0x1082b2(0x13e)];mint(_0x44446f);}});}async function mint(_0x3201e2){const _0x2b7ad2=_0x4e0597;writeToConsole(_0x2b7ad2(0x1df)),writeToConsole(_0x2b7ad2(0x18d)),await Cubelets['instance'][_0x2b7ad2(0x1dc)][_0x2b7ad2(0x171)](_0x3201e2)[_0x2b7ad2(0x197)]({'from':accounts[0x0]})['on'](_0x2b7ad2(0x1a2),function(_0x3ffe43){writeToConsole('Pending\x20transaction...');})['on'](_0x2b7ad2(0x1b3),function(_0x155948){const _0x1f318b=_0x2b7ad2;writeToConsole(_0x1f318b(0x16d));});}$(document)[_0x4e0597(0x19e)](function(){const _0x4e59c2=_0x4e0597;$('body')['on'](_0x4e59c2(0x194),_0x4e59c2(0x18a),function(){const _0x3a9969=_0x4e59c2;$(_0x3a9969(0x14d))[_0x3a9969(0x199)](_0x3a9969(0x192)),$(_0x3a9969(0x14d))[_0x3a9969(0x1e9)](),clearInterval(Cubelets['interval']);}),$(_0x4e59c2(0x193))['on'](_0x4e59c2(0x194),_0x4e59c2(0x1c1),function(){generate();}),$(_0x4e59c2(0x193))['on'](_0x4e59c2(0x194),'#saveAs',function(){saveAs();}),$(_0x4e59c2(0x193))['on']('click',_0x4e59c2(0x1b4),function(){mintCubelet();}),$('body')['on'](_0x4e59c2(0x194),_0x4e59c2(0x1c6),function(){loadCubelets();});});let mesh,renderer,scene,camera,sprite;function setupScene(){const _0x252c37=_0x4e0597;scene=new THREE['Scene'](),camera=new THREE[(_0x252c37(0x18f))](0x2d,0xfa/0xfa),renderer=new THREE[(_0x252c37(0x1e0))]({'antialias':!![],'alpha':!![]}),renderer[_0x252c37(0x1de)](0xfa,0xfa),$('#Blockie3D')['html'](renderer[_0x252c37(0x1c3)]);}function putCube(_0x16e2d9){const _0xd42b03=_0x4e0597;accounts[0x0]!==_0x16e2d9&&$(_0xd42b03(0x1bf))[_0xd42b03(0x198)](_0xd42b03(0x1e2));setupScene(),blockie=blockies[_0xd42b03(0x1ca)]({'seed':_0x16e2d9[_0xd42b03(0x165)]()})[_0xd42b03(0x1d9)]();var _0x15dc4c=new THREE['TextureLoader']();_0x15dc4c[_0xd42b03(0x1a1)]='',_0x15dc4c['load'](blockie,function(_0x24e2c1){const _0x2d0c8d=_0xd42b03;let _0x15100e=new THREE[(_0x2d0c8d(0x1cd))](0x1,0x1,0x1),_0x482261=new THREE[(_0x2d0c8d(0x15c))]({'map':_0x24e2c1}),_0x522c0b=new THREE[(_0x2d0c8d(0x18c))](_0x15100e,_0x482261);scene[_0x2d0c8d(0x156)](_0x522c0b),_0x522c0b[_0x2d0c8d(0x16b)]['z']=-0x4,_0x522c0b[_0x2d0c8d(0x1c8)](22.5*THREE['Math'][_0x2d0c8d(0x1af)]),_0x522c0b['rotateY'](0x2d*THREE['Math'][_0x2d0c8d(0x1af)]),sprite=new THREE[(_0x2d0c8d(0x168))]({'alignment':_0x2d0c8d(0x1d3),'color':_0x2d0c8d(0x14a),'strokeColor':_0x2d0c8d(0x136),'strokeWidth':0.02,'fontFamily':_0x2d0c8d(0x182),'fontSize':0.35,'fontStyle':_0x2d0c8d(0x1c5),'text':formatAddress(_0x16e2d9)}),scene[_0x2d0c8d(0x156)](sprite),sprite[_0x2d0c8d(0x16b)]['z']=-0x4,sprite[_0x2d0c8d(0x16b)]['y']=-1.25;var _0x29a4ca={'color1':{'type':'c','value':new THREE['Color'](longHSLtoShort(color1))},'color2':{'type':'c','value':new THREE['Color'](longHSLtoShort(color2))}},_0x48547f=document[_0x2d0c8d(0x16e)]('fragmentShader')['text'],_0x104790=document[_0x2d0c8d(0x16e)](_0x2d0c8d(0x1ce))[_0x2d0c8d(0x180)],_0x4e937f=new THREE[(_0x2d0c8d(0x155))]({'uniforms':_0x29a4ca,'vertexShader':_0x104790,'fragmentShader':_0x48547f}),_0x14d569=new THREE['PlaneGeometry'](0x4,0x4,0x4,0x4);mesh=new THREE[(_0x2d0c8d(0x18c))](_0x14d569,_0x4e937f),scene[_0x2d0c8d(0x156)](mesh),mesh[_0x2d0c8d(0x16b)]['z']=-0x5,scene[_0x2d0c8d(0x1d6)]=new THREE['Color'](longHSLtoShort(color3)),render();let _0x373ceb=_0x2d0c8d(0x177);imgData=renderer[_0x2d0c8d(0x1c3)][_0x2d0c8d(0x1d9)](_0x373ceb);},function(){},function(_0x56d661){console['log'](_0x56d661);});}function render(){const _0x14805e=_0x4e0597;renderer[_0x14805e(0x1d1)](scene,camera),requestAnimationFrame(render);}function formatAddress(_0x269ec3){const _0x2a3935=_0x4e0597;let _0x4fe1b4=_0x269ec3[_0x2a3935(0x1ed)](0x0,0x6),_0x3d67cb=_0x269ec3[_0x2a3935(0x1b6)](_0x269ec3[_0x2a3935(0x1e6)]-0x4);return _0x4fe1b4+_0x2a3935(0x1ec)+_0x3d67cb;}function longHSLtoINT(_0x4feb8){const _0xe64aa0=_0x4e0597;return Math[_0xe64aa0(0x172)](_0x4feb8[_0xe64aa0(0x159)]('%',''));}function _0x54d0(_0x25ddd0,_0x1867e9){const _0x4047a8=_0x4047();return _0x54d0=function(_0x54d094,_0x4f4bf1){_0x54d094=_0x54d094-0x134;let _0x37382d=_0x4047a8[_0x54d094];return _0x37382d;},_0x54d0(_0x25ddd0,_0x1867e9);}function generate(){const _0xc8dab7=_0x4e0597;let _0x4013d9=web3[_0xc8dab7(0x17c)]['accounts'][_0xc8dab7(0x1ca)]();publicKey=_0x4013d9[_0xc8dab7(0x163)],privateKey=_0x4013d9[_0xc8dab7(0x149)],putCube(publicKey);}function saveAs(){const _0x2ed933=_0x4e0597;publicKey[_0x2ed933(0x1e6)]==0x2a&&privateKey[_0x2ed933(0x1e6)]==0x42?download(publicKey+'\x0a'+privateKey,publicKey+'.txt','text/plain'):console[_0x2ed933(0x13a)](_0x2ed933(0x1c0));}function _0x4047(){const _0x22e220=['Pending\x20approve...','#saveAs','Invalid\x20address\x20or\x20private\x20key\x20length!','#gen3dBlockie','cubelets/js/texture.js','domElement','fold','normal','#cubelets_button','then','rotateX','124280RmPlEz','create','appendChild','totalSupply','BoxBufferGeometry','vertexShader','instance','target','render','scrollHeight','center','call','https://unpkg.com/moralis/dist/moralis.js','background','2003624cBHWvP','offset','toDataURL','createElement','https://iuu6g7fymlha.moralis.io:2053/server','methods','transferFrom','setSize','Ready\x20to\x20mint!','WebGLRenderer','374162VeHNBW','disabled','hidden','setApprovalForAll','Web3','length','1087350qmgVev','12096IoGcCB','remove','2px\x202px\x207px\x202px','getScript','...','substring','2KUHgxh','view','revokeObjectURL','owner','from','#000000','dragging','tokenURI','100sCFkHp','error','outerHeight','#acubething\x20.consoleHeader','hsl(','_hash','stringify','#Main\x20.panel','allowance','bool','#cubeletNav','show','uint256','file.json','80%','_tokenIds','privateKey','#ffffff','abi','cubelets/js/sprite.js','#acubething','6supUWn','#cubelets_button_wrapper','approved','hash','withdrawERC20','115792089237316195423570985008687907853269984665640564039457584007913129639935','toWei','ShaderMaterial','add','serverURL','fromWei','replace','Transfer','css','MeshBasicMaterial','File','Approved!','Waiting\x20for\x20signature...','tokenId','<div>','name','address','bytes','toLowerCase','authenticate','flex','TextSprite','Uploading\x20to\x20IPFS...','safeTransferFrom','position','Approve','Process\x20completed!','getElementById','#cubeletNav\x20>\x20button','addClass','claim','round','#cubeletsConsole','_ipfs','Contract','event','image/png','attr','approve','isApprovedForAll','_token','eth','slice','string','changePrice','text','_base','monospace','navigator','_value','active-console','interval','1631245lMleBC','Not\x20enough\x20VIDYA...','</div>','#aCubeThingCloseButton','current','Mesh','Waiting\x20for\x20user\x20input...','function','PerspectiveCamera','URL','setItem','explode','body','click','operator','_new','send','removeClass','hide','bytes4','Generate\x20wallets\x20and\x20save\x20them\x20to\x20disk.\x20Mint\x20as\x20NFT\x20costs\x20100\x20VIDYA\x20+\x20Gas.','nonpayable','draggable','ready','<div\x20id=\x22acubething\x22\x20style=\x22width:256px;height:420px\x22\x20class=\x22hidden\x20console\x20absolute\x20bottom\x20draggable\x22\x20data=\x22acubething\x22>\x20<div\x20class=\x22consoleHeader\x20handle\x20ui-draggable-handle\x20flex-box\x20space-between\x20center-vertical\x22>\x20\x09<div\x20class=\x22flex-box\x20center-vertical\x22>\x20\x09\x09<div\x20class=\x22icon\x20icon-console-prompt\x22></div>\x20\x09\x09<div\x20class=\x22consoleTitle\x20default\x22>cubelets.exe</div>\x20\x09</div>\x20\x09<button\x20id=\x22aCubeThingCloseButton\x22\x20class=\x22close_button\x22>X</button>\x20</div>\x20<div\x20class=\x22console-content\x22\x20style=\x22overflow:hidden\x22>\x20\x09<div\x20id=\x22Blockie3D\x22></div>\x20\x09<div\x20id=\x22cubeletNav\x22\x20style=\x22display:flex;justify-content:space-between;align-items:center\x22><button\x20id=\x22gen3dBlockie\x22\x20class=\x22notify-btn\x22>Create</button><button\x20id=\x22saveAs\x22\x20class=\x22notify-btn\x20disabled\x22>Save\x20As</button><button\x20id=\x22mintNFT\x22\x20class=\x22notify-btn\x20disabled\x22>Mint</button></div>\x20\x09<div\x20id=\x22cubeletsConsole\x22\x20class=\x22scrollbar\x22></div>\x20</div>\x20</div>','2817xhaxUJ','crossOrigin','transactionHash','.handle','User','saveIPFS','auto','%,\x20','#Blockie3D','cubelets/js/three.js','utils','parent','supportsInterface','previousOwner','1055517jmmGoB','DEG2RAD','newOwner','getApproved','image.png','receipt','#mintNFT','vT2bOCtQ8NHEF9hhOZie0NAyxaD5dTQw5D0AahMN','substr','constructor','green','changeBase','_data','msSaveOrOpenBlob','Mint','append'];_0x4047=function(){return _0x22e220;};return _0x4047();}function download(_0x902f53,_0x5ba80f,_0x4bd484){const _0x3d3b28=_0x4e0597;var _0x2d1f6b=new Blob([_0x902f53],{'type':_0x4bd484});if(window[_0x3d3b28(0x183)][_0x3d3b28(0x1bb)])window[_0x3d3b28(0x183)]['msSaveOrOpenBlob'](_0x2d1f6b,_0x5ba80f);else{var _0x5319e0=document[_0x3d3b28(0x1da)]('a'),_0x57c230=URL['createObjectURL'](_0x2d1f6b);_0x5319e0['href']=_0x57c230,_0x5319e0['download']=_0x5ba80f,document[_0x3d3b28(0x193)][_0x3d3b28(0x1cb)](_0x5319e0),_0x5319e0['click'](),setTimeout(function(){const _0x13c000=_0x3d3b28;document[_0x13c000(0x193)]['removeChild'](_0x5319e0),window[_0x13c000(0x190)][_0x13c000(0x1f0)](_0x57c230);},0x0);}}function longHSLtoShort(_0x32ccf0){const _0x3008e1=_0x4e0597;return regexp=/hsl\(\s*(\d+)\s*,\s*(\d+(?:\.\d+)?%)\s*,\s*(\d+(?:\.\d+)?%)\)/g,result=regexp['exec'](_0x32ccf0)[_0x3008e1(0x17d)](0x1),_0x3008e1(0x13d)+result[0x0]+',\x20'+longHSLtoINT(result[0x1])+_0x3008e1(0x1a7)+longHSLtoINT(result[0x2])+'%)';}
+let aCubeThingLoaded = false
+let publicKey, privateKey 
+let imgData
+let MoralisUser
+let Cubelets = {
+	interval : null,
+	allowance: null,
+	instance : null,
+	address  : "0x433285CF6e73E91A915CD4C8CB0c447C9F359fE1",
+	abi      : [{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_new","type":"string"}],"name":"changeBase","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_new","type":"uint256"}],"name":"changePrice","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"hash","type":"string"}],"name":"claim","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_token","type":"address"}],"name":"withdrawERC20","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_base","type":"string"},{"internalType":"uint256","name":"_price","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[],"name":"_tokenIds","outputs":[{"internalType":"uint256","name":"_value","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"base","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"price","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
+}
+const aCubeThingUI = '<div id="acubething" style="width:256px;height:420px" class="hidden console absolute bottom draggable" data="acubething"> \
+<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical"> \
+	<div class="flex-box center-vertical"> \
+		<div class="icon icon-console-prompt"></div> \
+		<div class="consoleTitle default">cubelets.exe</div> \
+	</div> \
+	<button id="aCubeThingCloseButton" class="close_button">X</button> \
+</div> \
+<div class="console-content" style="overflow:hidden"> \
+	<div id="Blockie3D"></div> \
+	<div id="cubeletNav" style="display:flex;justify-content:space-between;align-items:center"><button id="gen3dBlockie" class="notify-btn">Create</button><button id="saveAs" class="notify-btn disabled">Save As</button><button id="mintNFT" class="notify-btn disabled">Mint</button></div> \
+	<div id="cubeletsConsole" class="scrollbar"></div> \
+</div> \
+</div>'
+async function loadCubelets() {
+	$("#cubelets_button_wrapper").addClass("disabled")
+	if(!aCubeThingLoaded) {
+		$.getScript("cubelets/js/three.js", function() {
+			$.getScript("cubelets/js/texture.js", function() {
+				$.getScript("cubelets/js/sprite.js", function() {
+					$.getScript("https://unpkg.com/moralis/dist/moralis.js", async function() {
+						$("body").append('<script id="vertexShader" type="x-shader/x-vertex"> \
+						varying vec2 vUv; \
+						void main() { \
+						vUv = uv; \
+						gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); \
+						} \
+						</script> \
+						<script id="fragmentShader" type="x-shader/x-fragment"> \
+						uniform vec3 color1; \
+						uniform vec3 color2; \
+						varying vec2 vUv; \
+						void main() { \
+						gl_FragColor = vec4(mix(color1, color2, vUv.y),1.0); \
+						} \
+						</script>')
+						
+						$("#Main .panel").append(aCubeThingUI)
+						$("#cubeletNav > button").css("flex","1")
+						$("#acubething").show("fold")
+						$("#acubething").addClass("active-console")
+						$("#acubething").draggable({
+							containment: "parent",
+							handle: ".handle",
+							snap: true,
+							start: function (e, ui) {
+								$(this).addClass("dragging")
+							},
+							stop: function(e, ui) {
+								// Set the localStorage 
+								// Element's id - offset (top, left)
+								localStorage.setItem(
+									$(this).attr("id"), JSON.stringify(ui.offset)
+								)
+								
+								//Remove dragging data 
+								setTimeout(function() {
+									$(e.target).removeClass("dragging")
+								}, 100)
+							}
+						})
+						putCube(accounts[0])
+						
+						Moralis.initialize("vT2bOCtQ8NHEF9hhOZie0NAyxaD5dTQw5D0AahMN");
+						Moralis.serverURL = 'https://iuu6g7fymlha.moralis.io:2053/server'
+						
+						Cubelets.instance = new web3.eth.Contract(Cubelets.abi, Cubelets.address)
+						
+						let remainingHeight = $("#acubething").outerHeight() - ( $("#acubething .consoleHeader").outerHeight() + $("#Blockie3D").outerHeight() + $("#cubeletNav").outerHeight() )
+						$("#cubeletsConsole").css({
+							"height" : ""+remainingHeight+"px",
+							"overflow-x" : "hidden",
+							"overflow-y" : "auto",
+							"font-size" : "80%",
+							"padding" : "2px 2px 7px 2px",
+							"color" : "green"
+						})
+						
+						Cubelets.interval = setInterval(cubeletsVidyaAllowance, 1000)
+						
+						writeToConsole("Generate wallets and save them to disk. Mint as NFT costs 100 VIDYA + Gas.")
+						
+						aCubeThingLoaded = true
+						$("#cubelets_button_wrapper").removeClass("disabled")
+					})
+				});
+			});
+		});
+	} else {
+		$("#Main .panel").append(aCubeThingUI)
+		$("#cubeletNav > button").css("flex","1")
+		$("#acubething").show("fold")
+		$("#acubething").addClass("active-console")
+		$("#acubething").draggable({
+			containment: "parent",
+			handle: ".handle",
+			snap: true,
+			start: function (e, ui) {
+				$(this).addClass("dragging")
+			},
+			stop: function(e, ui) {
+				// Set the localStorage 
+				// Element's id - offset (top, left)
+				localStorage.setItem(
+					$(this).attr("id"), JSON.stringify(ui.offset)
+				)
+				
+				//Remove dragging data 
+				setTimeout(function() {
+					$(e.target).removeClass("dragging")
+				}, 100)
+			}
+		})
+		putCube(accounts[0])
+		let remainingHeight = $("#acubething").outerHeight() - ( $("#acubething .consoleHeader").outerHeight() + $("#Blockie3D").outerHeight() + $("#cubeletNav").outerHeight() )
+		$("#cubeletsConsole").css({
+			"height" : ""+remainingHeight+"px",
+			"overflow-x" : "hidden",
+			"overflow-y" : "auto",
+			"font-size" : "80%",
+			"padding" : "2px 2px 7px 2px",
+			"color" : "green"
+		})
+		Cubelets.interval = setInterval(cubeletsVidyaAllowance, 1000)
+		writeToConsole("Generate wallets and save them to disk. Mint as NFT costs 100 VIDYA + Gas.")
+		
+		$("#cubelets_button_wrapper").removeClass("disabled")
+	}
+}
+
+async function cubeletsVidyaAllowance() {
+	await VIDYA.methods.allowance(accounts[0],Cubelets.address).call().then(function(r) {
+		Cubelets.allowance = r
+		if(Cubelets.allowance >= web3.utils.toWei("100")) {
+			$("#mintNFT").text("Mint")
+			$("#mintNFT").removeClass("disabled")
+			clearInterval(Cubelets.interval)
+			Cubelets.interval = null
+		} else {
+			$("#mintNFT").text("Approve")
+			$("#mintNFT").removeClass("disabled")
+		}
+	})
+}
+
+function writeToConsole(what) {
+	$("#cubeletsConsole").append("<div>"+what+"</div>")
+	$("#cubeletsConsole").scrollTop($("#cubeletsConsole")[0].scrollHeight);
+}
+
+async function mintCubelet() {
+	if(Cubelets.allowance == "0") {
+		VIDYA.methods.approve(Cubelets.address,"115792089237316195423570985008687907853269984665640564039457584007913129639935").send({from:accounts[0]})
+		.on("transactionHash",function(hash){
+			writeToConsole("Pending approve...")
+		})
+		.on("receipt",function(r){
+			writeToConsole("Approved!")
+		})
+	} else {
+		await VIDYA.methods.balanceOf(accounts[0]).call().then(async function(r) {
+			if(parseFloat(web3.utils.fromWei(r)) >= 100) {
+				await uploadFile()
+			} else {
+				writeToConsole("Not enough VIDYA...")
+			}
+		})
+	}
+}
+
+async function uploadFile() {
+	writeToConsole("Waiting for signature...")
+    // Request signature 
+    Moralis.Web3.authenticate().then(async function(user) {
+        MoralisUser = Moralis.User.current()
+		if(imgData) {
+			writeToConsole("Uploading to IPFS...")
+			let file = new Moralis.File("image.png", {base64 : imgData })
+			await file.saveIPFS()
+			
+			let metadata = {
+				"name" : "Cubelet",
+				"description" : accounts[0],
+				"image" : file._ipfs
+			}
+			
+			let file2 = new Moralis.File("file.json", {base64 : btoa(JSON.stringify(metadata))})
+			await file2.saveIPFS()
+			
+			let ipfs = file2._ipfs
+			let hash = file2._hash
+			
+			mint(hash)
+		}
+    })
+}
+
+async function mint(ipfs) {
+	writeToConsole("Ready to mint!")
+	writeToConsole("Waiting for user input...")
+	await Cubelets.instance.methods.claim(ipfs).send({from:accounts[0]})
+	.on("transactionHash", function(hash) {
+		writeToConsole("Pending transaction...")
+	})
+	.on("receipt", function(receipt) {
+		writeToConsole("Process completed!")
+	})
+}
+
+$(document).ready(function() {
+	$("body").on("click", "#aCubeThingCloseButton", function() {
+		$("#acubething").hide("explode")
+		$("#acubething").remove()
+		clearInterval(Cubelets.interval)
+	})
+	$("body").on("click", "#gen3dBlockie", function() {
+		generate()
+	})
+	$("body").on("click", "#saveAs", function() {
+		saveAs()
+	})
+	$("body").on("click", "#mintNFT", function() {
+		mintCubelet()
+	})
+	$("body").on("click", "#cubelets_button", function() {
+		loadCubelets()
+	})
+})
+
+let mesh, renderer, scene, camera, sprite
+
+function setupScene() {
+    scene    = new THREE.Scene();
+    camera   = new THREE.PerspectiveCamera(45,250/250);
+    renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+    renderer.setSize(250,250);
+    $("#Blockie3D").html(renderer.domElement);
+}
+
+function putCube(seed) {
+    if(accounts[0]!==seed){$("#saveAs").removeClass("disabled")}
+    setupScene()
+    blockie = blockies.create({seed:seed.toLowerCase()}).toDataURL()
+
+    var loader = new THREE.TextureLoader();
+    loader.crossOrigin = "";
+    loader.load(
+        blockie,
+        function(texture) {
+            
+            // Blockie 
+        	let geometry = new THREE.BoxBufferGeometry(1,1,1)
+        	let material = new THREE.MeshBasicMaterial({map: texture})
+        	let cube     = new THREE.Mesh(geometry, material)
+        	scene.add(cube)
+            cube.position.z = -4;
+            cube.rotateX(22.5 * THREE.Math.DEG2RAD);
+            cube.rotateY(45 * THREE.Math.DEG2RAD);
+
+			// Address
+            sprite = new THREE.TextSprite({
+            alignment: 'center',
+            color: '#ffffff',
+            strokeColor: '#000000',
+            strokeWidth: 0.02,
+            fontFamily: 'monospace',
+            fontSize: 0.35,
+            fontStyle: 'normal',
+            text: formatAddress(seed)
+            });
+            scene.add(sprite);
+            sprite.position.z = -4;
+            sprite.position.y = -1.25;
+            
+            // Scene background gradient 
+            var uniforms = {
+              "color1" : {
+                type : "c",
+                value : new THREE.Color(longHSLtoShort(color1))
+              },
+              "color2" : {
+                type : "c",
+                value : new THREE.Color(longHSLtoShort(color2))
+              },
+            };
+            var fShader = document.getElementById('fragmentShader').text;
+            var vShader = document.getElementById('vertexShader').text;
+            var material2 = new THREE.ShaderMaterial({
+              uniforms: uniforms,
+              vertexShader: vShader,
+              fragmentShader: fShader
+            });
+            var geometry2 = new THREE.PlaneGeometry(4,4,4,4);
+            mesh = new THREE.Mesh(geometry2, material2);
+            scene.add(mesh);
+            mesh.position.z = -5;
+
+            // This becomes border 
+            scene.background = new THREE.Color(longHSLtoShort(color3))
+
+            render()
+            
+            // Base64 of scene
+            let strMime = "image/png";
+            imgData = renderer.domElement.toDataURL(strMime);
+        },
+        function () {},  // onProgress function
+        function ( error ) { console.log( error ) } // onError function
+    );
+}
+
+function render() {
+    renderer.render(scene, camera)
+    requestAnimationFrame(render)
+}
+
+function formatAddress(address) {
+    let firstSix = address.substring(0, 6)
+    let lastFour = address.substr(address.length - 4)
+    return firstSix + "..." + lastFour
+}
+
+function longHSLtoINT(string) {
+    return Math.round(string.replace("%",""))
+}
+
+function generate() {
+    let account = web3.eth.accounts.create();
+    publicKey   = account.address;
+    privateKey  = account.privateKey;
+    putCube(publicKey)
+}
+
+function saveAs() {
+    if(publicKey.length == 42 && privateKey.length == 66) {
+        download(publicKey+"\n"+privateKey, publicKey+".txt", "text/plain");
+    } else {
+        console.error("Invalid address or private key length!");
+    }
+}
+
+// Function to download data to a file
+function download(data, filename, type) {
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
+}
+
+function longHSLtoShort(color) {
+    regexp = /hsl\(\s*(\d+)\s*,\s*(\d+(?:\.\d+)?%)\s*,\s*(\d+(?:\.\d+)?%)\)/g
+    result = regexp.exec(color).slice(1)
+    return "hsl("+result[0] +", "+ longHSLtoINT(result[1]) +"%, "+ longHSLtoINT(result[2]) +"%)"
+}
