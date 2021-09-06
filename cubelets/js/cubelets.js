@@ -1,5 +1,6 @@
 let aCubeThingLoaded = false
-let publicKey, privateKey 
+let theFont = null
+let publicKey, privateKey
 let imgData
 let MoralisUser
 let Cubelets = {
@@ -11,22 +12,24 @@ let Cubelets = {
 }
 const aCubeThingUI = '<div id="acubething" style="width:256px;height:420px" class="hidden console absolute bottom draggable" data="acubething"> \
 <div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical"> \
-	<div class="flex-box center-vertical"> \
-		<div class="icon icon-console-prompt"></div> \
-		<div class="consoleTitle default">cubelets.exe</div> \
-	</div> \
-	<button id="aCubeThingCloseButton" class="close_button">X</button> \
+<div class="flex-box center-vertical"> \
+<div class="icon icon-console-prompt"></div> \
+<div class="consoleTitle default">cubelets.exe</div> \
+</div> \
+<button id="aCubeThingCloseButton" class="close_button">X</button> \
 </div> \
 <div class="console-content" style="overflow:hidden"> \
-	<div id="Blockie3D"></div> \
-	<div id="cubeletNav" style="display:flex;justify-content:space-between;align-items:center"><button id="gen3dBlockie" class="notify-btn">Create</button><button id="saveAs" class="notify-btn disabled">Save As</button><button id="mintNFT" class="notify-btn disabled">Mint</button></div> \
-	<div id="cubeletsConsole" class="scrollbar"></div> \
+<div id="Blockie3D"></div> \
+<div id="cubeletNav" style="display:flex;justify-content:space-between;align-items:center"><button id="gen3dBlockie" class="notify-btn">Create</button><button id="saveAs" class="notify-btn disabled">Save As</button><button id="mintNFT" class="notify-btn disabled">Mint</button></div> \
+<div id="cubeletsConsole" class="scrollbar"></div> \
 </div> \
 </div>'
 async function loadCubelets() {
 	$("#cubelets_button_wrapper").addClass("disabled")
 	if(!aCubeThingLoaded) {
 		$.getScript("cubelets/js/three.js", function() {
+			let fontload = new THREE.FontLoader()
+			fontload.load('fonts/audiowide.json',function(font){theFont=font})
 			$.getScript("cubelets/js/texture.js", function() {
 				$.getScript("cubelets/js/sprite.js", function() {
 					$.getScript("https://unpkg.com/moralis/dist/moralis.js", async function() {
@@ -45,7 +48,6 @@ async function loadCubelets() {
 						gl_FragColor = vec4(mix(color1, color2, vUv.y),1.0); \
 						} \
 						</script>')
-						
 						$("#Main .panel").append(aCubeThingUI)
 						$("#cubeletNav > button").css("flex","1")
 						$("#acubething").show("fold")
@@ -58,25 +60,18 @@ async function loadCubelets() {
 								$(this).addClass("dragging")
 							},
 							stop: function(e, ui) {
-								// Set the localStorage 
-								// Element's id - offset (top, left)
 								localStorage.setItem(
 									$(this).attr("id"), JSON.stringify(ui.offset)
 								)
-								
-								//Remove dragging data 
 								setTimeout(function() {
 									$(e.target).removeClass("dragging")
 								}, 100)
 							}
 						})
 						putCube(accounts[0])
-						
 						Moralis.initialize("vT2bOCtQ8NHEF9hhOZie0NAyxaD5dTQw5D0AahMN");
 						Moralis.serverURL = 'https://iuu6g7fymlha.moralis.io:2053/server'
-						
 						Cubelets.instance = new web3.eth.Contract(Cubelets.abi, Cubelets.address)
-						
 						let remainingHeight = $("#acubething").outerHeight() - ( $("#acubething .consoleHeader").outerHeight() + $("#Blockie3D").outerHeight() + $("#cubeletNav").outerHeight() )
 						$("#cubeletsConsole").css({
 							"height" : ""+remainingHeight+"px",
@@ -86,16 +81,13 @@ async function loadCubelets() {
 							"padding" : "2px 2px 7px 2px",
 							"color" : "green"
 						})
-						
 						Cubelets.interval = setInterval(cubeletsVidyaAllowance, 1000)
-						
 						writeToConsole("Generate wallets and save them to disk. Mint as NFT costs 100 VIDYA + Gas.")
-						
-						aCubeThingLoaded = true
 						$("#cubelets_button_wrapper").removeClass("disabled")
+						aCubeThingLoaded = true
 					})
-				});
-			});
+				})
+			})
 		});
 	} else {
 		$("#Main .panel").append(aCubeThingUI)
@@ -192,7 +184,21 @@ async function uploadFile() {
 			let metadata = {
 				"name" : "Cubelet",
 				"description" : accounts[0],
-				"image" : file._ipfs
+				"image" : file._ipfs,
+				"attributes" : [
+					{
+						"trait_type" : "Main color",
+						"value" : longHSLtoShort(color1)
+					},
+					{
+						"trait_type" : "Background color",
+						"value" : longHSLtoShort(color2)
+					},
+					{
+						"trait_type" : "Spot color",
+						"value" : longHSLtoShort(color3)
+					}
+				]
 			}
 			
 			let file2 = new Moralis.File("file.json", {base64 : btoa(JSON.stringify(metadata))})
@@ -243,13 +249,17 @@ let mesh, renderer, scene, camera, sprite
 function setupScene() {
     scene    = new THREE.Scene();
     camera   = new THREE.PerspectiveCamera(45,250/250);
-    renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
     renderer.setSize(250,250);
     $("#Blockie3D").html(renderer.domElement);
 }
 
+function setupRenderer() {
+	renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+}
+
 function putCube(seed) {
     if(accounts[0]!==seed){$("#saveAs").removeClass("disabled")}
+	if(!aCubeThingLoaded){setupRenderer()}
     setupScene()
     blockie = blockies.create({seed:seed.toLowerCase()}).toDataURL()
 
@@ -274,8 +284,8 @@ function putCube(seed) {
             color: '#ffffff',
             strokeColor: '#000000',
             strokeWidth: 0.02,
-            fontFamily: 'monospace',
-            fontSize: 0.35,
+            fontFamily: theFont.data.familyName + ", monospace",
+            fontSize: 0.27,
             fontStyle: 'normal',
             text: formatAddress(seed)
             });
