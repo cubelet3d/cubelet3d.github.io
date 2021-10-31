@@ -17,7 +17,7 @@ let tokenBalance
 
 let hasMakeitStack = false
 
-let totalTemplates = 31
+let totalTemplates = 52
     
 let inventoryUserItems = [] // Array of tokenId's the user owns 
 let inventoryUserTemplates = [] // Array of templateId's the user owns 
@@ -108,6 +108,31 @@ async function loadDistributor() {
             }
 			
 			*/
+			
+			
+			
+            /*  Halloween even 2021 
+                Available until Tue Nov 02 2021 08:00:00 GMT+0000
+			*/
+            if(i = 52) {
+                let now = Math.round(new Date().getTime()/1000)
+                if(now < 1635840000) {
+                await Distributor.methods.claimed(52,inventoryUser).call().then(function(r) {
+                    if(!r) {
+                        let msg = "<div class=\"flex-box col flex-center\">\
+                        <div class=\"margin-bottom-05rem\">Happy Halloween!</div>\
+                        <div id=\"claimTimedNFT\" data=\"52\" name=\"Halloween mask\" slot=\"0\"><img class=\"full-width full-height\" src=\"https://team3d.io/inventory/json/52.png\" alt=\"Halloween mask\"/></div>\
+                        </div>"
+                        notify(msg)
+                    } else {
+                        console.log("Halloween mask already claimed!")
+                    }
+                })
+                } else {
+                    console.log("Event is over..")
+                }
+            }
+			
 			
 			
             
