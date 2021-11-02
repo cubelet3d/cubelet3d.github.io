@@ -113,7 +113,7 @@ async function loadDistributor() {
 			
             /*  Halloween even 2021 
                 Available until Tue Nov 02 2021 08:00:00 GMT+0000
-			*/
+			
             if(i = 52) {
                 let now = Math.round(new Date().getTime()/1000)
                 if(now < 1635840000) {
@@ -132,7 +132,7 @@ async function loadDistributor() {
                     console.log("Event is over..")
                 }
             }
-			
+			*/
 			
 			
             
