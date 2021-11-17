@@ -1,3 +1,16 @@
+$(window).on('load', function() { $("#Loading").fadeOut(1000) })
+
+const csx = '%3C%64%69%76%20%69%64%3D%22%63%75%62%65%73%63%61%70%65%22%20%63%6C%61%73%73%3D%22%63%6F%6E%73%6F%6C%65%20%61%62%73%6F%6C%75%74%65%20%64%72%61%67%67%61%62%6C%65%20%75%69%2D%64%72%61%67%67%61%62%6C%65%20%61%63%74%69%76%65%2D%63%6F%6E%73%6F%6C%65%22%20%64%61%74%61%3D%22%63%75%62%65%73%63%61%70%65%22%20%73%74%79%6C%65%3D%22%77%69%64%74%68%3A%20%35%31%38%70%78%3B%20%68%65%69%67%68%74%3A%20%33%38%38%70%78%3B%20%6F%76%65%72%66%6C%6F%77%3A%20%68%69%64%64%65%6E%3B%22%3E%3C%64%69%76%20%63%6C%61%73%73%3D%22%63%6F%6E%73%6F%6C%65%48%65%61%64%65%72%20%68%61%6E%64%6C%65%20%75%69%2D%64%72%61%67%67%61%62%6C%65%2D%68%61%6E%64%6C%65%20%66%6C%65%78%2D%62%6F%78%20%73%70%61%63%65%2D%62%65%74%77%65%65%6E%20%63%65%6E%74%65%72%2D%76%65%72%74%69%63%61%6C%22%3E%3C%64%69%76%20%63%6C%61%73%73%3D%22%66%6C%65%78%2D%62%6F%78%20%63%65%6E%74%65%72%2D%76%65%72%74%69%63%61%6C%22%3E%3C%64%69%76%20%63%6C%61%73%73%3D%22%69%63%6F%6E%20%64%65%73%6B%74%6F%70%2D%65%78%65%22%3E%3C%2F%64%69%76%3E%3C%64%69%76%20%63%6C%61%73%73%3D%22%63%6F%6E%73%6F%6C%65%54%69%74%6C%65%20%64%65%66%61%75%6C%74%22%3E%43%3A%5C%74%65%61%6D%33%64%5C%43%75%62%65%53%63%61%70%65%2E%6A%61%72%3C%2F%64%69%76%3E%3C%2F%64%69%76%3E%3C%64%69%76%20%63%6C%61%73%73%3D%22%66%6C%65%78%2D%62%6F%78%22%3E%3C%62%75%74%74%6F%6E%20%63%6C%61%73%73%3D%22%6D%69%6E%69%6D%69%7A%65%5F%62%75%74%74%6F%6E%22%3E%5F%3C%2F%62%75%74%74%6F%6E%3E%3C%62%75%74%74%6F%6E%20%63%6C%61%73%73%3D%22%63%6C%6F%73%65%5F%62%75%74%74%6F%6E%22%3E%58%3C%2F%62%75%74%74%6F%6E%3E%3C%2F%64%69%76%3E%3C%2F%64%69%76%3E%3C%69%66%72%61%6D%65%20%73%72%63%3D%22%68%74%74%70%3A%2F%2F%31%33%2E%34%39%2E%37%36%2E%31%38%38%2F%63%6C%69%65%6E%74%2F%23%6D%65%6D%62%65%72%73%2C%31%33%2E%34%39%2E%37%36%2E%31%38%38%2C%38%30%2C%36%35%35%33%37%2C%37%32%30%31%34%30%30%36%35%30%34%33%30%33%33%33%30%32%32%39%32%39%30%34%34%30%32%34%31%39%32%33%39%39%39%31%30%34%38%37%36%33%38%30%32%30%37%32%30%38%31%37%36%37%35%32%38%34%38%36%30%32%30%35%38%35%39%32%33%31%38%31%36%38%33%32%33%33%36%34%31%38%32%34%35%38%32%32%36%35%34%35%32%30%31%38%37%33%32%37%30%31%38%34%38%35%35%38%37%30%32%33%34%34%37%35%34%33%33%36%34%32%38%38%30%36%39%30%39%37%37%33%38%34%36%32%31%32%39%38%32%38%38%33%31%35%37%30%35%38%38%38%37%39%2C%74%72%75%65%22%20%68%65%69%67%68%74%3D%22%33%35%30%70%78%22%20%77%69%64%74%68%3D%22%35%31%33%70%78%22%20%73%74%79%6C%65%3D%22%62%6F%72%64%65%72%3A%20%30%3B%20%6F%76%65%72%66%6C%6F%77%3A%20%68%69%64%64%65%6E%3B%20%64%69%73%70%6C%61%79%3A%20%62%6C%6F%63%6B%3B%20%62%61%63%6B%67%72%6F%75%6E%64%3A%20%74%72%61%6E%73%70%61%72%65%6E%74%3B%22%3E%3C%2F%69%66%72%61%6D%65%3E%3C%2F%64%69%76%3E';
+
+const audio = {
+	"boot" : new Audio("audio/boot.wav"),
+	"click": new Audio("audio/click.wav"),
+	"open" : new Audio("audio/open.wav"),
+	"close": new Audio("audio/close.wav"),
+	"error": new Audio("audio/error.wav"),
+	"msage": new Audio("audio/NewMessage.wav")
+}
+
 var cmd;
 var telegramURL = "https://t.me/Team3D_Official";
 var discordURL = "https://discord.gg/g4X2R38";
@@ -25,9 +38,29 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
 }
 
 $(document).ready(function() {
-    
+
+	$("body").on("click", ".video-play-btn", function() {
+		let video = $($(this).closest(".video")).find("video")[0]
+		video.onended = (event) => { $(this).css({"background-image":"url(img/icons/play.png)", "background-position":"center center"}) }
+		togglePlay(video, $(this))
+	})
+	
+	// Play click sound globally
+	$("body").on("click", "button, .notify-btn, .reload-btn, .inventory-button, .task, .video-play-btn", function() {
+		audio.click.play() 
+	})
+
     let panelHeight = $(".panel").outerHeight()
     let panelWidth = $(".panel").outerWidth()
+	
+	// Adjust desktop icons height so flex-box can wrap them
+	$("#desktop_icons_inner").css({"height" : ""+panelHeight+"px"})
+	
+	// And on resize too
+	$(window).on("resize", function() {
+		let panelHeight = $(".panel").outerHeight()
+		$("#desktop_icons_inner").css({"height" : ""+panelHeight+"px"})
+	})
 
     if(isMobile) {
         
@@ -48,83 +81,101 @@ $(document).ready(function() {
     
     randomWallpapers();
     
-    $(".menu-item, .desktop-icon-container, #Cube, .uniswap-button-wrapper").on("click", function(e) {
-        let clickedMenuItem = $(e.target).attr("data");
-        let activeMenuItem = $(".active");
-        
-        for (let i = 0; i < activeMenuItem.length; i++) {
-            $(activeMenuItem[i]).removeClass("active");
-        }
-        
-        if(!$(this).hasClass("active") && !$(this).find("div").hasClass("desktop-icon")) {
-            if($(this).attr("data") !== "cubelog") {
-                $(this).addClass("active")
-            }
-        }
-        
-        // Show glass overlay on active button 
-        if($(this).find("div").hasClass("hidden")) {
-            let glassElement = $(this).find("div");
-            showGlass(glassElement)
-        }
-        
-        $($(this).find("div")).removeClass("hidden")
-        
-        showContent(clickedMenuItem)
-        
-        if($(this).find("div").hasClass("game")) {
-            loadGame(clickedMenuItem) // Loads wolf3d
-        }
-        
-        if($(this).find("div").hasClass("shortcut")) {
-            loadShortcut(clickedMenuItem)
-        }
-        
-        if($(this).find("div").hasClass("distributor")) {
-            distribute(clickedMenuItem)
-        }
-
-    });
-
-    // Close button handler 
-    $(".close_button").on("click", function() {
-        hideAll() // can't be assed 
-        $(".active").removeClass("active")
-        showGlass("nonExistingElement") // this will work 
-
-        // cmd gets assigned when a game (DOSBox) is open 
-        if(typeof(cmd) !== "undefined") {
-            // Terminate game instance 
-            cmd.exit()
-        }
+	// Handle desktop icon clicks
+	let index = 1
+    $(".desktop-icon-container, .chat3d-toggle").on("click", function(e) {
+		audio.click.play()
+        let item = $(e.target).attr("data")
+		if(!$('#'+item+':visible').length > 0) {
+			$(".active-console").removeClass("active-console")
+			showContent(item)
+			if($(this).find("div").hasClass("game")) { loadGame(item) }
+			if($(this).find("div").hasClass("shortcut")) { loadShortcut(item) }
+			if($(this).find("div").hasClass("distributor")) { distribute(item) }
+			centerElement($("#"+item+""))
+		}
+		if($(this).hasClass("video-open-btn")) {
+			let video = $("#"+item+"").find("video")[0]
+			let seek = $("#"+item+"").find(".seek")[0]
+			let volume = $("#"+item+"").find(".volume")
+			let icon = $("#"+item+"").find(".volume-icon")
+			let durationElement = $("#"+item+" .duration")
+			let elapsedElement = $("#"+item+" .elapsed")
+			let seekElement = $("#"+item+" .seek")
+			let progressElement = $("#"+item+" .progress")
+			
+			updateVolumeIcon(video, icon)
+			
+			/* Weirdest thing, event loadedmetadata works like this only, but timeupdate event works only when done like below :S */
+			video.addEventListener("loadedmetadata", initializeVideo(video, durationElement, seekElement, progressElement))
+			video.ontimeupdate = (event) => {
+				updateTimeElapsed(video, elapsedElement)
+				updateProgress(video, seekElement, progressElement)
+			}
+			seek.oninput = (event) => { skipAhead(event, video, seekElement, progressElement) }
+			volume.on("input", function(e) {
+				updateVolume(video, $(volume).val())
+				updateVolumeIcon(video, icon)
+			})
+			
+			$("#"+item+"").on("mouseenter", function() {
+				if($(".video-controls").hasClass("hidden")) {
+					$(".video-controls").removeClass("hidden")
+				}
+			})
+			
+			$("#"+item+"").on("mouseleave", function() {
+				if(video.paused) {return;}
+				if(!$(".video-controls").hasClass("hidden")) {
+					$(".video-controls").addClass("hidden")
+				}
+			})
+		}
     })
-    
-    
-    
-    let roadmapWidth = $("#roadmap").width();
-    var carWidth = roadmapWidth * 30 / 100; // 30% in layout.css 
-    var carHeight = carWidth * 28.212290502793298 / 100; // 28.. is aspect ratio thing
-    let testarossa = $("#testarossa");
-    $(testarossa).css({
-        "height" : ""+carHeight+"px",
-        "position" : "absolute",
-        "left" : "-"+carWidth+"px",
-        "bottom" : "0"
-    });
-    
-    // Roadmap scroll event 
-    $("#roadmap .console-content").scroll(function() {
-        let position = $(this).scrollTop();
-        let adjusted = (-carWidth) + position;
-        
-        // Animate it 
-        // Note: this has a 420 millisecond transform transition delay in CSS 
-        $("#testarossa").css({
-            "transform" : "translateX("+adjusted+"px)"
-        });
-    })
-    
-});
+
+	// Handle close button clicks 
+	$(document).on("click", ".close_button", function() {
+		let task = $(this).closest(".console").attr("id")
+		$("#"+task+"").hide("explode")
+		// Pause video if found
+		let len = $("#"+task+"").find("video").length
+		if(len>0){$("#"+task+"").find("video")[0].pause()}
+		// DOSBOX
+		if(typeof(cmd) !== "undefined") {
+			// Terminate game instance 
+			cmd.exit()
+			$("title").text("TeamOS")
+		}
+		$("#tasks .task[data="+task+"]").remove()
+		audio.close.play()
+	})
+	
+	// Handle minimize button clicks
+	$(document).on("click", ".minimize_button", function() {
+		let task = $(this).closest(".console").attr("id")
+		$("#tasks .task[data="+task+"]").addClass("minimized")
+		$("#"+task+"").hide()
+	})
+	
+	// Focus active window on mousedown 
+	$("body").on("mousedown", ".console", function() {
+		$(".active-console").removeClass("active-console")
+		$(this).closest(".console").addClass("active-console")
+	})
+	
+	$("#bar").on("click", ".task", function() {
+		let task = $(this).attr("data")
+		$(".active-console").removeClass("active-console")
+		$("#"+task+"").addClass("active-console")
+		
+		// Minimized windows 
+		if($("#tasks .task[data="+task+"]").hasClass("minimized")) {
+			$("#tasks .task[data="+task+"]").removeClass("minimized")
+			$("#"+task+"").show()
+		}
+	})
+
+})
 
 $(function() {
     $(".draggable").draggable({
@@ -140,7 +191,6 @@ $(function() {
             localStorage.setItem(
                 $(this).attr("id"), JSON.stringify(ui.offset)
             )
-            
             //Remove dragging data 
             setTimeout(function() {
                 $(e.target).removeClass("dragging")
@@ -164,14 +214,21 @@ $(document).ready(function() {
             })
         } else {
             // Move to default positions 
-            if($($("#"+elementID+"")) && elementID !== "presale") {
-                $($("#"+elementID+"")).css({
-                    "bottom" : "0"
-                })
+            if($($("#"+elementID+""))) {
+				centerElement($("#"+elementID+""))
             }
         }
     }
 })
+
+function centerElement(el) {
+	let height = $(el).outerHeight()
+	let width  = $(el).outerWidth()
+	$(el).css({
+		"top" : "calc(50% - ("+height+"/2px))",
+		"left" : "calc(50% - ("+width+"/2px))"
+	})
+}
 
 function loadShortcut(shortcut) {
     switch(shortcut) {
@@ -211,165 +268,67 @@ function loadShortcut(shortcut) {
     }
 }
 
-// Load a game 
+// Load DOSBOX game 
 function loadGame(game) {
-    $("#"+game+" .console-content").html("<canvas id=\"jsdos\"></canvas>");
-    $("#"+game+"").css("opacity", "1");
-
-    Dos(document.getElementById("jsdos"), { 
-        wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js" 
-    }).ready((fs, main) => {
-      fs.extract("https://team3d.io/games/"+game+".zip", "/game").then(() => {
-        main(["-c", "CD game/"+game+"", "-c", ""+game+".exe"]).then((ci) => {
-            cmd = ci;
-        });
-      });
-    });
+	$("#"+game+" .console-content").html("<canvas id=\"jsdos\"></canvas>")
+	$("#"+game+"").css("opacity", "1")
+	Dos(document.getElementById("jsdos"), { 
+		wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js" 
+	})
+	.ready((fs, main) => {
+		fs.extract("https://team3d.io/games/"+game+".zip", "/game").then(() => {
+			main(["-c", "CD game/"+game+"", "-c", ""+game+".exe"]).then((ci) => {
+				cmd = ci
+			})
+		})
+	})
 }
 
+// Focus DOSBOX iframe 
 function setFocus(game) {
-    var iframe = $("#"+game+"-window")[0];
-    iframe.contentWindow.focus();
-}
-
-function showGlass(elem) {
-    // Remove the rest
-    for(let i = 0; i < $(".menu-item > div.glass").length; i++) {
-        if(elem !== $(".menu-item > div.glass")) {
-            $(".menu-item > div.glass").hide();
-            $(".menu-item > div.glass").addClass("hidden");
-        }
-    }
-    setTimeout(function() {
-       $(elem).show("clip"); 
-    }, 300)
-    
+    var iframe = $("#"+game+"-window")[0]
+    iframe.contentWindow.focus()
 }
 
 function showContent(tab) {
-    // cmd gets assigned when a game is open 
-    if(typeof(cmd) !== "undefined") {
-        // Terminate game instance 
-        cmd.exit();
-    }
-    
-    hideAll();
-    
-    setTimeout(function() {
-    let tabs = $(".console");
-    let tabToShow;
-    for (let i = 0; i < tabs.length; i++) {
-        if($(tabs[i]).attr("data") == tab) {
-            tabToShow = tabs[i];
-            $(tabToShow).show("fold");
-            $(tabToShow).addClass("active-console");
-            break;
-        }
-    }
-    }, 300);
-    
-    // Token sale specific 
-    if(tab == "token_sale") {
-        // Preload the image 
-        let src = $('.sadgrill').css('background-image');
-        let url = src.match(/\((.*?)\)/)[1].replace(/('|")/g,'');
-        let img = new Image();
-        img.onload = function() {
-            // Pulsate into view 
-            $(".sadgrill").show("pulsate");
-        }
-        img.src = url;
-        if (img.complete) img.onload();
-    }
-
-    // Roadmap specific 
-    if(tab == "roadmap") {
-        let src = $('.computer').css('background-image');
-        let url = src.match(/\((.*?)\)/)[1].replace(/('|")/g,'');
-        let img = new Image();
-        img.onload = function() {
-            $(".computer").show("shake");
-        }
-        img.src = url;
-        if (img.complete) img.onload();
-    }
-    
-    // FAQ (now media) 
-    if(tab == "faq") {
-        let src = $('.facepalm').css('background-image');
-        let url = src.match(/\((.*?)\)/)[1].replace(/('|")/g,'');
-        let img = new Image();
-        img.onload = function() {
-            $(".facepalm").show("pulsate");
-        }
-        img.src = url;
-        if (img.complete) img.onload();
-    }
-    
-    // Cubelog 
-    if(tab == "cubelog") {
-        let src = $('.cubelog').css('background-image');
-        let url = src.match(/\((.*?)\)/)[1].replace(/('|")/g,'');
-        let img = new Image();
-        img.onload = function() {
-            $(".cubelog").show("pulsate");
-        }
-        img.src = url;
-        if (img.complete) img.onload();
-    }
-
+	let tabs = $(".console")
+	let tabToShow
+	for (let i = 0; i < tabs.length; i++) {
+		if($(tabs[i]).attr("data") == tab) {
+			audio.open.play()
+			tabToShow = tabs[i]
+			$(tabToShow).show("fold")
+			$(tabToShow).addClass("active-console")
+			// Add taskbar icon
+			if(!$("#tasks").find(".task[data="+tab+"]").length > 0) {
+				let icon = $("#"+tab+" .icon").css("background-image").replace('url("','').replace('")','')
+				$("#tasks").append('<div class="task" style="background-image: url('+icon+'); background-size: 75%; background-repeat: no-repeat; background-position: center center" data="'+tab+'"></div>')
+			}
+			break;
+		}
+	}
 }
-
-function hideAll() {
-    let tabs = $(".active-console");
-    for (let i = 0; i < tabs.length; i++) {
-        $(tabs[i]).hide("explode");
-    }
-    
-    // pause video
-    $("video")[0].pause()
-	$("video")[1].pause()
-}
-
-$(window).on('load', function() {
-    $("#Loading").fadeOut(1000);
-    
-    setTimeout(function() {
-        $("#Cube").css({
-            "top" : "-20%",
-            "left" : "45%",
-            "z-index" : "1" // Fixes a bug where #Menu and .menu-items have a line on the right
-        });
-        $("#Cube").show("bounce");
-    }, 1000);
-});
 
 // Randomize wallpapers
 const numberOfWallpapers = 10;
 const wallpapersDirectory = "https://team3d.io/img/wallpapers/";
-
 function randomWallpapers() {
-    
     let wp = localStorage.getItem("wallpaper")
-    
-    if(wp == null || wp == "null") {
-        
-        let wallpapers = [];
+    if(wp == null) {
+        let wallpapers = []
         for(i = 0; i < numberOfWallpapers; i++) {
             // Assumes it's a JPG
-            wallpapers.push(i+".jpg");
+            wallpapers.push(i+".jpg")
         }
-        let rn = Math.floor((Math.random() * numberOfWallpapers));
-        $("body").css("background-image", "url("+wallpapersDirectory+wallpapers[rn]+")");
-        
+        let rn = Math.floor((Math.random() * numberOfWallpapers))
+        $("body").css("background-image", "url("+wallpapersDirectory+wallpapers[rn]+")")
     } else {
         loadWallpaper()
     }
-    
 }
 
 function rand(min, max) {
-	return Math.floor(Math.random() * (max - min + 1)) + min;		
+	return Math.floor(Math.random() * (max - min + 1)) + min	
 }
 
 // Save & load your favorite wallpaper 
@@ -403,4 +362,84 @@ function validURL(str) {
     '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
     '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
   return !!pattern.test(str);
+}
+
+// formatTime takes a time length in seconds and returns the time in
+// minutes and seconds
+function formatTime(timeInSeconds) {
+  const result = new Date(timeInSeconds * 1000).toISOString().substr(11, 8);
+
+  return {
+    minutes: result.substr(3, 2),
+    seconds: result.substr(6, 2),
+  };
+};
+
+// initializeVideo sets the video duration, and maximum value of the
+// progressBar
+function initializeVideo(video, durationElement, seekElement, progressElement) {
+  const videoDuration = Math.floor(video.duration);
+  $(seekElement).attr("max", videoDuration)
+  $(progressElement).attr("max", videoDuration)
+  const time = formatTime(videoDuration);
+  $(durationElement).text(`${time.minutes}:${time.seconds}`)
+  //duration.innerText = `${time.minutes}:${time.seconds}`;
+  $(durationElement).attr('datetime', `${time.minutes}m ${time.seconds}s`)
+}
+
+// updateTimeElapsed indicates how far through the video
+// the current playback is
+function updateTimeElapsed(video, elapsedElement) {
+  const time = formatTime(Math.floor(video.currentTime));
+  $(elapsedElement).text(`${time.minutes}:${time.seconds}`)
+  $(elapsedElement).attr('datetime', `${time.minutes}m ${time.seconds}s`)
+}
+
+function togglePlay(video, btn) {
+	if (video.paused || video.ended) {
+		video.play()
+		$(btn).css({"background-image":"url(img/icons/pause.png)", "background-position":"center center"})
+	} else {
+		$(btn).css({"background-image":"url(img/icons/play.png)", "background-position":"center center"})
+		video.pause()
+	}
+}
+
+function updateProgress(video, seekElement, progressElement) {
+	$(seekElement).val(Math.floor(video.currentTime))
+	$(progressElement).val(Math.floor(video.currentTime))
+}
+
+function skipAhead(event, video, seek, progress) {
+	const skipTo = event.target.dataset.seek ? event.target.dataset.seek : event.target.value;
+	video.currentTime = skipTo;
+	progress.value = skipTo;
+	seek.value = skipTo;
+}
+
+function updateVolume(video, value) {
+	if (video.muted) {
+		video.muted = false
+	}
+	video.volume = value
+}
+
+function updateVolumeIcon(video, icon) {
+	$(".volume-icon > div").addClass("hidden")
+	let muted = $(icon).find(".volume-icon-muted")
+	let low = $(icon).find(".volume-icon-low")
+	let med = $(icon).find(".volume-icon-med")
+	let high = $(icon).find(".volume-icon-hi")
+	if(video.muted || video.volume === 0) {
+		$(muted).removeClass("hidden")
+	}
+	else if(video.volume > 0 && video.volume <= 0.25) {
+		$(low).removeClass("hidden")
+	}
+	else if(video.volume > 0.25 && video.volume <= 0.75) {
+		$(med).removeClass("hidden")
+	}
+	else {
+		$(high).removeClass("hidden")
+	}
 }

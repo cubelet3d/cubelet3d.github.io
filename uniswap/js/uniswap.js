@@ -474,7 +474,7 @@ $(document).ready(function() {
     // The non-mobile button 
     $("#uniswap-button-wrapper, .uniswap-button-wrapper").on("click", "#vidyaswap_button", function(e) {
         loadExchange() // load it here, since there are no horrible loops in here it's fine to leave as is 
-        showContent("vidyaswap")
+        // showContent("vidyaswap") happens in main.js now 
     })
     
 })

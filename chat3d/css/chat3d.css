@@ -1,0 +1,42 @@
+#chat3d {
+	width: 700px; height: 500px;
+}
+.chat3d-content {
+	height: calc(100% - 40px);
+	font-family: "C64", monospace;
+	overflow: hidden;
+}
+.chat3d-content-inner {
+	height: calc(100% - 50px);
+}
+.chat3d-chat {
+	width: 75%;
+	padding: .5rem;
+	font-size: 130%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	word-wrap: break-word;
+}
+.chat3d-userlist {
+	position: relative;
+	width: 25%;
+	border-left: 3px solid var(--purple);
+	overflow-x: hidden;
+	overflow-y: auto;
+	font-size: 130%;
+	padding: 0.5rem;
+}
+.chat3d-input-wrapper {
+	height: 50px;
+    border-top: 3px solid var(--purple);
+}
+.chat3d-input {
+	width: 100%;
+}
+.chat3d-send, .chat3d-input {
+	font-family: "C64", monospace;
+	font-size: 130%;
+}
+.chat3d-send {
+	text-transform: uppercase;
+}

@@ -10,20 +10,6 @@ let Cubelets = {
 	address  : "0x433285CF6e73E91A915CD4C8CB0c447C9F359fE1",
 	abi      : [{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_new","type":"string"}],"name":"changeBase","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_new","type":"uint256"}],"name":"changePrice","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"hash","type":"string"}],"name":"claim","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_token","type":"address"}],"name":"withdrawERC20","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_base","type":"string"},{"internalType":"uint256","name":"_price","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[],"name":"_tokenIds","outputs":[{"internalType":"uint256","name":"_value","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"base","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"price","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
 }
-const aCubeThingUI = '<div id="acubething" style="width:256px;height:420px" class="hidden console absolute bottom draggable" data="acubething"> \
-<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical"> \
-<div class="flex-box center-vertical"> \
-<div class="icon icon-console-prompt"></div> \
-<div class="consoleTitle default">cubelets.exe</div> \
-</div> \
-<button id="aCubeThingCloseButton" class="close_button">X</button> \
-</div> \
-<div class="console-content" style="overflow:hidden"> \
-<div id="Blockie3D"></div> \
-<div id="cubeletNav" style="display:flex;justify-content:space-between;align-items:center"><button id="gen3dBlockie" class="notify-btn">Create</button><button id="saveAs" class="notify-btn disabled">Save As</button><button id="mintNFT" class="notify-btn disabled">Mint</button></div> \
-<div id="cubeletsConsole" class="scrollbar"></div> \
-</div> \
-</div>'
 async function loadCubelets() {
 	$("#cubelets_button_wrapper").addClass("disabled")
 	if(!aCubeThingLoaded) {
@@ -48,26 +34,7 @@ async function loadCubelets() {
 						gl_FragColor = vec4(mix(color1, color2, vUv.y),1.0); \
 						} \
 						</script>')
-						$("#Main .panel").append(aCubeThingUI)
 						$("#cubeletNav > button").css("flex","1")
-						$("#acubething").show("fold")
-						$("#acubething").addClass("active-console")
-						$("#acubething").draggable({
-							containment: "parent",
-							handle: ".handle",
-							snap: true,
-							start: function (e, ui) {
-								$(this).addClass("dragging")
-							},
-							stop: function(e, ui) {
-								localStorage.setItem(
-									$(this).attr("id"), JSON.stringify(ui.offset)
-								)
-								setTimeout(function() {
-									$(e.target).removeClass("dragging")
-								}, 100)
-							}
-						})
 						putCube(accounts[0])
 						Moralis.initialize("vT2bOCtQ8NHEF9hhOZie0NAyxaD5dTQw5D0AahMN");
 						Moralis.serverURL = 'https://iuu6g7fymlha.moralis.io:2053/server'
@@ -90,30 +57,7 @@ async function loadCubelets() {
 			})
 		});
 	} else {
-		$("#Main .panel").append(aCubeThingUI)
-		$("#cubeletNav > button").css("flex","1")
-		$("#acubething").show("fold")
-		$("#acubething").addClass("active-console")
-		$("#acubething").draggable({
-			containment: "parent",
-			handle: ".handle",
-			snap: true,
-			start: function (e, ui) {
-				$(this).addClass("dragging")
-			},
-			stop: function(e, ui) {
-				// Set the localStorage 
-				// Element's id - offset (top, left)
-				localStorage.setItem(
-					$(this).attr("id"), JSON.stringify(ui.offset)
-				)
-				
-				//Remove dragging data 
-				setTimeout(function() {
-					$(e.target).removeClass("dragging")
-				}, 100)
-			}
-		})
+		$("#cubeletsConsole").empty()
 		putCube(accounts[0])
 		let remainingHeight = $("#acubething").outerHeight() - ( $("#acubething .consoleHeader").outerHeight() + $("#Blockie3D").outerHeight() + $("#cubeletNav").outerHeight() )
 		$("#cubeletsConsole").css({
@@ -225,10 +169,18 @@ async function mint(ipfs) {
 }
 
 $(document).ready(function() {
+	$("#Blockie3D").css({
+		"width":"250px",
+		"height":"250px",
+		"display":"flex",
+		"align-items":"center",
+		"justify-content":"center"
+	})
+	$("#Blockie3D").html('<div>Loading...</div>')
+	$("#cubeletNav button").css("min-width","33.3333%")
 	$("body").on("click", "#aCubeThingCloseButton", function() {
-		$("#acubething").hide("explode")
-		$("#acubething").remove()
 		clearInterval(Cubelets.interval)
+		$("#cubeletsConsole").empty()
 	})
 	$("body").on("click", "#gen3dBlockie", function() {
 		generate()

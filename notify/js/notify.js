@@ -1,4 +1,5 @@
 let notifications = 0
+let errors = 0
 
 let notificationBox = '\
 <div class="notify">\
@@ -13,7 +14,21 @@ let notificationBox = '\
     </div>\
 </div>'
 
+let errorBox = '\
+<div class="error-box">\
+  <div class="error-icon-wrapper">\
+    <div class="error-icon"></div>\
+  </div>\
+  <div class="error-msg-wrapper scrollbar">\
+    <div class="error-msg"></div>\
+  </div>\
+  <div class="error-btn-wrapper">\
+    <div class="error-btn inventory-button">OK</div>\
+  </div>\
+</div>'
+
 function notify(msg, action) {
+	audio.msage.play() 
     // increment notifications counter 
     notifications++
     
@@ -51,15 +66,34 @@ function notify(msg, action) {
     $("body").append(a)
     $(a).animate({
         "opacity":"1",
-        "bottom":"0"
+        "bottom":"64px"
     })
+	
+	setTimeout(function() {
+		$('.notify[data='+notifications+']').animate({"opacity":"0","bottom":"-250px"})
+	}, 20000)
 
+}
+
+function error(msg) {
+	audio.error.play()
+	errors++
+	let a = $(errorBox).attr("data", errors)
+	let b = $(a).find("div.error-btn")
+	$(b).attr("data", errors)
+	let c = $(a).find("div.error-msg")
+	$(c).append('Error:<br>'+msg)
+    $("body").append(a)
 }
 
 $(document).ready(function() {
     $("body").on("click", ".notify-btn", function() {
         let id = $(this).attr("data")
         $(".notify[data="+id+"]").hide()
+    })
+    $("body").on("click", ".error-btn", function() {
+        let id = $(this).attr("data")
+        $(".error-box[data="+id+"]").hide()
     })
     
     // sign.js special 

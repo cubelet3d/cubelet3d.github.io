@@ -1,0 +1,192 @@
+#generator {
+	width: 486px; height: 591px;
+	overflow-x: hidden; /* why isn't this added to .console globally? */
+}
+#generator {
+	border-image: url(../img/MechdroidViewscreen.png) 3 stretch;
+	border-image-outset: 2px; 
+	box-shadow: 5px 5px rgb(0 0 0 / 50%);
+}
+#generator-loading-text {
+	width: 32px;
+    height: 32px;
+    background-image: url(../../img/icons/loading.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.genwidth64pxreee {
+	width: 64px;
+}
+.generator-user-manual-link {
+	position: absolute;
+	bottom: 30px;
+	right: 30px;
+	width: 40px; height: 40px;
+	background: url(../img/generator.png);
+	background-size: cover;
+	animation: GenGuideMove 1s linear infinite;
+}
+@keyframes GenGuideMove {
+  0%, 100% {
+    bottom: 30px;
+  }
+  50% {
+    bottom: 35px;
+  }
+}
+.generator-wrapper {
+	height: 100%; width: auto; margin: 1.618rem;
+}
+.generator-content {
+	height: calc(100% - 40px);
+	background-image: url(../img/gen.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.generator-title {
+	margin-top: 40px;
+	margin-bottom: 20px;
+	transform: skewY(-5deg);
+    text-align: center;
+    font-size: 4rem;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.5);
+    text-shadow: 3px 3px rgb(255 31 220 / 50%);
+}
+.generator-commit-container {
+	min-height: 119px;
+}
+.generator-option {
+	font-family: "C64", monospace;
+	padding: 1rem;
+    border: 2px solid var(--purple);
+	margin-bottom: 1rem;
+	background: var(--indigo-dark);
+}
+.generator-active-commitment {
+	font-family: "C64", monospace;
+	margin-top: 5px;
+}
+.generator-active-commitment div {
+	margin-right: 5px;
+}
+.generator-bigint {
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.generator-button,
+.generator-back-button,
+.generator-icon-label {
+	font-family: "C64", monospace;
+	text-transform: uppercase;
+}
+.generator-icon-dai {
+	background-image: url(../img/dai.png);
+}
+.generator-icon-eth {
+	background-image: url(../img/eth.png);
+}
+.generator-icon-dark {
+	background-image: url(../img/dark.png);
+}
+.generator-icon-dai,
+.generator-icon-eth,
+.generator-icon-dark {
+	width: 32px; height: 32px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	margin-bottom: 5px;
+}
+.generator-pool-header {
+	height: 35px;
+	background: var(--indigo-dark);
+	border-left: 2px solid var(--purple);
+	border-top: 2px solid var(--purple);
+	border-right: 2px solid var(--purple);
+}
+.pool-title {
+	margin-left: 10px;
+}
+.generator-pool-body {
+	height: calc(100% - 35px);
+	overflow-x: hidden;
+	overflow-y: auto;
+	border: 2px solid var(--purple);
+	background: var(--bg-black-transparent);
+}
+.generator-section {
+	padding: 1rem;
+}
+.generator-sub-section {
+	margin-bottom: 1rem;
+}
+.generator-sub-section:last-child {
+	margin-bottom: 0;
+}
+.generator-pool-data,
+.generator-input-field {
+	border: 1px solid var(--purple);
+	height: 33px;
+    line-height: 28px;
+    padding: 0 5px;
+}
+.generator-pool-data, 
+.generator-pool-label,
+.generator-input-field {
+	font-family: "C64", monospace;
+	font-size: 150%;
+}
+.generator-input-field {
+	flex: 1;
+	border-radius: 0;
+	outline: none;
+	background: transparent;
+}
+.generator-input-field:focus,
+.generator-input-field:active,
+.generator-input-field:hover {
+	outline: none;
+}
+.generator-pool-label .notch {
+	background: var(--console-header);
+	padding: 0 30px 0 10px;
+	-webkit-clip-path: polygon(0% 100%, 100% 100%, 100% 30px, calc(100% - 30px) 0%, 0% 0%);
+	clip-path: polygon(0% 100%, 100% 100%, 100% 30px, calc(100% - 30px) 0%, 0% 0%);
+}
+.generator-vesting-option {
+	width: 33.3333333333%;
+}
+.generator-width-70px {
+	width: 70px;
+}
+.generator-button-pressed {
+    border-left: 2px solid var(--black);
+    border-top: 2px solid var(--black);
+    border-right: 2px solid var(--indigo);
+    border-bottom: 2px solid var(--indigo)
+}
+.generator-pool-body-overlay {
+	z-index: 1;
+	background: var(--bg-black-transparent);
+}
+.generator-enable-button {
+	overflow: hidden;
+	position: relative;
+	width: 50px;
+	height: 17px;
+	border: 1px solid var(--purple);
+	cursor: pointer; 
+}
+.generator-enable-dial {
+	position: absolute;
+	top: 0; left: 0;
+	width: 25px; height: 17px; 
+	font-family: "C64", monospace;
+	text-align: center;
+}
+.generator-user-rewards {
+	width: 109px;
+	text-align: center;
+	font-family: "C64", monospace;
+}

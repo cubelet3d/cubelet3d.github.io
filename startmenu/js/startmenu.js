@@ -8,6 +8,7 @@ $(document).ready(function() {
     })
     
     $("#start-button").click(function(e) {
+		audio.click.play()
         if( $("#startmenu").hasClass("hidden") ) {
             $("#startmenu").removeClass("hidden")
             $("#start-button").addClass("start-active")
@@ -19,6 +20,7 @@ $(document).ready(function() {
     })
     
     $(".startmenu-content > .item").click(function(e) {
+		audio.click.play()
         let clicked = $(e.target).attr("data")
         if( $("#"+clicked+"").hasClass("hidden") ) {
             $("#"+clicked+"").removeClass("hidden")
@@ -28,11 +30,13 @@ $(document).ready(function() {
     })
     
     $("#startmenu .button").click(function(e) {
+		audio.click.play()
         let clicked = $(e.target).attr("data")
         loadShortcut(clicked) // ../../main.js function 
     })
     
     $("#startmenu .data-button").click(function(e) {
+		audio.click.play()
         let clicked = $(e.target).attr("data")
         showContent(clicked) // ../../main.js function 
     })

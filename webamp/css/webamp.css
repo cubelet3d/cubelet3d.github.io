@@ -1,0 +1,14 @@
+/* Inventory.css fucks with this */
+#webamp #balance {
+    min-width: auto;
+    min-height: auto;
+}
+/*
+#webamp .console {
+	height: 348px;
+	width: 275px;
+}*/
+#webamp-wrapper {
+	width: 100%;
+	height: calc(100% - 64px);
+}

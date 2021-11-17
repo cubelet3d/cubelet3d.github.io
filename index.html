@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="no-overflow">
+<html lang="en" class="no-overflow noselect">
 	<head>
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-96377317-9"></script>
 		<script>
@@ -8,7 +8,7 @@
 			gtag('js', new Date())
 			gtag('config', 'UA-96377317-9')
 		</script>
-		<title>Team3D</title>
+		<title>TeamOS</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/layout.css">
@@ -70,286 +70,224 @@
 			</div>
 			<!-- Main content wrapper -->
 			<div id="Main" class="main-content-wrapper absolute top right bottom left">
-				<div class="panel absolute top right bottom left flex-box flex-center">
-					<div id="about" class="console absolute bottom draggable" data="about">
+				<div id="desk" class="panel absolute top right bottom left flex-box flex-center">
+					<div id="chat3d" class="hidden console absolute draggable" data="chat3d">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
-								<div class="icon icon-console-prompt"></div>
-								<div class="consoleTitle default">C:\team3d\about.exe</div>
+								<div class="icon desktop-exe"></div>
+								<div class="consoleTitle default">C:\team3d\chat3d.exe</div>
 							</div>
-							<button class="close_button">X</button>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
 						</div>
-						<div class="console-content scrollbar">
-							<div class="full-height">
-								<div class="paragraph-wrapper flex-box full-height">
-									<div class="full-width">
-										<div class="paragraph margin-bottom-5rem">
-											<img class="p-float-left margin-right-1rem max-width-300px" src="img/aesthetics/vidyawallet.png">
-											<div>
-												<h2>What is Vidya</h2>
-												<p>Vidya is a DeFi gaming token and escrow solution for multiplayer
-													player-versus-player games, wagering, and esports betting.
-													The medium of exchange for games and platforms that use VIDYA
-													is a liquid, market-backed ERC-20 token, uniquely also named VIDYA.
-													Through in-game and on-chain mechanics, VIDYA enjoys the unique
-													position of providing entertainment and finance wrapped together
-													as one to an emergent market of decentralized products and services.
-													Decentralized gaming and finance are massive and growing markets
-													with few notable attempts at an innovative merge of industries.
-												</p>
+						<div class="chat3d-content flex-box col">
+							<div class="chat3d-content-inner flex-box">
+								<div id="chat3d-chat" class="chat3d-chat flex-box col scrollbar"></div>
+								<div class="chat3d-userlist flex-box col scrollbar">
+									<div class="chat3d-sign-wrapper flex-box full-height full-width flex-center">
+										<button class="chat3d-sign inventory-button">Sign in</button>
+									</div>
+								</div>
+							</div>
+							<div class="chat3d-input-wrapper flex-box">
+								<input class="chat3d-input input">
+								<button class="chat3d-send inventory-button">Send</button>
+							</div>
+						</div>
+					</div>
+					<div id="generator" class="hidden console absolute draggable" data="generator">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon generator"></div>
+								<div class="consoleTitle default">C:\team3d\generator.exe</div>
+							</div>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
+						</div>
+						<div class="generator-content flex-box col">
+							<div class="generator-title font-quickzag">Generator</div>
+							<div class="flex-box col generator-wrapper relative">
+								<div class="generator-menu flex-box col absolute top right bottom left">
+									<div class="generator-option flex-box space-between flex-center" data="eth">
+										<div class="flex-box col flex-center genwidth64pxreee">
+											<div class="generator-icon-eth"></div>
+											<div class="generator-icon-label">ETH/VIDYA</div>
+										</div>
+										<div class="generator-enter-button generator-button inventory-button">Enter</div>
+									</div>
+									<div class="generator-option flex-box space-between flex-center disabled" data="dai">
+										<div class="flex-box col flex-center genwidth64pxreee">
+											<div class="generator-icon-dai"></div>
+											<div class="generator-icon-label">DAI/VIDYA</div>
+										</div>
+										<div class="generator-enter-button generator-button inventory-button">Enter</div>
+									</div>
+									<div class="generator-option flex-box space-between flex-center disabled" data="dark">
+										<div class="flex-box col flex-center genwidth64pxreee">
+											<div class="generator-icon-dark"></div>
+											<div class="generator-icon-label">DARK/ETH</div>
+										</div>
+										<div class="generator-enter-button generator-button inventory-button">Enter</div>
+									</div>
+								</div>
+								<div class="hidden generator-pool absolute top right bottom left" data="dai">
+									<div class="generator-pool-header flex-box space-between flex-center">
+										<div class="generator-icon-label pool-title"><span id="pool-title">????</span>/<span id="pool-title-2">????</span></div>
+										<div class="generator-back-button inventory-button">Back</div>
+									</div>
+									<div class="generator-pool-body flex-box col scrollbar relative">
+										<div class="generator-pool-body-overlay flex-box col flex-center absolute top right bottom left no-pointer-events">
+											<div id="generator-loading-text"></div>
+										</div>
+										<div class="generator-section flex-box col">
+											<div class="flex-box col">
+												<div class="generator-enable-wrapper flex-box flex-end">
+													<div class="generator-enable-button">
+														<div class="generator-enable-dial"></div>
+													</div>
+												</div>
+											</div>
+											<div class="generator-sub-section flex-box space-between">
+												<div id="generator-balance-container" class="disabled flex-box col width-48p onoff">
+													<div class="generator-pool-label flex-box">
+														<div class="notch">Balance</div>
+													</div>
+													<div id="generator-balance" class="generator-pool-data no-overflow generator-bigint">0</div>
+												</div>
+												<div id="generator-deposited-container" class="disabled flex-box col width-48p onoff">
+													<div class="generator-pool-label flex-box">
+														<div class="notch">Deposited</div>
+													</div>
+													<div id="generator-deposited" class="generator-pool-data no-overflow generator-bigint">0</div>
+												</div>
+											</div>
+											<div id="generator-deposit-container" class="generator-sub-section flex-box col onoff">
+												<div class="generator-pool-label flex-box">
+													<div class="notch">Deposit</div>
+												</div>
+												<div class="flex-box generator-user-input" data="deposit">
+													<input type="number" class="generator-input-field generator-bigint">
+													<div id="generator-deposit-max-button" class="generator-deposit-withdraw generator-button inventory-button disabled onoff" data="max">max</div>
+													<div id="generator-deposit-lp-button" class="generator-width-70px generator-deposit-withdraw generator-button inventory-button disabled onoff" data="confirm">Confirm</div>
+												</div>
+											</div>
+											<div id="generator-withdraw-container" class="generator-sub-section flex-box col onoff">
+												<div class="generator-pool-label flex-box">
+													<div class="notch">Withdraw</div>
+												</div>
+												<div class="flex-box generator-user-input" data="withdraw">
+													<input type="number" class="generator-input-field generator-bigint">
+													<div id="generator-withdraw-max-button" class="generator-deposit-withdraw generator-button inventory-button disabled onoff" data="max">max</div>
+													<div id="generator-withdraw-lp-button" class="generator-width-70px generator-deposit-withdraw generator-button inventory-button disabled onoff" data="confirm">Confirm</div>
+												</div>
+											</div>
+											<div id="generator-commit-container" class="generator-sub-section flex-box col onoff generator-commit-container">
+												<div class="generator-pool-label flex-box space-between">
+													<div id="generator-commitment-notch" class="notch">Commit</div>
+												</div>
+												<div class="flex-box generator-user-input">
+													<input type="number" class="generator-input-field generator-bigint">
+													<div id="generator-commit-max-button" class="generator-button generator-vesting inventory-button disabled onoff" data="max">max</div>
+													<div id="generator-commit-lp-button" class="generator-width-70px generator-button generator-vesting inventory-button disabled onoff" data="confirm">Confirm</div>
+												</div>
+												<div id="generator-commitment-details" class="flex-box col generator-user-input hidden onoff generator-active-commitment">
+													<div class="flex-box"><div>Balance:</div><div id="generator-commited-amount">0.00</div></div>
+													<div class="flex-box"><div>Time left:</div><div id="generator-commited-timeleft"></div></div>
+													<div class="flex-box"><div>Cancellation penalty:</div><div id="generator-commited-penalty">0.00</div></div>
+												</div>
+												<div class="flex-box generator-user-input">
+													<div class="generator-vesting generator-vesting-option generator-button inventory-button disabled onoff" data="1">7 days = +0.4%</div>
+													<div class="generator-vesting generator-vesting-option generator-button inventory-button disabled onoff" data="2">14 days = +1%</div>
+													<div class="generator-vesting generator-vesting-option generator-button inventory-button disabled onoff" data="3">30 days = +2.9%</div>
+												</div>
+												<div class="flex-box generator-user-input">
+													<div class="generator-vesting generator-vesting-option generator-button inventory-button disabled onoff" data="4">92 days = +9.9%</div>
+													<div class="generator-vesting generator-vesting-option generator-button inventory-button disabled onoff" data="5">182 days = +22%</div>
+													<div class="generator-vesting generator-vesting-option generator-button inventory-button disabled onoff" data="6">365 days = +50%</div>
+												</div>
+											</div>
+											<div class="generator-sub-section flex-box col">
+												<div class="flex-box flex-end">
+													<div id="generator-endcommit-button" class="hidden generator-button inventory-button disabled onoff" data="endcommit">End commitment</div>
+													<div id="generator-claim-button" class="generator-button inventory-button disabled onoff" data="claim">Claim rewards</div>
+												</div>
+												<div class="flex-box flex-end">
+													<div id="generator-user-rewards" class="generator-user-rewards hidden onoff"></div>
+												</div>
 											</div>
 										</div>
-										<h2>How it works</h2>
-										<p class="paragraph margin-bottom-5rem">
-											With open source, decentralized software hosted on the Ethereum
-											blockchain in the form of smart contracts as escrow for players' wagers,
-											holding them upon deposit and releasing them upon completion of
-											prerequisite conditions that are agreed to on entry. Each session is
-											subject to a rake from the pool that's distributed among VIDYA stakers,
-											who will receive rewards proportional to the amount of tokens they've
-											deposited and held within the staking platform. Games will be able to
-											implement our immutable intermediary at ease, with the requirement of
-											interacting with the contracts via Web3 user interface and the use of
-											VIDYA tokens.
-										</p>
-										<div class="paragraph margin-bottom-5rem">
-											<img class="p-float-left margin-right-1rem max-width-300px" src="img/aesthetics/wolf.png">
-											<div>
-												<h2>System in practice</h2>
-												<p> Player created lobbies are made by Web3 enabled users after they pick
-													the deposit other users must make before being able to join their lobby.
-													The user will then be charged this amount in order to start the lobby,
-													securing the initial wager instantly, and the rest upon entry of other
-													players. Users will be refunded in the event of a lobby closure. Staking
-													fees will only ever be deducted from the pool following successful match
-													completion.
-												</p>
-											</div>
-										</div>
-										<h2>The DeFi angle</h2>
-										<p class="paragraph margin-bottom-5rem">
-											Our aesthetic nuance and love of designing games doesn't count us out of
-											financial experimentation, it only gives us the chance to do it with style.
-											We present new ways of designing an interconnected and highly interactable
-											environment for our users. Our Vidya token is advantaged by providing unique
-											markets and tokenomic models within our products and games via the creative
-											utilization of deflationary mechanics, non-fungibility, item degredation and
-											token staking all easily accessbile to you from a single personalized hub,
-											TeamOS.
-										</p>
-										<h2>TeamOS</h2>
-										<p class="paragraph margin-bottom-5rem">
-											TeamOS refers to the team3d.io website and delivers all things Team3D through
-											its user interface. You can check out your holdings, stats, cross-game inventory
-											and a plethora of information unique to the public key you use to connect with
-											TeamOS. You can play our games with other users, check market data, buy and sell VIDYA
-											and keep up with new additions to the project.
-										</p>
 									</div>
 								</div>
 							</div>
+							<div id="generatorGuideLink" class="generator-user-manual-link"></div>
 						</div>
 					</div>
-					<div id="token_sale" class="console absolute bottom draggable" data="token_sale">
+					<div id="acubething" style="width:256px;height:420px" class="hidden console absolute draggable" data="acubething">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
-								<div class="icon icon-console-prompt"></div>
-								<div class="consoleTitle default">C:\team3d\tokenomics.nfo</div>
+								<div class="icon cubelets-icon"></div>
+								<div class="consoleTitle default">cubelets.exe</div>
 							</div>
-							<button class="close_button">X</button>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button id="aCubeThingCloseButton" class="close_button">X</button>
+							</div>
 						</div>
-						<div class="console-content scrollbar">
-							<div class="full-height">
-								<div class="paragraph-wrapper flex-box full-height">
-									<div class="width-70-percent mobile-width-100-percent">
-										<h2>Vidya Token (VIDYA)</h2>
-										<p class="paragraph margin-bottom-5rem">
-											<span class="highlight">Token supply</span><br>
-											<span>50,000,000</span><br><br>
-											<span class="highlight">Circulating supply</span><br>
-											<span><a href="https://etherscan.io/token/tokenholderchart/0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30" target="_blank">View on Etherscan</a></span><br><br>
-											<span class="highlight">Starting price</span><br>
-											<span>Started trading on Uniswap at 43,750 tokens for 1 ETH (0.000022857 ETH for 1 token)</span><br><br>
-											<span class="highlight">Began trading</span><br>
-											<span>August 22, 2020</span><br><br>
-											<span class="highlight">Uniswap liquidity</span><br>
-											<span>Locked by <a href="https://etherscan.io/address/0x0570b8fb23d6b295a2a57adc58e6590a8c8b5284#code" target="_blank" style="border-bottom:2px solid white">smart contract</a></span><br><br>
-										</p>
-									</div>
-									<div class="full-height width-30-percent non-mobile">
-										<div class="full-height margin-top-3rem sadgrill icon"></div>
-									</div>
-								</div>
-							</div>
+						<div class="console-content" style="overflow:hidden">
+							<div id="Blockie3D"></div>
+							<div id="cubeletNav" class="flex-box flex-center"><button id="gen3dBlockie" class="notify-btn">Create</button><button id="saveAs" class="notify-btn disabled">Save As</button><button id="mintNFT" class="notify-btn disabled">Mint</button></div>
+							<div id="cubeletsConsole" class="scrollbar"></div>
 						</div>
 					</div>
-					<div id="roadmap" class="console absolute bottom no-overflow draggable" data="roadmap">
+					<div id="videos_folder" class="console absolute draggable" data="videos_folder">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
-								<div class="icon icon-console-prompt"></div>
-								<div class="consoleTitle default">C:\team3d\roadmap.exe</div>
-							</div>
-							<button class="close_button">X</button>
-						</div>
-						<div class="console-content scrollbar">
-							<div class="full-height scrollbar-adjust">
-								<div id="testarossa" class="icon car paragraph-icon no-pointer-events"></div>
-								<div class="flex-box center-vertical slide full-height min-height-100">
-									<div class="width-70-percent mobile-width-100-percent margin-bottom-3rem">
-										<h2>2021</h2>
-										<p class="paragraph">The year ahead</p>
-										<p class="paragraph">It took us a little while longer, but we are now getting 
-										very close to releasing our first video game- a First Person Shooter. Realistically
-										we can expect a demo launch in late Q1, early Q2.</p>
-										<p class="paragraph">Strategic partnerships are another aspect we will focus on a lot this year.
-                                        We are currently in the early days of potentially partnering up with some very reputable
-                                        crypto companies who share our vision and if all goes well, we might even get extra hands 
-                                        to help us!</p>
-									</div>
-									<div class="full-height width-30-percent non-mobile">
-										<div class="full-height margin-top-3rem computer icon icon-cover"></div>
-									</div>
-								</div>
-								<div class="flex-box center-vertical slide min-height-100">
-									<div class="width-70-percent mobile-width-100-percent margin-bottom-3rem">
-									    <h2>Merchant & Astronaut</h2>
-                                        <p class="paragraph">With the NFT distributor contract and Inventory system completed, we will now
-                                        focus on the Merchant and Astronaut systems. In simple terms the Merchant will act as a global 
-                                        NFT intermediary for all of games as well as all of the potential games our 
-                                        partners and community members will build on TeamOS. The Astronaut will essentially be a showcase Blockchain
-                                        based game which comes along with a well written tutorial on how to develop your very own game
-                                        on TeamOS and utilize the Inventory and Merchant systems.</p>
-                                        <p class="paragraph">These new additions will allow a game developer to near instantly leverage the existing NFT
-                                        market within the Team3D ecosystem by setting their own prices and developer fees. We'll let
-                                        the free market take care of the rest.</p>
-									</div>
-								</div>
-								<div class="flex-box center-vertical slide min-height-100">
-									<div class="width-70-percent mobile-width-100-percent margin-bottom-3rem">
-									    <h2>Generator</h2>
-										<p class="paragraph">The FPS is currently our main goal with the Generator system 
-										being worked on part-time for now. Why? For one, the Generator relies on two different 
-										systems that need to be built out and tested before the actual Generator itself. It's all 
-										unknown territory because nobody has built anything like this which means we don't really 
-										have a secure and proven base to build on. Secondly, 
-										there already exists a good way for anyone interested to stake their VIDYA in both 
-										the community driven VidyaFlux as well as providing liquidity on Uniswap the traditional way.
-										<br>
-										<br>
-										The goal of Team3D is and has always been to develop games. We are indie developers
-                                        who truly love what we do and know best. With this in mind, you should never expect us to launch
-                                        a yield farming system with unrealistic returns. If this is your main expectation from Team3D, we 
-                                        suggest you look elsewhere. However, for those of you who are as eager as us to play a video game
-                                        and have fun, we can assure you that the Generator, once ready, will complement all of our current 
-                                        and future systems, but makes no promise of returns.
-										</p>
-									</div>
-								</div>
-								<div class="slide min-height-100">
-									<div class="max-width-640px margin-0-auto">
-										<h2 class="no-margin-left">Achievements of 2020</h2>
-										<span class="row strikeout">TeamOS development</span>
-										<span class="row strikeout">Vidya token launch</span>
-										<span class="row strikeout">HotBit listing</span>
-										<span class="row strikeout">WhiteBit listing</span>
-										<span class="row strikeout">P2PB2B listing</span>
-										<span class="row strikeout">CoinGecko</span>
-										<span class="row strikeout">CoinMarketCap</span>
-										<span class="row strikeout">Blockfolio</span>
-										<span class="row strikeout">Staking system</span>
-										<span class="row strikeout">Cross-game item inventory and equip system</span>
-										<span class="row strikeout">Easter-egg hunt</span>
-										<span class="row strikeout">NFT distributor contract</span>
-										<span class="row strikeout">FPS game testing</span>
-										<span class="row strikeout">Influencer & Press campaign</span>
-										<span class="row strikeout">Giants Digital partnership</span>
-										<span class="row strikeout">Quotidian Marketing partnership</span>
-										<br>
-									</div>
-								</div>
-								<div class="slide full-height min-height-100 flex-box col flex-center">
-									<h2>In the future...</h2>
-									<p class="paragraph">You will definitely be seeing some shit.</p>
-								</div>
-								<div class="diamonds icon icon-cover slide full-height min-height-100 flex-box col flex-center margin-bottom-5rem">
-									<h2>But for now</h2>
-									<p class="paragraph">Diamonds</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="faq" class="console absolute bottom draggable" data="faq">
-						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
-							<div class="flex-box center-vertical">
-								<div class="icon icon-console-prompt"></div>
-								<div class="consoleTitle default">C:\team3d\media.exe</div>
-							</div>
-							<button class="close_button">X</button>
-						</div>
-						<div class="console-content scrollbar">
-							<div class="full-height">
-								<div class="paragraph-wrapper flex-box full-height">
-									<div class="mobile-width-100-percent">
-										<h2>Media</h2>
-										<p class="paragraph"><span class="highlight">Publications</span></p>
-										<p id="publications" class="paragraph margin-bottom-5rem">
-											<a href="https://apnews.com/ts-newswire/b3b89f6bc7f3242d28b8b09ef78032f3" target="_blank"><img src="img/media/associated_press.png" alt="Associated Press"/></a>
-											<a href="https://news.bitcoin.com/vidyas-public-sale-marks-the-dawn-of-a-new-blockchain-gaming-era/" target="_blank"><img src="img/media/bitcoin_com.png" alt="Bitcoin.com"/></a>
-											<a href="https://finance.yahoo.com/news/team3ds-public-listing-vidya-heralds-183800417.html" target="_blank"><img src="img/media/yahoo_finance.png" alt="Yahoo Finance"/></a>
-											<a href="https://markets.businessinsider.com/news/stocks/team3d-s-public-listing-of-vidya-heralds-the-beginning-of-blockchain-gaming-s-future-1029616877" target="_blank"><img src="img/media/business_insider.png" alt="Business Insider"/></a>
-											<a href="https://www.benzinga.com/pressreleases/20/09/g17628369/team3ds-public-listing-of-vidya-heralds-the-beginning-of-blockchain-gamings-future" target="_blank"><img src="img/media/benzinga.png" alt="Benzinga"/></a>
-											<a href="https://thebitcoindesk.com/2020/09/team3ds-public-listing-of-vidya-heralds-the-beginning-of-blockchain-gamings-future/" target="_blank"><img src="img/media/the_bitcoin_desk.png" alt="The Bitcoin Desk"/></a>
-											<a href="http://www.digitaljournal.com/pr/4816579" target="_blank"><img src="img/media/digital_journal.png" alt="Digital Journal"/></a>
-											<a href="https://cointelegraph.com/press-releases/the-public-sale-of-vidya-marks-team3ds-push-for-a-gaming-revolution" target="_blank"><img src="img/media/cointelegraph.png" alt="CoinTelegraph"/></a>
-											<a href="https://www.forbes.com/sites/nealtaparia/2020/10/02/3-areas-of-the-booming-gaming-industry-ripe-for-entrepreneurial-opportunities/#7aaa24a8317e" target="_blank"><img src="img/media/forbes.jpg" alt="Forbes"/></a>
-											<a href="https://www.thewolfofallstreets.io/the-vidya-platform-an-overview/" target="_blank"><img src="img/media/wolf.png" alt="Wolf of All Streets"/></a>
-										</p>
-									</div>
-									<div id="shame" class="full-height no-pointer-events non-mobile">
-										<div class="full-height facepalm icon"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<!-- VIDEOS FOLDER -->
-					<div id="videos_folder" class="console absolute bottom draggable" data="videos_folder">
-						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
-							<div class="flex-box center-vertical">
-								<div class="icon icon-console-prompt"></div>
+								<div class="icon folder-icon"></div>
 								<div class="consoleTitle default">C:\team3d\videos</div>
 							</div>
-							<button class="close_button">X</button>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
 						</div>
 						<div class="console-content flex-box scrollbar">
 							<div id="videos_icons" class="flex-box">
 								<div class="flex-box">
 									<div class="flex-box row flex-start">
-										<div id="teaser_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="teaser">
+										<div id="teaser_button" class="video-open-btn desktop-icon-container flex-box col center-vertical non-mobile" data="teaser">
 											<div class="icon desktop-icon tv no-pointer-events shortcut"></div>
 											<span class="font-monospace text-align-center">teaser.mp4</span>
 										</div>
-										<div id="aimbots_video_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="aimbots_video">
+										<div id="aimbots_video_button" class="video-open-btn desktop-icon-container flex-box col center-vertical non-mobile" data="aimbots_video">
 											<div class="icon desktop-icon tv no-pointer-events shortcut"></div>
 											<span class="font-monospace text-align-center">aimbots.avi</span>
+										</div>
+										<div id="aimbots3d_video_button" class="video-open-btn desktop-icon-container flex-box col center-vertical non-mobile" data="aimbots3d_video">
+											<div class="icon desktop-icon tv no-pointer-events shortcut"></div>
+											<span class="font-monospace text-align-center">aimbots3d.avi</span>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					
-					<div id="vidyaflux" class="console absolute bottom draggable hidden" data="vidyaflux">
+					<div id="vidyaflux" class="console absolute draggable hidden" data="vidyaflux">
 					    <div class="fluxStartTimer flex-box flex-center">
 					        <div id="hehe"></div>
 					    </div>
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
-								<div class="icon icon-console-prompt"></div>
+								<div class="icon vidyaflux-icon"></div>
 								<div class="consoleTitle default">C:\team3d\vidyaflux.exe</div>
 							</div>
-							<button class="close_button">X</button>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
 						</div>
 							<div class="flux-header-wrapper flex-box col full-width">
 								<div class="flux-header flex-box full-width space-between center-vertical margin-bottom-05rem">
@@ -374,7 +312,6 @@
 								</div>
 							</div>
 						<div class="console-content flex-box col relative scrollbar">
-						    
                             <div class="flux-welcome flux-content flex-box col absolute top right bottom left full-width full-height" data="welcome">
                                 <div class="margin-top-1rem margin-bottom-1rem">Welcome</div>
                                 <div class="row">Stake your VIDYA in VidyaFlux to generate passive VIDYA over time.</div>
@@ -387,7 +324,6 @@
                                 <div class="row">Additionally 0.5% of all volume is pooled towards our Inventory contract. If you like, you may cast a magic
                                 spell to send currently pooled funds to the Inventory contract. Doing so will reward you with 1% of the total current accumulated Inventory pool.</div>
                             </div>
-                            
                             <!-- BUY -->
                             <div class="flux-content absolute top right bottom left full-width full-height hidden" data="buy">
                                 <div class="flux-tab-content flex-box col">
@@ -431,7 +367,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
                             <!-- SELL -->
                             <div class="flux-content absolute top right bottom left full-width full-height hidden" data="sell">
                                 <div class="flux-tab-content flex-box col">
@@ -472,7 +407,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
                             <!-- STATS -->
                             <div class="flux-content absolute top right bottom left full-width full-height hidden" data="stats">
                                 <div class="flux-tab-content flex-box col">
@@ -531,7 +465,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <!-- Magic -->
                             <div class="flux-content flex-box col absolute top right bottom left full-width full-height hidden" data="magic">
                                 <div class="flux-tab-content flex-box col">
@@ -565,8 +498,7 @@
 						
 						</div>
 					</div>
-					
-					<div id="settings" class="console absolute bottom draggable" data="settings">
+					<div id="settings" class="console absolute draggable" data="settings">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
 								<div class="icon icon-console-prompt"></div>
@@ -753,10 +685,13 @@
 					<div id="vidyaswap" class="console absolute draggable" data="vidyaswap">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
-								<div class="icon icon-console-prompt"></div>
+								<div class="icon vidyaswap"></div>
 								<div class="consoleTitle default">C:\team3d\vidyaswap.exe</div>
 							</div>
-							<button class="close_button">X</button>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
 						</div>
 						<div class="console-content flex-box col flex-center padding-1rem scrollbar vidyaswap-bg-image">
 							<div class="flex-box full-width center-horizontal">
@@ -807,43 +742,139 @@
 							</div>
 						</div>
 					</div>
-					<div id="teaser" class="console absolute bottom draggable" data="teaser">
+					<div id="teaser" class="video console absolute draggable" data="teaser">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
-								<div class="icon icon-console-prompt"></div>
+								<div class="icon tv"></div>
 								<div class="consoleTitle default">C:\team3d\teaser.mp4</div>
 							</div>
-							<button class="close_button">X</button>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
 						</div>
-						<div class="console-content flex-box flex-center scrollbar">
-							<video class="full-height full-width" controls>
+						<div class="console-content flex-box flex-center">
+							<video class="full-height full-width">
 								<source src="img/media/Teaser.mp4" type="video/mp4">
 								Your browser does not support the video tag.
 							</video>
+							<div class="video-controls absolute bottom flex-box col">
+								<div class="video-progress full-width">
+									<progress class="progress full-width" value="0" min="0"></progress>
+									<input class="seek" value="0" min="0" type="range" step="1">
+								</div>
+								<div class="flex-box flex-center space-between">
+									<div class="flex-box">
+										<div class="video-play-btn"></div>
+										<div class="volume-icon relative">
+											<div class="volume-icon-muted absolute top right bottom left"></div>
+											<div class="volume-icon-low absolute top right bottom left"></div>
+											<div class="volume-icon-med absolute top right bottom left"></div>
+											<div class="volume-icon-hi absolute top right bottom left"></div>
+										</div>
+										<input class="volume" value="1" type="range" max="1" min="0" step="0.01">
+									</div>
+									<div class="time">
+										<time class="elapsed">00:00</time>
+										<span> / </span>
+										<time class="duration">00:00</time>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div id="aimbots_video" class="console absolute bottom draggable" data="aimbots_video">
+					<div id="aimbots_video" class="video console absolute draggable" data="aimbots_video">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
-								<div class="icon icon-console-prompt"></div>
+								<div class="icon tv"></div>
 								<div class="consoleTitle default">C:\team3d\aimbots.avi</div>
 							</div>
-							<button class="close_button">X</button>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
 						</div>
-						<div class="console-content flex-box flex-center scrollbar">
-							<video class="full-height full-width" controls>
+						<div class="console-content flex-box flex-center">
+							<video class="full-height full-width">
 								<source src="img/media/aimbots.mp4" type="video/mp4">
 								Your browser does not support the video tag.
 							</video>
+							<div class="video-controls absolute bottom flex-box col">
+								<div class="video-progress full-width">
+									<progress class="progress full-width" value="0" min="0"></progress>
+									<input class="seek" value="0" min="0" type="range" step="1">
+								</div>
+								<div class="flex-box flex-center space-between">
+									<div class="flex-box">
+										<div class="video-play-btn"></div>
+										<div class="volume-icon relative">
+											<div class="volume-icon-muted absolute top right bottom left"></div>
+											<div class="volume-icon-low absolute top right bottom left"></div>
+											<div class="volume-icon-med absolute top right bottom left"></div>
+											<div class="volume-icon-hi absolute top right bottom left"></div>
+										</div>
+										<input class="volume" value="1" type="range" max="1" min="0" step="0.01">
+									</div>
+									<div class="time">
+										<time class="elapsed">00:00</time>
+										<span> / </span>
+										<time class="duration">00:00</time>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div id="wolf3d" class="console absolute bottom draggable" data="wolf3d">
+					<div id="aimbots3d_video" class="video console absolute draggable" data="aimbots3d_video">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
-								<div class="icon icon-console-prompt"></div>
+								<div class="icon tv"></div>
+								<div class="consoleTitle default">C:\team3d\aimbots3d.avi</div>
+							</div>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
+						</div>
+						<div class="console-content relative flex-box flex-center">
+							<video class="video-wrapper full-height full-width" preload="metadata">
+								<source src="img/media/Aimbots3d.mp4" type="video/mp4">
+								Your browser does not support the video tag.
+							</video>
+							<div class="video-controls absolute bottom flex-box col">
+								<div class="video-progress full-width">
+									<progress class="progress full-width" value="0" min="0"></progress>
+									<input class="seek" value="0" min="0" type="range" step="1">
+								</div>
+								<div class="flex-box flex-center space-between">
+									<div class="flex-box">
+										<div class="video-play-btn"></div>
+										<div class="volume-icon relative">
+											<div class="volume-icon-muted absolute top right bottom left"></div>
+											<div class="volume-icon-low absolute top right bottom left"></div>
+											<div class="volume-icon-med absolute top right bottom left"></div>
+											<div class="volume-icon-hi absolute top right bottom left"></div>
+										</div>
+										<input class="volume" value="1" type="range" max="1" min="0" step="0.01">
+									</div>
+									<div class="time">
+										<time class="elapsed">00:00</time>
+										<span> / </span>
+										<time class="duration">00:00</time>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="wolf3d" class="console absolute draggable" data="wolf3d">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon desktop-exe"></div>
 								<div class="consoleTitle default">C:\team3d\wolf3d.exe</div>
 							</div>
-							<button class="close_button">X</button>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
 						</div>
 						<div class="console-content flex-box flex-center scrollbar">
 							<div>
@@ -853,13 +884,16 @@
 						</div>
 					</div>
 					<!-- Inventory -->
-					<div id="inventory" class="console absolute bottom draggable hidden" data="inventory">
+					<div id="inventory" class="console absolute draggable hidden" data="inventory">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
-								<div class="icon icon-console-prompt"></div>
+								<div class="icon desktop-inventory"></div>
 								<div class="consoleTitle">C:\team3d\inventory.exe</div>
 							</div>
-							<button class="close_button">X</button>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
 						</div>
 						<div class="flex-box col console-content padding-1rem scrollbar">
 							<div class="flex-box full-width">
@@ -960,235 +994,68 @@
 							</div>
 						</div>
 					</div>
-					<div id="cubelog" class="console absolute bottom draggable" data="cubelog">
-						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
-							<div class="flex-box center-vertical">
-								<div class="icon icon-console-prompt"></div>
-								<div class="consoleTitle default">C:\team3d\cubelog.txt</div>
-							</div>
-							<button class="close_button">X</button>
-						</div>
-						<div class="console-content scrollbar">
-							<div class="full-height">
-								<div class="paragraph-wrapper flex-box full-height">
-									<div class="width-70-percent mobile-width-100-percent">
-										<h2>cubelog</h2>
-										<p class="paragraph">
-											<span class="highlight">Sep 7, 2021</span>
-										</p>
-										<div class="paragraph">
-											<div class="row margin-bottom-05rem">Cubelets is now Ghost approved! Yes it's official. Our beloved CEO gave the green light on our little side project.</div>
-										</div>
-										<p class="paragraph">
-											<span class="highlight">Sep 5, 2021</span>
-										</p>
-										<div class="paragraph">
-											<div class="row margin-bottom-05rem">Spent a day experimenting with Moralis and ThreeJS. Cubelets.exe is an experiment and not an official Team3D thing. OR IS IT? Don't blame Vidya Games INC if something breaks. That said, <a href="https://opensea.io/collection/cubelets-v2" target="_blank" class="highlight">[these]</a> look fucking amazing! What are they for? Who knows... 3d blockie avatars?</div>
-										</div>
-										<p class="paragraph">
-											<span class="highlight">Aug 22, 2021</span>
-										</p>
-										<div class="paragraph">
-											<div class="row margin-bottom-05rem">Cube3d, in a monotone voice: "VIDYA began trading exactly a year ago today".</div>
-										</div>
-										<p class="paragraph">
-											<span class="highlight">May 24, 2021</span>
-										</p>
-										<div class="paragraph">
-											<div class="row margin-bottom-05rem">Added Polygon support button in the settings menu to make it easier to switch / add Polygon network support to your wallet. 
-											UI will also update according to the network you're connected to. Connecting to MainNet shouldn't bring anything new, but when you switch to Polygon you should see 
-											the Inventory and VidyaSwap icons disappear and Uniswap button change into a QuickSwap button instead. In case you didn't know, we have mapped the VIDYA token
-											on Polygon. Inventory contract will take some time as we need to figure a few things out on our end. Who else bought ETH at $1800?!</div>
-										</div>
-										
-										<p class="paragraph">
-											<span class="highlight">May 8, 2021</span>
-										</p>
-										<div class="paragraph">
-											<div class="row margin-bottom-05rem">I'm not dead. Just hit a bit of a snag on the whole Merchant + Astronaut duo. It's coming, but I might need to rethink a lot of the 
-											inner workings of things. Thankfully we have a math genius on board now so should be chill. Why is nobody sharing their custom themes?</div>
-											<img style="width:50%" src="img/merchant.png">
-										</div>
-										
-										<p class="paragraph">
-											<span class="highlight">March 28'th</span>
-										</p>
-										<div class="paragraph">
-											<div class="row margin-bottom-05rem">Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?</div>
-											<img style="width:50%" src="img/astronaut.png">
-										</div>
-										
-										<p class="paragraph">
-											<span class="highlight">March 1'st</span>
-										</p>
-										<div class="paragraph">
-											<div class="row margin-bottom-05rem">Supply drop for spacewalk. 42 tanks total.</div>
-										</div>
-										
-										<p class="paragraph">
-											<span class="highlight">Dec 16'th</span>
-										</p>
-										<div class="paragraph">
-											<div class="row margin-bottom-05rem">You can now save and restore your custom theme as settings.json file. Bug reports appreciated!</div>
-											<div class="row margin-bottom-05rem">Note that uploading a custom theme file might be dangerous if it's sent by an attacker. More research is needed 
-											for this, but if it's your own backup it's fine.</div>
-										</div>
-										
-										<p class="paragraph">
-											<span class="highlight">Dec 14'th</span>
-										</p>
-										<div class="paragraph">
-											<div class="row margin-bottom-05rem">Lots of UI updates and more to come soon!</div>
-											<div class="row margin-bottom-05rem">Removed a lot of clutter from "behind the scenes" scripts and tried to make things more optimal. We'll see how it turned out.</div>
-											<div class="row margin-bottom-05rem">Restarted work on Merchant and Astronaut systems from scratch so it's gonna take a while longer. Personally I can't wait for VidyaFlux, hope I get a good entry. We
-											discussed it with @ghost3d and agreed that I won't be getting any advantage over others which is fair.</div>
-											<div class="row margin-bottom-05rem">Man... the FPS. I AM HYPED</div>
-										</div>
-										<p class="paragraph">
-											<span class="highlight">Dec 1'st</span>
-										</p>
-										<div class="paragraph">
-											<div class="row margin-bottom-05rem">Bruh.. Christmas is less than a month away! *runs around in panic*</div>
-											<div class="row margin-bottom-05rem">Fixed some minor mobile usabiliy issues (again)</div>
-											<div class="row margin-bottom-05rem">Added more settings. Let the customization begin!!! Would really love to see your desktops, just post them in #general for now. When @ghost3d gets around announcing the actual contest, there
-												will be a dedicated channel for desktops.
-											</div>
-										</div>
-										<p class="paragraph">
-											<span class="highlight">Nov 24'th</span>
-										</p>
-										<div class="paragraph">
-											<div class="row margin-bottom-05rem">Lots of stuff being done behind the scenes.</div>
-											<div class="row margin-bottom-05rem">You may have found Vidyaswap already. It's a tool that lets you execute trades on Uniswap without leaving TeamOS. FYI it uses 1% slippage by default, but you can adjust it (if you're a pro gamer)
-												by opening F12 console and setting the "slippage" variable to whatever. For example: slippage = 10 (integer, not string)
-											</div>
-											<div class="row margin-bottom-05rem">Aah yes! Cleaned up the desktop for you and piled the less relevant stuff all together in Start Menu.</div>
-											<div class="row margin-bottom-05rem">Fixed scrolling past footer bug on mobile devices.</div>
-										</div>
-										<p class="paragraph">
-											<span class="highlight">Nov 2'nd</span>
-										</p>
-										<div class="paragraph">
-											<div class="row margin-bottom-05rem">Whale detection prompt bug fix #2 should only show when not verified, then never again.</div>
-											<div class="row margin-bottom-05rem">User profile icons offset by 2px fixed</div>
-										</div>
-										<p class="paragraph">
-											<span class="highlight">Oct 30'th</span>
-										</p>
-										<div class="paragraph">
-											<div class="row margin-bottom-05rem">Multiple prompts bug fix</div>
-											<div class="row margin-bottom-05rem">Whale detection and confirmation for auto-adding to Vidyan role</div>
-											<div class="row margin-bottom-05rem">Generator: Base contract math completed for inflow/outflow</div>
-											<div class="row margin-bottom-05rem">Generator: Inventory contract acquisition and distribution</div>
-										</div>
-										<p class="paragraph">
-											<span class="highlight">Oct 10'th</span>
-										</p>
-										<div class="paragraph">
-											<div class="row margin-bottom-05rem">
-												* Distributor system added and only works for distributing dark matter right now. If you held any amount of VIDYA on 9/29/2020 you should see a new icon on desktop. This is a one time event to distribute FREE dark matter to loyal followers. Note that gas fees still apply.
-											</div>
-										</div>
-										<p class="paragraph">
-											<span class="highlight">Sept 30'th</span>
-										</p>
-										<div class="paragraph">
-											<div class="row margin-bottom-05rem">* NFT distributor contract is finished and waiting for audit from 2 separate devs</div>
-											<div class="row margin-bottom-05rem">* Generator contract is under construction, waiting input from another dev on how to move forward</div>
-											<div class="row margin-bottom-05rem">* @Ghost3D is writing up a wiki page for all the current discovered (and undiscovered) easter eggs</div>
-										</div>
-									</div>
-									<div class="full-height width-30-percent non-mobile">
-										<div class="full-height margin-top-3rem cubelog icon"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 					<!-- Stuff -->
 					<div class="branding font-quickzag absolute top-2half">
 						<div>Team3D</div>
 					</div>
+					<div id="webamp-wrapper"></div>
 					<div class="texture absolute top right bottom left"></div>
 					<!-- Desktop icons -->
-					<div id="desktop_icons" class="flex-box col center-horizontal absolute top right above-grid">
-						<div class="flex-box col firstcol">
-							<div class="flex-box row flex-end">
-								<div id="videos-folder-button-wrapper" class="flex-box row flex-end videos-folder-button-wrapper">
-									<div id="videos_folder_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="videos_folder">
-										<div class="icon desktop-icon folder-icon no-pointer-events shortcut"></div>
-										<span class="font-monospace text-align-center">videos</span>
-									</div>
-								</div>
-								<div id="wolf3d_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="wolf3d">
-									<div class="icon desktop-icon desktop-exe no-pointer-events game"></div>
-									<span class="font-monospace text-align-center">wolf3d</span>
-								</div>
-								<div id="inventory_button_wrapper" class="inventory_button_wrapper hidden non-mobile mainnet_object">
-									<div id="inventory_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="inventory">
-										<div class="icon desktop-icon desktop-inventory no-pointer-events"></div>
-										<span class="font-monospace text-align-center">inventory</span>
-									</div>
-								</div>
-								<div id="uniswap-button-wrapper" class="flex-box row flex-end uniswap-button-wrapper non-mobile">
-									<div id="uniswap_button" class="flex-box col center-vertical non-mobile" data="uniswap">
-										<div class="icon desktop-icon uniswap-exe no-pointer-events shortcut"></div>
-										<span class="font-monospace text-align-center">uniswap</span>
-									</div>
-								</div>
+					<div id="desktop_icons" class="flex-box col center-horizontal absolute top bottom left">
+					<div id="desktop_icons_inner" class="flex-box col">
+						<div id="videos-folder-button-wrapper" class="flex-box row flex-end videos-folder-button-wrapper">
+							<div id="videos_folder_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="videos_folder">
+								<div class="icon desktop-icon folder-icon no-pointer-events shortcut"></div>
+								<span class="font-monospace text-align-center">videos</span>
 							</div>
 						</div>
-						<div class="flex-box col secondcol">
-						    <div class="flex-box row flex-end">
-						        <div id="vidyaflux_button_wrapper" class="hidden mainnet_object">
-    								<div id="vidyaflux_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="vidyaflux">
-    									<div class="icon desktop-icon vidyaflux-icon no-pointer-events shortcut"></div>
-    									<span class="font-monospace text-align-center">vidyaflux</span>
-    								</div>
-    							</div>
-								<div id="present_button_wrapper" class="hidden mainnet_object">
-									<div id="present_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="present">
-										<div class="icon desktop-icon present-icon no-pointer-events shortcut"></div>
-										<span class="font-monospace text-align-center">present</span>
-									</div>
-								</div>
-								
-								<div id="cubelets_button_wrapper" class="hidden mainnet_object">
-									<div id="cubelets_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="acubething">
-										<div class="icon desktop-icon cubelets-icon no-pointer-events shortcut"></div>
-										<span class="font-monospace text-align-center">cubelets</span>
-									</div>
-								</div>
-						    </div>
+						<div id="wolf3d_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="wolf3d">
+							<div class="icon desktop-icon desktop-exe no-pointer-events game"></div>
+							<span class="font-monospace text-align-center">wolf3d</span>
+						</div>
+						<div id="inventory_button_wrapper" class="inventory_button_wrapper hidden non-mobile mainnet_object">
+							<div id="inventory_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="inventory">
+								<div class="icon desktop-icon desktop-inventory no-pointer-events"></div>
+								<span class="font-monospace text-align-center">inventory</span>
+							</div>
+						</div>
+						<div id="uniswap-button-wrapper" class="desktop-icon-container flex-box row flex-end uniswap-button-wrapper non-mobile">
+							<div id="uniswap_button" class="flex-box col center-vertical non-mobile" data="uniswap">
+								<div class="icon desktop-icon uniswap-exe no-pointer-events shortcut"></div>
+								<span class="font-monospace text-align-center">uniswap</span>
+							</div>
+						</div>
+						<div id="vidyaflux_button_wrapper" class="hidden mainnet_object">
+							<div id="vidyaflux_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="vidyaflux">
+								<div class="icon desktop-icon vidyaflux-icon no-pointer-events shortcut"></div>
+								<span class="font-monospace text-align-center">vidyaflux</span>
+							</div>
+						</div>
+						<div id="present_button_wrapper" class="hidden mainnet_object">
+							<div id="present_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="present">
+								<div class="icon desktop-icon present-icon no-pointer-events shortcut"></div>
+								<span class="font-monospace text-align-center">present</span>
+							</div>
+						</div>
+						<div id="cubelets_button_wrapper" class="hidden mainnet_object">
+							<div id="cubelets_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="acubething">
+								<div class="icon desktop-icon cubelets-icon no-pointer-events shortcut"></div>
+								<span class="font-monospace text-align-center">cubelets</span>
+							</div>
+						</div>
+						<div id="generator_button_wrapper" class="hidden mainnet_object">
+							<div id="generator_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="generator">
+								<div class="icon desktop-icon generator no-pointer-events shortcut"></div>
+								<span class="font-monospace text-align-center">generator</span>
+							</div>
 						</div>
 					</div>
-					<!-- Desktop icons 2nd row at the bottom -->
-					<div id="desktop_icons_2" class="flex-box center-horizontal absolute bottom left above-grid">
-						<div class="flex-box col">
-							<div class="flex-box row">
-							</div>
-						</div>
 					</div>
 				</div>
 				<!-- Mobile menu -->
 				<div id="mobileMenu" class="flex-box col center-horizontal absolute top right above-grid">
 					<div class="flex-box">
-						<div id="about_button" class="desktop-icon-container flex-box col center-vertical" data="about">
-							<div class="icon desktop-icon desktop-exe no-pointer-events"></div>
-							<span class="font-monospace text-align-center">about</span>
-						</div>
-						<div id="token_sale_button" class="desktop-icon-container flex-box col center-vertical" data="token_sale">
-							<div class="icon desktop-icon desktop-exe no-pointer-events"></div>
-							<span class="font-monospace text-align-center">tokenomics</span>
-						</div>
-						<div id="roadmap_button" class="desktop-icon-container flex-box col center-vertical" data="roadmap">
-							<div class="icon desktop-icon desktop-exe no-pointer-events"></div>
-							<span class="font-monospace text-align-center">roadmap</span>
-						</div>
-						<div id="faq_button" class="desktop-icon-container flex-box col center-vertical" data="faq">
-							<div class="icon desktop-icon desktop-exe no-pointer-events"></div>
-							<span class="font-monospace text-align-center">Media</span>
-						</div>
+						<!-- Something here... -->
 					</div>
 					<div class="flex-box">
 						<div id="twitter_button" class="desktop-icon-container flex-box col center-vertical" data="twitter">
@@ -1203,7 +1070,7 @@
 							<div class="icon desktop-icon discord no-pointer-events shortcut"></div>
 							<span class="font-monospace text-align-center">discord</span>
 						</div>
-						<div class="uniswap-button-wrapper flex-box row flex-end uniswap-button-wrapper">
+						<div class="uniswap-button-wrapper desktop-icon-container flex-box row flex-end">
 							<div id="uniswap_button" class="flex-box col center-vertical" data="uniswap">
 								<div class="icon desktop-icon uniswap-exe no-pointer-events shortcut"></div>
 								<span class="font-monospace text-align-center">uniswap</span>
@@ -1232,35 +1099,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- Menu -->
-			<div id="Menu" class="menu absolute left top-30per flex-box col above-grid">
-				<div id="Cube" class="absolute hidden" data="cubelog">
-					<div class="cube-inner relative no-pointer-events">
-						<div class="cube-front face absolute top left"></div>
-						<div class="cube-back face absolute top left"></div>
-						<div class="cube-top face absolute top left"></div>
-						<div class="cube-bottom face absolute top left"></div>
-						<div class="cube-left face absolute top left"></div>
-						<div class="cube-right face absolute top left"></div>
-					</div>
-				</div>
-				<div class="menu-item pointer noselect no-overflow" data="about">
-					<span class="label no-pointer-events">About</span>
-					<div class="glass absolute top right bottom left hidden no-pointer-events"></div>
-				</div>
-				<div class="menu-item pointer noselect no-overflow" data="token_sale">
-					<span class="label no-pointer-events">Tokenomics</span>
-					<div class="glass absolute top right bottom left hidden no-pointer-events"></div>
-				</div>
-				<div class="menu-item pointer noselect no-overflow" data="roadmap">
-					<span class="label no-pointer-events">Roadmap</span>
-					<div class="glass absolute top right bottom left hidden no-pointer-events"></div>
-				</div>
-				<div class="menu-item pointer noselect no-overflow" data="faq">
-					<span class="label no-pointer-events">Media</span>
-					<div class="glass absolute top right bottom left hidden no-pointer-events"></div>
-				</div>
-			</div>
 			<div class="grid-wrapper no-overflow">
 				<div class="m-grid is-animating"></div>
 			</div>
@@ -1269,6 +1107,7 @@
 			<div id="start-button" class="flex-box col center-vertical start-button-wrapper">
 				<div class="start-button font-quickzag noselect">Start</div>
 			</div>
+			<div id="tasks" class="flex-box flex-center"></div>
 			<div id="connect" class="flex-box flex-center absolute right pointer margin-right-1rem hidden">
 				<div class="connect icon"></div>
 			</div>
@@ -1279,6 +1118,18 @@
 				<div class="start-item-label noselect no-pointer-events">Start Menu</div>
 			</div>
 			<div class="startmenu-content scrollbar">
+				<div id="chat3d-toggle" class="hidden chat3d-toggle flex-box col item mainnet_object" data="chat3d">
+					<div class="start-item-label noselect no-pointer-events flex-box center-vertical">
+						<div class="chat3d icon"></div>
+						<div>Chat3D</div>
+					</div>
+				</div>
+				<div id="webamp-toggle" class="webamp-toggle flex-box col item" data="radio">
+					<div class="start-item-label noselect no-pointer-events flex-box center-vertical">
+						<div class="radio icon"></div>
+						<div>Radio</div>
+					</div>
+				</div>
 				<div class="flex-box col item" data="links">
 					<div class="start-item-label noselect no-pointer-events flex-box center-vertical">
 						<div class="links icon"></div>
@@ -1383,6 +1234,18 @@
 		<script src="console/js/console.js"></script>
 		<!-- A Cube Thing -->
 		<script src="cubelets/js/cubelets.js"></script>
+		<!-- Generator -->
+		<script src="generator/js/LPTokenABI.js"></script>
+		<script src="generator/js/TellerABI.js"></script>
+		<script src="generator/js/generator.js"></script>
+		<link rel="stylesheet" href="generator/css/generator.css">
+		<!-- WebAmp -->
+		<script src="https://unpkg.com/webamp@1.4.0/built/webamp.bundle.min.js"></script>
+		<script src="webamp/js/webamp.js"></script>
+		<link rel="stylesheet" href="webamp/css/webamp.css">
+		<!-- Chat3D -->
+		<script src="chat3d/js/chat3d.js"></script>
+		<link rel="stylesheet" href="chat3d/css/chat3d.css">
 		<!-- DOSBox -->
 		<script src="https://js-dos.com/6.22/current/js-dos.js"></script>
 		<!-- Connect web3 dapp -->

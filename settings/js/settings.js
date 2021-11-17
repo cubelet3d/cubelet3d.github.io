@@ -1,3 +1,7 @@
+// Default settings
+localStorage.setItem("disableAnimation", "yes")
+localStorage.setItem("disableTexture", "yes")
+
 let disableAnimation = localStorage.getItem("disableAnimation")
 let disableBranding = localStorage.getItem("disableBranding")
 let disableTexture = localStorage.getItem("disableTexture")

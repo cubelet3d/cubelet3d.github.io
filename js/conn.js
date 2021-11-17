@@ -38,23 +38,6 @@ async function init() {
                 setup()
             })
         }
-    
-        /*else {
-			// Is any provider given to us at all please? 
-            if(Web3.givenProvider != void 0) {
-				$("#connect").addClass("disabled")
-				$("#connect").html('<div class="user-icon user-picture margin-right-1rem">\
-				</div><div class="margin-right-1rem"><span id="web3-loading">Loading...</span></div>')
-				$(".user-picture").html('<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>');
-				
-				await setup()
-				
-				// Subscribe to accounts change
-				window.ethereum.on("accountsChanged", (accounts) => {
-					setup()
-				})
-			}
-        }*/
     }
     
     catch(e) {
@@ -76,18 +59,26 @@ async function setup() {
             await loadInventory() // We only have inventory on MainNet right now
             replaceUniswapLink("vidyaswap")
             $("#vidyaflux_button_wrapper, .vidyaflux_button_wrapper").show("scale") // show vidyaflux icon
-            
-            // Flux check 
-            let fabi = [{"constant":true,"inputs":[{"internalType":"address","name":"_customerAddress","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}]
-            let fins = new web3.eth.Contract(fabi,"0x34317e2da45fec7c525aca8dabf22cbc877128a3")
-            await fins.methods.balanceOf(inventoryUser).call().then(function(r) {
-                if(r == "0") {
-                    notify('<div style="font-size:1rem;text-align:center">Staking is live!</div><p>Learn more by clicking on the VidyaFlux icon.</p>')
-                }
-            })
 			
 			$("#cubelets_button_wrapper").show("scale")
+			// $("#generator_button_wrapper").show("scale") - only in Ropsten atm 
+			
+			/* Can someone tell me how to make chat work on https? I tried and tried, but was 
+			unable to get WSS connection to establish. At one point readyState was 1 on client, but server had no idea etc. 
+			Server runs on a lightsail instance, nodejs. I believe I have opened required ports. Messed with something called 
+			a "load balancer" too with no luck. For now let's open chat for people who run teamOS locally :) */
+			if(location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+				$("#startmenu .chat3d-toggle").show()
+			}
         }
+		else if(chainID == 3) {
+			// This is Ropsten 
+			if(Generator.online) {
+				// Force setup again if generator has been initialized (can happen when generator is active and someone changes wallets in metamask)
+				User.isSetup = false
+			}
+			$("#generator_button_wrapper").show("scale")
+		}
         else if(chainID == 137) {
 			// This is Polygon
             replaceUniswapLink("quickswap")
@@ -110,6 +101,9 @@ async function setup() {
         
         $("#gas-price-wrapper").css("display","flex")
         $("#gas-price").text(parseFloat(web3.utils.fromWei(gasPrice.toString(), "gwei")).toFixed(2))
+		
+		audio.boot.play()
+
     }
     
     catch(e) {

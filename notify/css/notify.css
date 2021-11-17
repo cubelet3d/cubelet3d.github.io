@@ -12,7 +12,7 @@
     width: 250px;
     height: 250px;
     transition: all 0.3s;
-    z-index: 10000;
+    z-index: 997;
 }
 
 .notify-icon-wrapper {
@@ -85,4 +85,49 @@
     border-top: 2px solid var(--black);
     border-right: 2px solid var(--indigo);
     border-bottom: 2px solid var(--indigo)
+}
+
+.error-box {
+	width: 300px;
+    height: 175px;
+    position: absolute;
+    top: calc(50% - 87.5px);
+    left: calc(50% - 150px);
+    border: 3px solid var(--purple);
+    z-index: 10000;
+    background: 3px 3px var(--bg-black-transparent);
+    box-shadow: 3px 3px var(--bg-black-transparent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.error-icon-wrapper {
+	position: absolute;
+    top: 20px;
+    left: 10px;
+}
+.error-icon {
+	width: 50px;
+    height: 50px;
+    background-image: url(../img/skull.png);
+}
+.error-msg-wrapper {
+    font-size: 95%;
+    position: absolute;
+    top: 10px;
+    left: 60px;
+    margin-right: 10px;
+    height: calc(100% - 70px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 5px;
+    display: flex;
+}
+.error-btn {
+	font-size: 95%;
+    width: 50px;
+    height: 40px;
+    bottom: 10px;
+    position: absolute;
+    right: 10px;
 }

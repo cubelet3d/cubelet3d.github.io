@@ -17,7 +17,6 @@ $(document).ready(function() {
     
     /* Don't even ask... */
     $("#vidyaflux_button, .vidyaflux_button").click(function() {
-
         if(!fluxHeaderWrapperHeight) {
             $("#vidyaflux").css({"opacity":"0"})
             $("#vidyaflux").removeClass("hidden")
@@ -26,8 +25,8 @@ $(document).ready(function() {
             $("#vidyaflux").addClass("hidden")
             $("#vidyaflux").css("opacity", "1")
         }
-        showContent("vidyaflux")
-        setTimeout(setupFlux, 300) // wait for animation
+        //showContent("vidyaflux") now opens in main.js 
+        setupFlux()
         fluxClosed = false
     })
     
