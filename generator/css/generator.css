@@ -44,14 +44,15 @@
 	background-size: cover;
 }
 .generator-title {
-	margin-top: 40px;
-	margin-bottom: 20px;
 	transform: skewY(-5deg);
     text-align: center;
     font-size: 4rem;
     letter-spacing: 1px;
     color: rgba(255,255,255,0.5);
     text-shadow: 3px 3px rgb(255 31 220 / 50%);
+	background: rgba(255, 255, 255, 0.1);
+    width: 50%;
+    margin: 40px auto 20px auto;
 }
 .generator-commit-container {
 	min-height: 119px;
