@@ -17,7 +17,7 @@ let tokenBalance
 
 let hasMakeitStack = false
 
-let totalTemplates = 52
+let totalTemplates = 53
     
 let inventoryUserItems = [] // Array of tokenId's the user owns 
 let inventoryUserTemplates = [] // Array of templateId's the user owns 
