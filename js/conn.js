@@ -60,8 +60,12 @@ async function setup() {
             replaceUniswapLink("vidyaswap")
             $("#vidyaflux_button_wrapper, .vidyaflux_button_wrapper").show("scale") // show vidyaflux icon
 			
+			// Disable generator on mainnet for now 
 			$("#cubelets_button_wrapper").show("scale")
-			// $("#generator_button_wrapper").show("scale") - only in Ropsten atm 
+			$("#generator_button_wrapper, #generator").hide()
+			Generator.online = false
+			resetUserInstance() 
+			$("#generator_button").removeClass("disabled")
 			
 			/* Can someone tell me how to make chat work on https? I tried and tried, but was 
 			unable to get WSS connection to establish. At one point readyState was 1 on client, but server had no idea etc. 
