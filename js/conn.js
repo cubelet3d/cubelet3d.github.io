@@ -66,6 +66,7 @@ async function setup() {
 			Generator.online = false
 			resetUserInstance() 
 			$("#generator_button").removeClass("disabled")
+			$("#tasks .task[data=generator]").remove()
 			
 			/* Can someone tell me how to make chat work on https? I tried and tried, but was 
 			unable to get WSS connection to establish. At one point readyState was 1 on client, but server had no idea etc. 
