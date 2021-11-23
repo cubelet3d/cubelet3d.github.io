@@ -36,7 +36,7 @@ let Generator = {
 			approved: false,
 			token: "0xc778417e063141139fce010982780140aa0cd5ab", // WETH token address 
 			lptoken: "0x18691f5bcedd9f363ce306f7dfb25bde8e1d1cd9", // The Uniswap V2 LP token for VIDYA/ETH 
-			teller: "0xeE9062b56402E85b9a93Fb99Efa153dc9E091783", // The Teller contract address for VIDYA/ETH pool 
+			teller: "0xF1f0327FC8b52832F75656AF9a2acA8932b83D6a", // The Teller contract address for VIDYA/ETH pool 
 			url: "https://app.uniswap.org/#/add/v2/ETH/0x0CbCaFD9f1B9d7c41B6F55BbddE06Bee3Aa7B791"
 		},
 		dark: {
