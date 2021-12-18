@@ -71,7 +71,7 @@ input[type=number] {
 }
 #inventory {
     width: auto;
-	height: 575px;
+	height: 580px;
 }
 .inventory-item {
     background-size: contain;
