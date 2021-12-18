@@ -28,7 +28,7 @@ let activeItemEquipmentSlot
 let activeItemTokenId // ERC721 id 
 let activeItemFeatures = []
 let inventoryUserLevel
-    
+  
 async function loadInventory() {
     try {
         // inventoryAccounts = await web3.eth.getAccounts()
@@ -50,6 +50,18 @@ async function loadInventory() {
     catch(e) {
         console.error(e)
     }
+}
+
+async function propagateInventorySlots(n) {
+	try {
+		let numberOfItems = n
+		for(let i = 0; i < numberOfItems; i++) {
+			$("#inventory-items").append('<div class="inventory-item flex-box row" data="'+i+'"><span class="amount"></span></div>')
+		}
+	}
+	catch(e) {
+		console.error(e)
+	}
 }
 
 async function loadDistributor() {
@@ -229,7 +241,7 @@ async function load() {
     // Load the initial user's inventory 
     inventoryUserItems = await Inventory.methods.getItemsByOwner(inventoryUser).call() // Owned item id's (erc721 id)
     inventoryUserTemplates = await Inventory.methods.getTemplateIDsByTokenIDs(inventoryUserItems).call() // template id's of those items 
-    
+
     let temp_slot = {}
     let temp_slots = []
     for(let i = 0; i < inventoryUserTemplates.length; i++) {
@@ -247,6 +259,13 @@ async function load() {
     .map(templateId => {
     return temp_slots.find(a => a.templateId === templateId)
     })
+	
+	// Propagate default 16 slots 
+	if(unique_slots.length < 16) {
+		await propagateInventorySlots(16)
+	} else {
+		await propagateInventorySlots(unique_slots.length) 
+	}
     
     // Populate inventory slots with unique stacked items 
     for(let i = 0; i < unique_slots.length; i++) {
@@ -704,7 +723,7 @@ $(document).ready(function() {
     })
 
     // Click on inventory item 
-    $(".inventory-item").click(function() {
+    $(document).on("click", ".inventory-item", function() {
         cleanup()
         
         let id = $(this).attr("data")

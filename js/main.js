@@ -83,7 +83,7 @@ $(document).ready(function() {
     
 	// Handle desktop icon clicks
 	let index = 1
-    $(".desktop-icon-container, .chat3d-toggle").on("click", function(e) {
+    $(".desktop-icon-container, .chat3d-toggle, .tokenInfo-toggle").on("click", function(e) {
 		audio.click.play()
         let item = $(e.target).attr("data")
 		if(!$('#'+item+':visible').length > 0) {

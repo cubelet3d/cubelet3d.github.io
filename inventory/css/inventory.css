@@ -7,6 +7,12 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance:textfield; /* Firefox */
 }
+.inventory-items {
+	width: 280px; height: 273px;
+	flex-wrap: wrap;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
 .inventory-items .row {
     border: 1px solid var(--purple);
 }
@@ -65,6 +71,7 @@ input[type=number] {
 }
 #inventory {
     width: auto;
+	height: 575px;
 }
 .inventory-item {
     background-size: contain;

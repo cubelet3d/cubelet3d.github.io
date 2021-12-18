@@ -455,6 +455,7 @@ how to remove the virtical space around the range input in IE*/
     height: calc(16px + .5em);
     width: calc(16px + .5em);
 }
+.vidya-icon				{background: url(../img/icons/vidya_icon.png)}
 .icon-console-prompt    {background: url(../img/icons/console_prompt.ico)}
 .desktop-exe            {background: url(../img/icons/desktop_exe.png)}
 .money-bag              {background: url(../img/icons/moneybag.png)}
@@ -962,6 +963,21 @@ how to remove the virtical space around the range input in IE*/
     #desktop_icons_2 {
         right: 0;
     }
+}
+
+/* Token info page */
+#tokenInfo {
+	width: 512px;
+	height: 360px;
+}
+.tokenInfo-content {
+	padding: .5rem;
+	font-family: "C64", monospace;
+	font-size: 120%;
+}
+.tokenInfo-content a {
+	color: var(--highlight-bg);
+	border-bottom: 2px;
 }
 
 

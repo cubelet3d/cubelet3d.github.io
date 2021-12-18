@@ -71,6 +71,34 @@
 			<!-- Main content wrapper -->
 			<div id="Main" class="main-content-wrapper absolute top right bottom left">
 				<div id="desk" class="panel absolute top right bottom left flex-box flex-center">
+				
+					<div id="tokenInfo" class="hidden console absolute draggable" data="tokenInfo">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon vidya-icon"></div>
+								<div class="consoleTitle default">C:\team3d\token_info.nfo</div>
+							</div>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
+						</div>
+						<div class="tokenInfo-content flex-box col">
+							<div class="flex-box space-between"><div>Ticker</div><div>VIDYA</div></div>
+							<div class="flex-box space-between"><div>Corporate website</div><div><a href="https://vidya.game" target="_blank">vidya.game</a></div></div>
+							<div class="flex-box space-between"><div>Total supply</div><div>50,000,000</div></div>
+							<div class="flex-box space-between"><div>Circulating supply</div><div>43,268,014</div></div>
+							<div class="flex-box space-between"><div>Liquidity locker</div><div><a href="https://etherscan.io/address/0x0570b8fb23d6b295a2a57adc58e6590a8c8b5284" target="_blank">Smart contract</a></div></div>
+							<div class="margin-top-1rem">Listed on Uniswap at 43,750 tokens for 1 ETH (0.000022857 ETH for 1 token) on 22/08/2020</div>
+							<div
+							  id="crypto-widget-CoinList"
+							  data-transparent="true"
+							  data-theme="dark"
+							  data-design="modern"
+							  data-coins="vidya"></div>
+						</div>
+					</div>			
+				
 					<div id="chat3d" class="hidden console absolute draggable" data="chat3d">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
@@ -904,36 +932,7 @@
 							<div class="flex-box col full-width">
 								<!-- Inventory & Character -->
 								<div class="flex-box">
-									<div id="inventory-items" class="inventory-items flex-box margin-right-1rem">
-										<div class="flex-box col">
-											<div class="inventory-item flex-box row" data="0"><span class="amount"></span></div>
-											<div class="inventory-item flex-box row" data="1"><span class="amount"></span></div>
-											<div class="inventory-item flex-box row" data="2"><span class="amount"></span></div>
-											<div class="inventory-item flex-box row" data="3"><span class="amount"></span></div>
-											<div class="inventory-item flex-box row" data="4"><span class="amount"></span></div>
-										</div>
-										<div class="flex-box col">
-											<div class="inventory-item flex-box row" data="5"><span class="amount"></span></div>
-											<div class="inventory-item flex-box row" data="6"><span class="amount"></span></div>
-											<div class="inventory-item flex-box row" data="7"><span class="amount"></span></div>
-											<div class="inventory-item flex-box row" data="8"><span class="amount"></span></div>
-											<div class="inventory-item flex-box row" data="9"><span class="amount"></span></div>
-										</div>
-										<div class="flex-box col">
-											<div class="inventory-item flex-box row" data="10"><span class="amount"></span></div>
-											<div class="inventory-item flex-box row" data="11"><span class="amount"></span></div>
-											<div class="inventory-item flex-box row" data="12"><span class="amount"></span></div>
-											<div class="inventory-item flex-box row" data="13"><span class="amount"></span></div>
-											<div class="inventory-item flex-box row" data="14"><span class="amount"></span></div>
-										</div>
-										<div class="flex-box col">
-											<div class="inventory-item flex-box row" data="15"><span class="amount"></span></div>
-											<div class="inventory-item flex-box row" data="16"><span class="amount"></span></div>
-											<div class="inventory-item flex-box row" data="17"><span class="amount"></span></div>
-											<div class="inventory-item flex-box row" data="18"><span class="amount"></span></div>
-											<div class="inventory-item flex-box row" data="19"><span class="amount"></span></div>
-										</div>
-									</div>
+									<div id="inventory-items" class="inventory-items flex-box margin-right-1rem scrollbar"></div>
 									<div id="character" class="flex-box col">
 										<div class="flex-box col">
 											<div class="flex-box center-horizontal relative">
@@ -1118,6 +1117,12 @@
 				<div class="start-item-label noselect no-pointer-events">Start Menu</div>
 			</div>
 			<div class="startmenu-content scrollbar">
+				<div id="tokenInfo-toggle" class="tokenInfo-toggle flex-box col item mainnet_object" data="tokenInfo">
+					<div class="start-item-label noselect no-pointer-events flex-box center-vertical">
+						<div class="vidya-icon icon"></div>
+						<div>Token</div>
+					</div>
+				</div>
 				<div id="chat3d-toggle" class="hidden chat3d-toggle flex-box col item mainnet_object" data="chat3d">
 					<div class="start-item-label noselect no-pointer-events flex-box center-vertical">
 						<div class="chat3d icon"></div>
@@ -1246,6 +1251,8 @@
 		<!-- Chat3D -->
 		<script src="chat3d/js/chat3d.js"></script>
 		<link rel="stylesheet" href="chat3d/css/chat3d.css">
+		<!-- Crypto.com -->
+		<script src="https://crypto.com/price/static/widget/index.js"></script>
 		<!-- DOSBox -->
 		<script src="https://js-dos.com/6.22/current/js-dos.js"></script>
 		<!-- Connect web3 dapp -->
