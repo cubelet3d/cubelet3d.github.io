@@ -264,7 +264,7 @@ const presentABI = [
 ]
 const presentAddress = "0xa53a32051190331688E330fBFE0ae55099D4B8bd"
 let Present // Contract instance 
-let PresentEventId = 0 // Admin change this for every new event 
+let PresentEventId = 1 // Admin change this for every new event 
 
 $(document).ready(function() {
     checkForInventory()
