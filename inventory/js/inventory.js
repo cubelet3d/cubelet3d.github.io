@@ -54,6 +54,7 @@ async function loadInventory() {
 
 async function propagateInventorySlots(n) {
 	try {
+		$("#inventory-items").empty() // clean it up first. wallet switch bug-fix  
 		let numberOfItems = n
 		for(let i = 0; i < numberOfItems; i++) {
 			$("#inventory-items").append('<div class="inventory-item flex-box row" data="'+i+'"><span class="amount"></span></div>')
