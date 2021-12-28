@@ -1,8 +1,8 @@
 {
   "template": "41",
-  "name": "Christmas Present",
-  "description": "I wonder what's inside?", 
+  "name": "Candy Cane Scarf",
+  "description": "Does this make me look phat?", 
   "image": "https://team3d.io/inventory/json/41.png",
   "ipfs": "",
-  "slot": "0"
+  "slot": "2"
 }

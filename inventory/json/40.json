@@ -1,7 +1,7 @@
 {
   "template": "40",
-  "name": "Christmas Present",
-  "description": "I wonder what's inside?", 
+  "name": "Elf Hat",
+  "description": "Hey! Listen!", 
   "image": "https://team3d.io/inventory/json/40.png",
   "ipfs": "",
   "slot": "0"
