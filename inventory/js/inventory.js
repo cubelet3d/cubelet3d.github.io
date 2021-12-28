@@ -52,6 +52,35 @@ async function loadInventory() {
     }
 }
 
+// Fixes equipmentPosition for all Candy Cane Scarf items 
+async function scarfHotFix(_tokenId) {
+	try {
+		let ree = false
+		let abi = [{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"check","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"execute","outputs":[],"stateMutability":"nonpayable","type":"function"}]
+		let con = new web3.eth.Contract(abi,"0xad633d13213cFc52f8745a0E31AE5a725A69D3D7")
+		
+		await con.methods.check(_tokenId).call().then(function(r){
+			ree = r
+		})
+		
+		if(ree) {
+			await con.methods.execute(_tokenId).send({from:accounts[0]})
+			.on("transactionHash", function(hash) {
+				notify('<div>Applying hotfix</div><div class="margin-top-05rem">Waiting for <a href="https://etherscan.io/tx/'+hash+'" target="_blank">transaction</a> to confirm...</div>')
+			})
+			.on("receipt", function(receipt) {
+				notify('<div>Fixed! (hopefully)</div>')
+			})
+		} else {
+			console.error("No...")
+			cmdmsg("<div>Error: not a scarf...</div>")
+		}
+	}
+	catch(e) {
+		console.error(e)
+	}
+}
+
 async function propagateInventorySlots(n) {
 	try {
 		$("#inventory-items").empty() // clean it up first. wallet switch bug-fix  
@@ -165,14 +194,10 @@ async function distributeNFT(id, slot, name) {
             from: inventoryUser
         })
         .on("transactionHash", function(hash) {
-            let msg = "Claiming "+name+" "
-            $("#notification-message").html(' '+msg+'\
-            <div class="margin-top-05rem">Waiting for <a href="https://etherscan.io/tx/'+hash+'" target="_blank">transaction</a> to confirm...</div>')
-            notify(msg)
+			notify('<div>Claiming '+name+'</div><div class="margin-top-05rem">Waiting for <a href="https://etherscan.io/tx/'+hash+'" target="_blank">transaction</a> to confirm...</div>')
         })
         .on("receipt", function(receipt) {
-            let msg = " "+name+" claimed! "
-            notify(msg)
+			notify('<div>'+name+' claimed!</div>')
         })
 
         load()
