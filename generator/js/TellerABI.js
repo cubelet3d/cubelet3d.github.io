@@ -1,5 +1,63 @@
 const TellerABI = [
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_bonus",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_days",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_penalty",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_deciAdjustment",
+				"type": "uint256"
+			}
+		],
+		"name": "addCommitment",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "breakCommitment",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "claimExternal",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "contract IERC20",
+				"name": "_LpToken",
+				"type": "address"
+			},
+			{
+				"internalType": "contract IVault",
+				"name": "_Vault",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -17,6 +75,24 @@ const TellerABI = [
 		],
 		"name": "Claimed",
 		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_commitmentIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "commit",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -74,6 +150,19 @@ const TellerABI = [
 		],
 		"name": "CommitmentToggled",
 		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "depositLP",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -152,127 +241,16 @@ const TellerABI = [
 				"internalType": "address",
 				"name": "devAddress",
 				"type": "address"
-			}
-		],
-		"name": "PurposeSet",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [],
-		"name": "TellerDeployed",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "teller",
-				"type": "address"
 			},
 			{
 				"indexed": false,
 				"internalType": "bool",
-				"name": "status",
+				"name": "purposeStatus",
 				"type": "bool"
 			}
 		],
-		"name": "TellerToggled",
+		"name": "PurposeSet",
 		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "provider",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "Withdrew",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_bonus",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_days",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_penalty",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_deciAdjustment",
-				"type": "uint256"
-			}
-		],
-		"name": "addCommitment",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "breakCommitment",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "claimExternal",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_commitmentIndex",
-				"type": "uint256"
-			}
-		],
-		"name": "commit",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			}
-		],
-		"name": "depositLP",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
 	},
 	{
 		"inputs": [],
@@ -305,6 +283,31 @@ const TellerABI = [
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [],
+		"name": "TellerDeployed",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "teller",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "status",
+				"type": "bool"
+			}
+		],
+		"name": "TellerToggled",
+		"type": "event"
 	},
 	{
 		"inputs": [
@@ -353,20 +356,23 @@ const TellerABI = [
 		"type": "function"
 	},
 	{
+		"anonymous": false,
 		"inputs": [
 			{
-				"internalType": "contract IERC20",
-				"name": "_LpToken",
+				"indexed": false,
+				"internalType": "address",
+				"name": "provider",
 				"type": "address"
 			},
 			{
-				"internalType": "contract IVault",
-				"name": "_Vault",
-				"type": "address"
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
 			}
 		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
+		"name": "Withdrew",
+		"type": "event"
 	},
 	{
 		"inputs": [
@@ -421,7 +427,13 @@ const TellerABI = [
 		"type": "function"
 	},
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
 		"name": "getUserInfo",
 		"outputs": [
 			{

@@ -36,7 +36,7 @@ let Generator = {
 			approved: false,
 			token: "0xc778417e063141139fce010982780140aa0cd5ab", // WETH token address 
 			lptoken: "0x18691f5bcedd9f363ce306f7dfb25bde8e1d1cd9", // The Uniswap V2 LP token for VIDYA/ETH 
-			teller: "0xF1f0327FC8b52832F75656AF9a2acA8932b83D6a", // The Teller contract address for VIDYA/ETH pool 
+			teller: "0xA00158168C06943C014F9413f57eBeb78Ca36E6D", // The Teller contract address for VIDYA/ETH pool 
 			url: "https://app.uniswap.org/#/add/v2/ETH/0x0CbCaFD9f1B9d7c41B6F55BbddE06Bee3Aa7B791"
 		},
 		dark: {
@@ -44,6 +44,13 @@ let Generator = {
 			token: "0x0000000000000000000000000000000000000000", // Dark matter token address 
 			lptoken: "0x0000000000000000000000000000000000000000", // The LP token for TKN/DARK pair 
 			teller: "0x0000000000000000000000000000000000000000" // The Teller contract address for TKN/DARK pool 
+		},
+		single: {
+			approved: false,
+			token: "0x0CbCaFD9f1B9d7c41B6F55BbddE06Bee3Aa7B791",
+			lptoken: "0x0CbCaFD9f1B9d7c41B6F55BbddE06Bee3Aa7B791",
+			teller: "0xad5d3c75DcBEbe5B2d22577115A465A32d6650F0",
+			url: "#"
 		}
 	},
 	commitmentOptions: {
@@ -587,7 +594,7 @@ async function generatorLoop() {
 		}
 		
 		// Check for deposited LP & other things from getUserInfo() call
-		await Generator.teller.methods.getUserInfo().call({from: accounts[0]}).then(function(r) {
+		await Generator.teller.methods.getUserInfo(accounts[0]).call({from: accounts[0]}).then(function(r) {
 		    
 			// r[0] = time left to unlock 
 			if(r[0] > 0) {

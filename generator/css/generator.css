@@ -91,9 +91,13 @@
 .generator-icon-dark {
 	background-image: url(../img/dark.png);
 }
+.generator-icon-single {
+	background-image: url(../../img/icons/vidya_icon.png);
+}
 .generator-icon-dai,
 .generator-icon-eth,
-.generator-icon-dark {
+.generator-icon-dark,
+.generator-icon-single {
 	width: 32px; height: 32px;
 	background-size: cover;
 	background-repeat: no-repeat;
