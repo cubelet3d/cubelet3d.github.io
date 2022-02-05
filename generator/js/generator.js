@@ -21,6 +21,7 @@ async function adminSetup() {
 }
 
 let Generator = {
+	daysDrawn: false,
 	notification: false, // When a user has 0 balance the notify() is used to link them to uniswap. This bool prevents the popup from showing over and over again.
 	teller: null,
 	instance: null,
@@ -76,6 +77,32 @@ let Generator = {
 		},
 		6: {
 			days: 365,
+			bonus: 50
+		}
+	},
+	commitmentOptionsSingle: {
+		1: {
+			days: 14,
+			bonus: 0.4
+		},
+		2: {
+			days: 28,
+			bonus: 1
+		},
+		3: {
+			days: 60,
+			bonus: 2.9
+		},
+		4: {
+			days: 184,
+			bonus: 9.9
+		},
+		5: {
+			days: 364,
+			bonus: 22
+		},
+		6: {
+			days: 730,
 			bonus: 50
 		}
 	}
@@ -531,6 +558,21 @@ async function generatorLoop() {
 			await generatorSetup(User.currentPool)
 		}
 		
+		// UI
+		if(!Generator.daysDrawn) {
+			if(User.currentPool == "eth") {
+				allTheNormalPeople()
+			} 
+			else if(User.currentPool == "single") {
+				adjustTellerDaysOnUIForSingleSidedStaking()
+			}
+			else {
+				console.error("I don't recognize this pool")
+			}
+			
+			Generator.daysDrawn = true 
+		}
+		
 		// Check for allowance 
 		await Generator.instance.methods.allowance(accounts[0], User.currentTeller).call().then(function(r) {
 			// Check if allowance > 0, it's either max uint256 or 0 when done through this UI
@@ -772,6 +814,7 @@ function resetUserInstance() {
 		clearInterval(generatorInterval)
 		generatorInterval = null
 	}
+	Generator.daysDrawn = false
 	User.commitment.matured = false
 	Generator.notification = false
 	User.isSetup = false
@@ -786,6 +829,14 @@ function resetUserInstance() {
 	$(".onoff").addClass("disabled") // Disable all onoff items 
 	$(".generator-pool-body input").val("") // Reset input fields 
 	$("#generator-balance, #generator-deposited").text("") // These too...
+	
+	// and these 
+	$('.generator-vesting-option[data="1"]').text('')
+	$('.generator-vesting-option[data="2"]').text('')
+	$('.generator-vesting-option[data="3"]').text('')
+	$('.generator-vesting-option[data="4"]').text('')
+	$('.generator-vesting-option[data="5"]').text('')
+	$('.generator-vesting-option[data="6"]').text('')
 }
 
 // Resets commit option selection 
@@ -808,4 +859,22 @@ function generatorLoadingScreen() {
 function generatorTruncateDecimal(number) {
     // Truncate to 5 decimal places 
     return number.match(/^-?\d+(?:\.\d{0,5})?/)[0];
+}
+
+// REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+function adjustTellerDaysOnUIForSingleSidedStaking() {
+	$('.generator-vesting-option[data="1"]').text('14 days = +0.4%')
+	$('.generator-vesting-option[data="2"]').text('28 days = +1%')
+	$('.generator-vesting-option[data="3"]').text('60 days = +2.9%')
+	$('.generator-vesting-option[data="4"]').text('184 days = +9.9%')
+	$('.generator-vesting-option[data="5"]').text('364 days = +22%')
+	$('.generator-vesting-option[data="6"]').text('730 days = +50%')
+}
+function allTheNormalPeople() {
+	$('.generator-vesting-option[data="1"]').text('7 days = +0.4%')
+	$('.generator-vesting-option[data="2"]').text('14 days = +1%')
+	$('.generator-vesting-option[data="3"]').text('30 days = +2.9%')
+	$('.generator-vesting-option[data="4"]').text('92 days = +9.9%')
+	$('.generator-vesting-option[data="5"]').text('182 days = +22%')
+	$('.generator-vesting-option[data="6"]').text('365 days = +50%')
 }
