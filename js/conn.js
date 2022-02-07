@@ -52,14 +52,19 @@ async function setup() {
         web3 = new Web3(window.ethereum)
         accounts = await web3.eth.getAccounts()
 		
-        // Network check
         let chainID = await web3.eth.getChainId()
+		
+		// MainNet Functionality 
         if(chainID == 1 || chainID == 1337) {
-			// This is Ethereum MainNet
-            await loadInventory() // We only have inventory on MainNet right now
+			// Wait for Inventory 
+            await loadInventory()
+			
+			if(Dao.online){ResetDaoInstance()} // In case wallet changed
+			$("#dao_button_wrapper").show("scale") // Show DAO button
+
             replaceUniswapLink("vidyaswap")
             $("#vidyaflux_button_wrapper, .vidyaflux_button_wrapper").show("scale") // show vidyaflux icon
-			
+
 			// Disable generator on mainnet for now 
 			$("#cubelets_button_wrapper").show("scale")
 			$("#generator_button_wrapper, #generator").hide()
@@ -76,8 +81,15 @@ async function setup() {
 				$("#startmenu .chat3d-toggle").show()
 			}
         }
+		
+		// Ropsten testnet 
 		else if(chainID == 3) {
-			// This is Ropsten 
+			
+			// await loadInventory() // We now have Inventory @Ropsten too, but for now you gotta manually set the address in inventory.js 
+			
+			if(Dao.online){ResetDaoInstance()} // In case wallet changed
+			$("#dao_button_wrapper").show("scale") // Show DAO button
+
 			if(Generator.online) {
 				// Force setup again if generator has been initialized (can happen when generator is active and someone changes wallets in metamask)
 				User.isSetup = false

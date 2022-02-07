@@ -6,6 +6,7 @@ let inventoryAccounts,
     inventoryLoaded = false
     
 let inventoryContract = "0x9680223F7069203E361f55fEFC89B7c1A952CDcc",
+// let inventoryContract = "0x38090E1107c3163703F6AdCb811AAfdEbBd6f651", // ROPSTEN  
     Inventory
     
 let distributorContract = "0x9Ff7D98442e4169b0e4d0Eea40E778ba86b72fC8",
@@ -278,6 +279,20 @@ async function load() {
         }
         
         temp_slots[i] = temp_slot
+		
+		
+		
+		// Additional functionality for Dao 
+		// added on 2/3/2022 by Cope3d❤️
+		let hyperCubes = ["24","25","26","27","28"]
+		if(hyperCubes.includes(inventoryUserTemplates[i])) {
+			Dao.UserHyperCubes[inventoryUserTemplates[i]] = true
+			// Set the ERC721 tokenId as element's attribute
+			$('.hypercube[data~="'+inventoryUserTemplates[i]+'"]').attr("tokenId", inventoryUserItems[i])
+		}
+		
+		
+		
     }
 
     // Thanks: https://dev.to/marinamosti/removing-duplicates-in-an-array-of-objects-in-js-with-sets-3fep

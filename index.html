@@ -12,6 +12,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/layout.css">
+		<link rel="stylesheet" href="css/template.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 		<!-- Web3, blockies -->
@@ -72,6 +73,79 @@
 			<div id="Main" class="main-content-wrapper absolute top right bottom left">
 				<div id="desk" class="panel absolute top right bottom left flex-box flex-center">
 				
+					<!--<div id="dao" class="hidden console absolute draggable" data="dao">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon desktop-exe"></div>
+								<div class="consoleTitle default">C:\team3d\dao.bat</div>
+							</div>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
+						</div>
+						<div class="template-content flex-box col C64">
+							<div class="template-wrapper flex-box col">
+								<div id="daoLoading" class="hidden template-loading-outer no-pointer-events flex-box col flex-center">
+									<div class="template-loading-inner"></div>
+								</div>
+								
+								<div id="daoDevil" class="hidden flex-box col flex-center">
+									<div class="template-title font-quickzag">The Devil</div>
+									<div class="dao-image devilMoveAnim"></div>
+									<div class="dao-subtitle">You didn't think this was going to be easy, did you?</div>
+									<div class="flex-box">
+										<div class="disabled hypercube one" data="24"></div>
+										<div class="disabled hypercube two" data="25"></div>
+										<div class="disabled hypercube three" data="26"></div>
+										<div class="disabled hypercube four" data="27"></div>
+										<div class="disabled hypercube five" data="28"></div>
+									</div>
+								</div>
+								
+								<div id="daoGateway" class="hidden template-gateway-wrapper flex-box col">
+									<div class="template-title font-quickzag">The Gateway</div>
+									<div class="template-gateway-menu flex-box col">
+										<div class="template-gateway-option flex-box space-between flex-center" data="general">
+											<div class="flex-box col flex-center w64px">
+												<div class="template-icon-general"></div>
+												<div class="template-icon-label">General</div>
+											</div>
+											<div class="template-enter-button">Enter</div>
+										</div>
+									</div>
+								</div>
+								
+								<div id="daoMain" class="hidden template-screen flex-box col" data="general">
+									<div class="template-screen-header flex-box space-between flex-center">
+										<div class="template-icon-label"><span id="dao-screen-title">????</span></div>
+										<div class="template-back-button">Back</div>
+									</div>
+									<div class="template-screen-body flex-box col scrollbar">
+										<div class="hidden template-screen-body-overlay template-loading-outer no-pointer-events flex-box col flex-center" data="general">
+											<div class="template-loading-inner"></div>
+										</div>	
+										<div class="template-body-section dao-header flex-box col">
+											<div class="flex-box col">
+												<div class="template-enable-wrapper flex-box space-between">
+													<div class="dao-role-outer">
+														<span>Role: <span class="dao-role-inner">Read-only</span></span>
+													</div>
+													<div class="template-enable-button dao-enable-button">
+														<div class="template-enable-dial dao-enable-dial"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="template-body-section template-body-fill flex-box col">
+											<div id="DaoAgendas" class="dao-agendas flex-box col"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>-->
+				
 					<div id="tokenInfo" class="hidden console absolute draggable" data="tokenInfo">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
@@ -98,7 +172,6 @@
 							  data-coins="vidya"></div>
 						</div>
 					</div>			
-				
 					<div id="chat3d" class="hidden console absolute draggable" data="chat3d">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
@@ -140,10 +213,15 @@
 							<div class="generator-title font-quickzag">Generator</div>
 							<div class="flex-box col generator-wrapper relative">
 								<div class="generator-menu flex-box col absolute top right bottom left">
+									<div class="generator-total-distributed"><span>Total distributed: </span><span id="GeneratorTotalDistributed">Loading...</span></div>
 									<div class="generator-option flex-box space-between flex-center" data="eth">
 										<div class="flex-box col flex-center genwidth64pxreee">
 											<div class="generator-icon-eth"></div>
 											<div class="generator-icon-label">ETH/VIDYA</div>
+										</div>
+										<div class="generator-multiplier-wrapper flex-box col">
+											<div>Distribution rate:</div>
+											<div id="ethvidyaDistRate">Loading...</div>
 										</div>
 										<div class="generator-enter-button generator-button inventory-button">Enter</div>
 									</div>
@@ -151,6 +229,10 @@
 										<div class="flex-box col flex-center genwidth64pxreee">
 											<div class="generator-icon-single"></div>
 											<div class="generator-icon-label">VIDYA</div>
+										</div>
+										<div class="generator-multiplier-wrapper flex-box col">
+											<div>Distribution rate:</div>
+											<div id="singlevidyaDistRate">Loading...</div>
 										</div>
 										<div class="generator-enter-button generator-button inventory-button">Enter</div>
 									</div>
@@ -1055,6 +1137,12 @@
 								<span class="font-monospace text-align-center">generator</span>
 							</div>
 						</div>
+						<div id="dao_button_wrapper" class="hidden mainnet_object">
+							<div id="dao_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="dao">
+								<div class="icon desktop-icon desktop-exe no-pointer-events shortcut"></div>
+								<span class="font-monospace text-align-center">DAO</span>
+							</div>
+						</div>
 					</div>
 					</div>
 				</div>
@@ -1249,6 +1337,7 @@
 		<!-- Generator -->
 		<script src="generator/js/LPTokenABI.js"></script>
 		<script src="generator/js/TellerABI.js"></script>
+		<script src="generator/js/VaultABI.js"></script>
 		<script src="generator/js/generator.js"></script>
 		<link rel="stylesheet" href="generator/css/generator.css">
 		<!-- WebAmp -->
@@ -1260,6 +1349,10 @@
 		<link rel="stylesheet" href="chat3d/css/chat3d.css">
 		<!-- Crypto.com -->
 		<script src="https://crypto.com/price/static/widget/index.js"></script>
+		<!-- DAO 
+		<link rel="stylesheet" href="dao/css/dao.css">
+		<script src="dao/js/dao_abi.js"></script>
+		<script src="dao/js/dao.js"></script> -->
 		<!-- DOSBox -->
 		<script src="https://js-dos.com/6.22/current/js-dos.js"></script>
 		<!-- Connect web3 dapp -->

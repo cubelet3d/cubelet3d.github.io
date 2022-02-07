@@ -1,0 +1,128 @@
+/* General purpose template for various executables */
+.template-content { 
+	height: calc(100% - 40px);
+}
+.template-wrapper {
+	position: relative; 
+	height: 100%; 
+	margin: 1rem;
+}
+.template-loading-outer,
+.template-gateway-wrapper,
+.template-screen {
+	position: absolute;
+	top: 0; 
+	right: 0; 
+	bottom: 0; 
+	left: 0;
+}
+.template-notch {
+	background: var(--console-header);
+    padding:0 30px 2px 5px;
+    -webkit-clip-path: polygon(0% 100%, 100% 100%, 100% 30px, calc(100% - 30px) 0%, 0% 0%);
+    clip-path: polygon(0% 100%, 100% 100%, 100% 30px, calc(100% - 30px) 0%, 0% 0%);
+	width: 269px; 
+}
+.template-screen {
+	box-shadow: 4px 4px var(--black);
+}
+.template-loading-inner {
+	width: 32px;
+    height: 32px;
+    background-image: url(../img/icons/loading.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.template-title {
+	margin: 1rem auto 0.75rem auto; 
+	transform: skewY(-5deg);
+    text-align: center;
+    font-size: 4rem;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.5);
+    text-shadow: 3px 3px rgb(255 31 220 / 50%);
+}
+.template-gateway-menu {
+	
+}
+.template-gateway-option {
+	font-family: "C64", monospace;
+	padding: 1rem;
+    border: 2px solid var(--purple);
+	margin-bottom: 1rem;
+	background: var(--indigo-dark);
+}
+.w64px {
+	width: 64px; 
+}
+.template-icon-general {
+	
+}
+.template-icon-label {
+	margin-left: .5rem; 
+}
+.template-enter-button,
+.template-back-button,
+.template-button {
+	font-family: "C64", monospace;
+    text-transform: uppercase;
+	padding: 0.5rem;
+    border-left: 2px solid var(--indigo);
+    border-top: 2px solid var(--indigo);
+    border-right: 2px solid var(--black);
+    border-bottom: 2px solid var(--black);
+    outline: 0;
+    color: var(--white);
+    background: var(--indigo-dark);
+}
+.template-enter-button:active,
+.template-back-button:active,
+.template-button:active {
+    border-left: 2px solid var(--black);
+    border-top: 2px solid var(--black);
+    border-right: 2px solid var(--indigo);
+    border-bottom: 2px solid var(--indigo)
+}
+.template-screen-header {
+    height: 35px;
+    background: var(--indigo-dark);
+    border-left: 2px solid var(--purple);
+    border-top: 2px solid var(--purple);
+    border-right: 2px solid var(--purple);
+}
+.template-back-button {
+	
+}
+.template-screen-body {
+	position: relative; 
+	height: calc(100% - 35px);
+	overflow-x: hidden;
+	overflow-y: auto;
+	border: 2px solid var(--purple);
+	background: var(--bg-black-transparent);
+}
+.template-screen-body-overlay {
+	z-index: 1;
+	background: var(--bg-black-transparent);
+}
+.template-body-section {
+	padding: .75rem; 
+}
+.template-body-fill {
+	flex-grow: 1; 
+}
+.template-enable-button {
+	overflow: hidden;
+	position: relative;
+	width: 50px;
+	height: 17px;
+	border: 1px solid var(--purple);
+	cursor: pointer; 
+}
+.template-enable-dial {
+	position: absolute;
+	top: 0; left: 0;
+	width: 25px; height: 17px; 
+	font-family: "C64", monospace;
+	text-align: center;
+}

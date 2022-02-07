@@ -1,0 +1,73 @@
+#dao {
+	width: 475px; height: 512px; 
+	box-shadow: 3px 3px rgb(0 0 0 / 50%);
+}
+.dao-agendas {
+	height: 100%; 
+	overflow-y: auto; 
+	overflow-x: hidden; 
+}
+.dao-header {
+	padding-bottom: 0; 
+}
+.dao-subtitle {
+	margin: 1rem auto 0.5rem auto; 
+}
+.dao-image {
+	background: url(../img/logo.png);
+	background-repeat: no-repeat;
+	background-size: contain; 
+	width: 250px; height: 250px; margin: 0 auto; 
+}
+.hypercube {
+	width: 64px; height: 64px; 
+	margin: 5px; padding: 3px; 
+	border: 2px solid var(--purple);
+}
+.hypercube.one {
+	box-shadow: inset 0 0 10px rgb(53, 248, 253);
+}
+.hypercube.two {
+	box-shadow: inset 0 0 10px rgb(203, 53, 253);
+}
+.hypercube.three {
+	box-shadow: inset 0 0 10px rgb(103, 253, 53);
+}
+.hypercube.four {
+	box-shadow: inset 0 0 10px rgb(253, 53, 62);
+}
+.hypercube.five {
+	box-shadow: inset 0 0 10px rgb(253, 253, 53);
+}
+.dao-agenda {
+	border: 1px solid var(--purple);
+	padding: .5rem; 
+	background: var(--bg-glass);
+	margin-bottom: 1rem; 
+}
+.dao-agenda-title {
+	font-size: 125%; margin-bottom: .5rem; text-shadow: 2px 2px var(--black); 
+}
+.devilMoveAnim {
+  animation: MoveUpDown 3s linear infinite;
+}
+@keyframes MoveUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+.dao-agenda-options-requirements {
+	align-items: center; 
+	max-width: 269px;
+	overflow: hidden; 	
+}
+.dao-agenda-options-requirements div {
+	margin: 0 .5rem 0 0;
+}
+.dao-agenda-options .template-button {
+	min-width: 61px; 
+	text-align: center; 
+}
