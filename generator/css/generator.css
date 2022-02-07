@@ -34,9 +34,6 @@
     bottom: 35px;
   }
 }
-.generator-total-distributed {
-	font-size: 80%;
-}
 .generator-wrapper {
 	height: 100%; width: auto; margin: 1.618rem;
 }
@@ -55,7 +52,7 @@
     text-shadow: 3px 3px rgb(255 31 220 / 50%);
 	background: rgba(255, 255, 255, 0.1);
     width: 50%;
-    margin: 40px auto 10px auto;
+    margin: 40px auto 20px auto;
 }
 .generator-commit-container {
 	min-height: 119px;

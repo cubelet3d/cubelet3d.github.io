@@ -20,8 +20,6 @@ async function adminSetup() {
 	}
 }
 
-let Vault 
-
 let Generator = {
 	daysDrawn: false,
 	notification: false, // When a user has 0 balance the notify() is used to link them to uniswap. This bool prevents the popup from showing over and over again.
@@ -218,7 +216,6 @@ $(document).ready(function() {
 	$("body").on("click", "#generator_button, #generator .close_button", function() {
 		if(!Generator.online) {
 			Generator.online = true
-			loadGeneratorRates()
 			$("#generator_button").addClass("disabled")
 		} else {
 			Generator.online = false
@@ -547,7 +544,7 @@ async function generatorSetup(pool) {
 		User.currentLPToken = Generator.pool[pool].lptoken
 		Generator.instance = new web3.eth.Contract(LPTokenABI, User.currentLPToken)
 		Generator.teller = new web3.eth.Contract(TellerABI, User.currentTeller)
-
+		
 		User.isSetup = true 
 	}
 	catch(e) {
@@ -880,25 +877,4 @@ function allTheNormalPeople() {
 	$('.generator-vesting-option[data="4"]').text('92 days = +9.9%')
 	$('.generator-vesting-option[data="5"]').text('182 days = +22%')
 	$('.generator-vesting-option[data="6"]').text('365 days = +50%')
-}
-
-async function loadGeneratorRates() {
-	Vault = new web3.eth.Contract(VaultABI, "0x5BfCc3ad8e5ad7A710174837AD84E5029e714eDB")
-	let vidyaRate = await Vault.methods.vidyaRate().call()
-	let totalPriority = await Vault.methods.totalPriority().call()
-	let ethvidyaPriority = await Vault.methods.tellerPriority(Generator.pool.eth.teller).call()
-	let singlePriority = await Vault.methods.tellerPriority(Generator.pool.single.teller).call()
-	// let totalDistributed = await Vault.methods.totalDistributed().call()
-	
-	vidyaRate = parseFloat(web3.utils.fromWei(vidyaRate))
-	totalPriority = parseFloat(web3.utils.fromWei(totalPriority))
-	ethvidyaPriority = parseFloat(web3.utils.fromWei(ethvidyaPriority))
-	singlePriority = parseFloat(web3.utils.fromWei(singlePriority))
-
-	let ethvidyaDistRate = (vidyaRate / totalPriority * ethvidyaPriority) / 13
-	$("#ethvidyaDistRate").text(ethvidyaDistRate.toFixed(4) + ' VIDYA per block')
-	let singlevidyaDistRate = (vidyaRate / totalPriority * singlePriority) / 13 
-	$("#singlevidyaDistRate").text(singlevidyaDistRate.toFixed(4) + ' VIDYA per block')
-	
-	// $("#GeneratorTotalDistributed").text(parseFloat(web3.utils.fromWei(totalDistributed)).toFixed(4) + ' VIDYA')
 }
