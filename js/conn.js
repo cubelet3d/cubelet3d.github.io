@@ -59,8 +59,14 @@ async function setup() {
 			// Wait for Inventory 
             await loadInventory()
 			
+			
+			
+			/* FU2
 			if(Dao.online){ResetDaoInstance()} // In case wallet changed
 			$("#dao_button_wrapper").show("scale") // Show DAO button
+			*/
+
+
 
             replaceUniswapLink("vidyaswap")
             $("#vidyaflux_button_wrapper, .vidyaflux_button_wrapper").show("scale") // show vidyaflux icon
