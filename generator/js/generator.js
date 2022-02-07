@@ -896,9 +896,9 @@ async function loadGeneratorRates() {
 	ethvidyaPriority = parseFloat(web3.utils.fromWei(ethvidyaPriority))
 	singlePriority = parseFloat(web3.utils.fromWei(singlePriority))
 
-	let ethvidyaDistRate = (vidyaRate / totalPriority * ethvidyaPriority) / 13
+	let ethvidyaDistRate = (vidyaRate / totalPriority * ethvidyaPriority) * 13
 	$("#ethvidyaDistRate").text(ethvidyaDistRate.toFixed(4) + ' VIDYA per block')
-	let singlevidyaDistRate = (vidyaRate / totalPriority * singlePriority) / 13 
+	let singlevidyaDistRate = (vidyaRate / totalPriority * singlePriority) * 13 
 	$("#singlevidyaDistRate").text(singlevidyaDistRate.toFixed(4) + ' VIDYA per block')
 	
 	// $("#GeneratorTotalDistributed").text(parseFloat(web3.utils.fromWei(totalDistributed)).toFixed(4) + ' VIDYA')
