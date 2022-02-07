@@ -87,8 +87,12 @@ async function setup() {
 			
 			// await loadInventory() // We now have Inventory @Ropsten too, but for now you gotta manually set the address in inventory.js 
 			
+			
+			/* FU 
 			if(Dao.online){ResetDaoInstance()} // In case wallet changed
 			$("#dao_button_wrapper").show("scale") // Show DAO button
+			*/
+			
 
 			if(Generator.online) {
 				// Force setup again if generator has been initialized (can happen when generator is active and someone changes wallets in metamask)
