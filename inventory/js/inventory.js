@@ -284,12 +284,14 @@ async function load() {
 		
 		// Additional functionality for Dao 
 		// added on 2/3/2022 by Cope3d❤️
+		/*
 		let hyperCubes = ["24","25","26","27","28"]
 		if(hyperCubes.includes(inventoryUserTemplates[i])) {
 			Dao.UserHyperCubes[inventoryUserTemplates[i]] = true
 			// Set the ERC721 tokenId as element's attribute
 			$('.hypercube[data~="'+inventoryUserTemplates[i]+'"]').attr("tokenId", inventoryUserItems[i])
 		}
+		*/
 		
 		
 		
