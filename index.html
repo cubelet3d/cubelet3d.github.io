@@ -12,7 +12,6 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/layout.css">
-		<link rel="stylesheet" href="css/template.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 		<!-- Web3, blockies -->
@@ -21,7 +20,7 @@
 		<!-- Settings -->
 		<link rel="stylesheet" href="settings/css/settings.css">
 		<script src="settings/js/settings.js"></script>
-		<!-- <script src="settings/js/context_menu.js"></script> -->
+		<script src="settings/js/context_menu.js"></script>
 		<script src="settings/js/jscolor.js"></script>
 		<!-- Inventory -->
 		<link rel="stylesheet" href="inventory/css/inventory.css">
@@ -32,7 +31,6 @@
 		<link rel="stylesheet" href="uniswap/css/uniswap.css">
 		<script src="uniswap/js/routerABI.js"></script>
 		<script src="uniswap/js/uniswap.js"></script>
-
 		<!-- Main -->
 		<script src="js/main.js"></script>
 		<!-- Favicons etc. -->
@@ -74,79 +72,6 @@
 			<div id="Main" class="main-content-wrapper absolute top right bottom left">
 				<div id="desk" class="panel absolute top right bottom left flex-box flex-center">
 				
-
-						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
-							<div class="flex-box center-vertical">
-								<div class="icon desktop-exe"></div>
-								<div class="consoleTitle default">C:\team3d\dao.bat</div>
-							</div>
-							<div class="flex-box">
-								<button class="minimize_button">_</button>
-								<button class="close_button">X</button>
-							</div>
-						</div>
-						<div class="template-content flex-box col C64">
-							<div class="template-wrapper flex-box col">
-								<div id="daoLoading" class="hidden template-loading-outer no-pointer-events flex-box col flex-center">
-									<div class="template-loading-inner"></div>
-								</div>
-								
-								<div id="daoDevil" class="hidden flex-box col flex-center">
-									<div class="template-title font-quickzag">The Devil</div>
-									<div class="dao-image devilMoveAnim"></div>
-									<div class="dao-subtitle">You didn't think this was going to be easy, did you?</div>
-									<div class="flex-box">
-										<div class="disabled hypercube one" data="24"></div>
-										<div class="disabled hypercube two" data="25"></div>
-										<div class="disabled hypercube three" data="26"></div>
-										<div class="disabled hypercube four" data="27"></div>
-										<div class="disabled hypercube five" data="28"></div>
-									</div>
-								</div>
-								
-								<div id="daoGateway" class="hidden template-gateway-wrapper flex-box col">
-									<div class="template-title font-quickzag">The Gateway</div>
-									<div class="template-gateway-menu flex-box col">
-										<div class="template-gateway-option flex-box space-between flex-center" data="general">
-											<div class="flex-box col flex-center w64px">
-												<div class="template-icon-general"></div>
-												<div class="template-icon-label">General</div>
-											</div>
-											<div class="template-enter-button">Enter</div>
-										</div>
-									</div>
-								</div>
-								
-								<div id="daoMain" class="hidden template-screen flex-box col" data="general">
-									<div class="template-screen-header flex-box space-between flex-center">
-										<div class="template-icon-label"><span id="dao-screen-title">????</span></div>
-										<div class="template-back-button">Back</div>
-									</div>
-									<div class="template-screen-body flex-box col scrollbar">
-										<div class="hidden template-screen-body-overlay template-loading-outer no-pointer-events flex-box col flex-center" data="general">
-											<div class="template-loading-inner"></div>
-										</div>	
-										<div class="template-body-section dao-header flex-box col">
-											<div class="flex-box col">
-												<div class="template-enable-wrapper flex-box space-between">
-													<div class="dao-role-outer">
-														<span>Role: <span class="dao-role-inner">Read-only</span></span>
-													</div>
-													<div class="template-enable-button dao-enable-button">
-														<div class="template-enable-dial dao-enable-dial"></div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="template-body-section template-body-fill flex-box col">
-											<div id="DaoAgendas" class="dao-agendas flex-box col"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				
 					<div id="tokenInfo" class="hidden console absolute draggable" data="tokenInfo">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
@@ -173,6 +98,7 @@
 							  data-coins="vidya"></div>
 						</div>
 					</div>			
+				
 					<div id="chat3d" class="hidden console absolute draggable" data="chat3d">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
@@ -234,6 +160,141 @@
 										<div class="generator-multiplier-wrapper flex-box col">
 											<div>Distribution rate:</div>
 											<div id="singlevidyaDistRate">Loading...</div>
+										</div>
+										<div class="generator-enter-button generator-button inventory-button">Enter</div>
+									</div>
+									<div class="generator-option flex-box space-between flex-center disabled" data="dai">
+										<div class="flex-box col flex-center genwidth64pxreee">
+											<div class="generator-icon-dai"></div>
+											<div class="generator-icon-label">DAI/VIDYA</div>
+										</div>
+										<div class="generator-enter-button generator-button inventory-button">Enter</div>
+									</div>
+									<div class="generator-option flex-box space-between flex-center disabled" data="dark">
+										<div class="flex-box col flex-center genwidth64pxreee">
+											<div class="generator-icon-dark"></div>
+											<div class="generator-icon-label">DARK/ETH</div>
+										</div>
+										<div class="generator-enter-button generator-button inventory-button">Enter</div>
+									</div>
+								</div>
+								<div class="hidden generator-pool absolute top right bottom left" data="dai">
+									<div class="generator-pool-header flex-box space-between flex-center">
+										<div class="generator-icon-label pool-title"><span id="pool-title">????</span>/<span id="pool-title-2">????</span></div>
+										<div class="generator-back-button inventory-button">Back</div>
+									</div>
+									<div class="generator-pool-body flex-box col scrollbar relative">
+										<div class="generator-pool-body-overlay flex-box col flex-center absolute top right bottom left no-pointer-events">
+											<div id="generator-loading-text"></div>
+										</div>
+										<div class="generator-section flex-box col">
+											<div class="flex-box col">
+												<div class="generator-enable-wrapper flex-box flex-end">
+													<div class="generator-enable-button">
+														<div class="generator-enable-dial"></div>
+													</div>
+												</div>
+											</div>
+											<div class="generator-sub-section flex-box space-between">
+												<div id="generator-balance-container" class="disabled flex-box col width-48p onoff">
+													<div class="generator-pool-label flex-box">
+														<div class="notch">Balance</div>
+													</div>
+													<div id="generator-balance" class="generator-pool-data no-overflow generator-bigint">0</div>
+												</div>
+												<div id="generator-deposited-container" class="disabled flex-box col width-48p onoff">
+													<div class="generator-pool-label flex-box">
+														<div class="notch">Deposited</div>
+													</div>
+													<div id="generator-deposited" class="generator-pool-data no-overflow generator-bigint">0</div>
+												</div>
+											</div>
+											<div id="generator-deposit-container" class="generator-sub-section flex-box col onoff">
+												<div class="generator-pool-label flex-box">
+													<div class="notch">Deposit</div>
+												</div>
+												<div class="flex-box generator-user-input" data="deposit">
+													<input type="number" class="generator-input-field generator-bigint">
+													<div id="generator-deposit-max-button" class="generator-deposit-withdraw generator-button inventory-button disabled onoff" data="max">max</div>
+													<div id="generator-deposit-lp-button" class="generator-width-70px generator-deposit-withdraw generator-button inventory-button disabled onoff" data="confirm">Confirm</div>
+												</div>
+											</div>
+											<div id="generator-withdraw-container" class="generator-sub-section flex-box col onoff">
+												<div class="generator-pool-label flex-box">
+													<div class="notch">Withdraw</div>
+												</div>
+												<div class="flex-box generator-user-input" data="withdraw">
+													<input type="number" class="generator-input-field generator-bigint">
+													<div id="generator-withdraw-max-button" class="generator-deposit-withdraw generator-button inventory-button disabled onoff" data="max">max</div>
+													<div id="generator-withdraw-lp-button" class="generator-width-70px generator-deposit-withdraw generator-button inventory-button disabled onoff" data="confirm">Confirm</div>
+												</div>
+											</div>
+											<div id="generator-commit-container" class="generator-sub-section flex-box col onoff generator-commit-container">
+												<div class="generator-pool-label flex-box space-between">
+													<div id="generator-commitment-notch" class="notch">Commit</div>
+												</div>
+												<div class="flex-box generator-user-input">
+													<input type="number" class="generator-input-field generator-bigint">
+													<div id="generator-commit-max-button" class="generator-button generator-vesting inventory-button disabled onoff" data="max">max</div>
+													<div id="generator-commit-lp-button" class="generator-width-70px generator-button generator-vesting inventory-button disabled onoff" data="confirm">Confirm</div>
+												</div>
+												<div id="generator-commitment-details" class="flex-box col generator-user-input hidden onoff generator-active-commitment">
+													<div class="flex-box"><div>Balance:</div><div id="generator-commited-amount">0.00</div></div>
+													<div class="flex-box"><div>Time left:</div><div id="generator-commited-timeleft"></div></div>
+													<div class="flex-box"><div>Cancellation penalty:</div><div id="generator-commited-penalty">0.00</div></div>
+												</div>
+												<div class="flex-box generator-user-input">
+													<div class="generator-vesting generator-vesting-option generator-button inventory-button disabled onoff" data="1">7 days = +0.4%</div>
+													<div class="generator-vesting generator-vesting-option generator-button inventory-button disabled onoff" data="2">14 days = +1%</div>
+													<div class="generator-vesting generator-vesting-option generator-button inventory-button disabled onoff" data="3">30 days = +2.9%</div>
+												</div>
+												<div class="flex-box generator-user-input">
+													<div class="generator-vesting generator-vesting-option generator-button inventory-button disabled onoff" data="4">92 days = +9.9%</div>
+													<div class="generator-vesting generator-vesting-option generator-button inventory-button disabled onoff" data="5">182 days = +22%</div>
+													<div class="generator-vesting generator-vesting-option generator-button inventory-button disabled onoff" data="6">365 days = +50%</div>
+												</div>
+											</div>
+											<div class="generator-sub-section flex-box col">
+												<div class="flex-box flex-end">
+													<div id="generator-endcommit-button" class="hidden generator-button inventory-button disabled onoff" data="endcommit">End commitment</div>
+													<div id="generator-claim-button" class="generator-button inventory-button disabled onoff" data="claim">Claim rewards</div>
+												</div>
+												<div class="flex-box flex-end">
+													<div id="generator-user-rewards" class="generator-user-rewards hidden onoff"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="generatorGuideLink" class="generator-user-manual-link"></div>
+						</div>
+					</div>
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon generator"></div>
+								<div class="consoleTitle default">C:\team3d\generator.exe</div>
+							</div>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
+						</div>
+						<div class="generator-content flex-box col">
+							<div class="generator-title font-quickzag">Generator</div>
+							<div class="flex-box col generator-wrapper relative">
+								<div class="generator-menu flex-box col absolute top right bottom left">
+									<div class="generator-option flex-box space-between flex-center" data="eth">
+										<div class="flex-box col flex-center genwidth64pxreee">
+											<div class="generator-icon-eth"></div>
+											<div class="generator-icon-label">ETH/VIDYA</div>
+										</div>
+										<div class="generator-enter-button generator-button inventory-button">Enter</div>
+									</div>
+									<div class="generator-option flex-box space-between flex-center" data="single">
+										<div class="flex-box col flex-center genwidth64pxreee">
+											<div class="generator-icon-single"></div>
+											<div class="generator-icon-label">VIDYA</div>
 										</div>
 										<div class="generator-enter-button generator-button inventory-button">Enter</div>
 									</div>
@@ -1138,12 +1199,6 @@
 								<span class="font-monospace text-align-center">generator</span>
 							</div>
 						</div>
-						<div id="dao_button_wrapper" class="hidden mainnet_object">
-							<div id="dao_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="dao">
-								<div class="icon desktop-icon desktop-exe no-pointer-events shortcut"></div>
-								<span class="font-monospace text-align-center">DAO</span>
-							</div>
-						</div>
 					</div>
 					</div>
 				</div>
@@ -1350,7 +1405,6 @@
 		<link rel="stylesheet" href="chat3d/css/chat3d.css">
 		<!-- Crypto.com -->
 		<script src="https://crypto.com/price/static/widget/index.js"></script>
-
 		<!-- DOSBox -->
 		<script src="https://js-dos.com/6.22/current/js-dos.js"></script>
 		<!-- Connect web3 dapp -->
