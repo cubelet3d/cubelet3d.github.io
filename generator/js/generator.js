@@ -23,6 +23,7 @@ async function adminSetup() {
 let Vault 
 
 let Generator = {
+	endCommitClick: 0,
 	daysDrawn: false,
 	notification: false, // When a user has 0 balance the notify() is used to link them to uniswap. This bool prevents the popup from showing over and over again.
 	teller: null,
@@ -377,7 +378,14 @@ $(document).ready(function() {
 		if(User.commitment.status) {
 			if(User.commitment.timeLeft > 0) {
 				// Penalty applies
-				breakCommitment()
+				if(Generator.endCommitClick == 0) {
+					Generator.endCommitClick++
+					error("Ending a commitment early will incur a penalty equal to 50% of your commit bonus. Any rewards left unclaimed before ending a commitment are forfeited. If you are sure about this go ahead and click end commit one more time.", true)
+				} else {
+					Generator.endCommitClick = 0
+					breakCommitment()
+				}
+				
 			}
 		} else {
 			// Shouldn't get here in the first place
@@ -817,6 +825,7 @@ function resetUserInstance() {
 		clearInterval(generatorInterval)
 		generatorInterval = null
 	}
+	Generator.endCommitClick = 0
 	Generator.daysDrawn = false
 	User.commitment.matured = false
 	Generator.notification = false

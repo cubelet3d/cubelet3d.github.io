@@ -75,14 +75,18 @@ function notify(msg, action) {
 
 }
 
-function error(msg) {
+function error(msg, warn) {
 	audio.error.play()
 	errors++
 	let a = $(errorBox).attr("data", errors)
 	let b = $(a).find("div.error-btn")
 	$(b).attr("data", errors)
 	let c = $(a).find("div.error-msg")
-	$(c).append('Error:<br>'+msg)
+	if(warn) {
+		$(c).append('Warning:<br>'+msg)
+	} else {
+		$(c).append('Error:<br>'+msg)
+	}
     $("body").append(a)
 }
 
