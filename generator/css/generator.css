@@ -36,6 +36,7 @@
 }
 .generator-total-distributed {
 	font-size: 80%;
+	margin-bottom: 1rem; 
 }
 .generator-wrapper {
 	height: 100%; width: auto; margin: 1.618rem;
