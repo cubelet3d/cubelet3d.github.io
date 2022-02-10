@@ -969,6 +969,15 @@ how to remove the virtical space around the range input in IE*/
     }
 }
 
+@media all and (max-width: 500px) {
+	#web3-loading {
+		display: none; 
+	}
+	#bar .user-icon {
+		margin: 0; 
+	}
+}
+
 /* Token info page */
 #tokenInfo {
 	width: 512px;

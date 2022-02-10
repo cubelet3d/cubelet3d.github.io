@@ -77,7 +77,11 @@ async function setup() {
 				// Force setup again if generator has been initialized (can happen when generator is active and someone changes wallets in metamask)
 				User.isSetup = false
 			}
-			$("#generator_button_wrapper").show("scale")
+			if(isMobile) {
+				$(".generator-button-wrapper-mobile").show("scale")
+			} else {
+				$("#generator_button_wrapper").show("scale")
+			}
 			
 			/* Can someone tell me how to make chat work on https? I tried and tried, but was 
 			unable to get WSS connection to establish. At one point readyState was 1 on client, but server had no idea etc. 

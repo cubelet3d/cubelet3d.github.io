@@ -195,7 +195,7 @@ $(document).ready(function() {
 	})
 	
 	// Set generator online status 
-	$("body").on("click", "#generator_button, #generator .close_button", function() {
+	$("body").on("click", "#generator_button, #generator_mobile_button, #generator .close_button", function() {
 		if(!Generator.online) {
 			Generator.online = true
 			loadGeneratorRates()
