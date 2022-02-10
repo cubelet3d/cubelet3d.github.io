@@ -61,7 +61,7 @@ async function setup() {
 			
 			
 			
-			/* FU2
+			/* 
 			if(Dao.online){ResetDaoInstance()} // In case wallet changed
 			$("#dao_button_wrapper").show("scale") // Show DAO button
 			*/
@@ -71,13 +71,13 @@ async function setup() {
             replaceUniswapLink("vidyaswap")
             $("#vidyaflux_button_wrapper, .vidyaflux_button_wrapper").show("scale") // show vidyaflux icon
 
-			// Disable generator on mainnet for now 
 			$("#cubelets_button_wrapper").show("scale")
-			$("#generator_button_wrapper, #generator").hide()
-			Generator.online = false
-			resetUserInstance() 
-			$("#generator_button").removeClass("disabled")
-			$("#tasks .task[data=generator]").remove()
+			
+			if(Generator.online) {
+				// Force setup again if generator has been initialized (can happen when generator is active and someone changes wallets in metamask)
+				User.isSetup = false
+			}
+			$("#generator_button_wrapper").show("scale")
 			
 			/* Can someone tell me how to make chat work on https? I tried and tried, but was 
 			unable to get WSS connection to establish. At one point readyState was 1 on client, but server had no idea etc. 
@@ -90,28 +90,35 @@ async function setup() {
 		
 		// Ropsten testnet 
 		else if(chainID == 3) {
+			// Just FYI 
+			notify("At present time there is nothing to test on this network")
 			
-			// await loadInventory() // We now have Inventory @Ropsten too, but for now you gotta manually set the address in inventory.js 
 			
 			
-			/* FU 
+			
+			/*  Ropsten Inventory
+				Note that present and distributor contracts don't exist on Ropsten right now
+				hence the console errors as inventory.js is trying to find 'em
+			*/
+			VidyaAddress = "0x0CbCaFD9f1B9d7c41B6F55BbddE06Bee3Aa7B791"
+			inventoryContract = "0x38090E1107c3163703F6AdCb811AAfdEbBd6f651" 
+			await loadInventory()
+			
+			
+			
+			
+			/* 
 			if(Dao.online){ResetDaoInstance()} // In case wallet changed
 			$("#dao_button_wrapper").show("scale") // Show DAO button
 			*/
-			
-
-			if(Generator.online) {
-				// Force setup again if generator has been initialized (can happen when generator is active and someone changes wallets in metamask)
-				User.isSetup = false
-			}
-			$("#generator_button_wrapper").show("scale")
 		}
+		
+		// The useless Polygon 
         else if(chainID == 137) {
-			// This is Polygon
             replaceUniswapLink("quickswap")
 			$(".mainnet_object").fadeOut() // Hide all mainnet things
         } else {
-			notify("Please connect either to Ethereum mainNet or Polygon")
+			notify("Please connect either to Ethereum mainNet, Ropsten testNet or Polygon network")
 		}
 
         // Hide spinner

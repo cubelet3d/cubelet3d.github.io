@@ -1,26 +1,5 @@
-// Admin function
-async function adminSetup() {
-	try {
-		await Generator.teller.methods.addCommitment("4", "7", "2", "1000").send({from: accounts[0]}).then(console.log("Option 1 added!"))
-		await Generator.teller.methods.addCommitment("10", "14", "5", "1000").send({from: accounts[0]}).then(console.log("Option 2 added!"))
-		await Generator.teller.methods.addCommitment("290", "30", "145", "10000").send({from: accounts[0]}).then(console.log("Option 3 added!"))
-		await Generator.teller.methods.addCommitment("990", "92", "495", "10000").send({from: accounts[0]}).then(console.log("Option 4 added!"))
-		await Generator.teller.methods.addCommitment("22", "182", "11", "100").send({from: accounts[0]}).then(console.log("Option 5 added!"))
-		await Generator.teller.methods.addCommitment("50", "365", "25", "100").send({from: accounts[0]}).then(console.log("Option 6 added!"))
-		
-		// await Generator.teller.methods.toggleCommitment("1").send({from: accounts[0]}).then(console.log("Toggled commitment: 1"))
-		// await Generator.teller.methods.toggleCommitment("2").send({from: accounts[0]}).then(console.log("Toggled commitment: 2"))
-		// await Generator.teller.methods.toggleCommitment("3").send({from: accounts[0]}).then(console.log("Toggled commitment: 3"))
-		// await Generator.teller.methods.toggleCommitment("4").send({from: accounts[0]}).then(console.log("Toggled commitment: 4"))
-		// await Generator.teller.methods.toggleCommitment("5").send({from: accounts[0]}).then(console.log("Toggled commitment: 5"))
-		// await Generator.teller.methods.toggleCommitment("6").send({from: accounts[0]}).then(console.log("Toggled commitment: 6"))
-	}
-	catch(e) {
-		console.error(e)
-	}
-}
-
-let Vault 
+let Vault
+let VaultAddress = "0xe4684AFE69bA238E3de17bbd0B1a64Ce7077da42"
 
 let Generator = {
 	endCommitClick: 0,
@@ -38,10 +17,10 @@ let Generator = {
 		},
 		eth: {
 			approved: false,
-			token: "0xc778417e063141139fce010982780140aa0cd5ab", // WETH token address 
-			lptoken: "0x18691f5bcedd9f363ce306f7dfb25bde8e1d1cd9", // The Uniswap V2 LP token for VIDYA/ETH 
-			teller: "0xA00158168C06943C014F9413f57eBeb78Ca36E6D", // The Teller contract address for VIDYA/ETH pool 
-			url: "https://app.uniswap.org/#/add/v2/ETH/0x0CbCaFD9f1B9d7c41B6F55BbddE06Bee3Aa7B791"
+			token: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", // WETH token address 
+			lptoken: "0xDA3706c9A099077e6BC389D1baf918565212A54D", // The Uniswap V2 LP token for VIDYA/ETH 
+			teller: "0xD9BecdB8290077fAf79A2637a5f2FDf5033b2486", // The Teller contract address for VIDYA/ETH pool 
+			url: "https://app.uniswap.org/#/add/v2/ETH/0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30?chain=mainnet"
 		},
 		dark: {
 			approved: false,
@@ -51,10 +30,10 @@ let Generator = {
 		},
 		single: {
 			approved: false,
-			token: "0x0CbCaFD9f1B9d7c41B6F55BbddE06Bee3Aa7B791",
-			lptoken: "0x0CbCaFD9f1B9d7c41B6F55BbddE06Bee3Aa7B791",
-			teller: "0xad5d3c75DcBEbe5B2d22577115A465A32d6650F0",
-			url: "#"
+			token: "0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30",
+			lptoken: "0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30",
+			teller: "0x4E053ac1F6F34A73F5Bbd876eFd20525EAcB5382",
+			url: "https://app.uniswap.org/#/swap?outputCurrency=0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30&chain=mainnet"
 		}
 	},
 	commitmentOptions: {
@@ -873,7 +852,7 @@ function generatorTruncateDecimal(number) {
     return number.match(/^-?\d+(?:\.\d{0,5})?/)[0];
 }
 
-// REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+// It's a lil bit retarded but that's how I roll 
 function adjustTellerDaysOnUIForSingleSidedStaking() {
 	$('.generator-vesting-option[data="1"]').text('14 days = +0.4%')
 	$('.generator-vesting-option[data="2"]').text('28 days = +1%')
@@ -893,12 +872,12 @@ function allTheNormalPeople() {
 
 async function loadGeneratorRates() {
 	try {
-	Vault = new web3.eth.Contract(VaultABI, "0x5BfCc3ad8e5ad7A710174837AD84E5029e714eDB")
+	Vault = new web3.eth.Contract(VaultABI, VaultAddress)
 	let vidyaRate = await Vault.methods.vidyaRate().call()
 	let totalPriority = await Vault.methods.totalPriority().call()
 	let ethvidyaPriority = await Vault.methods.tellerPriority(Generator.pool.eth.teller).call()
 	let singlePriority = await Vault.methods.tellerPriority(Generator.pool.single.teller).call()
-	// let totalDistributed = await Vault.methods.totalDistributed().call()
+	let totalDistributed = await Vault.methods.totalDistributed().call()
 	
 	vidyaRate = parseFloat(web3.utils.fromWei(vidyaRate))
 	totalPriority = parseFloat(web3.utils.fromWei(totalPriority))
@@ -910,7 +889,7 @@ async function loadGeneratorRates() {
 	let singlevidyaDistRate = (vidyaRate / totalPriority * singlePriority) * 13 
 	$("#singlevidyaDistRate").text(singlevidyaDistRate.toFixed(4) + ' VIDYA per block')
 	
-	// $("#GeneratorTotalDistributed").text(parseFloat(web3.utils.fromWei(totalDistributed)).toFixed(4) + ' VIDYA')
+	$("#GeneratorTotalDistributed").text(parseFloat(web3.utils.fromWei(totalDistributed)).toFixed(4) + ' VIDYA')
 	}
 	catch(e) {
 		console.error(e)
