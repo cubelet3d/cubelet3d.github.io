@@ -760,15 +760,13 @@ async function generatorLoop() {
 				let hourFloor = Math.floor((timeRemaining - dayFloor * day) / hour)
 				let minuteFloor = Math.floor((timeRemaining - dayFloor * day - hourFloor * hour) / minute)
 				let secondFloor = Math.floor((timeRemaining - dayFloor * day - hourFloor * hour - minuteFloor * minute))
-				if (secondFloor <= 0 && minuteFloor <= 0) {
+				if (timeRemaining <= 0) {
 					User.commitment.matured = true
 				} else {
-					if (timeRemaining > 0) {
-						$("#generator-commited-timeleft").html(dayFloor + " days")
-						if(dayFloor <= 0) {$("#generator-commited-timeleft").html(hourFloor + " hours")}
-						if(hourFloor <= 0) {$("#generator-commited-timeleft").html(minuteFloor + " minutes")}
-						if(minuteFloor <= 0) {$("#generator-commited-timeleft").html(secondFloor + " seconds")}
-					}
+					if(minuteFloor <= 0) {$("#generator-commited-timeleft").html(secondFloor + " seconds")}
+					if(hourFloor <= 0 && minuteFloor > 0) {$("#generator-commited-timeleft").html(minuteFloor + " minutes")}
+					if(dayFloor <= 0 && hourFloor > 0) {$("#generator-commited-timeleft").html(hourFloor + " hours")}
+					if(dayFloor > 0) {$("#generator-commited-timeleft").html(dayFloor + " days")}
 				}
 			} else {
 				$("#generator-commited-timeleft").html('Finished!')
