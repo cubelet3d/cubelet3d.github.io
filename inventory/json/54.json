@@ -1,0 +1,8 @@
+{
+  "template": "54",
+  "name": "Potion of invisibility",
+  "description": "Unlocks hidden stealth mode in Aimboys", 
+  "image": "https://team3d.io/inventory/json/54.png",
+  "ipfs": "",
+  "slot": "0"
+}

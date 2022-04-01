@@ -18,7 +18,7 @@ let tokenBalance
 
 let hasMakeitStack = false
 
-let totalTemplates = 53
+let totalTemplates = 54
     
 let inventoryUserItems = [] // Array of tokenId's the user owns 
 let inventoryUserTemplates = [] // Array of templateId's the user owns 
@@ -154,21 +154,21 @@ async function loadDistributor() {
 			
 			
 			
-            /*  Halloween even 2021 
-                Available until Tue Nov 02 2021 08:00:00 GMT+0000
+            /*  An event 2022
+                Available until Sat Apr 02 2022 08:56:12 GMT+0000
 			
-            if(i = 52) {
+            if(i = 54) {
                 let now = Math.round(new Date().getTime()/1000)
-                if(now < 1635840000) {
-                await Distributor.methods.claimed(52,inventoryUser).call().then(function(r) {
+                if(now < 1648889772) {
+                await Distributor.methods.claimed(54,inventoryUser).call().then(function(r) {
                     if(!r) {
                         let msg = "<div class=\"flex-box col flex-center\">\
-                        <div class=\"margin-bottom-05rem\">Happy Halloween!</div>\
-                        <div id=\"claimTimedNFT\" data=\"52\" name=\"Halloween mask\" slot=\"0\"><img class=\"full-width full-height\" src=\"https://team3d.io/inventory/json/52.png\" alt=\"Halloween mask\"/></div>\
+                        <div class=\"margin-bottom-05rem\">Free stuff!</div>\
+                        <div id=\"claimTimedNFT\" data=\"54\" name=\"Potion of invisibility\" slot=\"0\"><img class=\"full-width full-height\" src=\"https://team3d.io/inventory/json/54.png\" alt=\"Potion of invisibility\"/></div>\
                         </div>"
                         notify(msg)
                     } else {
-                        console.log("Halloween mask already claimed!")
+                        console.log("Potion of invisibility already claimed!")
                     }
                 })
                 } else {
