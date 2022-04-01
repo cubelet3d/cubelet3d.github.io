@@ -164,7 +164,7 @@ async function loadDistributor() {
                     if(!r) {
                         let msg = "<div class=\"flex-box col flex-center\">\
                         <div class=\"margin-bottom-05rem\">Free stuff!</div>\
-                        <div id=\"claimTimedNFT\" data=\"54\" name=\"Potion of invisibility\" slot=\"0\"><img class=\"full-width full-height\" src=\"https://team3d.io/inventory/json/54.png\" alt=\"Potion of invisibility\"/></div>\
+                        <div id=\"claimTimedNFT\" data=\"54\" name=\"Potion of invisibility\" slot=\"0\"><img class=\"full-width full-height pointer\" src=\"https://team3d.io/inventory/json/54.png\" alt=\"Potion of invisibility\"/></div>\
                         </div>"
                         notify(msg)
                     } else {
