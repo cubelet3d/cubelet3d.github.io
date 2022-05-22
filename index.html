@@ -209,7 +209,11 @@
 								<button class="close_button">X</button>
 							</div>
 						</div>
-						<div class="generator-content flex-box col">
+						<div class="generator-header-menu flex-box">
+							<div class="generator-header-menu-button"><a href="generator/User_Manual.pdf" target="_blank">Guide</a></div>
+							<div id="generator-event-log-button" class="disabled generator-header-menu-button">Event log</div>
+						</div>
+						<div class="generator-content relative flex-box col">
 							<div class="generator-title font-quickzag">Generator</div>
 							<div class="flex-box col generator-wrapper relative">
 								<div class="generator-menu flex-box col absolute top right bottom left">
@@ -220,8 +224,13 @@
 											<div class="generator-icon-label">ETH/VIDYA</div>
 										</div>
 										<div class="generator-multiplier-wrapper flex-box col">
-											<div>Distribution rate:</div>
-											<div id="ethvidyaDistRate">Loading...</div>
+											<div>
+												<span>Balance: </span><span id="vidyaEthTellerBalance">Loading...</span>
+											</div>
+											<div class="flex-box col">
+												<div>Distribution rate:</div>
+												<div id="ethvidyaDistRate">Loading...</div>
+											</div>
 										</div>
 										<div class="generator-enter-button generator-button inventory-button">Enter</div>
 									</div>
@@ -231,8 +240,13 @@
 											<div class="generator-icon-label">VIDYA</div>
 										</div>
 										<div class="generator-multiplier-wrapper flex-box col">
-											<div>Distribution rate:</div>
-											<div id="singlevidyaDistRate">Loading...</div>
+											<div>
+												<span>Balance: </span><span id="vidyaSingleTellerBalance">Loading...</span>
+											</div>
+											<div class="flex-box col">
+												<div>Distribution rate:</div>
+												<div id="singlevidyaDistRate">Loading...</div>
+											</div>
 										</div>
 										<div class="generator-enter-button generator-button inventory-button">Enter</div>
 									</div>
@@ -341,7 +355,14 @@
 									</div>
 								</div>
 							</div>
-							<div id="generatorGuideLink" class="generator-user-manual-link"></div>
+							
+							<div id="generator-event-log" class="hidden generator-event-log absolute top right bottom left flex-box col scrollbar">
+								<div id="generator-event-log-status" class="generator-event-log-status">
+									<div id="generator-event-log-status-message">Loading...</div>
+									<div id="generator-event-log-close-button" class="generator-event-log-close-button">[CLOSE]</div>
+								</div>
+								<div id="generator-event-log-content" class="generator-event-log-content"></div>
+							</div>
 						</div>
 					</div>
 					<div id="acubething" style="width:256px;height:420px" class="hidden console absolute draggable" data="acubething">
@@ -626,29 +647,17 @@
 						</div>
 						<div class="console-content flex-box scrollbar">
 							<div class="flex-box col padding-1rem">
-								<h2 class="no-margin">Settings</h2>
-								<div class="flex-box col margin-top-1rem">
-									<div>
-										<span>Polygon</span>
-									</div>
-									<div>
-										<p class="font-size-70p">Add Polygon (ex Matic) network support</p>
-										<p class="font-size-70p">If you haven't yet added Polygon support to your wallet, you can do so here easily.</p>
-										<div class="flex-box">
-											<button id="add-polygon-support" class="inventory-button">Confirm</button>
-										</div>
-									</div>
-								</div>
+								<h2 class="no-margin template-console-title-2">Settings</h2>
 								<div class="flex-box col margin-top-1rem">
 									<div>
 										<span>Wallpaper</span>
 									</div>
 									<div>
-										<p class="font-size-70p">Set a custom wallpaper.</p>
-										<p class="font-size-70p">Note: if you leave this field empty, the current system wallpaper will be saved instead.</p>
+										<p class="description">Set a custom wallpaper.</p>
+										<p class="description margin-bottom-025rem">Tip: leave this field empty to have the current shown system wallpaper saved.</p>
 										<div class="flex-box">
-											<input placeholder="https://example.com/wallpaper.jpg" class="input input-wallpaper full-width">
-											<button id="save-wallpaper" class="inventory-button">save</button>
+											<input placeholder="https://example.com/wallpaper.jpg" class="input input-wallpaper full-width description">
+											<button id="save-wallpaper" class="template-button">save</button>
 										</div>
 									</div>
 								</div>
@@ -657,10 +666,10 @@
 										<span>Grid animation</span>
 									</div>
 									<div>
-										<p class="font-size-70p">Enable or disable the grid animation effect</p>
+										<p class="description margin-bottom-025rem">Enable or disable the grid animation effect.</p>
 										<div class="flex-box">
-											<button id="enable-animation" class="inventory-button">Enable</button>
-											<button id="disable-animation" class="inventory-button">Disable</button>
+											<button id="enable-animation" class="template-button">Enable</button>
+											<button id="disable-animation" class="template-button">Disable</button>
 										</div>
 									</div>
 								</div>
@@ -669,10 +678,10 @@
 										<span>Branding</span>
 									</div>
 									<div>
-										<p class="font-size-70p">Enable or disable the Team3D branding</p>
+										<p class="description margin-bottom-025rem">Enable or disable the Team3D branding.</p>
 										<div class="flex-box">
-											<button id="enable-branding" class="inventory-button">Enable</button>
-											<button id="disable-branding" class="inventory-button">Disable</button>
+											<button id="enable-branding" class="template-button">Enable</button>
+											<button id="disable-branding" class="template-button">Disable</button>
 										</div>
 									</div>
 								</div>
@@ -681,10 +690,31 @@
 										<span>Texture overlay</span>
 									</div>
 									<div>
-										<p class="font-size-70p">Enable or disable the texture overlay</p>
+										<p class="description margin-bottom-025rem">Enable or disable the texture overlay.</p>
 										<div class="flex-box">
-											<button id="enable-texture" class="inventory-button">Enable</button>
-											<button id="disable-texture" class="inventory-button">Disable</button>
+											<button id="enable-texture" class="template-button">Enable</button>
+											<button id="disable-texture" class="template-button">Disable</button>
+										</div>
+									</div>
+								</div>
+								<div class="flex-box col margin-top-1rem">
+									<div>
+										<span>Console</span>
+									</div>
+									<div>
+										<p class="description margin-bottom-025rem">Adjust the console border radius.</p>
+										<div class="flex-box">
+											<input type="range" min="0" max="10" value="0" class="template-slider" id="consoleBorderRadiusSlider">
+										</div>
+									</div>
+									<div>
+										<div class="flex-box full-width space-between align-center margin-top-05rem">
+											<div class="description">Border</div><div id="consoleBorderToggle" class="template-button">Toggle</div>
+										</div>
+									</div>
+									<div>
+										<div class="flex-box full-width space-between align-center margin-top-05rem">
+											<div class="description">Shadow</div><div id="consoleShadowToggle" class="template-button">Toggle</div>
 										</div>
 									</div>
 								</div>
@@ -759,8 +789,8 @@
 										<span>Clear all settings</span>
 									</div>
 									<div>
-										<p class="font-size-70p">Clears saved wallpapers, window positions, etc.</p>
-										<button id="clear-settings" class="inventory-button">clear</button>
+										<p class="description margin-bottom-025rem">Clears saved wallpapers, window positions, etc.</p>
+										<button id="clear-settings" class="template-button min-width-81px">clear</button>
 									</div>
 								</div>
 								<div class="flex-box col margin-top-1rem">
@@ -768,8 +798,8 @@
 										<span>Save as</span>
 									</div>
 									<div>
-										<p class="font-size-70p">Download the current settings configuration file to your computer</p>
-										<button id="downloadSettings" class="inventory-button">download</button>
+										<p class="description margin-bottom-025rem">Download the current settings configuration file to your computer</p>
+										<button id="downloadSettings" class="template-button min-width-81px">download</button>
 									</div>
 								</div>
 								<div class="flex-box col margin-top-1rem">
@@ -777,12 +807,12 @@
 										<span>Restore</span>
 									</div>
 									<div>
-										<p class="font-size-70p">Restore previously saved configurations from a settings.json file.
+										<p class="description margin-bottom-025rem">Restore previously saved configurations from a settings.json file.
 										Disclaimer: Files sent by other people might not be safe.</p>
                                         <div class="file-upload">
                                             <div class="file-select no-overflow flex-box center-vertical relative">
-                                                <button class="file-select-button inventory-button" id="fileName">Choose File</button>
-                                                <div class="file-select-name font-size-70p" id="noFile">No file chosen...</div> 
+                                                <button class="file-select-button template-button min-width-81px" id="fileName">Choose File</button>
+                                                <div class="file-select-name font-size-70p description" id="noFile">No file chosen...</div> 
                                                 <input type="file" name="selectFile" id="selectFile" class="full-width">
                                             </div>
                                         </div>
@@ -792,7 +822,7 @@
 									<div>
 										<span>About</span>
 									</div>
-									<div class="font-monospace">
+									<div class="description font-size-50p">
 										<p>TeamOS &copy; 2020 - 2022 Vidya Games Incorporated, LLC</p>
 										<p>Business inquiries hello@team3d.io</p>
 									</div>
@@ -1322,6 +1352,7 @@
 		</div>
 		<!-- Markets.js -->
 		<link rel="stylesheet" href="markets/css/markets.css">
+		<script src="js/ethVidyaLPABI.js"></script>
 		<script src="markets/js/markets.js"></script>
 		<!-- Notify -->
 		<link rel="stylesheet" href="notify/css/notify.css">

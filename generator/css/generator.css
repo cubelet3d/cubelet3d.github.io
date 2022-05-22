@@ -17,32 +17,17 @@
 .genwidth64pxreee {
 	width: 64px;
 }
-.generator-user-manual-link {
-	position: absolute;
-	bottom: 30px;
-	right: 30px;
-	width: 40px; height: 40px;
-	background: url(../img/generator.png);
-	background-size: cover;
-	animation: GenGuideMove 1s linear infinite;
-}
-@keyframes GenGuideMove {
-  0%, 100% {
-    bottom: 30px;
-  }
-  50% {
-    bottom: 35px;
-  }
-}
 .generator-total-distributed {
-	font-size: 80%;
+    font-family: 'C64', monospace;
+    font-size: 125%;
+    text-shadow: 2px 2px var(--black);
 	margin-bottom: 1rem; 
 }
 .generator-wrapper {
-	height: 100%; width: auto; margin: 1.618rem;
+	height: 100%; width: auto; margin: 1rem;
 }
 .generator-content {
-	height: calc(100% - 40px);
+	height: calc(100% - 71px);
 	background-image: url(../img/gen.png);
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -203,4 +188,50 @@
 	.generator-wrapper {
 		margin: .25rem; 
 	}
+}
+
+.generator-header-menu {
+	background: var(--indigo-dark);
+    font-family: 'C64', monospace;
+    font-size: 110%;
+    box-shadow: inset 0px 0px 5px 0px var(--black);
+    max-height: 31px;
+    overflow: hidden;
+}
+.generator-header-menu-button {
+	padding: .5rem; 
+}
+.generator-header-menu-button:hover {
+	background: var(--bg-glass);
+	cursor: pointer; 
+}
+.generator-event-log {
+	font-family: "C64", monospace; 
+	font-size: 110%; 
+	background: var(--black);
+	overflow-y: auto; 
+}
+.generator-event-log-status {
+	position: absolute; top: .5rem; left: .5rem; right: .5rem; 
+	display: flex; justify-content: space-between; 
+	margin-bottom: 0.5rem; 
+	padding: 0 0 .5rem .25rem; 
+	border-bottom: 2px solid var(--purple); 
+}
+.generator-event-log-content {
+	display: flex; flex-direction: column-reverse; 
+	position: absolute; top: calc(40px - 0.5rem); width: 100%; 
+	padding: 0.5rem; 
+}
+.generator-event-log-content .generator-event-wrapper {
+	padding: 0.25rem; border-bottom: 1px solid var(--purple);
+}
+.generator-event-log-content .generator-event-wrapper:hover {
+	background: var(--bg-glass);
+}
+.generator-event-icon {
+	width: 32px; height: 32px; margin-bottom: 0; margin-right: 5px; background-size: contain; 
+}
+.generator-event-log-close-button, .generator-amount-reveal {
+	cursor: pointer; 
 }

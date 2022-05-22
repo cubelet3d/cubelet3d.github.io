@@ -122,11 +122,19 @@ let generatorInterval = null
 let generatorFullyLoaded = false
 
 $(document).ready(function() {
-	// Guide 
-	$("#generatorGuideLink").on("click", function() {
-		window.open("generator/User_Manual.pdf")
+	$("body").on("click", ".generator-amount-reveal", function() {
+		let txHash = $(this).closest(".generator-event-wrapper").attr("txHash")
+		loadClaimAmountFromTx(txHash, $(this))
 	})
-	
+	$("body").on("click", "#generator-event-log-button", function() {
+		let pool = $(this).attr("pool")
+		audio.click.play() 
+		loadGeneratorEventLog(pool)
+	})
+	$("body").on("click", "#generator-event-log-close-button", function() {
+		audio.click.play() 
+		$("#generator-event-log").css("display", "none")
+	})
 	$("body").on("mouseover", "#generator_button", function() {
 		$("#generator_button .icon").removeClass("generator").addClass("generator-hover")
 	})
@@ -794,6 +802,7 @@ async function generatorLoop() {
 	if(!generatorFullyLoaded) {
 		generatorFullyLoaded = true
 		generatorLoadingScreen()
+		$("#generator-event-log-button").removeClass("disabled").attr("pool", User.currentPool)
 	}
 }
 
@@ -818,6 +827,7 @@ function resetUserInstance() {
 	$(".onoff").addClass("disabled") // Disable all onoff items 
 	$(".generator-pool-body input").val("") // Reset input fields 
 	$("#generator-balance, #generator-deposited").text("") // These too...
+	$("#generator-event-log-button").addClass("disabled") 
 	
 	// and these 
 	$('.generator-vesting-option[data="1"]').text('')
@@ -877,6 +887,8 @@ async function loadGeneratorRates() {
 	let singlePriority = await Vault.methods.tellerPriority(Generator.pool.single.teller).call()
 	let totalDistributed = await Vault.methods.totalDistributed().call()
 	
+	await loadTellerBalances()
+	
 	vidyaRate = parseFloat(web3.utils.fromWei(vidyaRate))
 	totalPriority = parseFloat(web3.utils.fromWei(totalPriority))
 	ethvidyaPriority = parseFloat(web3.utils.fromWei(ethvidyaPriority))
@@ -887,9 +899,90 @@ async function loadGeneratorRates() {
 	let singlevidyaDistRate = (vidyaRate / totalPriority * singlePriority) * 13 
 	$("#singlevidyaDistRate").text(singlevidyaDistRate.toFixed(4) + ' VIDYA per block')
 	
-	$("#GeneratorTotalDistributed").text(parseFloat(web3.utils.fromWei(totalDistributed)).toFixed(4) + ' VIDYA')
+	$("#GeneratorTotalDistributed").text(abbr(parseFloat(web3.utils.fromWei(totalDistributed)), 1) + ' VIDYA')
 	}
 	catch(e) {
 		console.error(e)
 	}
+}
+
+// March 15, 2022 Update 
+loadTellerBalances = async () => {
+	Generator.vidyaEthTeller = new web3.eth.Contract(LPTokenABI, Generator.pool.eth.lptoken)
+	let vidyaEthBalance = await Generator.vidyaEthTeller.methods.balanceOf(Generator.pool.eth.teller).call()
+	$('#vidyaEthTellerBalance').text(abbr(parseFloat(web3.utils.fromWei(vidyaEthBalance)), 1) + ' LP')
+	Generator.vidyaSingleTeller = new web3.eth.Contract(LPTokenABI, Generator.pool.single.lptoken)
+	let vidyaSingleBalance = await Generator.vidyaSingleTeller.methods.balanceOf(Generator.pool.single.teller).call()
+	$('#vidyaSingleTellerBalance').text(abbr(parseFloat(web3.utils.fromWei(vidyaSingleBalance)), 1) + ' VIDYA')
+}
+
+loadGeneratorEventLog = async (pool) => {
+	$("#generator-event-log-content").empty() 
+	$("#generator-event-log-status-message").text("Loading...")
+	$("#generator-event-log").css("display", "flex")
+	// let vidyaEthLP = new web3.eth.Contract(TellerABI, Generator.pool.eth.teller)
+	// let singleLP = new web3.eth.Contract(TellerABI, Generator.pool.single.teller)
+	
+	if(pool == "eth") {
+		let ethVidyaLP = new web3.eth.Contract(ethVidyaLPABI, "0xDA3706c9A099077e6BC389D1baf918565212A54D")
+		let reserves = await ethVidyaLP.methods.getReserves().call()
+		let totalSupply = await ethVidyaLP.methods.totalSupply().call()
+		let vidya = web3.utils.fromWei(reserves[0])
+		let eth = web3.utils.fromWei(reserves[1])
+		let totalValue = (vidya * price_vidya) + (eth * price_eth)
+		let lptokenValue = totalValue / web3.utils.fromWei(totalSupply) 
+		await web3.eth.getBlockNumber().then(function(r) {
+			let fromBlock = r - 46522 // Approx 7 days ago
+			Generator.teller.events.allEvents({fromBlock: fromBlock}, function(error, event) {
+				if(event.event == "Claimed") {
+					$("#generator-event-log-content").append('<div class="generator-event-wrapper flex-box" txHash="'+event.transactionHash+'"><div class="generator-event-icon generator-icon-eth"></div><div class="flex-box col full-width"><div class="generator-event-title">Claim rewards</div><div class="flex-box space-between"><div>From: '+formatAddress(event.returnValues.provider)+'</div><div class="generator-amount-reveal">[Reveal amount]</div><div>[<a href="https://etherscan.io/tx/'+event.transactionHash+'" target="_blank">Etherscan</a>]</div></div></div></div>')
+				}
+				else if(event.event == "LpDeposited") {
+					$("#generator-event-log-content").append('<div class="generator-event-wrapper flex-box"><div class="generator-event-icon generator-icon-eth"></div><div class="flex-box col full-width"><div class="generator-event-title">LP Deposited</div><div class="flex-box space-between"><div>From: '+formatAddress(event.returnValues.provider)+'</div><div>'+abbr(parseFloat(web3.utils.fromWei(event.returnValues.amount)), 1)+' ($'+abbr(parseFloat(lptokenValue*web3.utils.fromWei(event.returnValues.amount)), 1)+' USD)</div><div>[<a href="https://etherscan.io/tx/'+event.transactionHash+'" target="_blank">Etherscan</a>]</div></div></div></div>')
+				}
+				else if(event.event == "Withdrew") {
+					$("#generator-event-log-content").append('<div class="generator-event-wrapper flex-box"><div class="generator-event-icon generator-icon-eth"></div><div class="flex-box col full-width"><div class="generator-event-title">Withdraw</div><div class="flex-box space-between"><div>From: '+formatAddress(event.returnValues.provider)+'</div><div>'+abbr(parseFloat(web3.utils.fromWei(event.returnValues.amount)), 1)+' ($'+abbr(parseFloat(lptokenValue*web3.utils.fromWei(event.returnValues.amount)), 1)+' USD)</div><div>[<a href="https://etherscan.io/tx/'+event.transactionHash+'" target="_blank">Etherscan</a>]</div></div></div></div>')
+				}
+				else if(event.event == "Commited") {
+					$("#generator-event-log-content").append('<div class="generator-event-wrapper flex-box"><div class="generator-event-icon generator-icon-eth"></div><div class="flex-box col full-width"><div class="generator-event-title">Commit</div><div class="flex-box space-between"><div>From: '+formatAddress(event.returnValues.provider)+'</div><div>'+abbr(parseFloat(web3.utils.fromWei(event.returnValues.commitedAmount)), 1)+' ($'+abbr(parseFloat(lptokenValue*web3.utils.fromWei(event.returnValues.commitedAmount)), 1)+' USD)</div><div>[<a href="https://etherscan.io/tx/'+event.transactionHash+'" target="_blank">Etherscan</a>]</div></div></div></div>')
+				}
+				else if(event.event == "CommitmentBroke") {
+					$("#generator-event-log-content").append('<div class="generator-event-wrapper flex-box"><div class="generator-event-icon generator-icon-eth"></div><div class="flex-box col full-width"><div class="generator-event-title">Commitment broke</div><div class="flex-box space-between"><div>From: '+formatAddress(event.returnValues.provider)+'</div><div>'+abbr(parseFloat(web3.utils.fromWei(event.returnValues.tokenSentAmount)), 1)+' ($'+abbr(parseFloat(lptokenValue*web3.utils.fromWei(event.returnValues.tokenSentAmount)), 1)+' USD)</div><div>[<a href="https://etherscan.io/tx/'+event.transactionHash+'" target="_blank">Etherscan</a>]</div></div></div></div>')
+				}
+			})
+		})
+	}
+	
+	else if(pool == "single") {
+		await web3.eth.getBlockNumber().then(function(r) {
+			let fromBlock = r - 46522 // Approx 7 days ago
+			Generator.teller.events.allEvents({fromBlock: fromBlock}, function(error, event) {
+				if(event.event == "Claimed") {
+					$("#generator-event-log-content").append('<div class="generator-event-wrapper flex-box" txHash="'+event.transactionHash+'"><div class="generator-event-icon generator-icon-single"></div><div class="flex-box col full-width"><div class="generator-event-title">Claim rewards</div><div class="flex-box space-between"><div>From: '+formatAddress(event.returnValues.provider)+'</div><div class="generator-amount-reveal">[Reveal amount]</div><div>[<a href="https://etherscan.io/tx/'+event.transactionHash+'" target="_blank">Etherscan</a>]</div></div></div></div>')
+				}
+				else if(event.event == "LpDeposited") {
+					$("#generator-event-log-content").append('<div class="generator-event-wrapper flex-box"><div class="generator-event-icon generator-icon-single"></div><div class="flex-box col full-width"><div class="generator-event-title">VIDYA Deposited</div><div class="flex-box space-between"><div>From: '+formatAddress(event.returnValues.provider)+'</div><div>'+abbr(parseFloat(web3.utils.fromWei(event.returnValues.amount)), 1)+' ($'+abbr(parseFloat(price_vidya*web3.utils.fromWei(event.returnValues.amount)), 1)+' USD)</div><div>[<a href="https://etherscan.io/tx/'+event.transactionHash+'" target="_blank">Etherscan</a>]</div></div></div></div>')
+				}
+				else if(event.event == "Withdrew") {
+					$("#generator-event-log-content").append('<div class="generator-event-wrapper flex-box"><div class="generator-event-icon generator-icon-single"></div><div class="flex-box col full-width"><div class="generator-event-title">Withdraw</div><div class="flex-box space-between"><div>From: '+formatAddress(event.returnValues.provider)+'</div><div>'+abbr(parseFloat(web3.utils.fromWei(event.returnValues.amount)), 1)+' ($'+abbr(parseFloat(price_vidya*web3.utils.fromWei(event.returnValues.amount)), 1)+' USD)</div><div>[<a href="https://etherscan.io/tx/'+event.transactionHash+'" target="_blank">Etherscan</a>]</div></div></div></div>')
+				}
+				else if(event.event == "Commited") {
+					$("#generator-event-log-content").append('<div class="generator-event-wrapper flex-box"><div class="generator-event-icon generator-icon-single"></div><div class="flex-box col full-width"><div class="generator-event-title">Commit</div><div class="flex-box space-between"><div>From: '+formatAddress(event.returnValues.provider)+'</div><div>'+abbr(parseFloat(web3.utils.fromWei(event.returnValues.commitedAmount)), 1)+' ($'+abbr(parseFloat(price_vidya*web3.utils.fromWei(event.returnValues.commitedAmount)), 1)+' USD)</div><div>[<a href="https://etherscan.io/tx/'+event.transactionHash+'" target="_blank">Etherscan</a>]</div></div></div></div>')
+				}
+				else if(event.event == "CommitmentBroke") {
+					$("#generator-event-log-content").append('<div class="generator-event-wrapper flex-box"><div class="generator-event-icon generator-icon-single"></div><div class="flex-box col full-width"><div class="generator-event-title">Commitment broke</div><div class="flex-box space-between"><div>From: '+formatAddress(event.returnValues.provider)+'</div><div>'+abbr(parseFloat(web3.utils.fromWei(event.returnValues.tokenSentAmount)), 1)+' ($'+abbr(parseFloat(price_vidya*web3.utils.fromWei(event.returnValues.tokenSentAmount)), 1)+' USD)</div><div>[<a href="https://etherscan.io/tx/'+event.transactionHash+'" target="_blank">Etherscan</a>]</div></div></div></div>')
+				}
+			})
+		})
+	}
+
+	$("#generator-event-log-status-message").text("Events from past 7 days")
+}
+
+// Thanks Blastscout... 
+loadClaimAmountFromTx = async(txHash, element) => {
+	$(element).text("Loading...")
+	await web3.eth.getTransactionReceipt(txHash).then(function(r) {
+		$(element).text(abbr(parseFloat(web3.utils.fromWei(web3.utils.hexToNumberString(r.logs[0].data))), 1)+' ($'+abbr(parseFloat(price_vidya*web3.utils.fromWei(web3.utils.hexToNumberString(r.logs[0].data))), 1)+' USD)')
+	})
 }

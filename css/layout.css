@@ -645,7 +645,7 @@ how to remove the virtical space around the range input in IE*/
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.55);
 }
 .font-quickzag      {font-family: "Quickzag"}
-.font-monospace     {font-family: monospace}
+.font-monospace     {font-family: C64, monospace;font-size: 135%;text-shadow: 1px 1px var(--black);}
 
 /* Not sure about this... leaving here for now */
 .glass {
