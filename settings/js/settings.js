@@ -1,11 +1,16 @@
 // Default settings
 localStorage.setItem("disableAnimation", "yes")
 localStorage.setItem("disableTexture", "yes")
+if(localStorage.getItem("consoleBorder") == null) {localStorage.setItem("consoleBorder", "true")}
+if(localStorage.getItem("consoleShadow") == null) {localStorage.setItem("consoleShadow", "false")}
 
 let disableAnimation = localStorage.getItem("disableAnimation")
 let disableBranding = localStorage.getItem("disableBranding")
 let disableTexture = localStorage.getItem("disableTexture")
 let customColors = localStorage.getItem("customColors")
+let consoleBorderRadius = localStorage.getItem("consoleBorderRadius")
+let consoleBorder = localStorage.getItem("consoleBorder")
+let consoleShadow = localStorage.getItem("consoleShadow")
 
 const polygonSettings = [{
     chainId: '0x89',
@@ -38,26 +43,26 @@ const elements =
 
 $(document).ready(function() {
 
-// If custom colors have been tinkered with add them all 
-if(customColors !== null) {
-    for(let i = 0; i < elements.length; i++) {
-        if(localStorage.getItem(elements[i]) !== null) {
-            let value = localStorage.getItem(elements[i])
-            
-            if(i == "0") {
-                $("#bar").css({
-                    "background" : value
-                })
-            }
-            
-            $("body").css(elements[i], value)
-            $("#color-picker-area input[data="+i+"]").val(value)
-            $("#color-picker-area input[data="+i+"]").css({
-                "background" : value
-            })
-        }
-    }
-}
+	// If custom colors have been tinkered with add them all 
+	if(customColors !== null) {
+		for(let i = 0; i < elements.length; i++) {
+			if(localStorage.getItem(elements[i]) !== null) {
+				let value = localStorage.getItem(elements[i])
+				
+				if(i == "0") {
+					$("#bar").css({
+						"background" : value
+					})
+				}
+				
+				$("body").css(elements[i], value)
+				$("#color-picker-area input[data="+i+"]").val(value)
+				$("#color-picker-area input[data="+i+"]").css({
+					"background" : value
+				})
+			}
+		}
+	}
     
     if(disableAnimation == "yes") {
         $(".m-grid").removeClass("is-animating")
@@ -153,6 +158,62 @@ if(customColors !== null) {
         
         localStorage.setItem(cssVariable, $(e.target).val())
     })
+	
+	// Console border radius 
+	if(consoleBorderRadius !== null) {
+		$("#consoleBorderRadiusSlider").val(consoleBorderRadius)
+		$(".console").css("border-radius", ""+consoleBorderRadius+"px")
+		$(".start-button-wrapper").css({"border-top-left-radius":""+consoleBorderRadius+"px", "border-bottom-right-radius":""+consoleBorderRadius+"px"})
+		$("#startmenu").css({"border-top-left-radius":""+consoleBorderRadius+"px", "border-top-right-radius":""+consoleBorderRadius+"px"})
+	}
+	
+	$("#consoleBorderRadiusSlider").on("input", function() {
+		let x = $("#consoleBorderRadiusSlider").val()
+		localStorage.setItem("consoleBorderRadius", x)
+		$(".console").css("border-radius", ""+x+"px")
+		$(".start-button-wrapper").css({"border-top-left-radius":""+x+"px", "border-bottom-right-radius":""+x+"px"})
+		$("#startmenu").css({"border-top-left-radius":""+x+"px", "border-top-right-radius":""+x+"px"})
+	})
+	
+	if(consoleBorder !== null) {
+		if(consoleBorder == "true") {
+			$(".console").css("border", "3px solid var(--neon-magenta)")
+		}
+		else if(consoleBorder == "false") {
+			$(".console").css("border", "0")
+		}
+	}
+	
+	$("body").on("click", "#consoleBorderToggle", function() {
+		let state = localStorage.getItem("consoleBorder")
+		if(state == "true") {
+			localStorage.setItem("consoleBorder", "false")
+			$(".console").css("border", "0")
+		} else if(state == "false") {
+			localStorage.setItem("consoleBorder", "true")
+			$(".console").css("border", "3px solid var(--neon-magenta)")
+		}
+	})
+	
+	if(consoleShadow !== null) {
+		if(consoleShadow == "true") {
+			$(".console").css("box-shadow", "0px 0px 5px 0px var(--black)")
+		}
+		else if(consoleShadow == "false") {
+			$(".console").css("box-shadow", "none")
+		}
+	}
+	
+	$("body").on("click", "#consoleShadowToggle", function() {
+		let state = localStorage.getItem("consoleShadow")
+		if(state == "true") {
+			localStorage.setItem("consoleShadow", "false")
+			$(".console").css("box-shadow", "none")
+		} else if(state == "false") {
+			localStorage.setItem("consoleShadow", "true")
+			$(".console").css("box-shadow", "0px 0px 5px 0px var(--black)")
+		}
+	})
 
 })
 
