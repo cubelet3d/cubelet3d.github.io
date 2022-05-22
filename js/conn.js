@@ -13,7 +13,7 @@ $(document).ready(function() {
     })
 })
 
-var web3, accounts
+var web3, accounts, connected = false
 
 async function init() {
     
@@ -37,6 +37,8 @@ async function init() {
             window.ethereum.on('networkChanged', function(networkId) {
                 setup()
             })
+			
+			checkVersion() 
         }
     }
     
@@ -58,15 +60,11 @@ async function setup() {
         if(chainID == 1 || chainID == 1337) {
 			// Wait for Inventory 
             await loadInventory()
-			
-			
-			
+
 			/* 
 			if(Dao.online){ResetDaoInstance()} // In case wallet changed
 			$("#dao_button_wrapper").show("scale") // Show DAO button
 			*/
-			
-			
 
             replaceUniswapLink("vidyaswap")
             $("#vidyaflux_button_wrapper, .vidyaflux_button_wrapper").show("scale") // show vidyaflux icon
@@ -95,11 +93,8 @@ async function setup() {
 		// Ropsten testnet 
 		else if(chainID == 3) {
 			// Just FYI 
-			notify("At present time there is nothing to test on this network")
-			
-			
-			
-			
+			notify("Connected to Ropsten testnet!")
+
 			/*  Ropsten Inventory
 				Note that present and distributor contracts don't exist on Ropsten right now
 				hence the console errors as inventory.js is trying to find 'em
@@ -107,15 +102,23 @@ async function setup() {
 			VidyaAddress = "0x0CbCaFD9f1B9d7c41B6F55BbddE06Bee3Aa7B791"
 			inventoryContract = "0x38090E1107c3163703F6AdCb811AAfdEbBd6f651" 
 			await loadInventory()
-			
-			
-			
-			
-			/* 
+
 			if(Dao.online){ResetDaoInstance()} // In case wallet changed
 			$("#dao_button_wrapper").show("scale") // Show DAO button
-			*/
+
 		}
+		
+		
+		// Rinkeby 
+		else if(chainID == 4) {
+			VidyaAddress = "0x071a2A775b76387e6B58b39b2D43ce74A7302277"
+			inventoryContract = "0x0CbCaFD9f1B9d7c41B6F55BbddE06Bee3Aa7B791" 
+			await loadInventory()
+			if(Triad3D.online){resetTriad3dInstance()}
+			$("#triad3d_button_wrapper").show("scale")
+		}
+		
+		
 		
 		// The useless Polygon 
         else if(chainID == 137) {
@@ -141,6 +144,8 @@ async function setup() {
         $("#gas-price").text(parseFloat(web3.utils.fromWei(gasPrice.toString(), "gwei")).toFixed(2))
 		
 		audio.boot.play()
+		
+		connected = true 
 
     }
     
@@ -163,4 +168,12 @@ function replaceUniswapLink(what) {
     setTimeout(function() {$(elem).css({"opacity":"1"})}, 300)
     setTimeout(function() {$(elem).css({"opacity":"0"})}, 400)
     setTimeout(function() {$(elem).css({"opacity":"1"})}, 500)
+}
+
+async function checkVersion() {
+	let live = await $.get("https://w3.lol/version.txt")
+	let ours = await $.get("settings/version.txt")
+	if(live !== ours) {
+		notify('There is a new version of TeamOS available! You can download it <a href="https://github.com/cubelet3d/cubelet3d.github.io" target="_blank">here</a>.')
+	}
 }
