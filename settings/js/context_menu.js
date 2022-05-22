@@ -12,6 +12,10 @@ if (document.addEventListener) {
 }
 
 function drawContextMenu(e) {
+	
+	if(notepadRC) {
+		$(".context-menu").append('<div class="item notepad-delete" data="'+0+'">Delete</div>')
+	}
     
     $(".context-menu").removeClass("hidden")
 
@@ -29,6 +33,9 @@ function drawContextMenu(e) {
 $(document).ready(function() {
     $(".context-menu").on("mouseleave", function() {
         $(".context-menu").addClass("hidden")
+		notepadRC = false
+		$(".notepad-delete").remove() 
+		notepadID = null 
     })
     $("body").click(".context-menu.item", function(e) {
         let action = $(e.target).attr("data")
