@@ -18,7 +18,7 @@ let tokenBalance
 
 let hasMakeitStack = false
 
-let totalTemplates = 54
+let totalTemplates = 55
     
 let inventoryUserItems = [] // Array of tokenId's the user owns 
 let inventoryUserTemplates = [] // Array of templateId's the user owns 
@@ -155,27 +155,27 @@ async function loadDistributor() {
 			
 			
             /*  An event 2022
-                Available until Sat Apr 02 2022 08:56:12 GMT+0000
-			
-            if(i = 54) {
+                Available until Sat Jun 25 2022 21:00:00 GMT+0000
+			*/
+            if(i = 55) {
                 let now = Math.round(new Date().getTime()/1000)
-                if(now < 1648889772) {
-                await Distributor.methods.claimed(54,inventoryUser).call().then(function(r) {
+                if(now < 1656190800) {
+                await Distributor.methods.claimed(55,inventoryUser).call().then(function(r) {
                     if(!r) {
                         let msg = "<div class=\"flex-box col flex-center\">\
                         <div class=\"margin-bottom-05rem\">Free stuff!</div>\
-                        <div id=\"claimTimedNFT\" data=\"54\" name=\"Potion of invisibility\" slot=\"0\"><img class=\"full-width full-height pointer\" src=\"https://team3d.io/inventory/json/54.png\" alt=\"Potion of invisibility\"/></div>\
+                        <div id=\"claimTimedNFT\" data=\"55\" name=\"Rope\" slot=\"2\"><img class=\"full-width full-height pointer\" src=\"https://team3d.io/inventory/json/55.png\" alt=\"Rope\"/></div>\
                         </div>"
                         notify(msg)
                     } else {
-                        console.log("Potion of invisibility already claimed!")
+                        console.log("Rope already claimed!")
                     }
                 })
                 } else {
                     console.log("Event is over..")
                 }
             }
-			*/
+			
 			
 			
             
