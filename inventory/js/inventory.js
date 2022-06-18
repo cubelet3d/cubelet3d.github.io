@@ -156,7 +156,7 @@ async function loadDistributor() {
 			
             /*  An event 2022
                 Available until Sat Jun 25 2022 21:00:00 GMT+0000
-			*/
+			
             if(i = 55) {
                 let now = Math.round(new Date().getTime()/1000)
                 if(now < 1656190800) {
@@ -175,7 +175,7 @@ async function loadDistributor() {
                     console.log("Event is over..")
                 }
             }
-			
+			*/
 			
 			
             
