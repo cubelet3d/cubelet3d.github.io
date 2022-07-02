@@ -84,10 +84,12 @@ async function setup() {
 			/* Can someone tell me how to make chat work on https? I tried and tried, but was 
 			unable to get WSS connection to establish. At one point readyState was 1 on client, but server had no idea etc. 
 			Server runs on a lightsail instance, nodejs. I believe I have opened required ports. Messed with something called 
-			a "load balancer" too with no luck. For now let's open chat for people who run teamOS locally :) */
+			a "load balancer" too with no luck. For now let's open chat for people who run teamOS locally :) 
 			if(location.hostname === "localhost" || location.hostname === "127.0.0.1") {
 				$("#startmenu .chat3d-toggle").show()
-			}
+			}*/
+			
+			$("#startmenu .chat3d-toggle").show()
         }
 		
 		// Ropsten testnet 
