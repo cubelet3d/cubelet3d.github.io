@@ -15,7 +15,7 @@ $(document).on('keypress', function(e) {
 $(document).ready(function() {
 	$("#chat3d-toggle").on("click",function(){
 		if(chat3d == void null) {
-chat3d = new WebSocket("ws://13.49.76.188:6969")
+chat3d = new WebSocket("ws://13.49.76.188:8080")
 chat3d.onmessage = (event) => {
 let data = JSON.parse(event.data)
 chat3d_data.authed = data.authed
