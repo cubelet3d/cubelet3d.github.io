@@ -1,0 +1,199 @@
+#multipassLoading {
+	z-index: 1;
+    background: var(--bg-black-transparent);
+}
+
+#multipass {
+	width: 690.24px; height: 589px; 
+}
+#multipassLogo {
+	/*width: 200px; height: 305px;*/ width: 209.81px; height: 373px; margin: 0 auto; 
+}
+.multipass-logo {
+	width: 318.12px; background: #000; 
+	border: 2px solid var(--console-header);
+}
+.multipass-details-overlay {
+	padding: 1rem; 
+}
+.mp-level {
+	 
+}
+.mp-details {
+	position: absolute; bottom: 0; left: 0; right: 0; 
+}
+.multipass-description {
+	height: 50px; 
+}
+.multipass-description,
+.multipass-stats-content {
+	padding: 5px; 
+	background: var(--bg-glass);
+}
+.multipass-stats-content {
+	border-top: 2px solid var(--console-header); 
+}
+.mp-quickzag-rank {
+	margin-left: -5px; 
+	font-size: 300%;
+    color: rgba(255,255,255,0.5);
+    text-shadow: 3px 3px rgb(255 31 220 / 50%);
+    transform: skewY(-5deg);
+}
+.multipass-wrapper {
+	
+}
+.multipass-template-content {
+	height: calc(100% - (40px + 31px)); /* Console header height + submenu height */
+}
+.multipass-left-sidebar {
+	
+}
+.multipass-right-sidebar {
+	
+}
+
+.mp-rank-lv-wrapper {
+	
+}
+
+.mp-card-level {
+	position: absolute; top: 3px; left: 3px; 
+}
+.mp-selectpass-checkbox {
+	position: absolute; top: 3px; right: 3px; 
+	width: 16px; height: 16px; border: 1px solid var(--input-bg); 
+}
+.mp-selectpass-checkbox:hover {
+	background-color: var(--bg-glass); 
+}
+.mp-checked {
+	background-image: url(../../img/icons/check.png);
+	background-size: cover; 
+	background-repeat: no-repeat; 
+}
+.mp-unchecked {
+	background-image: none; 
+}
+.mp-card-reserve {
+	position: absolute; bottom: 3px; right: 3px; 
+}
+
+.mp-description-notch {
+	width: 110px; 
+}
+.mp-burnlv-notch {
+	width: 112px; 
+}
+.mp-buylv-notch {
+	width: 105px; 
+}
+.mp-stats-notch {
+	width: 103px; 
+}
+.mp-mint-notch {
+	width: 64px; 
+}
+.mp-redeem-notch {
+	width: 81px; 
+}
+.mp-merge-notch {
+	width: 73px; 
+}
+.mp-merge-content,
+.mp-redeem-content {
+	flex: 1; 
+	height: 33px; 
+	padding: 1px 3px 3px 3px; 
+	background: var(--bg-glass);
+	border-top: 2px solid var(--console-header); 
+}
+.mp-merge-button,
+.mp-burn-button {
+	width: 60px; 
+	text-align: center; 
+}
+.mp-input-field {
+	width: 105px; 
+}
+.multipass-subtitle {
+	width: 120px; 
+	/*width: 100%;
+    height: 31.8px;
+    font-size: 165%;
+    padding: 0.15rem 0 0 0.4rem;
+    text-transform: uppercase;
+    text-shadow: 2px 2px var(--black);
+    background: var(--console-header);
+    border: 2px solid var(--console-header);*/
+}
+
+.multipass-list-wrapper {
+	width: 318.12px; 
+}
+.mp-list-of-passes-loading {
+	position: absolute; top: 0; right: 0; bottom: 0; left: 0; 
+	background: var(--black);
+	z-index: 1; 
+}
+.multipass-list {
+	min-height: 71.19px;
+	overflow-x: auto; overflow-y: hidden; 
+	border: 2px solid var(--console-header); 
+}
+.mp-mini-eth-icon {
+	width: 12px; height: 12px; background-size: contain; background-repeat: no-repeat; 
+}
+.multipass-list-item {
+	width: 64px;
+    height: 64px;
+    min-width: 64px;
+    min-height: 64px;
+    -webkit-box-shadow: inset 0px 0px 5px 0px rgb(0 0 0 / 75%);
+    -moz-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 0px 5px 0px rgb(0 0 0 / 75%);
+    border: 1px solid var(--purple);
+	margin: 0.1rem; 
+}
+.multipass-list-item:hover {
+	cursor: pointer; background: var(--bg-glass);
+}
+.multipass-details {
+	margin-left: 1rem; 
+}
+.multipass-level {
+	font-size: 140%; /* 119 previously */ 
+}
+.multipass-menu,
+.multipass-stats {
+	width: 318.12px; 
+}
+
+.mp-stats-row {
+	padding: .2rem; 
+}
+
+.mp-view-collection-link {
+	cursor: pointer; 
+	padding: .5rem 0; 
+	text-align: right; 
+}
+
+.mp-mint-wrapper {
+	
+}
+
+.multipass-scrollbar::-webkit-scrollbar {
+	width: 8px; 
+	height: 8px; 
+	background-color: var(--console-header); 
+}
+
+.multipass-scrollbar::-webkit-scrollbar-thumb {
+	border: 2px solid var(--console-header); 
+	background-color: var(--indigo); 
+}
+
+.multipass-scrollbar::-webkit-scrollbar-track {
+	background-color: var(--console-header); 
+}

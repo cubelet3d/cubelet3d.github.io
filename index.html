@@ -21,7 +21,6 @@
 		<!-- Settings -->
 		<link rel="stylesheet" href="settings/css/settings.css">
 		<script src="settings/js/settings.js"></script>
-		<script src="settings/js/context_menu.js"></script>
 		<script src="settings/js/jscolor.js"></script>
 		<!-- Inventory -->
 		<link rel="stylesheet" href="inventory/css/inventory.css">
@@ -71,13 +70,13 @@
 			</div>
 			<!-- Main content wrapper -->
 			<div id="Main" class="main-content-wrapper absolute top right bottom left">
-				<div id="desk" class="panel absolute top right bottom left flex-box flex-center">
-				
-					<!--<div id="dao" class="hidden console absolute draggable" data="dao">
+				<div id="desk" class="panel absolute top right bottom left flex-box flex-center">				
+					<!-- notepad -->
+					<div id="notepad" class="hidden console absolute draggable" data="notepad">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
-								<div class="icon desktop-exe"></div>
-								<div class="consoleTitle default">C:\team3d\dao.bat</div>
+								<div class="icon notepad"></div>
+								<div class="consoleTitle default">C:\team3d\notepad.exe</div>
 							</div>
 							<div class="flex-box">
 								<button class="minimize_button">_</button>
@@ -85,67 +84,185 @@
 							</div>
 						</div>
 						<div class="template-content flex-box col C64">
+							<div class="template-menu-bar flex-box">
+								<div class="new-note template-menu-option">New</div>
+								<div class="save template-menu-option">Save</div>
+								<div class="save-as template-menu-option">Save As</div>
+							</div>
 							<div class="template-wrapper flex-box col">
-								<div id="daoLoading" class="hidden template-loading-outer no-pointer-events flex-box col flex-center">
+								<textarea id="notepadTextArea"></textarea>
+							</div>
+							<div class="template-status-bar flex-box">
+								<div class="template-status-bar-option hidden">File: <span class="notepad-filename"></span></div>
+								<div class="template-status-bar-option hidden">Size: <span class="notepad-filesize"></span></div>
+								<div class="template-status-bar-option hidden">Owner: <span class="notepad-owner"></span></div>
+							</div>
+						</div>
+					</div>	
+					<!-- text files folder -->
+					<div id="texts_folder" class="hidden console absolute draggable" data="texts_folder">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon desktop-exe"></div>
+								<div class="consoleTitle default">C:\team3d\notes</div>
+							</div>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
+						</div>
+						<div class="template-content flex-box col C64">
+							<div id="notesWrapper" class="template-wrapper scrollbar"></div>
+						</div>
+					</div>				
+					<!-- Multipass -->
+					<div id="multipass" class="hidden console absolute draggable" data="multipass">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon desktop-exe"></div>
+								<div class="consoleTitle default">C:\team3d\multipass.exe</div>
+							</div>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
+						</div>
+						<div class="template-console-header-menu flex-box">
+							<div class="template-console-header-menu-button">Whitepaper</div>
+						</div>						
+						<div class="template-content multipass-template-content flex-box col C64">
+							<div class="template-wrapper flex-box col">
+								<div id="multipassLoading" class="hidden template-loading-outer no-pointer-events flex-box col flex-center">
 									<div class="template-loading-inner"></div>
 								</div>
-								
-								<div id="daoDevil" class="hidden flex-box col flex-center">
-									<div class="template-title font-quickzag">The Devil</div>
-									<div class="dao-image devilMoveAnim"></div>
-									<div class="dao-subtitle">You didn't think this was going to be easy, did you?</div>
-									<div class="flex-box">
-										<div class="disabled hypercube one" data="24"></div>
-										<div class="disabled hypercube two" data="25"></div>
-										<div class="disabled hypercube three" data="26"></div>
-										<div class="disabled hypercube four" data="27"></div>
-										<div class="disabled hypercube five" data="28"></div>
-									</div>
-								</div>
-								
-								<div id="daoGateway" class="hidden template-gateway-wrapper flex-box col">
-									<div class="template-title font-quickzag">The Gateway</div>
-									<div class="template-gateway-menu flex-box col">
-										<div class="template-gateway-option flex-box space-between flex-center" data="general">
-											<div class="flex-box col flex-center w64px">
-												<div class="template-icon-general"></div>
-												<div class="template-icon-label">General</div>
-											</div>
-											<div class="template-enter-button">Enter</div>
-										</div>
-									</div>
-								</div>
-								
-								<div id="daoMain" class="hidden template-screen flex-box col" data="general">
-									<div class="template-screen-header flex-box space-between flex-center">
-										<div class="template-icon-label"><span id="dao-screen-title">????</span></div>
-										<div class="template-back-button">Back</div>
-									</div>
-									<div class="template-screen-body flex-box col scrollbar">
-										<div class="hidden template-screen-body-overlay template-loading-outer no-pointer-events flex-box col flex-center" data="general">
-											<div class="template-loading-inner"></div>
-										</div>	
-										<div class="template-body-section dao-header flex-box col">
-											<div class="flex-box col">
-												<div class="template-enable-wrapper flex-box space-between">
-													<div class="dao-role-outer">
-														<span>Role: <span class="dao-role-inner">Read-only</span></span>
+								<div id="multipass-tab" class="flex-box col full-height">
+									<div class="flex-box space-between multipass-wrapper full-height">
+										<div class="flex-box col multipass-left-sidebar full-height space-between">
+											<!-- Multipass detailed view -->
+											<div class="flex-box multipass-logo relative">
+												<div class="multipass-details-overlay absolute top right bottom left">
+													<div class="flex-box space-between mp-rank-lv-wrapper">
+														<div class="flex-box full-width space-between">
+															<div id="mp-detailed-rank" class="font-quickzag mp-quickzag-rank multipass-rank"></div>
+															<div class="flex-box col center-horizontal text-align-right">
+																<div class="multipass-level"><span>Lv. </span><span id="mp-detailed-level">0</span></div>
+																<div class="multipass-reserve flex-box align-center"><span class="mini-eth-icon mp-mini-eth-icon"></span><span id="mp-detailed-reservedETH">0.0000</span></div>
+															</div>															
+														</div>
 													</div>
-													<div class="template-enable-button dao-enable-button">
-														<div class="template-enable-dial dao-enable-dial"></div>
+													<div class="flex-box col mp-details">
+														<div class="flex-box col multipass-row-wrapper mp-desk">
+															<div id="mp-detailed-description" class="multipass-description"></div>
+														</div>		
+													</div>												
+												</div>
+												<video autoplay muted loop id="multipassLogo"><source id="mp-video-source" src="multipass/img/5.mp4" type="video/mp4"></video>
+											</div>										
+											<!-- Owned passes list -->
+											<div class="flex-box col multipass-list-wrapper">
+												<div class="uppercase template-notch multipass-subtitle">Owned passes</div>
+												<div id="mp-list-of-passes" class="relative flex-box multipass-list multipass-scrollbar">						
+												</div>
+											</div>								
+										</div>
+										<!-- Right sidebar -->
+										<div class="flex-box col multipass-right-sidebar space-between">
+											<div class="flex-box col multipass-menu">
+												<div class="flex-box col">
+													<div class="flex-box space-between">
+														<div id="mp-buylevels-wrapper" class="flex-box col disabled">
+															<div class="uppercase template-notch mp-buylv-notch">Buy levels</div>
+															<div class="flex-box">
+																<input id="mp-buylevels-input" type="number" step="1" value="1" min="1" max="100" class="template-input-field mp-input-field">
+																<div id="mp-buylevels-button" class="template-button">Buy</div>
+															</div>
+															<div class="flex-box col margin-bottom-025rem">
+																<div class="mp-tooltip">Total price <span id="mp-total-buylv-price">0.0000</span> ETH</div>
+															</div>															
+														</div>													
+														<div id="mp-burnlevels-wrapper" class="flex-box col disabled">
+															<div class="uppercase template-notch mp-burnlv-notch">Burn levels</div>
+															<div class="flex-box">
+																<input id="mp-burnlevels-input" type="number" step="1" min="1" value="1" max="100" class="template-input-field mp-input-field">
+																<div id="mp-burnlevels-button" class="template-button">Burn</div>
+															</div>
+															<div class="flex-box col margin-bottom-025rem">
+																<div class="mp-tooltip">Total gain <span id="mp-total-burn-gain">0.0000</span> ETH</div>
+															</div>															
+														</div>
+													</div>
+													<div id="mp-merge-wrapper" class="flex-box col margin-top-1rem disabled">
+														<div class="uppercase template-notch mp-merge-notch">Merge</div>
+														<div class="flex-box">
+															<div class="mp-merge-content">Merge up to 10 multipasses into this one to level it up</div>
+															<div id="mp-merge-button" class="template-button mp-merge-button">Merge</div>
+														</div>
+													</div>													
+													<div id="mp-redeem-wrapper" class="flex-box col margin-top-1rem disabled">
+														<div class="uppercase template-notch mp-redeem-notch">Redeem</div>
+														<div class="flex-box">
+															<div class="mp-redeem-content">Destroy this multipass and redeem its reserved ETH value</div>
+															<div id="mp-burn-button" class="template-button mp-burn-button">Burn</div>
+														</div>
 													</div>
 												</div>
 											</div>
-										</div>
-										<div class="template-body-section template-body-fill flex-box col">
-											<div id="DaoAgendas" class="dao-agendas flex-box col"></div>
+											<div class="flex-box col multipass-stats">
+												<div class="uppercase template-notch mp-stats-notch">Statistics</div>
+												<div class="flex-box col multipass-stats-content">
+													<div class="flex-box space-between mp-stats-row">
+														<div>Circulating supply</div>
+														<div class="mp-circulating-supply">Loading...</div>
+													</div>
+													<div class="flex-box space-between mp-stats-row">
+														<div>Multipasses minted</div>
+														<div class="mp-passes-minted">Loading...</div>
+													</div>	
+													<div class="flex-box space-between mp-stats-row">
+														<div>Multipasses burned</div>
+														<div class="mp-passes-burned">Loading...</div>
+													</div>	
+													<div class="flex-box space-between mp-stats-row">
+														<div>Levels bought</div>
+														<div class="mp-levels-bought">Loading...</div>
+													</div>	
+													<div class="flex-box space-between mp-stats-row">
+														<div>Levels burned</div>
+														<div class="mp-levels-burned">Loading...</div>
+													</div>	
+													<div class="flex-box space-between mp-stats-row">
+														<div>Highest level</div>
+														<div class="mp-highest-level">Loading...</div>
+													</div>	
+													<div class="flex-box space-between mp-stats-row">
+														<div>Pooled ETH</div>
+														<div class="mp-pooled-eth">Loading...</div>
+													</div>	
+													<div class="flex-box space-between mp-stats-row">
+														<div>Mint price</div>
+														<div class="mp-mint-price">Loading...</div>
+													</div>													
+												</div>
+												<div class="flex-box col margin-top-1rem multipass-mint">
+													<div class="uppercase template-notch mp-mint-notch">Mint</div>
+													<div class="flex-box space-between mp-mint-wrapper">
+														<div class="flex-box col">
+															<div class="flex-box">
+																<input id="mp-mintamt-input" type="number" step="1" min="1" max="10" value="1" class="template-input-field mp-input-field" onkeydown="if(event.key==='.'){event.preventDefault();}" oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
+																<div id="mp-mint-button" class="template-button">Mint</div>
+															</div>
+														</div>	
+														<div id="mp-view-collection-button" class="template-button">View collection</div>
+													</div>
+													<div class="mp-tooltip">Total price <span id="mp-total-mint-price">0.00</span> ETH</div>
+												</div>												
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>-->
-				
+					</div>
 					<div id="tokenInfo" class="hidden console absolute draggable" data="tokenInfo">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
@@ -250,21 +367,6 @@
 										</div>
 										<div class="generator-enter-button generator-button inventory-button">Enter</div>
 									</div>
-									<!-- dai & dark 
-									<div class="generator-option flex-box space-between flex-center disabled" data="dai">
-										<div class="flex-box col flex-center genwidth64pxreee">
-											<div class="generator-icon-dai"></div>
-											<div class="generator-icon-label">DAI/VIDYA</div>
-										</div>
-										<div class="generator-enter-button generator-button inventory-button">Enter</div>
-									</div>
-									<div class="generator-option flex-box space-between flex-center disabled" data="dark">
-										<div class="flex-box col flex-center genwidth64pxreee">
-											<div class="generator-icon-dark"></div>
-											<div class="generator-icon-label">DARK/ETH</div>
-										</div>
-										<div class="generator-enter-button generator-button inventory-button">Enter</div>
-									</div> -->
 								</div>
 								<div class="hidden generator-pool absolute top right bottom left" data="dai">
 									<div class="generator-pool-header flex-box space-between flex-center">
@@ -1128,6 +1230,12 @@
 								<span class="font-monospace text-align-center">videos</span>
 							</div>
 						</div>
+						<div id="texts-folder-button-wrapper" class="flex-box row flex-end texts-folder-button-wrapper">
+							<div id="texts_folder_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="texts_folder">
+								<div class="icon desktop-icon folder-icon no-pointer-events shortcut"></div>
+								<span class="font-monospace text-align-center">notes</span>
+							</div>
+						</div>
 						<div id="wolf3d_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="wolf3d">
 							<div class="icon desktop-icon desktop-exe no-pointer-events game"></div>
 							<span class="font-monospace text-align-center">wolf3d</span>
@@ -1168,10 +1276,10 @@
 								<span class="font-monospace text-align-center">generator</span>
 							</div>
 						</div>
-						<div id="dao_button_wrapper" class="hidden mainnet_object">
-							<div id="dao_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="dao">
-								<div class="icon desktop-icon desktop-exe no-pointer-events shortcut"></div>
-								<span class="font-monospace text-align-center">DAO</span>
+						<div id="multipass_button_wrapper" class="hidden">
+							<div id="multipass_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="multipass">
+								<div class="icon desktop-icon multipass-exe no-pointer-events shortcut"></div>
+								<span class="font-monospace text-align-center">MultiPass</span>
 							</div>
 						</div>
 					</div>
@@ -1323,6 +1431,12 @@
 						<div class="noselect no-pointer-events">Discord</div>
 					</div>
 				</div>
+				<div id="notepadStartButton" class="flex-box col item data-button" data="notepad">
+					<div class="start-item-label noselect no-pointer-events flex-box center-vertical">
+						<div class="notepad icon"></div>
+						<div>Notepad</div>
+					</div>
+				</div>				
 				<div class="flex-box col item data-button" data="settings">
 					<div class="start-item-label noselect no-pointer-events flex-box center-vertical">
 						<div class="settings icon"></div>
@@ -1387,13 +1501,18 @@
 		<link rel="stylesheet" href="chat3d/css/chat3d.css">
 		<!-- Crypto.com -->
 		<script src="https://crypto.com/price/static/widget/index.js"></script>
-		<!-- DAO 
-		<link rel="stylesheet" href="dao/css/dao.css">
-		<script src="dao/js/dao_abi.js"></script>
-		<script src="dao/js/dao.js"></script> -->
+		<!-- Notepad -->
+		<script src="notepad/js/notepad.js"></script>
+		<link rel="stylesheet" href="notepad/css/notepad.css">		
+		<!-- Multipass -->
+		<script src="multipass/js/multipassABI.js"></script>
+		<script src="multipass/js/multipass.js"></script>
+		<link rel="stylesheet" href="multipass/css/multipass.css">
 		<!-- DOSBox -->
 		<script src="https://js-dos.com/6.22/current/js-dos.js"></script>
 		<!-- Connect web3 dapp -->
 		<script src="js/conn.js"></script>
+		<!-- Context menu -->
+		<script src="settings/js/context_menu.js"></script>
 	</body>
 </html>

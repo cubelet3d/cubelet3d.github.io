@@ -463,6 +463,8 @@ how to remove the virtical space around the range input in IE*/
     height: calc(16px + .5em);
     width: calc(16px + .5em);
 }
+.multipass-exe          {background: url(../img/icons/multipas_exe.png)}
+.mini-eth-icon			{background: url(../img/icons/mini_eth_icon.png)}
 .dao-icon				{background: url(../img/icons/dao-icon.png)}
 .notepad				{background: url(../img/icons/notepad.png)}
 .vidya-icon				{background: url(../img/icons/vidya_icon.png)}

@@ -1,0 +1,52 @@
+#notepadTextArea {
+	height: 100%;
+    width: 100%;
+    background: transparent;
+    border: 0;
+    resize: none;
+    color: var(--white);
+	font-family: 'C64', monospace; 
+	font-size: 145%; 
+}
+#notepadTextArea:focus {
+	outline: 0; 
+}
+#texts_folder {width: 480px; height: 512px;}
+.notepad-note {
+	width: 60px; height: 73px; float: left; 
+}
+#notesWrapper {
+	margin: 0; overflow-y: scroll; 
+}
+.save-as-prompt {
+    width: 300px;
+    height: 100px;
+    position: absolute;
+    top: calc(50% - 87.5px);
+    left: calc(50% - 100px);
+    border: 3px solid var(--purple);
+    z-index: 10000;
+    background: 3px 3px var(--bg-black-transparent);
+    box-shadow: 3px 3px var(--bg-black-transparent);
+}
+.save-as-prompt .prompt-header {
+	align-items: center;
+    justify-content: flex-start;
+    padding: 0.5rem;
+	background: var(--console-header); 
+}
+.save-as-prompt .icon {
+	width: 32px; height: 32px; margin-right: .5rem; 
+}
+.save-as-prompt .prompt-body {
+	margin: 2%; 
+}
+.save-as-prompt .prompt-body input {
+    width: 100%;
+    background: var(--input-bg);
+    font-size: 110%;
+    padding: 0 0.5rem;
+}
+.save-as-prompt .prompt-body input:focus {
+	outline: 0; 
+}

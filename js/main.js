@@ -8,7 +8,8 @@ const audio = {
 	"open" : new Audio("audio/open.wav"),
 	"close": new Audio("audio/close.wav"),
 	"error": new Audio("audio/error.wav"),
-	"msage": new Audio("audio/NewMessage.wav")
+	"msage": new Audio("audio/NewMessage.wav"),
+	"delete":new Audio("audio/delete.wav")
 }
 
 var cmd;

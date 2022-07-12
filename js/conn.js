@@ -58,21 +58,16 @@ async function setup() {
 		
 		// MainNet Functionality 
         if(chainID == 1 || chainID == 1337) {
-			// Wait for Inventory 
             await loadInventory()
-
-			/* 
-			if(Dao.online){ResetDaoInstance()} // In case wallet changed
-			$("#dao_button_wrapper").show("scale") // Show DAO button
-			*/
 
             replaceUniswapLink("vidyaswap")
             $("#vidyaflux_button_wrapper, .vidyaflux_button_wrapper").show("scale") // show vidyaflux icon
-
-			$("#cubelets_button_wrapper").show("scale")
+			$("#cubelets_button_wrapper").show("scale") // cubelets icon 
 			
+			// Generator 
 			if(Generator.online) {
 				// Force setup again if generator has been initialized (can happen when generator is active and someone changes wallets in metamask)
+				// Note to self: this object & variable is too generic 
 				User.isSetup = false
 			}
 			if(isMobile) {
@@ -81,10 +76,7 @@ async function setup() {
 				$("#generator_button_wrapper").show("scale")
 			}
 			
-			/* Can someone tell me how to make chat work on https? I tried and tried, but was 
-			unable to get WSS connection to establish. At one point readyState was 1 on client, but server had no idea etc. 
-			Server runs on a lightsail instance, nodejs. I believe I have opened required ports. Messed with something called 
-			a "load balancer" too with no luck. For now let's open chat for people who run teamOS locally :) */
+			// Chat3D runs from localhost only for the time being 
 			if(location.hostname === "localhost" || location.hostname === "127.0.0.1") {
 				$("#startmenu .chat3d-toggle").show()
 			}
@@ -92,33 +84,31 @@ async function setup() {
 		
 		// Ropsten testnet 
 		else if(chainID == 3) {
-			// Just FYI 
 			notify("Connected to Ropsten testnet!")
-
 			/*  Ropsten Inventory
 				Note that present and distributor contracts don't exist on Ropsten right now
-				hence the console errors as inventory.js is trying to find 'em
-			*/
+				hence the console errors as inventory.js is trying to find 'em */
 			VidyaAddress = "0x0CbCaFD9f1B9d7c41B6F55BbddE06Bee3Aa7B791"
 			inventoryContract = "0x38090E1107c3163703F6AdCb811AAfdEbBd6f651" 
 			await loadInventory()
-
-			if(Dao.online){ResetDaoInstance()} // In case wallet changed
-			$("#dao_button_wrapper").show("scale") // Show DAO button
-
 		}
 		
 		
 		// Rinkeby 
 		else if(chainID == 4) {
+			notify("Connected to Rinkeby testnet!")
 			VidyaAddress = "0x071a2A775b76387e6B58b39b2D43ce74A7302277"
 			inventoryContract = "0x0CbCaFD9f1B9d7c41B6F55BbddE06Bee3Aa7B791" 
+			// Similarly to Ropsten, the Rinkeby network doesn't have present and distributor either 
 			await loadInventory()
-			if(Triad3D.online){resetTriad3dInstance()}
-			$("#triad3d_button_wrapper").show("scale")
 		}
 		
-		
+		// "Girly" network  
+		else if(chainID == 5) {
+			// Console errors due to no inventory, no vidya, no nothing. Idk why anyone would choose to test on this network... 
+			$(".mainnet_object").fadeOut()
+			$("#multipass_button_wrapper").show("scale")
+		}
 		
 		// The useless Polygon 
         else if(chainID == 137) {

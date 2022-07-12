@@ -185,3 +185,35 @@
 	background: var(--neon-magenta);
 	cursor: pointer;
 }
+
+.template-console-header-menu {
+	background: var(--indigo-dark);
+    font-family: 'C64', monospace;
+    font-size: 110%;
+    box-shadow: inset 0px 0px 5px 0px var(--black);
+    height: 31px;
+    overflow: hidden;
+}
+.template-console-header-menu-button {
+	padding: .5rem; 
+}
+.template-console-header-menu-button:hover {
+	background: var(--bg-glass);
+	cursor: pointer; 
+}
+
+.template-input-field {
+	flex: 1;
+    border-radius: 0;
+    outline: none;
+    background: transparent;
+	font-family: "C64", monospace;
+    font-size: 150%;
+	border: 1px solid var(--purple);
+    height: 33px;
+    line-height: 28px;
+    padding: 0 5px;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
