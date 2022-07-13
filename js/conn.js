@@ -58,6 +58,8 @@ async function setup() {
 		
 		// MainNet Functionality 
         if(chainID == 1 || chainID == 1337) {
+			$(".testnet_object").fadeOut()
+			
             await loadInventory()
 
             replaceUniswapLink("vidyaswap")
