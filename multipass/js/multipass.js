@@ -31,6 +31,15 @@ let MultiPass = {
 	tokenIdsToMerge: []
 }
 
+// A little extra to use localhost stuff as the animation (It's in PASS.src too, but maybe this is faster?)
+let ranks = {
+	Plebeian: "../multipass/img/0",
+	Gladiator: "../multipass/img/1",
+	Centurion: "../multipass/img/2",
+	Magister: "../multipass/img/3",
+	Overlord: "../multipass/img/4"
+}
+
 
 
 
@@ -82,6 +91,9 @@ $(document).on("click", ".multipass-list-item", function() {
 		if(MultiPass.owned[i].id == tokenId) {
 			let PASS = MultiPass.owned[i]
 			populateMultiPassDetailedView(PASS)
+			// give it a glow 
+			$(".multipass-list-item").removeClass("mp-list-item-highlight")
+			$(this).addClass("mp-list-item-highlight")
 		}
 	}
 	// Set activeTokenId
@@ -280,15 +292,8 @@ function populateMultiPassDetailedView(PASS) {
 	$("#mp-detailed-reservedETH").text(PASS.reservedETH)
 	$("#mp-detailed-description").text(PASS.description)
 	
-	// A little extra to use localhost stuff as the animation (It's in PASS.src too, but maybe this is faster?)
-	let ranks = {
-		Plebeian: "../multipass/img/0.mp4",
-		Gladiator: "../multipass/img/1.mp4",
-		Centurion: "../multipass/img/2.mp4",
-		Magister: "../multipass/img/3.mp4",
-		Overlord: "../multipass/img/4.mp4"
-	}
-	$("#mp-video-source").attr("src", ranks[PASS.rank]) // Add new src 
+	let src = ranks[PASS.rank]+".mp4"
+	$("#mp-video-source").attr("src", src) // Add new src 
 	$("#multipassLogo")[0].load() // Reload it 
 	
 	// Remove disabled class from its functionality interface(s)
@@ -346,7 +351,7 @@ async function populateMultipassList() {
 				MultiPass.owned.push(PASS)
 				
 				// Draw the PASS on UI
-				$("#mp-list-of-passes").append('<div class="multipass-list-item relative" data="'+PASS.id+'"><div class="mp-card-level">Lv. '+PASS.level+'</div><div class="mp-selectpass-checkbox mp-unchecked"></div><div class="mp-card-reserve flex-box align-center"><span class="mini-eth-icon mp-mini-eth-icon"></span><span>'+PASS.reservedETH+'</span></div></div>')
+				$("#mp-list-of-passes").append('<div class="multipass-list-item relative" data="'+PASS.id+'"><div class="mp-card-level">Lv. '+PASS.level+'</div><div class="mp-selectpass-checkbox mp-unchecked"></div><div class="mp-card-reserve flex-box align-center"><span class="mini-eth-icon mp-mini-eth-icon"></span><span>'+PASS.reservedETH+'</span></div><div style="background: url(img/'+ranks[PASS.rank]+'.png); background-size: contain; background-repeat: no-repeat; background-position: bottom;" class="mp-list-item-icon"></div></div>')
 			}
 			
 			$(".mp-list-of-passes-loading").remove() 
