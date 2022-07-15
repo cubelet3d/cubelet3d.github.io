@@ -20,6 +20,7 @@ let MultiPass = {
 	instance: null,
 	contract: "0x1faaB2E972f08a01813Ff83Ef9E044C23B4447e2", // Goerli testnet
 	collectionURL: "https://opensea.io/collection/inventory-v2",
+	manualURL: "multipass/MultiPass_User_Manual.pdf",
 	Filler: {
 		description: "MultiPass is an experimental new concept where NFTs are backed by Ethereum which can be redeemed at any time by the owner.",
 		src: "../multipass/img/5.mp4"
@@ -82,6 +83,10 @@ $(document).on("click", "#mp-mint-button", function() {
 
 $(document).on("click", "#mp-view-collection-button", function() {
 	window.open(MultiPass.collectionURL)
+})
+
+$(document).on("click", "#mp-whitepaper-button", function() {
+	window.open(MultiPass.manualURL)
 })
 
 $(document).on("click", ".multipass-list-item", function() {
