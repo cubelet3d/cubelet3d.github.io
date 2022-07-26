@@ -17,7 +17,7 @@ const commands = [
 	"clear",
 	"log",
 	"get",
-	"???",
+	"cubescape",
 	"fixscarf"
 ]
 
