@@ -77,11 +77,6 @@ async function setup() {
 			} else {
 				$("#generator_button_wrapper").show("scale")
 			}
-			
-			// Chat3D runs from localhost only for the time being 
-			if(location.hostname === "localhost" || location.hostname === "127.0.0.1") {
-				$("#startmenu .chat3d-toggle").show()
-			}
         }
 		
 		// Ropsten testnet 
@@ -134,6 +129,8 @@ async function setup() {
         
         $("#gas-price-wrapper").css("display","flex")
         $("#gas-price").text(parseFloat(web3.utils.fromWei(gasPrice.toString(), "gwei")).toFixed(2))
+		
+		$("#startmenu .chat3d-toggle").show() // enable chat
 		
 		audio.boot.play()
 		
