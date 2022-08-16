@@ -18,7 +18,7 @@ async function loadCubelets() {
 			fontload.load('fonts/audiowide.json',function(font){theFont=font})
 			$.getScript("cubelets/js/texture.js", function() {
 				$.getScript("cubelets/js/sprite.js", function() {
-					$.getScript("https://unpkg.com/moralis/dist/moralis.js", async function() {
+					$.getScript("https://unpkg.com/moralis-v1@1.11.0/dist/moralis.js", async function() {
 						$("body").append('<script id="vertexShader" type="x-shader/x-vertex"> \
 						varying vec2 vUv; \
 						void main() { \
