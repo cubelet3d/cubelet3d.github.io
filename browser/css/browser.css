@@ -57,31 +57,3 @@
 .browser-view-function-inputs-wrapper {
 	padding-right: .25rem; 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Move into template.css on live release */
-.template-input-field {
-	outline: none; 
-	text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-	padding: 0 5px; 
-	background: var(--indigo-dark); 
-}
-.padding-left-5px {
-	padding-left: 5px; 
-}

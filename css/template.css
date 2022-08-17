@@ -201,7 +201,7 @@
 	background: var(--bg-glass);
 	cursor: pointer; 
 }
-
+/*
 .template-input-field {
 	flex: 1;
     border-radius: 0;
@@ -216,4 +216,16 @@
 	text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+*/
+.template-input-field {
+	outline: none; 
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+	padding: 0 5px; 
+	background: var(--indigo-dark); 
+}
+.padding-left-5px {
+	padding-left: 5px; 
 }
