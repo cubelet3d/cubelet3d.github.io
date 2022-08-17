@@ -12,6 +12,9 @@ if (document.addEventListener) {
 }
 
 function drawContextMenu(e) {
+	if($(e.path[0]).attr("id") == "browser-search-field") {
+		$(".context-menu").append('<div class="item paste" data="paste" target="'+$(e.path[0]).attr("id")+'">Paste</div>')
+	}
 	
 	if(notepadRC) {
 		$(".context-menu").append('<div class="item notepad-delete" data="'+0+'">Delete</div>')
@@ -36,6 +39,7 @@ $(document).ready(function() {
 		notepadRC = false
 		$(".notepad-delete").remove() 
 		notepadID = null 
+		$(".paste").remove()
     })
     $("body").click(".context-menu.item", function(e) {
         let action = $(e.target).attr("data")
@@ -72,9 +76,24 @@ $(document).ready(function() {
             case "settings":
                 showContent(action)
                 break;
+				
+			case "paste":
+				let target = $(e.target).attr("target")
+				pasteInInput($("#"+target+""))
+				break;
                 
         }
         
         $(".context-menu").addClass("hidden")
     })
 })
+
+async function pasteInInput(el) {
+	try {
+		let content = await navigator.clipboard.readText()
+		$(el).val(content)
+	}
+	catch(e) {
+		console.error(e)
+	}
+}
