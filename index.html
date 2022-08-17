@@ -70,7 +70,37 @@
 			</div>
 			<!-- Main content wrapper -->
 			<div id="Main" class="main-content-wrapper absolute top right bottom left">
-				<div id="desk" class="panel absolute top right bottom left flex-box flex-center">				
+				<div id="desk" class="panel absolute top right bottom left flex-box flex-center">
+					<!-- Browser -->
+					<div id="browser" class="hidden console absolute draggable" data="browser">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon desktop-exe"></div>
+								<div class="consoleTitle default">C:\team3d\browser.exe</div>
+							</div>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
+						</div>
+						<div class="template-content flex-box col C64">
+							<div class="flex-box template-menu-bar browser-menu-bar">
+								<input id="browser-search-field" class="browser-search-field browser-menu-option template-input-field" value="0x0000000000000000000000000000000000000000"></input>
+								<button id="browser-go-button" class="browser-menu-option template-button">Go</button>
+							</div>
+							<div class="browser-wrapper flex-box col">
+								<div class="flex-box col browser-result-wrapper">
+									<div id="browser-result" class="browser-result scrollbar">Please input a smart contract address that is verified on Etherscan.<br>Note that this is a read-only beta version and things can break.</div>
+								</div>
+								<div class="browser-view-functions-list scrollbar">
+									<div id="browser-view-functions-list" class="browser-view-functions-list-inner"></div>
+								</div>
+							</div>
+							<div class="flex-box template-status-bar">
+								<div class="template-status-bar-option"><span id="browser-status">Ready</span></div>						
+							</div>								
+						</div>
+					</div>				
 					<!-- notepad -->
 					<div id="notepad" class="hidden console absolute draggable" data="notepad">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
@@ -1236,6 +1266,12 @@
 								<span class="font-monospace text-align-center">notes</span>
 							</div>
 						</div>
+						<div id="browser_button_wrapper" class="browser_button_wrapper hidden non-mobile mainnet_object">
+							<div id="browser_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="browser">
+								<div class="icon desktop-icon desktop-browser no-pointer-events"></div>
+								<span class="font-monospace text-align-center">browser</span>
+							</div>
+						</div>
 						<div id="wolf3d_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="wolf3d">
 							<div class="icon desktop-icon desktop-exe no-pointer-events game"></div>
 							<span class="font-monospace text-align-center">wolf3d</span>
@@ -1514,5 +1550,8 @@
 		<script src="js/conn.js"></script>
 		<!-- Context menu -->
 		<script src="settings/js/context_menu.js"></script>
+		<!-- Browser -->
+		<script src="browser/js/browser.js"></script>
+		<link rel="stylesheet" href="browser/css/browser.css">
 	</body>
 </html>

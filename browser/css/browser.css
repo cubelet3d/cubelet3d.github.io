@@ -1,0 +1,87 @@
+#browser {
+	width: 700px; 
+}
+.browser-function-list-item {
+	padding: 0.5rem; 
+	min-height: 57px; 
+	max-height: 60px; 
+	overflow: hidden; 
+}
+.browser-function-list-item:hover,
+.browser-active-row {
+	color: var(--highlight-bg);
+	background: var(--bg-glass);
+}
+.broweser-menu-option {
+	padding: 0.5rem; 
+}
+.browser-menu-bar {
+	border-bottom: 2px solid var(--purple); 
+}
+.browser-search-field {
+	width: 100%; 
+}
+.browser-result-wrapper {
+	border-bottom: 2px solid var(--indigo); 
+	background: transparent; 
+}
+.browser-result {
+	padding: 0.5rem; 
+	white-space: pre-wrap; 
+	height: 200px; 
+	overflow-x: hidden; overflow-y: auto;
+}
+.browser-view-functions-list {
+	overflow-x: hidden; overflow-y: auto; 
+}
+.browser-view-function-name {
+	font-size: 100%;
+}
+.browser-wrapper {
+	height: calc(100% - 60px);
+}
+.browser-view-functions-list-inner {
+
+}
+.browser-view-function-inputs {
+	outline: none; 
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+	padding: 5px; 
+	background: var(--input-bg); 
+	font-family: "C64", monospace; 
+	font-size: 125%; 
+	width: 100%; 
+}
+.browser-view-function-inputs-wrapper {
+	padding-right: .25rem; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Move into template.css on live release */
+.template-input-field {
+	outline: none; 
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+	padding: 0 5px; 
+	background: var(--indigo-dark); 
+}
+.padding-left-5px {
+	padding-left: 5px; 
+}

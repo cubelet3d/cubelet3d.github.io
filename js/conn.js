@@ -77,6 +77,8 @@ async function setup() {
 			} else {
 				$("#generator_button_wrapper").show("scale")
 			}
+			
+			$("#browser_button_wrapper").show("scale") // browser 
         }
 		
 		// Ropsten testnet 
