@@ -9,7 +9,9 @@ const audio = {
 	"close": new Audio("audio/close.wav"),
 	"error": new Audio("audio/error.wav"),
 	"msage": new Audio("audio/NewMessage.wav"),
-	"delete":new Audio("audio/delete.wav")
+	"delete":new Audio("audio/delete.wav"),
+	"fire" : new Audio("audio/shot.wav"),
+	"shatter": new Audio("audio/shatter.wav")
 }
 
 var cmd;

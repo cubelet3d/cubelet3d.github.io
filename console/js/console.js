@@ -18,13 +18,15 @@ const commands = [
 	"log",
 	"get",
 	"cubescape",
-	"fixscarf"
+	"fixscarf",
+	"grr"
 ]
 
 var command = "cmd"
 var buffer  = ""
 var consoleOpen = false
 var pastedData
+var shooting = {}
 
 $("html").keyup(function(e) {
 	if(!consoleOpen) {
@@ -133,6 +135,12 @@ function processCommand(cmd) {
 					cmdmsg("<div>Usage: fixscarf [tokenId]</div>")
 				}
 			break;
+			
+			case "grr":
+				shooting.active = true 
+				shooting.pistol = true 
+				$("#Main").append('<div id="shootme" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 9999; background: rgba(0, 0, 0, 0.1)"></div>')
+			break;
 		}
 	} else {
 		cmdmsg('<div>"'+cmd+'" is not a recognized command.</div>')
@@ -240,3 +248,37 @@ async function getEquipment(address) {
 		console.log(e)
 	}
 }
+
+$(document).on("click", "#shootme", function(e) {
+	if(shooting.pistol) {
+		audio.fire.play()
+		$('<div />').addClass('bullethole').css({
+			top: e.offsetY - 25,
+			left: e.offsetX - 25
+		}).appendTo('#shootme')
+	}
+	else if(shooting.hammer) {
+		audio.shatter.play()
+		$('<div />').addClass('hammerhole').css({
+			top: e.offsetY - 40,
+			left: e.offsetX - 40
+		}).appendTo('#shootme')	
+	}
+})
+
+$(document).keyup(function(e) {
+	if(shooting.active) {
+		if(e.key === "Escape") {
+			$("#shootme").remove()
+			shooting.active = false
+		}
+		else if(e.key == 1) {
+			shooting.hammer = false 
+			shooting.pistol = true 
+		}
+		else if(e.key == 2) {
+			shooting.pistol = false 
+			shooting.hammer = true 
+		}
+	}
+})
