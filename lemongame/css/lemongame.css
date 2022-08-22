@@ -1,0 +1,85 @@
+#lemongame {
+	width: 420px; height: 440px; 
+}
+.lemongame-subtitle {
+    text-align: center;
+    transform: skewY(-5deg);
+    margin-top: -18px;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 2px;
+    margin-left: 1rem;
+}
+.lemongame-wrapper {
+	margin: 0; padding: 1rem; 
+}
+.lemongame-section {
+	margin-bottom: 1rem; 
+}
+.lemongame-loading-outer {
+	background: var(--black);
+	z-index: 1; 
+}
+.lemons-icon {
+	background: url(../img/lemon.png);
+	background-size: cover; 
+}
+.lemons-floppy {
+	background: url(../img/lemongame.png);
+	background-size: cover; 
+}
+
+.lemongame-notch {
+	width: 120px; 
+}
+
+.lemongame-info {
+	border: 2px solid var(--console-header); 
+	padding: 0.5rem; 
+}
+
+.lemongame-owned-lemons-wrapper {
+	min-height: 71.19px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border: 2px solid var(--console-header);
+}
+.lemongame-nolemons {
+	width: 100%; 
+}
+.lemongame-owned-lemon {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    min-height: 64px;
+    -webkit-box-shadow: inset 0px 0px 5px 0px rgb(0 0 0 / 75%);
+    -moz-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 0px 5px 0px rgb(0 0 0 / 75%);
+    border: 1px solid var(--purple);
+    margin: 0.1rem;
+	background: url(../img/lemon.png);
+	background-size: cover; 
+	background-repeat: no-repeat; 
+}
+
+.lg-mini-eth-icon,
+.mini-lemon-icon {
+	width: 12px;
+    height: 12px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.lemongame-status-bar {
+	position: absolute; bottom: 0; left: 0; right: 0; text-align: right; padding: .25rem; 
+	background: var(--indigo-dark);
+}
+
+.lemongame-wrapper {
+    background-image: url(../img/lemontrans.png);
+    background-size: 23px;
+}
+.lemongame-info,
+.lemongame-owned-lemons-wrapper {
+	background: var(--bg-black-transparent);
+}
