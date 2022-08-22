@@ -99,6 +99,7 @@ async function lemonGameLoop(reload) {
 				$("#lemongame-status").text("Error... game is over!")
 			}
 			if(check == 3) {
+				$("#lemongame-status").text("Ready")
 				if($("#lemongame-mintbutton").hasClass("disabled")) {
 					$("#lemongame-mintbutton").removeClass("disabled")
 				}
@@ -114,7 +115,6 @@ async function lemonGameLoop(reload) {
 				drawOwnedLemons() 
 			}
 			
-			$("#lemongame-status").text("Ready")
 			console.log("LemonGame interval ran")
 		} else {
 			console.log("LemonGame is offline..")
