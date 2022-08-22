@@ -98,7 +98,7 @@ async function lemonGameLoop(reload) {
 			} else {
 				$("#lemongame-status").text("Error... game is over!")
 			}
-			if(check = 3) {
+			if(check == 3) {
 				if($("#lemongame-mintbutton").hasClass("disabled")) {
 					$("#lemongame-mintbutton").removeClass("disabled")
 				}
