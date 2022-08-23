@@ -90,14 +90,13 @@ async function lemonGameLoop(reload) {
 			} else {
 				if(LemonGame.rollStatus == 1) {
 					$("#lemongame-status").text("Rolling dice...")
-				} else {
+				} 
+				else if(LemonGame.rollStatus == 2) {
+					$("#lemongame-status").text("Game has ended!")
+				}
+				else {
 					$("#lemongame-status").text("Error... lemons sold out!")
 				}
-			}
-			if(!LemonGame.gameOver) {
-				check++
-			} else {
-				$("#lemongame-status").text("Error... game is over!")
 			}
 			if(check == 3) {
 				$("#lemongame-status").text("Ready")
