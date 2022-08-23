@@ -2,7 +2,7 @@ let LemonGame = {
 	online: false,
 	instance: null,
 	interval: null,
-	address: "0x4EB3FAC23b93F47D8431431dF702D0D82e3b3D91",
+	address: "0x5766156B354309Ee13d975053D0fdf1450cA6687",
 	ownedLemons: [],
 	collectionURL: "https://team3d.io"
 }
@@ -68,6 +68,9 @@ async function lemonGameLoop(reload) {
 			await LemonGame.instance.methods.hardCap().call().then(function(r) {
 				LemonGame.hardCap = r
 			})
+			await LemonGame.instance.methods.rollStatus().call().then(function(r) {
+				LemonGame.rollStatus = r 
+			})
 			
 			// UI 
 			$(".lemons-totalsupply").text(LemonGame.totalSupply)
@@ -85,7 +88,11 @@ async function lemonGameLoop(reload) {
 			if(web3.utils.fromWei(LemonGame.pooledEth) < web3.utils.fromWei(LemonGame.hardCap)) {
 				check++
 			} else {
-				$("#lemongame-status").text("Error... lemons sold out!")
+				if(LemonGame.rollStatus == 1) {
+					$("#lemongame-status").text("Rolling dice...")
+				} else {
+					$("#lemongame-status").text("Error... lemons sold out!")
+				}
 			}
 			if(!LemonGame.gameOver) {
 				check++
@@ -97,6 +104,8 @@ async function lemonGameLoop(reload) {
 				if($("#lemongame-mintbutton").hasClass("disabled")) {
 					$("#lemongame-mintbutton").removeClass("disabled")
 				}
+			} else {
+				$("#lemongame-mintbutton").addClass("disabled")
 			}
 			
 			// Hide loading screen 
@@ -142,7 +151,7 @@ async function populateLemonsList() {
 async function lemonGameMintLemon() {
 	try {
 		if(LemonGame.online) {
-			await LemonGame.instance.methods.mintLemon().send({from:accounts[0], value: "100000000000000000"})
+			await LemonGame.instance.methods.mintLemon().send({from:accounts[0], value: "10000000000000000"})
 			.on("transactionHash", function(hash) {
 				notify('<div class="text-align-center"><a href="https://etherscan.io/tx/'+hash+'" target="_blank">Minting</a> a lemon...</div>')
 			})
