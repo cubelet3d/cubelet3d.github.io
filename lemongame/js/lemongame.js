@@ -167,10 +167,10 @@ async function lemonGameMintLemon() {
 }
 
 function resetLemonGameInstance() {
+	clearInterval(LemonGame.interval)
+	LemonGame.interval = null	
 	LemonGame.instance = null
 	LemonGame.online = false
-	clearInterval(LemonGame.interval)
-	LemonGame.interval = null
 	$("#lemongame_button_wrapper").removeClass("disabled")
 	$(".lemongame-loading-outer").removeClass("hidden")
 	$(".lemons-totalsupply").text("...")
