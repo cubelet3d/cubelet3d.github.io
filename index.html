@@ -137,6 +137,11 @@
 								<button class="close_button">X</button>
 							</div>
 						</div>
+						<div class="template-header-menu flex-box">
+							<div class="template-header-menu-button browser-tab browser-tab-active" data="read">Read</div>
+							<div class="template-header-menu-button browser-tab" data="write">Write</div>
+							<!--<div class="template-header-menu-button browser-tab" data="payable">Payable</div>-->
+						</div>						
 						<div class="template-content flex-box col C64">
 							<div class="flex-box template-menu-bar browser-menu-bar">
 								<input id="browser-search-field" class="browser-search-field browser-menu-option template-input-field" value="0x0000000000000000000000000000000000000000" autocomplete="off"></input>
@@ -147,7 +152,9 @@
 									<div id="browser-result" class="browser-result scrollbar">Please input a smart contract address that is verified on Etherscan.<br>Note that this is a read-only beta version and things can break.</div>
 								</div>
 								<div class="browser-view-functions-list scrollbar">
-									<div id="browser-view-functions-list" class="browser-view-functions-list-inner"></div>
+									<div id="browser-view-functions-list" class="browser-view-functions-list-inner browser-functions-list"></div>
+									<div id="browser-write-functions-list" class="hidden browser-write-functions-list-inner browser-functions-list"></div>
+									<div id="browser-payable-functions-list" class="hidden browser-payable-functions-list-inner browser-functions-list"></div>
 								</div>
 							</div>
 							<div class="flex-box template-status-bar">
@@ -549,23 +556,6 @@
 								</div>
 								<div id="generator-event-log-content" class="generator-event-log-content"></div>
 							</div>
-						</div>
-					</div>
-					<div id="acubething" style="width:256px;height:420px" class="hidden console absolute draggable" data="acubething">
-						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
-							<div class="flex-box center-vertical">
-								<div class="icon cubelets-icon"></div>
-								<div class="consoleTitle default">cubelets.exe</div>
-							</div>
-							<div class="flex-box">
-								<button class="minimize_button">_</button>
-								<button id="aCubeThingCloseButton" class="close_button">X</button>
-							</div>
-						</div>
-						<div class="console-content" style="overflow:hidden">
-							<div id="Blockie3D"></div>
-							<div id="cubeletNav" class="flex-box flex-center"><button id="gen3dBlockie" class="notify-btn">Create</button><button id="saveAs" class="notify-btn disabled">Save As</button><button id="mintNFT" class="notify-btn disabled">Mint</button></div>
-							<div id="cubeletsConsole" class="scrollbar"></div>
 						</div>
 					</div>
 					<div id="videos_folder" class="console absolute draggable" data="videos_folder">
@@ -1354,12 +1344,6 @@
 								<span class="font-monospace text-align-center">present</span>
 							</div>
 						</div>
-						<div id="cubelets_button_wrapper" class="hidden mainnet_object">
-							<div id="cubelets_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="acubething">
-								<div class="icon desktop-icon cubelets-icon no-pointer-events shortcut"></div>
-								<span class="font-monospace text-align-center">cubelets</span>
-							</div>
-						</div>
 						<div id="generator_button_wrapper" class="hidden mainnet_object">
 							<div id="generator_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="generator">
 								<div class="icon desktop-icon generator no-pointer-events shortcut"></div>
@@ -1580,8 +1564,6 @@
 		<!-- Console -->
 		<link rel="stylesheet" href="console/css/console.css">
 		<script src="console/js/console.js"></script>
-		<!-- A Cube Thing -->
-		<script src="cubelets/js/cubelets.js"></script>
 		<!-- Generator -->
 		<script src="generator/js/LPTokenABI.js"></script>
 		<script src="generator/js/TellerABI.js"></script>

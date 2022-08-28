@@ -20,6 +20,9 @@
 }
 .browser-search-field {
 	width: 100%; 
+	box-shadow: inset 0px 0px 5px 0px var(--black); 
+	-webkit-box-shadow: inset 0px 0px 5px 0px var(--black); 
+	-moz-box-shadow: inset 0px 0px 5px 0px var(--black); 
 }
 .browser-result-wrapper {
 	border-bottom: 2px solid var(--indigo); 
@@ -38,7 +41,7 @@
 	font-size: 100%;
 }
 .browser-wrapper {
-	height: calc(100% - 60px);
+	height: calc(100% - 91px);
 }
 .browser-view-functions-list-inner {
 
@@ -56,4 +59,7 @@
 }
 .browser-view-function-inputs-wrapper {
 	padding-right: .25rem; 
+}
+.browser-tab-active {
+	background: var(--bg-glass);
 }

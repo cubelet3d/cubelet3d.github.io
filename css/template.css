@@ -229,3 +229,18 @@
 .padding-left-5px {
 	padding-left: 5px; 
 }
+
+.template-header-menu {
+    background: var(--indigo-dark);
+    font-family: 'C64', monospace;
+    font-size: 110%;
+    height: 31px; 
+    overflow: hidden;
+}
+.template-header-menu-button {
+	padding: 0.5rem;
+}
+.template-header-menu-button:hover {
+	background: var(--bg-glass);
+	cursor: pointer; 
+}

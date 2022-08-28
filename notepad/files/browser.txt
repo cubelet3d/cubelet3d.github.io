@@ -1,0 +1,11 @@
+Finally got around to adding the write functionality as well. 
+
+Tested it out by minting and burning an item. Seems to work as expected. 
+
+Figured it's best to just throw all of the transaction return data in the results view because why not, right? 
+
+I guess for most people only the returnValues has any sort of meaning...
+
+Haven't yet finished the payable functions support. I'm not even sure why, it's likely super similar.
+
+Note: It's still in beta so if something breaks don't blame me, okay? At the very least for your first few transactions you should verify it's trying to send the correct transaction data.
