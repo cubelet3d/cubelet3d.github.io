@@ -69,6 +69,7 @@ async function browserFetchABI(contract) {
 		}
 		
 		$("#browser-result").empty()
+		$("#browser-result").animate({ scrollTop: 0 }, "fast")
 		$("#browser-result").text("You can now call and send transactions. Since this is a beta version it is advised to double check the transaction data when sending transactions.")
 		$("#browser-status").text("Ready!")
 		
@@ -88,11 +89,13 @@ async function browserCallFunction(index, name, args, type) {
 			if(args) {
 				await BrowserContract["methods"][BrowserAllFunctions[type][index].name](...browserConvertedArgs(args)).call().then(function(r) {
 					$(".browser-result-wrapper").effect("highlight", {color: 'white'}, 300)
+					$("#browser-result").animate({ scrollTop: 0 }, "fast")
 					$("#browser-result").text(name+": "+JSON.stringify(r, null, 4))
 				})	
 			} else {
 				await BrowserContract["methods"][BrowserAllFunctions[type][index].name]().call().then(function(r) {
 					$(".browser-result-wrapper").effect("highlight", {color: 'white'}, 300)
+					$("#browser-result").animate({ scrollTop: 0 }, "fast")
 					$("#browser-result").text(name+": "+JSON.stringify(r, null, 4))
 				})	
 			}
@@ -106,6 +109,7 @@ async function browserCallFunction(index, name, args, type) {
 					.on("receipt", function(receipt) {
 						notify('<div class="text-align-center">Transaction confirmed!</div>')
 						$(".browser-result-wrapper").effect("highlight", {color: 'white'}, 300)
+						$("#browser-result").animate({ scrollTop: 0 }, "fast")
 						$("#browser-result").text(name+": "+JSON.stringify(receipt, null, 4))
 					})
 			} else {
@@ -116,12 +120,14 @@ async function browserCallFunction(index, name, args, type) {
 					.on("receipt", function(receipt) {
 						notify('<div class="text-align-center">Transaction confirmed!</div>')
 						$(".browser-result-wrapper").effect("highlight", {color: 'white'}, 300)
+						$("#browser-result").animate({ scrollTop: 0 }, "fast")
 						$("#browser-result").text(name+": "+JSON.stringify(receipt, null, 4))
 					})				
 			}
 		}
 		if(type == "payable") {
 			$(".browser-result-wrapper").effect("highlight", {color: 'white'}, 300)
+			$("#browser-result").animate({ scrollTop: 0 }, "fast")
 			$("#browser-result").text("Payable txs not implemented yet...")
 		}
 		

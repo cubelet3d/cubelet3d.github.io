@@ -1,0 +1,24 @@
+.browser-function-list-item {
+	min-height: 64px; max-height: 64px; height: 64px; 
+	border-top: 0px dashed var(--dark-purple);
+	box-shadow: inset 0px 0px 5px 0px var(--black); 
+	-webkit-box-shadow: inset 0px 0px 5px 0px var(--black); 
+	-moz-box-shadow: inset 0px 0px 5px 0px var(--black); 
+}
+.browser-function-list-item > .flex-box.col.space-between.full-width {
+	border-left: 1px solid var(--dark-purple);
+	border-top: 1px solid var(--dark-purple); 
+	border-bottom: 1px solid var(--dark-purple); 
+}
+.browser-view-function-name,
+.browser-write-function-name {
+	flex: 1; 
+	padding-left: 0px; 
+	padding: 2.5px 5px; 
+	border-bottom: 2px solid var(--dark-purple);
+	background: var(--indigo-dark); 
+}
+.browser-view-function-inputs-wrapper,
+.browser-write-function-inputs-wrapper {
+	padding-right: 0px; padding-left: 0px; 
+}
