@@ -1,6 +1,9 @@
 #lemongame {
 	width: 420px; height: 440px; 
 }
+.lemongame-template-content {
+	height: calc(100% - 71px);
+}
 .lemongame-subtitle {
     text-align: center;
     transform: skewY(-5deg);
@@ -30,7 +33,7 @@
 }
 
 .lemongame-notch {
-	width: 120px; 
+	width: 50%;
 }
 
 .lemongame-info {
@@ -57,11 +60,22 @@
     box-shadow: inset 0px 0px 5px 0px rgb(0 0 0 / 75%);
     border: 1px solid var(--purple);
     margin: 0.1rem;
+}
+.lemongame-lemon {
 	background: url(../img/lemon.png);
 	background-size: cover; 
 	background-repeat: no-repeat; 
 }
-
+.lemongame-rottenlemon {
+	background: url(../img/rottenlemon.png);
+	background-size: cover; 
+	background-repeat: no-repeat; 
+}
+.lemongame-lemonade {
+	background: url(../img/lemonade.png);
+	background-size: cover; 
+	background-repeat: no-repeat; 
+}
 .lg-mini-eth-icon,
 .mini-lemon-icon {
 	width: 12px;
@@ -73,6 +87,10 @@
 .lemongame-status-bar {
 	position: absolute; bottom: 0; left: 0; right: 0; text-align: right; padding: .25rem; 
 	background: var(--indigo-dark);
+	box-shadow: inset 0px 0px 5px 0px var(--black);
+	-moz-box-shadow: inset 0px 0px 5px 0px var(--black); 
+	-webkit-box-shadow: inset 0px 0px 5px 0px var(--black); 
+	
 }
 
 .lemongame-wrapper {
@@ -82,4 +100,11 @@
 .lemongame-info,
 .lemongame-owned-lemons-wrapper {
 	background: var(--bg-black-transparent);
+}
+
+.lemongame-input-field-mint {
+	width: 32px; text-align: center; 
+}
+.lemongame-button {
+	width: 125px; text-align: center; 
 }

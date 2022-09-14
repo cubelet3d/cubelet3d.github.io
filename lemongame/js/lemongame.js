@@ -2,9 +2,13 @@ let LemonGame = {
 	online: false,
 	instance: null,
 	interval: null,
-	address: "0x5766156B354309Ee13d975053D0fdf1450cA6687",
+	address: "0xb6cdC8Dfe9dbC38554fE8b5F18B290997C9a3D73",
 	ownedLemons: [],
-	collectionURL: "https://team3d.io"
+	collectionURL: "https://team3d.io",
+	minBalance: 0.001,
+	minToRoll: 5,
+	mintPrice: 0.001,
+	mintCap: 50
 }
 
 $(document).on("click", "#lemongame_button_wrapper", function() {
@@ -26,13 +30,28 @@ $(document).on("click", "#lemongame-collection-button", function() {
 
 $(document).on("click", "#lemongame-mintbutton", function() {
 	audio.click.play()
-	lemonGameMintLemon()
+	let amt = parseInt($("#lemongame-mint-amt").val())
+	if(amt > 0 && amt <= LemonGame.mintCap) {
+		lemonGameMintLemon(amt)
+	} else {
+		error("You can mint between 0-"+LemonGame.mintCap+" lemons at a time!")
+	}
 })
 
 $(document).on("click", ".lemongame-owned-lemon", function() {
 	audio.click.play()
 	let id = $(this).attr("data")
 	window.open(LemonGame.collectionURL + "/" + id)
+})
+
+$(document).on("click", ".lemonade-tabs", function() {
+	audio.click.play()
+	let tab = $(this).attr("data")
+	$(".lemongame-tab").hide()
+	$("#"+tab+"").show()
+	//$('.lemongame-tab[data~="'+tab+'"]').show()
+	$(".lemonade-tabs").removeClass("template-console-header-menu-active")
+	$('.lemonade-tabs[data~="'+tab+'"]').addClass("template-console-header-menu-active")
 })
 
 async function initLemonGame() {
@@ -53,58 +72,63 @@ async function initLemonGame() {
 async function lemonGameLoop(reload) {
 	try {
 		if(LemonGame.online) {
-			await LemonGame.instance.methods.tokenIds().call().then(async function(r) {
+			/*await LemonGame.instance.methods.totalSupply().call().then(async function(r) {
 				LemonGame.totalSupply = r
+			})*/
+			
+			await LemonGame.instance.methods.balanceOf(accounts[0]).call().then(function(r) {
+				LemonGame.lemonsBalance = r
 			})
-			await LemonGame.instance.methods.ethTracker().call().then(function(r) {
+			
+			await LemonGame.instance.methods.raffleIndex().call().then(function(r) {
+				LemonGame.raffleIndex = r 
+			})
+			
+			// 0, eth to winner, 1 token for losers, 2 tokenId of start, 3 number of raffle tickets
+			await LemonGame.instance.methods.raffleData(LemonGame.raffleIndex, 0).call().then(function(r) {
 				LemonGame.pooledEth = r
 			})
-			await LemonGame.instance.methods.endTime().call().then(function(r) {
+			await LemonGame.instance.methods.raffleData(LemonGame.raffleIndex, 3).call().then(function(r) {
+				LemonGame.lemonsInCurrentRound = r
+			})
+			
+			await LemonGame.instance.methods.endTimes(LemonGame.raffleIndex).call().then(function(r) {
 				LemonGame.timeLeft = r - Math.floor(Date.now() / 1000)
 			})
+			
 			await web3.eth.getBalance(accounts[0]).then(function(r) {
 				LemonGame.ethBalance = r
 			})
+			
 			await LemonGame.instance.methods.hardCap().call().then(function(r) {
 				LemonGame.hardCap = r
 			})
-			await LemonGame.instance.methods.rollStatus().call().then(function(r) {
-				LemonGame.rollStatus = r 
-			})
 			
 			// UI 
-			$(".lemons-totalsupply").text(LemonGame.totalSupply)
+			$(".lemons-raffleIndex").text(LemonGame.raffleIndex)
+			//$(".lemons-totalsupply").text(LemonGame.totalSupply)
+			$(".lemons-lemonsInCurrentRound").text(LemonGame.lemonsInCurrentRound)
 			$(".lemons-pooledeth").text(parseFloat(web3.utils.fromWei(LemonGame.pooledEth)).toFixed(2))
 			$(".lemons-timeleft").text(getTimeLeft(LemonGame.timeLeft))
 			
 
 			// Enable / disable buttons 
 			let check = 0
-			if(web3.utils.fromWei(LemonGame.ethBalance) > 0.1) {
+			if(web3.utils.fromWei(LemonGame.ethBalance) > LemonGame.minBalance) {
 				check++
 			} else {
-				$("#lemongame-status").text("Error... not enough ETH")
+				$("#lemongame-status").text("Not enough ETH to mint")
 			}
 			if(web3.utils.fromWei(LemonGame.pooledEth) < web3.utils.fromWei(LemonGame.hardCap)) {
 				check++
 			} else {
-				if(LemonGame.rollStatus == 1) {
-					$("#lemongame-status").text("Rolling dice...")
-				} 
-				else if(LemonGame.rollStatus == 2) {
-					$("#lemongame-status").text("Game has ended!")
-				}
-				else {
-					$("#lemongame-status").text("Error... lemons sold out!")
-				}
+				$("#lemongame-status").text("Current round sold out!")
 			}
-			if(check == 3) {
+			if(check == 2) {
 				$("#lemongame-status").text("Ready")
 				if($("#lemongame-mintbutton").hasClass("disabled")) {
 					$("#lemongame-mintbutton").removeClass("disabled")
 				}
-			} else {
-				$("#lemongame-mintbutton").addClass("disabled")
 			}
 			
 			// Hide loading screen 
@@ -124,19 +148,37 @@ async function lemonGameLoop(reload) {
 }
 
 async function populateLemonsList() {
+	console.log("Populate")
 	try {
-		let balance = await LemonGame.instance.methods.balanceOf(accounts[0]).call()
-		if(balance > 0) {
+		if(LemonGame.lemonsBalance > 0) {
+			
 			LemonGame.ownedLemons = []
-			$(".lemongame-owned-lemons-wrapper").empty()
+			LemonGame.ownedRottenLemons = []
+			LemonGame.ownedLemonade = []
+			$("#owned-lemons").empty()
+			$("#owned-rottenlemons").empty()
+			$("#owned-lemonade").empty()
 			$(".lemongame-owned-lemons-wrapper").html('<div class="flex-box flex-center lemongame-nolemons"><div>Loading...</div></div>')
-			for(let i = 1; i <= LemonGame.totalSupply; i++) {
-				let x = await LemonGame.instance.methods.ownerOf(i).call()
-				if(x == accounts[0]) {
-					LemonGame.ownedLemons.push(i)
+
+			for(let i = 0; i < LemonGame.lemonsBalance; i++) {
+				let id  = await LemonGame.instance.methods.tokenOfOwnerByIndex(accounts[0], i).call()
+				let uri = await LemonGame.instance.methods.tokenURI(id).call()
+				if(uri == "https://w3.lol/img/lemon.json") {
+					LemonGame.ownedLemons.push(id)
+					console.log("Found lemon: "+id)
+				}
+				else if(uri == "https://w3.lol/img/rottenlemon.json") {
+					LemonGame.ownedRottenLemons.push(id)
+					console.log("Found rotten lemon: "+id)
+				}
+				else if(uri == "https://w3.lol/img/lemonade.json") {
+					LemonGame.ownedLemonade.push(id)
+					console.log("Found lemonade: "+id)
 				}
 			}
-			drawOwnedLemons() 
+			
+			drawOwnedLemons()
+			
 		} else {
 			$(".lemongame-owned-lemons-wrapper").html('<div class="flex-box flex-center lemongame-nolemons"><div>No lemons</div></div>')
 		}
@@ -147,15 +189,16 @@ async function populateLemonsList() {
 	}
 }
 
-async function lemonGameMintLemon() {
+async function lemonGameMintLemon(amt) {
 	try {
 		if(LemonGame.online) {
-			await LemonGame.instance.methods.mintLemon().send({from:accounts[0], value: "10000000000000000"})
+			let val = web3.utils.toWei((amt * LemonGame.mintPrice).toString())
+			await LemonGame.instance.methods.mintLemon(amt).send({from:accounts[0], value: val})
 			.on("transactionHash", function(hash) {
-				notify('<div class="text-align-center"><a href="https://etherscan.io/tx/'+hash+'" target="_blank">Minting</a> a lemon...</div>')
+				notify('<div class="text-align-center"><a href="https://etherscan.io/tx/'+hash+'" target="_blank">Minting</a> lemons...</div>')
 			})
 			.on("receipt", function(receipt) {
-				notify('<div class="text-align-center">You just bought a lemon!</div>')
+				notify('<div class="text-align-center">You minted some lemons!</div>')
 				lemonGameLoop(true)
 			})
 		}
@@ -167,21 +210,49 @@ async function lemonGameMintLemon() {
 }
 
 function resetLemonGameInstance() {
-	clearInterval(LemonGame.interval)
-	LemonGame.interval = null	
 	LemonGame.instance = null
 	LemonGame.online = false
+	clearInterval(LemonGame.interval)
+	LemonGame.interval = null
 	$("#lemongame_button_wrapper").removeClass("disabled")
 	$(".lemongame-loading-outer").removeClass("hidden")
+	$(".lemons-raffleIndex").text("...")
+	$(".lemons-lemonsInCurrentRound").text("...")
 	$(".lemons-totalsupply").text("...")
 	$(".lemons-pooledeth").text("...")
 	$(".lemons-timeleft").text("...")
+	$("#owned-lemons").empty()
+	$("#owned-rottenlemons").empty()
+	$("#owned-lemonade").empty()
 }
 
 function drawOwnedLemons() {
-	$(".lemongame-owned-lemons-wrapper").empty()
-	for(let i = 0; i < LemonGame.ownedLemons.length; i++) {
-		$(".lemongame-owned-lemons-wrapper").append('<div class="lemongame-owned-lemon" data="'+LemonGame.ownedLemons[i]+'"></div>')
+	$("#owned-lemons").empty()
+	$("#owned-rottenlemons").empty()
+	$("#owned-lemonade").empty()
+	
+	if(LemonGame.ownedLemons.length == 0) {
+		$("#owned-lemons").html('<div class="flex-box flex-center lemongame-nolemons"><div>No lemons</div></div>')
+	} else {
+		for(let i = 0; i < LemonGame.ownedLemons.length; i++) {
+			$("#owned-lemons").append('<div class="lemongame-owned-lemon lemongame-lemon" data="'+LemonGame.ownedLemons[i]+'"></div>')
+		}	
+	}
+	
+	if(LemonGame.ownedRottenLemons.length == 0) {
+		$("#owned-rottenlemons").html('<div class="flex-box flex-center lemongame-nolemons"><div>No rotten lemons</div></div>')
+	} else {
+		for(let i = 0; i < LemonGame.ownedRottenLemons.length; i++) {
+			$("#owned-rottenlemons").append('<div class="lemongame-owned-lemon lemongame-rottenlemon" data="'+LemonGame.ownedRottenLemons[i]+'"></div>')
+		}		
+	}
+	
+	if(LemonGame.ownedLemonade.length == 0) {
+		$("#owned-lemonade").html('<div class="flex-box flex-center lemongame-nolemons"><div>No lemonade</div></div>')
+	} else {
+		for(let i = 0; i < LemonGame.ownedLemonade.length; i++) {
+			$("#owned-lemonade").append('<div class="lemongame-owned-lemon lemongame-lemonade" data="'+LemonGame.ownedLemonade[i]+'"></div>')
+		}		
 	}
 }
 
@@ -197,7 +268,12 @@ function getTimeLeft(input) {
 	let minuteFloor = Math.floor((timeRemaining - dayFloor * day - hourFloor * hour) / minute)
 	let secondFloor = Math.floor((timeRemaining - dayFloor * day - hourFloor * hour - minuteFloor * minute))
 	if (timeRemaining <= 0) {
-		return "Finished!"
+		if(LemonGame.lemonsInCurrentRound >= 10) {
+			return "Finished!"
+		} else {
+			return 10 - parseInt(LemonGame.lemonsInCurrentRound) + " lemons to go"
+		}
+		
 	} else {
 		if(minuteFloor <= 0) {return secondFloor + " seconds"}
 		if(hourFloor <= 0 && minuteFloor > 0) {return minuteFloor + " minutes"}

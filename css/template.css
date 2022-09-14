@@ -201,6 +201,9 @@
 	background: var(--bg-glass);
 	cursor: pointer; 
 }
+.template-console-header-menu-active {
+	background: var(--bg-glass);
+}
 /*
 .template-input-field {
 	flex: 1;

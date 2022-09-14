@@ -83,48 +83,87 @@
 								<button class="close_button">X</button>
 							</div>
 						</div>
-						<div class="template-content flex-box col C64">
+						<div class="template-console-header-menu flex-box">
+							<div class="template-console-header-menu-button lemonade-tabs template-console-header-menu-active" data="lemongame-mint">Mint</div>
+							<div class="template-console-header-menu-button lemonade-tabs" data="lemongame-inventory-lemons">Lemons</div>
+							<div class="template-console-header-menu-button lemonade-tabs" data="lemongame-inventory-rotten">Rotten Lemons</div>
+							<div class="template-console-header-menu-button lemonade-tabs" data="lemongame-inventory-lemonade">Lemonade</div>
+						</div>						
+						<div class="template-content lemongame-template-content flex-box col C64">						
 							<div id="lemonsWrapper" class="template-wrapper lemongame-wrapper scrollbar">
 								<div class="lemongame-loading-outer template-loading-outer flex-box flex-center no-pointer-events">
 									<div class="template-loading-inner"></div>
-								</div>
-								<div class="template-title font-quickzag">LemonGame</div>
+								</div>								
+								<div class="template-title font-quickzag">LemonadeStand</div>
 								<div class="lemongame-subtitle font-quickzag">When life gives you lemons...</div>
-								<div class="lemongame-section">
-									<div class="uppercase template-notch lemongame-notch">Statistics</div>
-									<div class="lemongame-info flex-box col">
-										<div class="flex-box space-between">
-											<div>Total lemons</div>
-											<div class="flex-box"><span class="lemons-icon mini-lemon-icon"></span><span class="lemons-totalsupply">...</span></div>
+								<div class="lemongame-main-wrapper flex-box col">
+									<div id="lemongame-mint" class="flex-box col lemongame-tab">
+										<div class="lemongame-section">
+											<div class="uppercase template-notch lemongame-notch">Statistics</div>
+											<div class="lemongame-info flex-box col">
+												<div class="flex-box space-between">
+													<div>Game round</div>
+													<div class="flex-box"><span class="lemons-raffleIndex">...</span></div>
+												</div>											
+												<div class="flex-box space-between">
+													<div>Lemons in round</div>
+													<div class="flex-box"><span class="lemons-icon mini-lemon-icon"></span><span class="lemons-lemonsInCurrentRound">...</span></div>
+												</div>
+												<!--<div class="flex-box space-between">
+													<div>Mint price</div>
+													<div class="flex-box"><span class="mini-eth-icon lg-mini-eth-icon"></span><span>0.10</span></div>
+												</div>-->
+												<div class="flex-box space-between">
+													<div>Round pool</div>
+													<div class="flex-box"><span class="mini-eth-icon lg-mini-eth-icon"></span><span class="lemons-pooledeth">...</span></div>
+												</div>
+												<div class="flex-box space-between">
+													<div>Time left</div>
+													<div class="lemons-timeleft">...</div>
+												</div>									
+											</div>
 										</div>
-										<div class="flex-box space-between">
-											<div>Mint price</div>
-											<div class="flex-box"><span class="mini-eth-icon lg-mini-eth-icon"></span><span>0.10</span></div>
-										</div>
-										<div class="flex-box space-between">
-											<div>Pooled ETH</div>
-											<div class="flex-box"><span class="mini-eth-icon lg-mini-eth-icon"></span><span class="lemons-pooledeth">...</span></div>
-										</div>
-										<div class="flex-box space-between">
-											<div>Time left</div>
-											<div class="lemons-timeleft">...</div>
-										</div>									
+										<div class="lemongame-section">
+											<div class="uppercase template-notch lemongame-notch">Mint</div>
+											<div class="lemongame-info flex-box col">
+												<div class="flex-box">
+													<p>Mint fee is 0.1E per Lemon and you can mint up to 10 Lemons at a time.</p>
+												</div>
+												<div class="flex-box flex-end">
+													<input id="lemongame-mint-amt" class="lemongame-input-field-mint template-input-field" autocomplete="off" value="1"></input>
+													<div id="lemongame-mintbutton" class="template-button disabled">Mint</div>
+												</div>
+											</div>											
+										</div>										
 									</div>
-								</div>
-								<div class="lemongame-section">
-									<div class="uppercase template-notch lemongame-notch">Your lemons</div>
-									<div class="lemongame-owned-lemons-wrapper flex-box scrollbar"></div>
-								</div>
-								<div class="lemongame-section flex-box space-between">
-									<div id="lemongame-mintbutton" class="template-button disabled">Buy lemon 0.1E</div>
-									<div id="lemongame-collection-button" class="template-button">View collection</div>
+									<div id="lemongame-inventory-lemons" class="hidden flex-box col lemongame-tab">
+										<div class="lemongame-section">
+											<div class="uppercase template-notch lemongame-notch">Your lemons</div>
+											<div id="owned-lemons" class="lemongame-owned-lemons-wrapper flex-box scrollbar"></div>
+										</div>
+										<div id="lemongame-collection-button" class="template-button lemongame-button">View collection</div>
+									</div>	
+									<div id="lemongame-inventory-rotten" class="hidden flex-box col lemongame-tab">
+										<div class="lemongame-section">
+											<div class="uppercase template-notch lemongame-notch">Your rotten lemons</div>
+											<div id="owned-rottenlemons" class="lemongame-owned-lemons-wrapper flex-box scrollbar"></div>
+										</div>
+										<div id="lemongame-collection-button" class="template-button lemongame-button">View collection</div>
+									</div>
+									<div id="lemongame-inventory-lemonade" class="hidden flex-box col lemongame-tab">
+										<div class="lemongame-section">
+											<div class="uppercase template-notch lemongame-notch">Your lemonade</div>
+											<div id="owned-lemonade" class="lemongame-owned-lemons-wrapper flex-box scrollbar"></div>
+										</div>
+										<div id="lemongame-collection-button" class="template-button lemongame-button">View collection</div>
+									</div>									
 								</div>
 								<div class="lemongame-status-bar">
 									<div id="lemongame-status">Loading...</div>		
 								</div>	
 							</div>
 						</div>
-					</div>				
+					</div>			
 					<!-- Browser -->
 					<div id="browser" class="hidden console absolute draggable" data="browser">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
