@@ -62,17 +62,17 @@
     margin: 0.1rem;
 }
 .lemongame-lemon {
-	background: url(../img/lemon.png);
+	background-image: url(../img/lemon.png);
 	background-size: cover; 
 	background-repeat: no-repeat; 
 }
 .lemongame-rottenlemon {
-	background: url(../img/rottenlemon.png);
+	background-image: url(../img/rottenlemon.png);
 	background-size: cover; 
 	background-repeat: no-repeat; 
 }
 .lemongame-lemonade {
-	background: url(../img/lemonade.png);
+	background-image: url(../img/lemonade.png);
 	background-size: cover; 
 	background-repeat: no-repeat; 
 }

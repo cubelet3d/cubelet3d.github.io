@@ -7,7 +7,7 @@ let LemonGame = {
 	collectionURL: "https://team3d.io",
 	minBalance: 0.001,
 	minToRoll: 5,
-	mintPrice: 0.001,
+	mintPrice: "1000000000000000", // 0.001 eth for testing 
 	mintCap: 50
 }
 
@@ -32,16 +32,34 @@ $(document).on("click", "#lemongame-mintbutton", function() {
 	audio.click.play()
 	let amt = parseInt($("#lemongame-mint-amt").val())
 	if(amt > 0 && amt <= LemonGame.mintCap) {
-		lemonGameMintLemon(amt)
+		lemonGameMintLemon(amt.toString())
 	} else {
 		error("You can mint between 0-"+LemonGame.mintCap+" lemons at a time!")
 	}
 })
 
-$(document).on("click", ".lemongame-owned-lemon", function() {
+$(document).on("click", ".lemongame-lemon", function() {
 	audio.click.play()
 	let id = $(this).attr("data")
 	window.open(LemonGame.collectionURL + "/" + id)
+})
+
+$(document).on("click", ".lemongame-rottenlemon", function() {
+	audio.click.play()
+	let id = $(this).attr("data")
+	$(".lemongame-rottenlemon").removeClass("template-console-header-menu-active")
+	$('.lemongame-rottenlemon[data~="'+id+'"]').addClass("template-console-header-menu-active")
+	LemonGame.activeRottenLemon = id 
+	drawConsolationInfo(id)
+})
+
+$(document).on("click", "#lemongame-claim-rottenlemon", function() {
+	audio.click.play()
+	if(LemonGame.activeRottenLemon > 0) {
+		claimRottenLemon(LemonGame.activeRottenLemon)
+	} else {
+		error("Unknown rotten lemon! Try clicking on one maybe?")
+	}
 })
 
 $(document).on("click", ".lemonade-tabs", function() {
@@ -81,6 +99,11 @@ async function lemonGameLoop(reload) {
 			})
 			
 			await LemonGame.instance.methods.raffleIndex().call().then(function(r) {
+				// If the round changes while UI is open 
+				if(LemonGame.raffleIndex !== "undefined" && r > LemonGame.raffleIndex) {
+					console.log("Round change detected")
+					populateLemonsList()
+				}
 				LemonGame.raffleIndex = r 
 			})
 			
@@ -192,7 +215,7 @@ async function populateLemonsList() {
 async function lemonGameMintLemon(amt) {
 	try {
 		if(LemonGame.online) {
-			let val = web3.utils.toWei((amt * LemonGame.mintPrice).toString())
+			let val = web3.utils.toBN(amt).mul(web3.utils.toBN(LemonGame.mintPrice)).toString()
 			await LemonGame.instance.methods.mintLemon(amt).send({from:accounts[0], value: val})
 			.on("transactionHash", function(hash) {
 				notify('<div class="text-align-center"><a href="https://etherscan.io/tx/'+hash+'" target="_blank">Minting</a> lemons...</div>')
@@ -256,6 +279,39 @@ function drawOwnedLemons() {
 	}
 }
 
+async function drawConsolationInfo(id) {
+	try {
+		$(".rottenlemons-reward").text("...")
+		if($("#lemongame-rottenlemon-rewards").hasClass("hidden")) {
+			$("#lemongame-rottenlemon-rewards").removeClass("hidden")
+		}
+		let amount = await LemonGame.instance.methods.consolationAmount(id).call()
+		$(".rottenlemons-reward").text(decimal(web3.utils.fromWei(amount)))
+
+	}
+	catch(e) {
+		console.error(e)
+	}
+}
+
+async function claimRottenLemon(id) {
+	try {
+		await LemonGame.instance.methods.claimPrize(id).send({from: accounts[0]})
+		.on("transactionHash", function(hash) {
+			notify('<div class="text-align-center"><a href="https://etherscan.io/tx/'+hash+'" target="_blank">Eating</a> rotten lemon...</div>')
+		})
+		.on("receipt", function(receipt) {
+			notify('<div class="text-align-center">You ate a rotten lemon... eww!</div>')
+			//lemonGameLoop(true) lets see if we can get away with simply removing the current lemon id 
+			$('.lemongame-rottenlemon[data~="'+id+'"]').remove() 
+			LemonGame.activeRottenLemon = null
+		})
+	}
+	catch(e) {
+		console.error(e)
+	}
+}
+
 // Returns time left from input seconds 
 // Feel free to use it elsewhere in the future 
 function getTimeLeft(input) {
@@ -268,10 +324,10 @@ function getTimeLeft(input) {
 	let minuteFloor = Math.floor((timeRemaining - dayFloor * day - hourFloor * hour) / minute)
 	let secondFloor = Math.floor((timeRemaining - dayFloor * day - hourFloor * hour - minuteFloor * minute))
 	if (timeRemaining <= 0) {
-		if(LemonGame.lemonsInCurrentRound >= 10) {
+		if(LemonGame.lemonsInCurrentRound >= LemonGame.mintCap) {
 			return "Finished!"
 		} else {
-			return 10 - parseInt(LemonGame.lemonsInCurrentRound) + " lemons to go"
+			return LemonGame.mintCap - parseInt(LemonGame.lemonsInCurrentRound) + " lemons to go"
 		}
 		
 	} else {
