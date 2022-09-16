@@ -91,6 +91,7 @@
 						</div>						
 						<div class="template-content lemongame-template-content flex-box col C64">						
 							<div id="lemonsWrapper" class="template-wrapper lemongame-wrapper scrollbar">
+								<div id="lemongame-volume" class="volume-icon-hi lemongame-volume-icon absolute top right"></div>
 								<div class="lemongame-loading-outer template-loading-outer flex-box flex-center no-pointer-events">
 									<div class="template-loading-inner"></div>
 								</div>								
@@ -149,30 +150,40 @@
 											<div id="owned-rottenlemons" class="lemongame-owned-lemons-wrapper flex-box scrollbar"></div>
 										</div>
 										<div id="lemongame-rottenlemon-rewards" class="hidden lemongame-section">
-											<div class="uppercase template-notch lemongame-notch">Claim reward</div>
+											<div class="uppercase template-notch lemongame-notch">Eat lemons</div>
 											<div class="lemongame-info flex-box col">
 												<div class="flex-box space-between">
-													<div>VIDYA</div>
+													<div>VIDYA inside</div>
 													<div class="flex-box rottenlemon-reward-wrapper"><span class="mini-vidya-icon"></span><span class="rottenlemons-reward">...</span></div>
 												</div>											
 											</div>
 										</div>
-										<div id="lemongame-claim-rottenlemon" class="template-button lemongame-button">Claim</div>
+										<div id="lemongame-claim-rottenlemon" class="template-button lemongame-button lemongame-eat-button">Eat</div>
 									</div>
 									<div id="lemongame-inventory-lemonade" class="hidden flex-box col lemongame-tab">
 										<div class="lemongame-section">
 											<div class="uppercase template-notch lemongame-notch">Your lemonade</div>
 											<div id="owned-lemonade" class="lemongame-owned-lemons-wrapper flex-box scrollbar"></div>
 										</div>
-										<div class="template-button lemongame-button">View collection</div>
+										<div id="lemongame-lemonade-rewards" class="hidden lemongame-section">
+											<div class="uppercase template-notch lemongame-notch">Drink lemonade</div>
+											<div class="lemongame-info flex-box col">
+												<div class="flex-box space-between">
+													<div>ETH inside</div>
+													<div class="flex-box lemonade-reward-wrapper"><span class="mini-eth-icon"></span><span class="lemonade-reward">...</span></div>
+												</div>											
+											</div>
+										</div>
+										<div id="lemongame-claim-lemonade" class="template-button lemongame-button lemongame-eat-button">Drink</div>
 									</div>									
 								</div>
 								<div class="lemongame-status-bar">
 									<div id="lemongame-status">Loading...</div>		
 								</div>	
+								<div class="lemongame-dancing-lemons absolute top right bottom left no-pointer-events"></div>
 							</div>
 						</div>
-					</div>			
+					</div>		
 					<!-- Browser -->
 					<div id="browser" class="hidden console absolute draggable" data="browser">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">

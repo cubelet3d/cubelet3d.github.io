@@ -94,8 +94,13 @@
 }
 
 .lemongame-wrapper {
-    background-image: url(../img/lemontrans.png);
+
+}
+.lemongame-dancing-lemons {
+    background-image: url(../img/lemon2.gif);
     background-size: 23px;
+	opacity: 0.4; 
+	z-index: -1; 
 }
 .lemongame-info,
 .lemongame-owned-lemons-wrapper {
@@ -107,4 +112,10 @@
 }
 .lemongame-button {
 	width: 125px; text-align: center; 
+}
+.lemongame-eat-button {
+	width: 60px; 
+}
+.lemongame-volume-icon {
+	width: 25px; height: 25px; background-size: contain; margin: 1rem; z-index: 1; cursor: pointer; 
 }

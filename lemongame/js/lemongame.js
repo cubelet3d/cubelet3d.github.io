@@ -8,7 +8,8 @@ let LemonGame = {
 	minBalance: 0.001,
 	minToRoll: 5,
 	mintPrice: "1000000000000000", // 0.001 eth for testing 
-	mintCap: 50
+	mintCap: 50,
+	tune: new Audio("lemongame/lemontune.wav")
 }
 
 $(document).on("click", "#lemongame_button_wrapper", function() {
@@ -28,7 +29,7 @@ $(document).on("click", "#lemongame-collection-button", function() {
 	window.open(LemonGame.collectionURL)
 })
 
-$(document).on("click", "#lemongame-mintbutton", function() {
+$(document).on("click", "#lemongame-mintbutton", function() { 
 	audio.click.play()
 	let amt = parseInt($("#lemongame-mint-amt").val())
 	if(amt > 0 && amt <= LemonGame.mintCap) {
@@ -62,6 +63,24 @@ $(document).on("click", "#lemongame-claim-rottenlemon", function() {
 	}
 })
 
+$(document).on("click", ".lemongame-lemonade", function() {
+	audio.click.play()
+	let id = $(this).attr("data")
+	$(".lemongame-lemonade").removeClass("template-console-header-menu-active")
+	$('.lemongame-lemonade[data~="'+id+'"]').addClass("template-console-header-menu-active")
+	LemonGame.activeLemonade = id 
+	// drawConsolationInfo(id)
+})
+
+$(document).on("click", "#lemongame-claim-lemonade", function() {
+	audio.click.play()
+	if(LemonGame.activeLemonade > 0) {
+		claimLemonade(LemonGame.activeLemonade)
+	} else {
+		error("Unknown lemonade! Try clicking on one maybe?")
+	}
+})
+
 $(document).on("click", ".lemonade-tabs", function() {
 	audio.click.play()
 	let tab = $(this).attr("data")
@@ -72,6 +91,18 @@ $(document).on("click", ".lemonade-tabs", function() {
 	$('.lemonade-tabs[data~="'+tab+'"]').addClass("template-console-header-menu-active")
 })
 
+$(document).on("click", "#lemongame-volume", function() {
+	if($(this).hasClass("volume-icon-hi")) {
+		$(this).removeClass("volume-icon-hi")
+		$(this).addClass("volume-icon-muted")
+		LemonGame.tune.pause()
+	} else {
+		$(this).removeClass("volume-icon-muted")
+		$(this).addClass("volume-icon-hi")
+		LemonGame.tune.play()
+	}
+})
+
 async function initLemonGame() {
 	try {
 		LemonGame.instance = new web3.eth.Contract(lemongameABI, LemonGame.address)
@@ -80,6 +111,8 @@ async function initLemonGame() {
 		populateLemonsList()
 		$("#lemongame_button_wrapper").addClass("disabled")
 		LemonGame.interval = setInterval(lemonGameLoop, 2000)
+		LemonGame.tune.loop = true
+		LemonGame.tune.play()		
 	}
 	catch(e) {
 		console.error(e)
@@ -303,8 +336,39 @@ async function claimRottenLemon(id) {
 		.on("receipt", function(receipt) {
 			notify('<div class="text-align-center">You ate a rotten lemon... eww!</div>')
 			//lemonGameLoop(true) lets see if we can get away with simply removing the current lemon id 
+			let index = LemonGame.ownedRottenLemons.indexOf(id)
+			if (index !== -1) {
+			  LemonGame.ownedRottenLemons.splice(index, 1)
+			}
 			$('.lemongame-rottenlemon[data~="'+id+'"]').remove() 
+			if(LemonGame.ownedRottenLemons.length == 0) {
+				$("#owned-rottenlemons").html('<div class="flex-box flex-center lemongame-nolemons"><div>No rotten lemons</div></div>')
+			}
 			LemonGame.activeRottenLemon = null
+		})
+	}
+	catch(e) {
+		console.error(e)
+	}
+}
+
+async function claimLemonade(id) {
+	try {
+		await LemonGame.instance.methods.claimPrize(id).send({from: accounts[0]})
+		.on("transactionHash", function(hash) {
+			notify('<div class="text-align-center"><a href="https://etherscan.io/tx/'+hash+'" target="_blank">Drinking</a> lemonade...</div>')
+		})
+		.on("receipt", function(receipt) {
+			notify('<div class="text-align-center">You drank the lemonade... yum!</div>')
+			let index = LemonGame.ownedLemonade.indexOf(id)
+			if (index !== -1) {
+			  LemonGame.ownedLemonade.splice(index, 1)
+			}
+			$('.lemongame-lemonade[data~="'+id+'"]').remove() 
+			if(LemonGame.ownedLemonade.length == 0) {
+				$("#owned-lemonade").html('<div class="flex-box flex-center lemongame-nolemons"><div>No lemonade</div></div>')
+			}
+			LemonGame.activeLemonade = null
 		})
 	}
 	catch(e) {
