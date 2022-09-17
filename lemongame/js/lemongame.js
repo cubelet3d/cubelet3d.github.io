@@ -4,7 +4,7 @@ let LemonGame = {
 	interval: null,
 	address: "0xf1261B8aD1a1c1856F0DE117Cd90BAc64b386285",
 	ownedLemons: [],
-	collectionURL: "https://team3d.io",
+	collectionURL: "https://opensea.io/collection/lemonadestand-v2",
 	minBalance: 0.1,
 	mintPrice: "100000000000000000", // 0.1 eth  
 	mintCap: 10,
