@@ -2,14 +2,13 @@ let LemonGame = {
 	online: false,
 	instance: null,
 	interval: null,
-	address: "0x57c1dfa4809289a77e7e6146a35ffb7ea9f58038",
+	address: "0xf1261B8aD1a1c1856F0DE117Cd90BAc64b386285",
 	ownedLemons: [],
 	collectionURL: "https://team3d.io",
-	minBalance: 0.001,
-	minToRoll: 5,
-	mintPrice: "1000000000000000", // 0.001 eth for testing 
-	mintCap: 50,
-	tune: new Audio("lemongame/lemontune.wav")
+	minBalance: 0.1,
+	mintPrice: "100000000000000000", // 0.1 eth  
+	mintCap: 10,
+	tune: new Audio("lemongame/lemontune.mp3")
 }
 
 $(document).on("click", "#lemongame_button_wrapper", function() {

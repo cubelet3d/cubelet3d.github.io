@@ -79,6 +79,8 @@ async function setup() {
 			}
 			
 			$("#browser_button_wrapper").show("scale") // browser 
+			
+			$("#lemongame_button_wrapper").show("scale") // lemonade stand 
         }
 		
 		// Ropsten testnet 
@@ -107,7 +109,7 @@ async function setup() {
 			// Console errors due to no inventory, no vidya, no nothing. Idk why anyone would choose to test on this network... 
 			$(".mainnet_object").fadeOut()
 			$("#multipass_button_wrapper").show("scale")
-			$("#lemongame_button_wrapper").show("scale")
+			// $("#lemongame_button_wrapper").show("scale")
 		}
 		
 		// The useless Polygon 
