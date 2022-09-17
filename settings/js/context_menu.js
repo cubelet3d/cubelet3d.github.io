@@ -12,7 +12,7 @@ if (document.addEventListener) {
 }
 
 function drawContextMenu(e) {
-	if($(e.path[0]).attr("id") == "browser-search-field") {
+	if($(e.path[0]).attr("id") == "browser-search-field" || $(e.path[0]).attr("id") == "lemongame-input-address") {
 		$(".context-menu").append('<div class="item paste" data="paste" target="'+$(e.path[0]).attr("id")+'">Paste</div>')
 	}
 	

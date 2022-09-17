@@ -4,7 +4,7 @@ let LemonGame = {
 	interval: null,
 	address: "0xf1261B8aD1a1c1856F0DE117Cd90BAc64b386285",
 	ownedLemons: [],
-	collectionURL: "https://opensea.io/collection/lemonadestand-v2",
+	collectionURL: "https://team3d.io",
 	minBalance: 0.1,
 	mintPrice: "100000000000000000", // 0.1 eth  
 	mintCap: 10,
@@ -41,7 +41,10 @@ $(document).on("click", "#lemongame-mintbutton", function() {
 $(document).on("click", ".lemongame-lemon", function() {
 	audio.click.play()
 	let id = $(this).attr("data")
-	window.open(LemonGame.collectionURL + "/" + id)
+	$(".lemongame-lemon").removeClass("template-console-header-menu-active")
+	$('.lemongame-lemon[data~="'+id+'"]').addClass("template-console-header-menu-active")
+	LemonGame.activeLemon = id 
+	drawLemonDetailedView(id)
 })
 
 $(document).on("click", ".lemongame-rottenlemon", function() {
@@ -98,6 +101,18 @@ $(document).on("click", "#lemongame-volume", function() {
 		$(this).removeClass("volume-icon-muted")
 		$(this).addClass("volume-icon-hi")
 		LemonGame.tune.play()
+	}
+})
+
+$(document).on("click", "#lemongame-input-address", function() {
+	$(this).val("")
+})
+
+$(document).on("click", "#lemongame-send-lemon", function() {
+	audio.click.play()
+	let addr = $("#lemongame-input-address").val()
+	if(web3.utils.isAddress(addr)) {
+		sendLemonTo(addr, LemonGame.activeLemon)
 	}
 })
 
@@ -303,6 +318,48 @@ function drawOwnedLemons() {
 	}
 }
 
+async function drawLemonDetailedView(id) {
+	try {
+		if($("#lemongame-lemon-view").hasClass("hidden")) {
+			$("#lemongame-lemon-view").removeClass("hidden")
+		}
+		$(".lemongame-lemonId").text(id)
+		if($("#lemongame-send-lemon").hasClass("disabled")) {
+			$("#lemongame-send-lemon").removeClass("disabled")
+		}
+	}
+	catch(e) {
+		console.error(e)
+	}
+}
+
+async function sendLemonTo(addr, id) {
+	try {
+		await LemonGame.instance.methods.safeTransferFrom(accounts[0], addr, id).send({from: accounts[0]})
+		.on("transactionHash", function(hash) {
+			notify('<div class="text-align-center"><a href="https://etherscan.io/tx/'+hash+'" target="_blank">Sending</a> lemon no. #'+id+'...</div>')
+		})
+		.on("receipt", function(receipt) {
+			notify('<div class="text-align-center">Your lemon has been sent!</div>')
+			let index = LemonGame.ownedLemons.indexOf(id)
+			if (index !== -1) {
+			  LemonGame.ownedLemons.splice(index, 1)
+			}
+			$('.lemongame-lemon[data~="'+id+'"]').remove() 
+			if(LemonGame.ownedLemons.length == 0) {
+				$("#owned-lemons").html('<div class="flex-box flex-center lemongame-nolemons"><div>No lemons</div></div>')
+			}
+			LemonGame.activeLemon = null
+			
+			$(".lemongame-lemonId").text("...")
+			$("#lemongame-send-lemon").addClass("disabled")
+		})		
+	}
+	catch(e) {
+		console.error(e)
+	}
+}
+
 async function drawConsolationInfo(id) {
 	try {
 		await LemonGame.instance.methods.rewardAmount(id).call().then(function(r) {
@@ -396,7 +453,7 @@ function getTimeLeft(input) {
 		}
 		
 	} else {
-		if(minuteFloor <= 0) {return secondFloor + " seconds"}
+		if(hourFloor ==0 && dayFloor ==0 && minuteFloor <=0) {return secondFloor + " seconds"}
 		if(hourFloor <= 0 && minuteFloor > 0) {return minuteFloor + " minutes"}
 		if(dayFloor <= 0 && hourFloor > 0) {return hourFloor + " hours"}
 		if(dayFloor > 0) {return dayFloor + " days"}

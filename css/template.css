@@ -247,3 +247,10 @@
 	background: var(--bg-glass);
 	cursor: pointer; 
 }
+.template-bg-black {
+	background-color: var(--bg-black-transparent);
+}
+.template-list-item {
+	padding: 0 0.5rem;
+    margin: 0.2rem 0;
+}
