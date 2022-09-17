@@ -2,7 +2,7 @@ let LemonGame = {
 	online: false,
 	instance: null,
 	interval: null,
-	address: "0xb6cdC8Dfe9dbC38554fE8b5F18B290997C9a3D73",
+	address: "0x57c1dfa4809289a77e7e6146a35ffb7ea9f58038",
 	ownedLemons: [],
 	collectionURL: "https://team3d.io",
 	minBalance: 0.001,
@@ -69,7 +69,7 @@ $(document).on("click", ".lemongame-lemonade", function() {
 	$(".lemongame-lemonade").removeClass("template-console-header-menu-active")
 	$('.lemongame-lemonade[data~="'+id+'"]').addClass("template-console-header-menu-active")
 	LemonGame.activeLemonade = id 
-	// drawConsolationInfo(id)
+	drawConsolationInfo(id)
 })
 
 $(document).on("click", "#lemongame-claim-lemonade", function() {
@@ -86,7 +86,6 @@ $(document).on("click", ".lemonade-tabs", function() {
 	let tab = $(this).attr("data")
 	$(".lemongame-tab").hide()
 	$("#"+tab+"").show()
-	//$('.lemongame-tab[data~="'+tab+'"]').show()
 	$(".lemonade-tabs").removeClass("template-console-header-menu-active")
 	$('.lemonade-tabs[data~="'+tab+'"]').addClass("template-console-header-menu-active")
 })
@@ -123,9 +122,6 @@ async function initLemonGame() {
 async function lemonGameLoop(reload) {
 	try {
 		if(LemonGame.online) {
-			/*await LemonGame.instance.methods.totalSupply().call().then(async function(r) {
-				LemonGame.totalSupply = r
-			})*/
 			
 			await LemonGame.instance.methods.balanceOf(accounts[0]).call().then(function(r) {
 				LemonGame.lemonsBalance = r
@@ -134,7 +130,7 @@ async function lemonGameLoop(reload) {
 			await LemonGame.instance.methods.raffleIndex().call().then(function(r) {
 				// If the round changes while UI is open 
 				if(LemonGame.raffleIndex !== "undefined" && r > LemonGame.raffleIndex) {
-					console.log("Round change detected")
+					$("#lemongame-status").text("Ready")
 					populateLemonsList()
 				}
 				LemonGame.raffleIndex = r 
@@ -162,7 +158,6 @@ async function lemonGameLoop(reload) {
 			
 			// UI 
 			$(".lemons-raffleIndex").text(LemonGame.raffleIndex)
-			//$(".lemons-totalsupply").text(LemonGame.totalSupply)
 			$(".lemons-lemonsInCurrentRound").text(LemonGame.lemonsInCurrentRound)
 			$(".lemons-pooledeth").text(parseFloat(web3.utils.fromWei(LemonGame.pooledEth)).toFixed(2))
 			$(".lemons-timeleft").text(getTimeLeft(LemonGame.timeLeft))
@@ -204,7 +199,6 @@ async function lemonGameLoop(reload) {
 }
 
 async function populateLemonsList() {
-	console.log("Populate")
 	try {
 		if(LemonGame.lemonsBalance > 0) {
 			
@@ -221,15 +215,12 @@ async function populateLemonsList() {
 				let uri = await LemonGame.instance.methods.tokenURI(id).call()
 				if(uri == "https://w3.lol/img/lemon.json") {
 					LemonGame.ownedLemons.push(id)
-					console.log("Found lemon: "+id)
 				}
 				else if(uri == "https://w3.lol/img/rottenlemon.json") {
 					LemonGame.ownedRottenLemons.push(id)
-					console.log("Found rotten lemon: "+id)
 				}
 				else if(uri == "https://w3.lol/img/lemonade.json") {
 					LemonGame.ownedLemonade.push(id)
-					console.log("Found lemonade: "+id)
 				}
 			}
 			
@@ -266,6 +257,7 @@ async function lemonGameMintLemon(amt) {
 }
 
 function resetLemonGameInstance() {
+	LemonGame.tune.pause()
 	LemonGame.instance = null
 	LemonGame.online = false
 	clearInterval(LemonGame.interval)
@@ -314,13 +306,23 @@ function drawOwnedLemons() {
 
 async function drawConsolationInfo(id) {
 	try {
-		$(".rottenlemons-reward").text("...")
-		if($("#lemongame-rottenlemon-rewards").hasClass("hidden")) {
-			$("#lemongame-rottenlemon-rewards").removeClass("hidden")
-		}
-		let amount = await LemonGame.instance.methods.consolationAmount(id).call()
-		$(".rottenlemons-reward").text(decimal(web3.utils.fromWei(amount)))
-
+		await LemonGame.instance.methods.rewardAmount(id).call().then(function(r) {
+			let reward = r[0]
+			let winner = r[1]
+			if(!winner) {
+				$(".rottenlemons-reward").text("...")
+				if($("#lemongame-rottenlemon-rewards").hasClass("hidden")) {
+					$("#lemongame-rottenlemon-rewards").removeClass("hidden")
+				}
+				$(".rottenlemons-reward").text(decimal(web3.utils.fromWei(reward)))
+			} else {
+				$(".lemonade-reward").text("...")
+				if($("#lemongame-lemonade-rewards").hasClass("hidden")) {
+					$("#lemongame-lemonade-rewards").removeClass("hidden")
+				}
+				$(".lemonade-reward").text(decimal(web3.utils.fromWei(reward)))
+			}
+		})
 	}
 	catch(e) {
 		console.error(e)
