@@ -436,6 +436,7 @@ async function claimLemonade(id) {
 
 // Returns time left from input seconds 
 // Feel free to use it elsewhere in the future 
+/*
 function getTimeLeft(input) {
 	let timeRemaining = input
 	let minute = 60
@@ -458,4 +459,30 @@ function getTimeLeft(input) {
 		if(dayFloor <= 0 && hourFloor > 0) {return hourFloor + " hours"}
 		if(dayFloor > 0) {return dayFloor + " days"}
 	}
+} */
+
+// Soya fix 
+function getTimeLeft(input) {
+    let timeRemaining = input
+    let minute = 60
+    let hour = 60 * 60
+    let day = 60 * 60 * 24
+    
+    let dayFloor = Math.floor(timeRemaining / day)
+    let hourFloor = Math.floor((timeRemaining - dayFloor * day) / hour)
+    let minuteFloor = Math.floor((timeRemaining - dayFloor * day - hourFloor * hour) / minute)
+    let secondFloor = Math.floor((timeRemaining - dayFloor * day - hourFloor * hour - minuteFloor * minute))
+    if (timeRemaining <= 0) {
+        if(LemonGame.lemonsInCurrentRound >= LemonGame.mintCap) {
+            return "Finished!"
+        } else {
+            return LemonGame.mintCap - parseInt(LemonGame.lemonsInCurrentRound) + " lemons to go"
+        }
+        
+    } else {
+          if(dayFloor > 0) {return dayFloor + " days"}
+        else if(hourFloor > 0) {return hourFloor + " hours"}
+        else if(minuteFloor > 0) {return minuteFloor + " minutes"}
+        else {return secondFloor + " seconds"}
+    }
 }
