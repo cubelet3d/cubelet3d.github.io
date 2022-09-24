@@ -4,5 +4,19 @@
   "description": "This will probably buy me a small nation", 
   "image": "https://team3d.io/inventory/json/14.png",
   "ipfs": "",
-  "slot": ""
+  "slot": "",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Easter egg"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Pouch of Diamonds"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "N/A"
+    }
+  ]
 }

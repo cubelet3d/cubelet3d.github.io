@@ -4,5 +4,19 @@
   "description": "Makes the wearer code more efficiently", 
   "image": "https://team3d.io/inventory/json/3.png",
   "ipfs": "",
-  "slot": ""
+  "slot": "",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "VIP"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Coder's Ring"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "N/A"
+    }
+  ]
 }

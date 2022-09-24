@@ -4,5 +4,19 @@
   "description": "It looks old, but really it's not", 
   "image": "https://team3d.io/inventory/json/17.png",
   "ipfs": "",
-  "slot": ""
+  "slot": "",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Easter egg"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Millenial eye"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "N/A"
+    }
+  ]
 }

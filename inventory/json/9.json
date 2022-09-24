@@ -4,5 +4,19 @@
   "description": "Worn by loyal followers", 
   "image": "https://team3d.io/inventory/json/9.png",
   "ipfs": "",
-  "slot": "2"
+  "slot": "2",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "VIP"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Necklace of Cabal"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Neck"
+    }
+  ]
 }

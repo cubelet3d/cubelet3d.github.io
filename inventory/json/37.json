@@ -4,5 +4,19 @@
   "description": "I wonder how... or even WHERE do I use this?", 
   "image": "https://team3d.io/inventory/json/37.png",
   "ipfs": "",
-  "slot": ""
+  "slot": "",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Mystery"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Unknown schematics"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "N/A"
+    }
+  ]
 }

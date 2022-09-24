@@ -4,5 +4,19 @@
   "description": "It's a torch", 
   "image": "https://team3d.io/inventory/json/1.png",
   "ipfs": "",
-  "slot": "1"
+  "slot": "1",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Misc"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Torch"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Left hand"
+    }
+  ]
 }

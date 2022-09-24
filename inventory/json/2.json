@@ -4,5 +4,19 @@
   "description": "A useful tool and a deadly weapon", 
   "image": "https://team3d.io/inventory/json/2.png",
   "ipfs": "",
-  "slot": "3"
+  "slot": "3",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Misc"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Pitchfork"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Right hand"
+    }
+  ]
 }

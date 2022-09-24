@@ -4,5 +4,19 @@
   "description": "I can't pause it, mom!", 
   "image": "https://team3d.io/inventory/json/35.png",
   "ipfs": "",
-  "slot": "1"
+  "slot": "1",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Misc"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Energy drink"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Left hand"
+    }
+  ]
 }

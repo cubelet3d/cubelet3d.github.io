@@ -4,5 +4,19 @@
   "description": "Party!!!", 
   "image": "https://team3d.io/inventory/json/49.png",
   "ipfs": "",
-  "slot": "0"
+  "slot": "0",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Holiday drop"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Party hat"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Head"
+    }
+  ]
 }

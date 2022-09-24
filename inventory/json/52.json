@@ -4,5 +4,19 @@
   "description": "Feel it in your bones.", 
   "image": "https://team3d.io/inventory/json/52.png",
   "ipfs": "",
-  "slot": "0"
+  "slot": "0",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Holiday drop"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Witch doctor mask"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Head"
+    }
+  ]
 }

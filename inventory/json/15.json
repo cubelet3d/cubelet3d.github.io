@@ -4,5 +4,19 @@
   "description": "Hmm... what if I were to incubate this?", 
   "image": "https://team3d.io/inventory/json/15.png",
   "ipfs": "",
-  "slot": ""
+  "slot": "",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Easter egg"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Egg"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "N/A"
+    }
+  ]
 }

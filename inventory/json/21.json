@@ -4,5 +4,19 @@
   "description": "Useful for calling 1-800 numbers", 
   "image": "https://team3d.io/inventory/json/21.png",
   "ipfs": "",
-  "slot": "1"
+  "slot": "1",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Misc"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Mobile phone"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Left hand"
+    }
+  ]
 }

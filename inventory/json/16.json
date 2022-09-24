@@ -4,5 +4,19 @@
   "description": "By the time you figure out if this works, it may be too late", 
   "image": "https://team3d.io/inventory/json/16.png",
   "ipfs": "",
-  "slot": ""
+  "slot": "",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Misc"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Holy water"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "N/A"
+    }
+  ]
 }

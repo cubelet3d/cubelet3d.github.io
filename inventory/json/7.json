@@ -4,5 +4,19 @@
   "description": "Worn by high level mages", 
   "image": "https://team3d.io/inventory/json/7.png",
   "ipfs": "",
-  "slot": "0"
+  "slot": "0",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "VIP"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Wizard's hat"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Head"
+    }
+  ]
 }

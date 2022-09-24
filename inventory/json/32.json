@@ -8,5 +8,19 @@
   "left" : "19",
   "top" : "-25",
   "width" : "60",
-  "height" : "50"
+  "height" : "50",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Holiday drop"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Santa hat"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Head"
+    }
+  ]
 }

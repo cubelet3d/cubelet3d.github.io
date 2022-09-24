@@ -4,5 +4,19 @@
   "description": "Perhaps this will fix BSOD...", 
   "image": "https://team3d.io/inventory/json/4.png",
   "ipfs": "",
-  "slot": ""
+  "slot": "",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Easter egg"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "RAM 128MB"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "N/A"
+    }
+  ]
 }

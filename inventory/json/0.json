@@ -3,5 +3,19 @@
   "name": "Nothing",
   "description": "It's nothing", 
   "image": "https://team3d.io/inventory/json/0.png",
-  "ipfs": ""
+  "ipfs": "",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "God tier"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Nothing"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "N/A"
+    }	
+  ]
 }

@@ -4,5 +4,19 @@
   "description": "A portable music player", 
   "image": "https://team3d.io/inventory/json/38.png",
   "ipfs": "",
-  "slot": "0"
+  "slot": "0",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Misc"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Walkman"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Head"
+    }
+  ]
 }

@@ -4,5 +4,19 @@
   "description": "Why take the horn when you can have a whole head?", 
   "image": "https://team3d.io/inventory/json/11.png",
   "ipfs": "",
-  "slot": "0"
+  "slot": "0",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Promotional"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Unicorn's head"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Head"
+    }
+  ]
 }

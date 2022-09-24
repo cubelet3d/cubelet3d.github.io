@@ -74,13 +74,13 @@ async function setup() {
 			}
 			if(isMobile) {
 				$(".generator-button-wrapper-mobile").show("scale")
+				$("#lemongame_button_wrapper_mobile").show("scale")
 			} else {
 				$("#generator_button_wrapper").show("scale")
+				$("#lemongame_button_wrapper").show("scale")
 			}
 			
 			$("#browser_button_wrapper").show("scale") // browser 
-			
-			$("#lemongame_button_wrapper").show("scale") // lemonade stand 
         }
 		
 		// Ropsten testnet 

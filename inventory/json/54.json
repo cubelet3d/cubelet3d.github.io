@@ -4,5 +4,19 @@
   "description": "Unlocks hidden stealth mode in Aimboys", 
   "image": "https://team3d.io/inventory/json/54.png",
   "ipfs": "",
-  "slot": "0"
+  "slot": "0",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Holiday drop"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Potion of invisibility"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "N/A"
+    }
+  ]
 }

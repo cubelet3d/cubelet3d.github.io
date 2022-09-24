@@ -4,5 +4,19 @@
   "description": "I should probably handle this very carefully", 
   "image": "https://team3d.io/inventory/json/18.png",
   "ipfs": "",
-  "slot": ""
+  "slot": "",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Promotional"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Dark matter"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "N/A"
+    }
+  ]
 }

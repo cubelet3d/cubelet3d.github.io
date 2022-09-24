@@ -4,5 +4,19 @@
   "description": "You can feel chaotic energies radiate from this item", 
   "image": "https://team3d.io/inventory/json/12.png",
   "ipfs": "",
-  "slot": "0"
+  "slot": "0",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Misc"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Mark of the Talking God"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Head"
+    }
+  ]
 }

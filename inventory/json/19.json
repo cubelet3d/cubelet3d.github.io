@@ -4,5 +4,19 @@
   "description": "The solution to a problem I've not yet found", 
   "image": "https://team3d.io/inventory/json/19.png",
   "ipfs": "",
-  "slot": "3"
+  "slot": "3",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Easter egg"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Tinkerer's wrench"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Right hand"
+    }
+  ]
 }

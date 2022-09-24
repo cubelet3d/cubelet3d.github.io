@@ -4,5 +4,19 @@
   "description": "Somehow this feels oddly familiar...", 
   "image": "https://team3d.io/inventory/json/30.png",
   "ipfs": "",
-  "slot": "1"
+  "slot": "1",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Aimbots"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Skull of the elder"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Left hand"
+    }
+  ]
 }

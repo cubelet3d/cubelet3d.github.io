@@ -4,5 +4,19 @@
   "description": "They're gonna have to torture me for this one", 
   "image": "https://team3d.io/inventory/json/31.png",
   "ipfs": "",
-  "slot": ""
+  "slot": "",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Misc"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Hardware wallet"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "N/A"
+    }
+  ]
 }

@@ -4,14 +4,14 @@ let LemonGame = {
 	interval: null,
 	address: "0xf1261B8aD1a1c1856F0DE117Cd90BAc64b386285",
 	ownedLemons: [],
-	collectionURL: "https://team3d.io",
+	collectionURL: "https://opensea.io/assets/ethereum/ethereum/0xf1261B8aD1a1c1856F0DE117Cd90BAc64b386285",
 	minBalance: 0.1,
 	mintPrice: "100000000000000000", // 0.1 eth  
 	mintCap: 10,
 	tune: new Audio("lemongame/lemontune.mp3")
 }
 
-$(document).on("click", "#lemongame_button_wrapper", function() {
+$(document).on("click", ".lemongame_button_wrapper", function() {
 	if(!LemonGame.online) {
 		initLemonGame()
 	}
@@ -122,7 +122,7 @@ async function initLemonGame() {
 		LemonGame.online = true
 		await lemonGameLoop()
 		populateLemonsList()
-		$("#lemongame_button_wrapper").addClass("disabled")
+		$(".lemongame_button_wrapper").addClass("disabled")
 		LemonGame.interval = setInterval(lemonGameLoop, 2000)
 		LemonGame.tune.loop = true
 		LemonGame.tune.play()		
@@ -179,12 +179,12 @@ async function lemonGameLoop(reload) {
 
 			// Enable / disable buttons 
 			let check = 0
-			if(web3.utils.fromWei(LemonGame.ethBalance) > LemonGame.minBalance) {
+			if(parseFloat(web3.utils.fromWei(LemonGame.ethBalance)) > parseFloat(LemonGame.minBalance)) {
 				check++
 			} else {
 				$("#lemongame-status").text("Not enough ETH to mint")
 			}
-			if(web3.utils.fromWei(LemonGame.pooledEth) < web3.utils.fromWei(LemonGame.hardCap)) {
+			if(parseFloat(web3.utils.fromWei(LemonGame.pooledEth)) < parseFloat(web3.utils.fromWei(LemonGame.hardCap))) {
 				check++
 			} else {
 				$("#lemongame-status").text("Current round sold out!")
@@ -276,7 +276,7 @@ function resetLemonGameInstance() {
 	LemonGame.online = false
 	clearInterval(LemonGame.interval)
 	LemonGame.interval = null
-	$("#lemongame_button_wrapper").removeClass("disabled")
+	$(".lemongame_button_wrapper").removeClass("disabled")
 	$(".lemongame-loading-outer").removeClass("hidden")
 	$(".lemons-raffleIndex").text("...")
 	$(".lemons-lemonsInCurrentRound").text("...")

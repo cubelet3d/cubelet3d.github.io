@@ -4,5 +4,19 @@
   "description": "Feels like it could blow up in your hand any second. Nice.", 
   "image": "https://team3d.io/inventory/json/13.png",
   "ipfs": "",
-  "slot": "1"
+  "slot": "1",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Aimbots"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Flintlock Pistol"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Left hand"
+    }
+  ]
 }
