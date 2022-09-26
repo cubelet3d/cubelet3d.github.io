@@ -254,3 +254,9 @@
 	padding: 0 0.5rem;
     margin: 0.2rem 0;
 }
+.desktop-icon-container {
+	width: 60px; height: 75px; /* let's see */
+}
+#connect > .user-icon {
+	width: 32px; height: 32px; border: 0; 
+}

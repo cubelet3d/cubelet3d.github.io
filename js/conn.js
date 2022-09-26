@@ -23,8 +23,8 @@ async function init() {
 
             $("#connect").addClass("disabled")
             $("#connect").html('<div class="user-icon user-picture margin-right-1rem">\
-            </div><div class="margin-right-1rem"><span id="web3-loading">Loading...</span></div>')
-            $(".user-picture").html('<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>');
+            </div><div><span id="web3-loading">Loading...</span></div>')
+            $(".user-picture").html('<div class="template-loading-outer flex-box flex-start no-pointer-events"><div class="template-loading-inner"></div></div>');
             
             await setup()
             
