@@ -1,5 +1,6 @@
 let Vault
 let VaultAddress = "0xe4684AFE69bA238E3de17bbd0B1a64Ce7077da42"
+let ethVidyaLP
 
 let Generator = {
 	endCommitClick: 0,
@@ -207,6 +208,7 @@ $(document).ready(function() {
 		if(!Generator.online) {
 			Generator.online = true
 			loadGeneratorRates()
+			ethVidyaLP = new web3.eth.Contract(ethVidyaLPABI, Generator.pool.eth.lptoken)
 			$("#generator_button").addClass("disabled")
 		} else {
 			Generator.online = false
@@ -880,26 +882,36 @@ function allTheNormalPeople() {
 
 async function loadGeneratorRates() {
 	try {
-	Vault = new web3.eth.Contract(VaultABI, VaultAddress)
-	let vidyaRate = await Vault.methods.vidyaRate().call()
-	let totalPriority = await Vault.methods.totalPriority().call()
-	let ethvidyaPriority = await Vault.methods.tellerPriority(Generator.pool.eth.teller).call()
-	let singlePriority = await Vault.methods.tellerPriority(Generator.pool.single.teller).call()
-	let totalDistributed = await Vault.methods.totalDistributed().call()
-	
-	await loadTellerBalances()
-	
-	vidyaRate = parseFloat(web3.utils.fromWei(vidyaRate))
-	totalPriority = parseFloat(web3.utils.fromWei(totalPriority))
-	ethvidyaPriority = parseFloat(web3.utils.fromWei(ethvidyaPriority))
-	singlePriority = parseFloat(web3.utils.fromWei(singlePriority))
+		Vault = new web3.eth.Contract(VaultABI, VaultAddress)
+		let vidyaRate = await Vault.methods.vidyaRate().call()
+		let totalPriority = await Vault.methods.totalPriority().call()
+		let ethvidyaPriority = await Vault.methods.tellerPriority(Generator.pool.eth.teller).call()
+		let singlePriority = await Vault.methods.tellerPriority(Generator.pool.single.teller).call()
+		let totalDistributed = await Vault.methods.totalDistributed().call()
+		
+		await loadTellerBalances()
+		
+		vidyaRate = parseFloat(web3.utils.fromWei(vidyaRate))
+		//totalPriority = parseFloat(web3.utils.fromWei(totalPriority))
+		//ethvidyaPriority = parseFloat(web3.utils.fromWei(ethvidyaPriority))
+		//singlePriority = parseFloat(web3.utils.fromWei(singlePriority))
 
-	let ethvidyaDistRate = (vidyaRate / totalPriority * ethvidyaPriority) * 13
-	$("#ethvidyaDistRate").text(ethvidyaDistRate.toFixed(4) + ' VIDYA per block')
-	let singlevidyaDistRate = (vidyaRate / totalPriority * singlePriority) * 13 
-	$("#singlevidyaDistRate").text(singlevidyaDistRate.toFixed(4) + ' VIDYA per block')
-	
-	$("#GeneratorTotalDistributed").text(abbr(parseFloat(web3.utils.fromWei(totalDistributed)), 1) + ' VIDYA')
+		let ethvidyaDistRate = (vidyaRate / totalPriority * ethvidyaPriority) * 13
+		$("#ethvidyaDistRate").text(ethvidyaDistRate.toFixed(4) + ' VIDYA per block')
+		let singlevidyaDistRate = (vidyaRate / totalPriority * singlePriority) * 13 
+		$("#singlevidyaDistRate").text(singlevidyaDistRate.toFixed(4) + ' VIDYA per block')
+		
+		$("#GeneratorTotalDistributed").text(abbr(parseFloat(web3.utils.fromWei(totalDistributed)), 1) + ' VIDYA')
+		
+		// APR things (thanks Soya and Blast)
+		Generator.pool.eth.lptokenTotalSupply = await ethVidyaLP.methods.totalSupply().call()
+		await ethVidyaLP.methods.getReserves().call().then(function(r) {
+			let lmao = (web3.utils.fromWei(r[0]) * 2) * (Generator.vidyaEthBalance / Generator.pool.eth.lptokenTotalSupply)
+			Generator.pool.eth.apr = (vidyaRate * 60 * 60 * 24 * 365 * ethvidyaPriority) / (totalPriority * lmao) * 100
+			$("#ethVidyaApr").text(Generator.pool.eth.apr.toFixed(2) + "%")
+		})
+		Generator.pool.single.apr = (vidyaRate * 60 * 60 * 24 * 365 * singlePriority) / (totalPriority * web3.utils.fromWei(Generator.vidyaSingleBalance)) * 100
+		$("#singleVidyaApr").text(Generator.pool.single.apr.toFixed(2) + "%")		
 	}
 	catch(e) {
 		console.error(e)
@@ -909,11 +921,12 @@ async function loadGeneratorRates() {
 // March 15, 2022 Update 
 loadTellerBalances = async () => {
 	Generator.vidyaEthTeller = new web3.eth.Contract(LPTokenABI, Generator.pool.eth.lptoken)
-	let vidyaEthBalance = await Generator.vidyaEthTeller.methods.balanceOf(Generator.pool.eth.teller).call()
-	$('#vidyaEthTellerBalance').text(abbr(parseFloat(web3.utils.fromWei(vidyaEthBalance)), 1) + ' LP')
+	Generator.vidyaEthBalance = await Generator.vidyaEthTeller.methods.balanceOf(Generator.pool.eth.teller).call()
+	$('#vidyaEthTellerBalance').text(abbr(parseFloat(web3.utils.fromWei(Generator.vidyaEthBalance)), 1) + ' LP')
+	
 	Generator.vidyaSingleTeller = new web3.eth.Contract(LPTokenABI, Generator.pool.single.lptoken)
-	let vidyaSingleBalance = await Generator.vidyaSingleTeller.methods.balanceOf(Generator.pool.single.teller).call()
-	$('#vidyaSingleTellerBalance').text(abbr(parseFloat(web3.utils.fromWei(vidyaSingleBalance)), 1) + ' VIDYA')
+	Generator.vidyaSingleBalance = await Generator.vidyaSingleTeller.methods.balanceOf(Generator.pool.single.teller).call()
+	$('#vidyaSingleTellerBalance').text(abbr(parseFloat(web3.utils.fromWei(Generator.vidyaSingleBalance)), 1) + ' VIDYA')
 }
 
 loadGeneratorEventLog = async (pool) => {
@@ -924,7 +937,6 @@ loadGeneratorEventLog = async (pool) => {
 	// let singleLP = new web3.eth.Contract(TellerABI, Generator.pool.single.teller)
 	
 	if(pool == "eth") {
-		let ethVidyaLP = new web3.eth.Contract(ethVidyaLPABI, "0xDA3706c9A099077e6BC389D1baf918565212A54D")
 		let reserves = await ethVidyaLP.methods.getReserves().call()
 		let totalSupply = await ethVidyaLP.methods.totalSupply().call()
 		let vidya = web3.utils.fromWei(reserves[0])
