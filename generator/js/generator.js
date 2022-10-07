@@ -625,10 +625,12 @@ async function generatorLoop() {
 			
 			$("#generator-balance").text(b)
 			
-			await LPInUSD().then(function(r) {
-				let t = b * r 
-				$("#generator-balance").prop("title", "$"+decimal(t.toString())+" USD")
-			})
+			if(User.currentPool == "eth") {
+				await LPInUSD().then(function(r) {
+					let t = b * r 
+					$("#generator-balance").prop("title", "$"+decimal(t.toString())+" USD")
+				})
+			}
 		})
 		
 		// Check if LP token is approved for use on Teller and User has LP token balance > 0 
