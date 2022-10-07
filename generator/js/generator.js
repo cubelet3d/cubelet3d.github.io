@@ -603,7 +603,7 @@ async function generatorLoop() {
 		})
 		
 		// Check for LP token balance  
-		await Generator.instance.methods.balanceOf(accounts[0]).call().then(function(r) {
+		await Generator.instance.methods.balanceOf(accounts[0]).call().then(async function(r) {
 			if(r != User.balance) {
 				User.balance = r
 			}
@@ -621,7 +621,14 @@ async function generatorLoop() {
 				$("#generator-balance-container, #generator-deposit-container input, #generator-deposit-max-button").addClass("disabled")
 			}
 			
-			$("#generator-balance").text(web3.utils.fromWei(User.balance))
+			let b = web3.utils.fromWei(User.balance)
+			
+			$("#generator-balance").text(b)
+			
+			await LPInUSD().then(function(r) {
+				let t = b * r 
+				$("#generator-balance").prop("title", "$"+decimal(t.toString())+" USD")
+			})
 		})
 		
 		// Check if LP token is approved for use on Teller and User has LP token balance > 0 
@@ -636,7 +643,7 @@ async function generatorLoop() {
 		}
 		
 		// Check for deposited LP & other things from getUserInfo() call
-		await Generator.teller.methods.getUserInfo(accounts[0]).call({from: accounts[0]}).then(function(r) {
+		await Generator.teller.methods.getUserInfo(accounts[0]).call({from: accounts[0]}).then(async function(r) {
 		    
 			// r[0] = time left to unlock 
 			if(r[0] > 0) {
@@ -654,7 +661,10 @@ async function generatorLoop() {
 			    if(r[1] != User.commitment.amount) {
 				    User.commitment.amount = r[1]
 				    User.commitment.status = true
-				    $("#generator-commited-amount").text(generatorTruncateDecimal(web3.utils.fromWei(User.commitment.amount)))
+					let amt = generatorTruncateDecimal(web3.utils.fromWei(User.commitment.amount))
+					let usd = await LPInUSD()
+					let lol = abbr(amt * usd)
+				    $("#generator-commited-amount").text(amt + " ($"+lol+" USD)")
 			    }
 			} else {
 			    if(User.commitment.amount > 0) {
@@ -737,8 +747,13 @@ async function generatorLoop() {
 				User.deposited = r[4]
 			}
 			if(User.deposited > 0) {
-				$("#generator-deposited").text(web3.utils.fromWei(User.deposited))
+				let d = web3.utils.fromWei(User.deposited)
+				$("#generator-deposited").text(d)
 				$("#generator-deposited-container").removeClass("disabled")
+				await LPInUSD().then(function(r) {
+					let t = d * r 
+					$("#generator-deposited").prop("title", "$"+decimal(t.toString())+" USD")
+				})
 			} else {
 				$("#generator-deposited").text("0")
 				$("#generator-deposited-container").addClass("disabled")
@@ -937,12 +952,13 @@ loadGeneratorEventLog = async (pool) => {
 	// let singleLP = new web3.eth.Contract(TellerABI, Generator.pool.single.teller)
 	
 	if(pool == "eth") {
-		let reserves = await ethVidyaLP.methods.getReserves().call()
+		/*let reserves = await ethVidyaLP.methods.getReserves().call()
 		let totalSupply = await ethVidyaLP.methods.totalSupply().call()
 		let vidya = web3.utils.fromWei(reserves[0])
 		let eth = web3.utils.fromWei(reserves[1])
 		let totalValue = (vidya * price_vidya) + (eth * price_eth)
-		let lptokenValue = totalValue / web3.utils.fromWei(totalSupply) 
+		let lptokenValue = totalValue / web3.utils.fromWei(totalSupply)*/
+		let lptokenValue = await LPInUSD()
 		await web3.eth.getBlockNumber().then(function(r) {
 			let fromBlock = r - 46522 // Approx 7 days ago
 			Generator.teller.events.allEvents({fromBlock: fromBlock}, function(error, event) {
@@ -997,4 +1013,19 @@ loadClaimAmountFromTx = async(txHash, element) => {
 	await web3.eth.getTransactionReceipt(txHash).then(function(r) {
 		$(element).text(abbr(parseFloat(web3.utils.fromWei(web3.utils.hexToNumberString(r.logs[0].data))), 1)+' ($'+abbr(parseFloat(price_vidya*web3.utils.fromWei(web3.utils.hexToNumberString(r.logs[0].data))), 1)+' USD)')
 	})
+}
+
+LPInUSD = async() => {
+	try {
+		let reserves = await ethVidyaLP.methods.getReserves().call()
+		let totalSupply = await ethVidyaLP.methods.totalSupply().call()
+		let vidya = web3.utils.fromWei(reserves[0])
+		let eth = web3.utils.fromWei(reserves[1])
+		let totalValue = (vidya * price_vidya) + (eth * price_eth)
+		let lptokenValue = totalValue / web3.utils.fromWei(totalSupply)
+		return lptokenValue
+	}
+	catch(e) {
+		console.error(e)
+	}
 }
