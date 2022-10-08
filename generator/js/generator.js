@@ -630,6 +630,11 @@ async function generatorLoop() {
 					let t = b * r 
 					$("#generator-balance").prop("title", "$"+decimal(t.toString())+" USD")
 				})
+			} else if(User.currentPool == "single") {
+				let t = b * price_vidya 
+				$("#generator-balance").prop("title", "$"+decimal(t.toString())+" USD")
+			} else {
+				// idk bru 
 			}
 		})
 		
@@ -664,8 +669,17 @@ async function generatorLoop() {
 				    User.commitment.amount = r[1]
 				    User.commitment.status = true
 					let amt = generatorTruncateDecimal(web3.utils.fromWei(User.commitment.amount))
-					let usd = await LPInUSD()
-					let lol = abbr(amt * usd)
+					let lol = null
+					if(User.currentPool == "eth") {
+						let usd = await LPInUSD()
+						lol = abbr(amt * usd)
+					}
+					else if(User.currentPool == "single") {
+						lol = abbr(amt * price_vidya)
+					}
+					else {
+						error("Hallelujah!")
+					}
 				    $("#generator-commited-amount").text(amt + " ($"+lol+" USD)")
 			    }
 			} else {
@@ -752,10 +766,16 @@ async function generatorLoop() {
 				let d = web3.utils.fromWei(User.deposited)
 				$("#generator-deposited").text(d)
 				$("#generator-deposited-container").removeClass("disabled")
-				await LPInUSD().then(function(r) {
-					let t = d * r 
+				if(User.currentPool == "eth") {
+					await LPInUSD().then(function(r) {
+						let t = d * r 
+						$("#generator-deposited").prop("title", "$"+decimal(t.toString())+" USD")
+					})
+				}
+				else if(User.currentPool == "single") {
+					let t = d * price_vidya
 					$("#generator-deposited").prop("title", "$"+decimal(t.toString())+" USD")
-				})
+				}
 			} else {
 				$("#generator-deposited").text("0")
 				$("#generator-deposited-container").addClass("disabled")
