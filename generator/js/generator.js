@@ -612,11 +612,13 @@ async function generatorLoop() {
 					$("#generator-balance-container, #generator-deposit-container input, #generator-deposit-max-button").removeClass("disabled")
 				}
 			} else {
-				if(!Generator.notification) {
-					if(!User.commitment.status) {
-					  notify('You can get Liquidity Pool tokens from <a href="'+Generator.pool[User.currentPool].url+'" target="_blank">Uniswap</a>')
+				if(User.currentPool == "eth") {
+					if(!Generator.notification) {
+						if(!User.commitment.status) {
+						  notify('You can get Liquidity Pool tokens from <a href="'+Generator.pool[User.currentPool].url+'" target="_blank">Uniswap</a>')
+						}
+						Generator.notification = true
 					}
-					Generator.notification = true
 				}
 				$("#generator-balance-container, #generator-deposit-container input, #generator-deposit-max-button").addClass("disabled")
 			}
@@ -769,7 +771,7 @@ async function generatorLoop() {
 				if(User.currentPool == "eth") {
 					await LPInUSD().then(function(r) {
 						let t = d * r 
-						$("#generator-deposited").prop("title", "$"+decimal(t.toString())+" USD")
+ 						$("#generator-deposited").prop("title", "$"+decimal(t.toString())+" USD")
 					})
 				}
 				else if(User.currentPool == "single") {
