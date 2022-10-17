@@ -52,6 +52,7 @@ $(document).on("click", ".lemongame-rottenlemon", function() {
 	let id = $(this).attr("data")
 	$(".lemongame-rottenlemon").removeClass("template-console-header-menu-active")
 	$('.lemongame-rottenlemon[data~="'+id+'"]').addClass("template-console-header-menu-active")
+	$("#lemongame-claim-rottenlemon").show()
 	LemonGame.activeRottenLemon = id 
 	drawConsolationInfo(id)
 })
@@ -70,6 +71,7 @@ $(document).on("click", ".lemongame-lemonade", function() {
 	let id = $(this).attr("data")
 	$(".lemongame-lemonade").removeClass("template-console-header-menu-active")
 	$('.lemongame-lemonade[data~="'+id+'"]').addClass("template-console-header-menu-active")
+	$("#lemongame-claim-lemonade").show() 
 	LemonGame.activeLemonade = id 
 	drawConsolationInfo(id)
 })
@@ -398,7 +400,10 @@ async function claimRottenLemon(id) {
 			if (index !== -1) {
 			  LemonGame.ownedRottenLemons.splice(index, 1)
 			}
-			$('.lemongame-rottenlemon[data~="'+id+'"]').remove() 
+			$('.lemongame-rottenlemon[data~="'+id+'"]').remove()
+			$(".rottenlemons-reward").text("...")
+			$("#lemongame-rottenlemon-rewards").addClass("hidden")
+			$("#lemongame-claim-rottenlemon").hide()
 			if(LemonGame.ownedRottenLemons.length == 0) {
 				$("#owned-rottenlemons").html('<div class="flex-box flex-center lemongame-nolemons"><div>No rotten lemons</div></div>')
 			}
@@ -423,6 +428,9 @@ async function claimLemonade(id) {
 			  LemonGame.ownedLemonade.splice(index, 1)
 			}
 			$('.lemongame-lemonade[data~="'+id+'"]').remove() 
+			$(".lemonade-reward").text("...")
+			$("#lemongame-lemonade-rewards").addClass("hidden")
+			$("#lemongame-claim-lemonade").hide()
 			if(LemonGame.ownedLemonade.length == 0) {
 				$("#owned-lemonade").html('<div class="flex-box flex-center lemongame-nolemons"><div>No lemonade</div></div>')
 			}

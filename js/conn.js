@@ -109,6 +109,8 @@ async function setup() {
 			// Console errors due to no inventory, no vidya, no nothing. Idk why anyone would choose to test on this network... 
 			$(".mainnet_object").fadeOut()
 			$("#multipass_button_wrapper").show("scale")
+			inventoryContract = "0x7F228DA87316C9F3E9D695858cF54F5cF25566d2" 
+			await loadInventory()
 		}
 		
 		// The useless Polygon 
