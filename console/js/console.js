@@ -19,7 +19,8 @@ const commands = [
 	"get",
 	"cubescape",
 	"fixscarf",
-	"grr"
+	"grr",
+	"doom"
 ]
 
 var command = "cmd"
@@ -126,7 +127,7 @@ function processCommand(cmd) {
 			
 			case "cubescape":
 			if(!window.location.href.includes("https")) {
-			$("#desk").append('<div id="cubescape" class="console absolute draggable ui-draggable active-console" data="cubescape" style="width: 518px; height: 388px; overflow: hidden;"><div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical"><div class="flex-box center-vertical"><div class="icon desktop-exe"></div><div class="consoleTitle default">C:\team3d\CubeScape.jar</div></div><div class="flex-box"><button class="minimize_button">_</button><button class="close_button">X</button></div></div><iframe src="http://13.51.170.52/client/#members,13.51.170.52,80,65537,7201400650430333022929044024192399910487638020720817675284860205859231816832336418245822654520187327018485587023447543364288069097738462129828831570588879,true" height="350px" width="513px" style="border: 0; overflow: hidden; display: block; background: transparent;"></iframe></div>');
+			$("#desk").append('<div id="cubescape" class="console absolute draggable ui-draggable active-console" data="cubescape" style="width: 518px; height: 388px; overflow: hidden;"><div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical"><div class="flex-box center-vertical"><div class="icon desktop-exe"></div><div class="consoleTitle default">C:\\team3d\\CubeScape.jar</div></div><div class="flex-box"><button class="minimize_button">_</button><button class="close_button">X</button></div></div><iframe src="http://13.51.170.52/client/#members,13.51.170.52,80,65537,7201400650430333022929044024192399910487638020720817675284860205859231816832336418245822654520187327018485587023447543364288069097738462129828831570588879,true" height="350px" width="513px" style="border: 0; overflow: hidden; display: block; background: transparent;"></iframe></div>');
 			} else {
 				error('<div style="font-size:90%">Cubescape does not work on https. Try running on localhost or play <a style="border-bottom:2px solid white" href="http://cubescape.lol/" target="_blank">here</a> instead.</div>')
 			}
@@ -144,6 +145,11 @@ function processCommand(cmd) {
 				shooting.active = true 
 				shooting.pistol = true 
 				$("#Main").append('<div id="shootme" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 9999; background: rgba(0, 0, 0, 0.1)"></div>')
+			break;
+			
+			case "doom": 
+			$("#desk").append('<div id="doom" class="console absolute draggable" data="doom" style="width: 646px; height: 446px;"><div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical"><div class="flex-box center-vertical"><div class="icon desktop-exe"></div><div class="consoleTitle default">C:\\team3d\\DOOM.EXE</div></div><div class="flex-box"><button class="minimize_button">_</button><button class="close_button">X</button></div></div><div class="console-content flex-box flex-center scrollbar"><div></div></div></div>')
+			loadGame("doom")
 			break;
 		}
 	} else {
