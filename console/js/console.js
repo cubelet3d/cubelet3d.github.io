@@ -148,7 +148,7 @@ function processCommand(cmd) {
 			break;
 			
 			case "doom": 
-			$("#desk").append('<div id="doom" class="console absolute draggable" data="doom" style="width: 646px; height: 446px;"><div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical"><div class="flex-box center-vertical"><div class="icon desktop-exe"></div><div class="consoleTitle default">C:\\team3d\\DOOM.EXE</div></div><div class="flex-box"><button class="minimize_button">_</button><button class="close_button">X</button></div></div><div class="console-content flex-box flex-center"><div></div></div></div>')
+			$("#desk").append('<div id="doom" class="console absolute draggable" data="doom" style="width: 646px; height: 446px;"><div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical"><div class="flex-box center-vertical"><div class="icon desktop-exe"></div><div class="consoleTitle default">C:\\team3d\\DOOM.EXE</div></div><div class="flex-box"><button class="minimize_button">_</button><button class="close_button">X</button></div></div><div class="console-content flex-box flex-center" style="overflow: hidden;"><div></div></div></div>')
 			loadGame("doom")
 			break;
 		}
