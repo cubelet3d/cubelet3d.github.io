@@ -272,8 +272,8 @@ async function initializeMultiPass() {
 function resetMultiPassInstance() {
 	console.log("Resetting MultiPass...")
 	MultiPass.instance = null
-	MultiPass.Filler.description = "Bro can you not"
-	MultiPass.Filler.src = "whatever.mp4"
+	MultiPass.Filler.description = "MultiPass is an experimental new concept where NFTs are backed by Ethereum which can be redeemed at any time by the owner."
+	MultiPass.Filler.src = "../multipass/img/5.mp4"
 	MultiPass.activeTokenId = null
 	MultiPass.currentBuyPriceInWei = null
 	MultiPass.statistics = {}
