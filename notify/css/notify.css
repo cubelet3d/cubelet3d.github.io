@@ -131,3 +131,7 @@
     position: absolute;
     right: 10px;
 }
+
+.error-msg {
+	overflow-wrap: anywhere; 
+}

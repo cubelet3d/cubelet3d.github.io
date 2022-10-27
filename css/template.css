@@ -1,4 +1,9 @@
 /* General purpose template for various executables */
+.truncate {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 .uppercase {
 	text-transform: uppercase; 
 }

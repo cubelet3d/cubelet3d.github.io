@@ -1,0 +1,22 @@
+{
+  "template": "57",
+  "name": "Burnt offering",
+  "description": "In fire is both sacrifice and renewal. The destruction of the old, dead and unwanted. The nourishing of the new, living and desired. To give of yourself wholly unto an emergent path.", 
+  "image": "https://team3d.io/inventory/json/57.png",
+  "ipfs": "",
+  "slot": "",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Easter egg"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Burnt offering"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "N/A"
+    }
+  ]
+}
