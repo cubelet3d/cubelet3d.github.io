@@ -69,6 +69,9 @@ input[type=number] {
     font-size: 80%;
     margin: .5rem 0;
 }
+.examine {
+	max-width: 402.8px; 
+}
 #inventory {
     width: auto;
 	height: 580px;
