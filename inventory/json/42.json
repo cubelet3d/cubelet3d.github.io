@@ -1,0 +1,22 @@
+{
+  "template": "42",
+  "name": "Otherworld Armour",
+  "description": "Of the few who traverse between worlds and survive, fewer still return adorning the armour of the black god—and his many voices.", 
+  "image": "https://team3d.io/inventory/json/42.png",
+  "ipfs": "",
+  "slot": "0",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Holiday drop"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Otherworld Armour"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Head"
+    }
+  ]
+}
