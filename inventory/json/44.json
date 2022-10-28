@@ -1,0 +1,22 @@
+{
+  "template": "44",
+  "name": "Credit chip",
+  "description": "This can be exchanged in order to redeem something. I wonder what?", 
+  "image": "https://team3d.io/inventory/json/44.png",
+  "ipfs": "",
+  "slot": "",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Promotional"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Credit chip"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "N/A"
+    }
+  ]
+}
