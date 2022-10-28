@@ -1,0 +1,22 @@
+{
+  "template": "43",
+  "name": "Plague Doctor Mask",
+  "description": "Where pestilence goes, its visage follows. What's behind the mask matters little, for only the face of death is seen by those unlucky enough to behold it.", 
+  "image": "https://team3d.io/inventory/json/43.png",
+  "ipfs": "",
+  "slot": "0",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Holiday drop"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Plague Doctor Mask"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "Head"
+    }
+  ]
+}
