@@ -184,7 +184,7 @@ $(function() {
     $(".draggable").draggable({
         containment: "parent",
         handle: ".handle",
-        snap: true,
+        snap: false,
         start: function (e, ui) {
             $(this).addClass("dragging")
         },
