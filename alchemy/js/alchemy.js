@@ -12,7 +12,7 @@ let Alchemy = {
 	claimed: false,
 	hints: {
 		"56": 'Nudimmud narrowed the great tribal chasms that men could move freely between them, intermingling until they cohered as one. Thereafter, they proclaimed: "O lord, thankful are we for this bounty, one which you have bestowed at a juncture duly fixed. Verily, the yoke of ignorance has lifted from our napes, founding from our many nations a kin of blood and spirit".',
-		"57": "The altar demands an offering",
+		"57": "The altar demands an offering of the flesh.",
 		"58": "Of the watchers, one awaits you. Ask, and it shall be given you; seek, and ye shall find; knock, and it shall be opened unto you.",
 		"59": "Hosts of little lies grow through every somber truth. Yearning vivaciously, seeking ultimate pleasure, your dilating appetite presumes life's inclinations.",
 		"60": "U2VlayBvdXQgdGhlIHdpdGNoLg=="
