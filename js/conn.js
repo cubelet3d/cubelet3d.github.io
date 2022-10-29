@@ -81,35 +81,19 @@ async function setup() {
 			}
 			
 			$("#browser_button_wrapper").show("scale") // browser 
+			
+			$("#alchemy_button_wrapper").show("scale")
         }
-		
-		// Ropsten testnet 
-		else if(chainID == 3) {
-			notify("Connected to Ropsten testnet!")
-			/*  Ropsten Inventory
-				Note that present and distributor contracts don't exist on Ropsten right now
-				hence the console errors as inventory.js is trying to find 'em */
-			VidyaAddress = "0x0CbCaFD9f1B9d7c41B6F55BbddE06Bee3Aa7B791"
-			inventoryContract = "0x38090E1107c3163703F6AdCb811AAfdEbBd6f651" 
-			await loadInventory()
-		}
-		
-		
-		// Rinkeby 
-		else if(chainID == 4) {
-			notify("Connected to Rinkeby testnet!")
-			VidyaAddress = "0x071a2A775b76387e6B58b39b2D43ce74A7302277"
-			inventoryContract = "0x0CbCaFD9f1B9d7c41B6F55BbddE06Bee3Aa7B791" 
-			// Similarly to Ropsten, the Rinkeby network doesn't have present and distributor either 
-			await loadInventory()
-		}
 		
 		// "Girly" network  
 		else if(chainID == 5) {
-			// Console errors due to no inventory, no vidya, no nothing. Idk why anyone would choose to test on this network... 
+			notify("Connected to Goerli testnet!")
 			$(".mainnet_object").fadeOut()
 			$("#multipass_button_wrapper").show("scale")
-			inventoryContract = "0x7F228DA87316C9F3E9D695858cF54F5cF25566d2" 
+			// $("#alchemy_button_wrapper").show("scale")
+			VidyaAddress = "0xFFE93E63E94da7A44739b6aBFA25B81CEd979a6b"
+			distributorContract = "0xc26dEe9B7530e2c47eE2E87f4323A346432208B2"
+			inventoryContract = "0xfbCc08d711664Fe9514404e4d9597774Ae3A0a63" 
 			await loadInventory()
 		}
 		

@@ -5,6 +5,9 @@
   "image": "https://team3d.io/inventory/json/42.png",
   "ipfs": "",
   "slot": "0",
+  "top": "-14",
+  "width" : "60",
+  "height" : "50",
   "attributes": [
 	{
       "trait_type": "Category", 

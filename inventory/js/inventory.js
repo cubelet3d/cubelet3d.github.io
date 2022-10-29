@@ -18,7 +18,7 @@ let tokenBalance
 
 let hasMakeitStack = false
 
-let totalTemplates = 55
+let totalTemplates = 60
     
 let inventoryUserItems = [] // Array of tokenId's the user owns 
 let inventoryUserTemplates = [] // Array of templateId's the user owns 
@@ -371,6 +371,25 @@ async function load() {
                     })
                 })
             }
+			
+			// Custom CSS for Otherworld Armour 
+			if(filename == "42.json") {
+				$(".head-slot").css({
+					"width" : "50px",
+					"height" : "50px",
+					"top" : "-14px"
+				})
+			}
+			
+			// Custom CSS for Plague Doctor Mask 
+			if(filename == "43.json") {
+				$(".head-slot").css({
+					"width" : "55px",
+					"height" : "55px",
+					"top" : "-20px",
+					"left" : "30px"
+				})	
+			}
 			
 			// Custom CSS for phats... yes I know, please give me a break. 
 			if(filename == "46.json" || filename == "47.json" || filename == "48.json" || filename == "49.json" || filename == "50.json" || filename == "51.json") {

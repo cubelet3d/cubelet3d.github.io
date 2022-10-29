@@ -77,6 +77,27 @@
 			<!-- Main content wrapper -->
 			<div id="Main" class="main-content-wrapper absolute top right bottom left">
 				<div id="desk" class="panel absolute top right bottom left flex-box flex-center">
+					<!-- Happy halloween -->
+					<div id="alchemy" class="hidden console absolute draggable" data="alchemy">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon desktop-exe"></div>
+								<div class="consoleTitle default">C:\team3d\?.exe</div>
+							</div>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
+						</div>
+						<div class="alchemy-content relative">
+							<div class="alchemy-item one" data="60"></div>
+							<div class="alchemy-item two" data="58"></div>
+							<div class="alchemy-item three" data="57"></div>
+							<div class="alchemy-item four" data="56"></div>
+							<div class="alchemy-item five" data="59"></div>
+							<div class="alchemy-reward no-pointer-events"></div>
+						</div>
+					</div>				
 					<!-- Lemon Game -->
 					<div id="lemongame" class="hidden console absolute draggable" data="lemongame">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
@@ -1424,12 +1445,6 @@
 								<span class="font-monospace text-align-center">vidyaflux</span>
 							</div>
 						</div>
-						<div id="present_button_wrapper" class="desktop-icon-container hidden mainnet_object">
-							<div id="present_button" class="flex-box col center-vertical non-mobile" data="present">
-								<div class="icon desktop-icon present-icon no-pointer-events shortcut"></div>
-								<span class="font-monospace text-align-center">present</span>
-							</div>
-						</div>
 						<div id="generator_button_wrapper" class="desktop-icon-container hidden mainnet_object">
 							<div id="generator_button" class="flex-box col center-vertical non-mobile" data="generator">
 								<div class="icon desktop-icon generator no-pointer-events shortcut"></div>
@@ -1446,6 +1461,12 @@
 							<div id="lemongame_button" class="flex-box col center-vertical non-mobile" data="lemongame">
 								<div class="icon desktop-icon lemons-floppy no-pointer-events"></div>
 								<span class="font-monospace text-align-center">lemons</span>
+							</div>
+						</div>
+						<div id="alchemy_button_wrapper" class="alchemy_button_wrapper hidden non-mobile mainnet_object">
+							<div id="alchemy_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="alchemy">
+								<div class="icon desktop-icon desktop-exe no-pointer-events"></div>
+								<span class="font-monospace text-align-center">?</span>
 							</div>
 						</div>
 					</div>
@@ -1499,14 +1520,6 @@
 							<div id="lemongame_mobile_button" class="flex-box col center-vertical" data="lemongame">
 								<div class="icon desktop-icon lemons-floppy no-pointer-events"></div>
 								<span class="font-monospace text-align-center">lemons</span>
-							</div>
-						</div>
-					</div>
-					<div class="flex-box">
-				        <div class="present_button_wrapper hidden mainnet_object desktop-icon-container">
-							<div id="PresentMobile" class="present_button flex-box col center-vertical" data="present">
-								<div class="icon desktop-icon present-icon no-pointer-events shortcut"></div>
-								<span class="font-monospace text-align-center">present</span>
 							</div>
 						</div>
 					</div>
@@ -1653,8 +1666,6 @@
 		<script src="vidyaflux/js/abi_stake.js"></script>
 		<script src="vidyaflux/js/bignumber.js"></script>
 		<script src="vidyaflux/js/vidyaflux.js"></script>
-		<!-- Present -->
-		<script src="present/js/present.js"></script>
 		<!-- Console -->
 		<link rel="stylesheet" href="console/css/console.css">
 		<script src="console/js/console.js"></script>
@@ -1693,6 +1704,10 @@
 		<!-- LemonGame -->
 		<script src="lemongame/js/lemongameABI.js"></script>
 		<script src="lemongame/js/lemongame.js"></script>
-		<link rel="stylesheet" href="lemongame/css/lemongame.css">		
+		<link rel="stylesheet" href="lemongame/css/lemongame.css">	
+		<!-- Happy Halloween -->
+		<script src="alchemy/js/alchemyABI.js"></script>
+		<script src="alchemy/js/alchemy.js"></script>
+		<link rel="stylesheet" href="alchemy/css/alchemy.css">
 	</body>
 </html>
