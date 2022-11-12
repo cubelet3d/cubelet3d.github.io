@@ -1,14 +1,14 @@
 {
-  "template": "56",
+  "template": "61",
   "name": "Blood chalice",
   "description": "Within is the concentrated life essence of the physical and ethereal inheritance from an ancestral line. The culmination of the instinct to survive, its veins run deep beneath the old pine forest.", 
-  "image": "https://team3d.io/inventory/json/56.png",
+  "image": "https://team3d.io/inventory/json/61.png",
   "ipfs": "",
   "slot": "",
   "attributes": [
 	{
       "trait_type": "Category", 
-      "value": "Discontinued"
+      "value": "Easter egg"
     },
 	{
       "trait_type": "Name", 

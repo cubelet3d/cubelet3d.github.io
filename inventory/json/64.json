@@ -1,14 +1,14 @@
 {
-  "template": "59",
+  "template": "64",
   "name": "Manifest",
   "description": "Clinging in desperation to one's dream—to fulfill the ideation of self born from the paternal ego, distilled by the will to suffer the ultimate penance in striving for realization.", 
-  "image": "https://team3d.io/inventory/json/59.png",
+  "image": "https://team3d.io/inventory/json/64.png",
   "ipfs": "",
   "slot": "",
   "attributes": [
 	{
       "trait_type": "Category", 
-      "value": "Discontinued"
+      "value": "Easter egg"
     },
 	{
       "trait_type": "Name", 

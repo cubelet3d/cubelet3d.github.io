@@ -1,14 +1,14 @@
 {
-  "template": "60",
+  "template": "65",
   "name": "Lock of Hair",
   "description": "For some, desire presents a power of the utmost potency. The primal fear of relinquishing love may drive the otherwise goodly to carry out the ultimate evil, going to any end to maintain their soul's union with another—in life and in death.", 
-  "image": "https://team3d.io/inventory/json/60.png",
+  "image": "https://team3d.io/inventory/json/65.png",
   "ipfs": "",
   "slot": "",
   "attributes": [
 	{
       "trait_type": "Category", 
-      "value": "Discontinued"
+      "value": "Easter egg"
     },
 	{
       "trait_type": "Name", 

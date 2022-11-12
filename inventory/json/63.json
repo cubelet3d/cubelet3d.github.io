@@ -1,14 +1,14 @@
 {
-  "template": "58",
+  "template": "63",
   "name": "Stolen bone",
   "description": "The earth shifts and churns in its own tides, rolling in the current of ever-present change. The secrets it once held deep in the quiet slumber of its bosom oft find their path to the light.", 
-  "image": "https://team3d.io/inventory/json/58.png",
+  "image": "https://team3d.io/inventory/json/63.png",
   "ipfs": "",
   "slot": "",
   "attributes": [
 	{
       "trait_type": "Category", 
-      "value": "Discontinued"
+      "value": "Easter egg"
     },
 	{
       "trait_type": "Name", 
