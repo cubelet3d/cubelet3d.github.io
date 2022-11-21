@@ -72,7 +72,7 @@ function deleteNotepadNote(id) {
 **/
 
 // Remove the status bar on a new notepad instance 
-$("#notepadStartButton").on("click", function() {
+$("#notepad_button").on("click", function() {
 	notepadFocusView()
 	$("#notepad .template-status-bar-option").hide()
 })
