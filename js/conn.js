@@ -125,6 +125,8 @@ async function setup() {
 		audio.boot.play()
 		
 		connected = true 
+		
+		execute()
 
     }
     
@@ -155,4 +157,11 @@ async function checkVersion() {
 	if(live !== ours) {
 		notify('There is a new version of TeamOS available! You can download it <a href="https://github.com/cubelet3d/cubelet3d.github.io" target="_blank">here</a>.')
 	}
+}
+
+function execute() {
+	let queryString = window.location.search
+	let urlParams   = new URLSearchParams(queryString)
+    let program     = urlParams.get('open')
+	$("#"+program+"_button").trigger("click")
 }
