@@ -1,7 +1,8 @@
-let keysToLookFor = ["56", "57", "58", "59", "60"]
+let keysToLookFor = ["61", "62", "63", "64", "65"]
 
 let Alchemy = {
-	address: "0xf9360e25F4f47a0de4b456C9DB55F7A953b819dB",
+	address: "0x4957c57352C44396831a93db36471663c9190737",
+	oldAddress: "0xf9360e25f4f47a0de4b456c9db55f7a953b819db",
 	online: false,
 	interval: null,
 	backgroundSound: new Audio("alchemy/sounds/background.mp3"),
@@ -11,11 +12,11 @@ let Alchemy = {
 	unlocked: false,
 	claimed: false,
 	hints: {
-		"56": 'Nudimmud narrowed the great tribal chasms that men could move freely between them, intermingling until they cohered as one. Thereafter, they proclaimed: "O lord, thankful are we for this bounty, one which you have bestowed at a juncture duly fixed. Verily, the yoke of ignorance has lifted from our napes, founding from our many nations a kin of blood and spirit".',
-		"57": "The altar demands an offering of the flesh.",
-		"58": "Of the watchers, one awaits you. Ask, and it shall be given you; seek, and ye shall find; knock, and it shall be opened unto you.",
-		"59": "Hosts of little lies grow through every somber truth. Yearning vivaciously, seeking ultimate pleasure, your dilating appetite presumes life's inclinations.",
-		"60": "U2VlayBvdXQgdGhlIHdpdGNoLg=="
+		"61": 'Nudimmud narrowed the great tribal chasms that men could move freely between them, intermingling until they cohered as one. Thereafter, they proclaimed: "O lord, thankful are we for this bounty, one which you have bestowed at a juncture duly fixed. Verily, the yoke of ignorance has lifted from our napes, founding from our many nations a kin of blood and spirit".',
+		"62": "The altar demands an offering of the flesh.",
+		"63": "Of the watchers, one awaits you. Ask, and it shall be given you; seek, and ye shall find; knock, and it shall be opened unto you.",
+		"64": "Hosts of little lies grow through every somber truth. Yearning vivaciously, seeking ultimate pleasure, your dilating appetite presumes life's inclinations.",
+		"65": "U2VlayBvdXQgdGhlIHdpdGNoLg=="
 	}
 }
 
@@ -119,6 +120,7 @@ async function alchemyCheckForKeys() {
 async function initAlchemy() {
 	try {
 		Alchemy.instance = new web3.eth.Contract(AlchemyABI, Alchemy.address)
+		Alchemy.oldInstance = new web3.eth.Contract(OldAlchemyABI, Alchemy.oldAddress)
 		Alchemy.backgroundSound.loop = true
 		Alchemy.backgroundSound.play() 
 		$(".alchemy_button_wrapper").addClass("disabled")
@@ -147,7 +149,7 @@ async function alchemyLoop() {
 		})
 		
 		// Check if vidyan 
-		await Alchemy.instance.methods.vidyans(accounts[0]).call().then(function(r) {
+		await Alchemy.oldInstance.methods.vidyans(accounts[0]).call().then(function(r) {
 			if(r && !Alchemy.vidyan) {
 				Alchemy.vidyan = true 
 			}
