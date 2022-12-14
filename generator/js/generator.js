@@ -3,6 +3,22 @@ let VaultAddress = "0xe4684AFE69bA238E3de17bbd0B1a64Ce7077da42"
 let ethVidyaLP
 
 let Generator = {
+	allEvents: {
+		single: {
+			Claimed: [],
+			CommitmentBroke: [],
+			Commited: [],
+			Withdrew: [],
+			LpDeposited: []
+		},
+		lp: {
+			Claimed: [],
+			CommitmentBroke: [],
+			Commited: [],
+			Withdrew: [],
+			LpDeposited: []
+		}
+	},
 	endCommitClick: 0,
 	daysDrawn: false,
 	notification: false, // When a user has 0 balance the notify() is used to link them to uniswap. This bool prevents the popup from showing over and over again.
@@ -1052,4 +1068,92 @@ LPInUSD = async() => {
 	catch(e) {
 		console.error(e)
 	}
+}
+
+generatorGetAllEvents = async(fromBlock) => {
+	try {
+		
+		if(Generator.instance) {
+			
+			// Things to declare 
+			let teller, provider, amount, data, blockNumber 
+			
+			// Which is it? 
+			if(User.currentTeller == "0x4E053ac1F6F34A73F5Bbd876eFd20525EAcB5382") {
+				teller = "single"
+			}
+			else if(User.currentTeller == "0xD9BecdB8290077fAf79A2637a5f2FDf5033b2486") {
+				teller = "lp"
+			}
+			else {
+				error("Unknown Teller")
+				teller = "unknown"
+			}
+			
+			// Wipe it 
+			Generator.allEvents[teller].Claimed         = []
+			Generator.allEvents[teller].CommitmentBroke = []
+			Generator.allEvents[teller].Commited        = []
+			Generator.allEvents[teller].Withdrew        = []
+			Generator.allEvents[teller].LpDeposited     = []
+			
+			// Get the events 
+			Generator.teller.events.allEvents({
+				fromBlock: fromBlock 
+			})
+			.on("data", async function(e) {
+				console.log(e)
+				
+				blockNumber = e.blockNumber
+
+				switch(e.event) {
+
+					case "Claimed":
+						provider = e.returnValues.provider
+						await web3.eth.getTransactionReceipt(e.transactionHash).then(function(r) {
+							amount = web3.utils.fromWei(web3.utils.hexToNumberString(r.logs[0].data))
+						})
+						data = [blockNumber, provider, amount]
+						Generator.allEvents[teller].Claimed.push(data)
+						break;
+						
+					case "CommitmentBroke": 
+						provider = e.returnValues.provider
+						amount   = web3.utils.fromWei(e.returnValues.tokenSentAmount)
+						data     = [blockNumber, provider, amount]
+						Generator.allEvents[teller].CommitmentBroke.push(data)
+						break;
+						
+					case "Commited":
+						provider = e.returnValues.provider
+						amount   = web3.utils.fromWei(e.returnValues.commitedAmount)
+						data     = [blockNumber, provider, amount]
+						Generator.allEvents[teller].Commited.push(data)
+						break; 
+						
+					case "Withdrew": 
+						provider = e.returnValues.provider
+						amount   = web3.utils.fromWei(e.returnValues.amount)
+						data     = [blockNumber, provider, amount]
+						Generator.allEvents[teller].Withdrew.push(data)
+						break; 
+					
+					case "LpDeposited": 
+						provider = e.returnValues.provider
+						amount   = web3.utils.fromWei(e.returnValues.amount)
+						data     = [blockNumber, provider, amount]
+						Generator.allEvents[teller].LpDeposited.push(data)
+						break; 
+				}
+				
+			})
+			
+		}
+		
+	}
+	
+	catch(e) {
+		console.error(e)
+	}
+	
 }
