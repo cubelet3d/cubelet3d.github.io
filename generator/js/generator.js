@@ -12,7 +12,7 @@ let Generator = {
 			LpDeposited: []
 		},
 		lp: {
-			Claimed: {},
+			Claimed: [],
 			CommitmentBroke: [],
 			Commited: [],
 			Withdrew: [],
