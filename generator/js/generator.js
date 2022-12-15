@@ -5,14 +5,14 @@ let ethVidyaLP
 let Generator = {
 	allEvents: {
 		single: {
-			Claimed: {},
+			Claimed: [],
 			CommitmentBroke: [],
 			Commited: [],
 			Withdrew: [],
 			LpDeposited: []
 		},
 		lp: {
-			Claimed: [],
+			Claimed: {},
 			CommitmentBroke: [],
 			Commited: [],
 			Withdrew: [],
@@ -1115,7 +1115,8 @@ generatorGetAllEvents = async(fromBlock) => {
 							blockNumber = r.blockNumber
 							provider    = r.from
 							data        = [blockNumber, provider, amount]
-							Generator.allEvents[teller].Claimed[e.transactionHash] = data
+							// Generator.allEvents[teller].Claimed[e.transactionHash] = data
+							Generator.allEvents[teller].Claimed.push(data)
 						})
 						break;
 						
