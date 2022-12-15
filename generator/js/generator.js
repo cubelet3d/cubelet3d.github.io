@@ -5,7 +5,7 @@ let ethVidyaLP
 let Generator = {
 	allEvents: {
 		single: {
-			Claimed: [],
+			Claimed: {},
 			CommitmentBroke: [],
 			Commited: [],
 			Withdrew: [],
@@ -1111,10 +1111,12 @@ generatorGetAllEvents = async(fromBlock) => {
 					case "Claimed":
 						provider = e.returnValues.provider
 						await web3.eth.getTransactionReceipt(e.transactionHash).then(function(r) {
-							amount = web3.utils.fromWei(web3.utils.hexToNumberString(r.logs[0].data))
+							amount      = web3.utils.fromWei(web3.utils.hexToNumberString(r.logs[0].data))
+							blockNumber = r.blockNumber
+							provider    = r.from
+							data        = [blockNumber, provider, amount]
+							Generator.allEvents[teller].Claimed[e.transactionHash] = data
 						})
-						data = [blockNumber, provider, amount]
-						Generator.allEvents[teller].Claimed.push(data)
 						break;
 						
 					case "CommitmentBroke": 
@@ -1157,3 +1159,13 @@ generatorGetAllEvents = async(fromBlock) => {
 	}
 	
 }
+
+/*
+
+let result = []
+for(let i = 0; i < Generator.allEvents.lp.Commited.length; i++) {
+    let data = {x: Generator.allEvents.lp.Commited[i][0].toString(), y: parseFloat(Generator.allEvents.lp.Commited[i][2])}
+    result.push(data)
+}
+
+*/
