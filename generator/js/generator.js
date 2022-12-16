@@ -1119,7 +1119,14 @@ generatorGetAllEvents = async(pool) => {
 	
 }
 
+// https://www.chartjs.org/docs/2.9.4
 function generatorDrawChart(el, xValues, yValues) {
+	
+	Chart.defaults.global.defaultFontColor  		= "white"
+	Chart.defaults.global.defaultFontFamily 		= "'C64', monospace"
+	Chart.defaults.global.defaultFontSize   		= 16
+	Chart.defaults.global.tooltips.backgroundColor 	= "rgba(95,8,95,0.7)"
+	
 	new Chart(el, {
 	  type: "line",
 	  data: {
@@ -1127,8 +1134,8 @@ function generatorDrawChart(el, xValues, yValues) {
 		datasets: [{
 		  fill: false,
 		  lineTension: 0,
-		  backgroundColor: "grey",
-		  borderColor: "grey",
+		  backgroundColor: "rgba(255, 31, 220, 0.5)",
+		  borderColor: "rgba(255, 31, 220, 0.5)",
 		  data: yValues
 		}]
 	  },
@@ -1137,19 +1144,16 @@ function generatorDrawChart(el, xValues, yValues) {
 		scales: {
 		  yAxes: [{
 			ticks: {
-			  fontColor: "grey",
-			  fontSize: 10,
 			  beginAtZero: true
 			}
 		  }],
 		  xAxes: [{
 			ticks: {
-			  fontColor: "grey",
-			  fontSize: 10,
 			  beginAtZero: false
 			}
 		  }]
 		}
 	  }
-	});
+	})
+	
 }
