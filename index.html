@@ -525,6 +525,7 @@
 						<div class="generator-header-menu flex-box">
 							<div class="generator-header-menu-button"><a href="generator/User_Manual.pdf" target="_blank">Guide</a></div>
 							<div id="generator-event-log-button" class="disabled generator-header-menu-button">Event log</div>
+							<div id="generator-charts-button" class="disabled generator-header-menu-button">Charts</div>
 						</div>
 						<div class="generator-content relative flex-box col">
 							<div class="generator-title font-quickzag">Generator</div>
@@ -664,7 +665,20 @@
 								<div id="generator-event-log-content" class="generator-event-log-content"></div>
 							</div>
 							
-							<div id="generator-charts" class="hidden absolute top right bottom left flex-box col"></div>
+							<div id="generator-charts" class="generator-charts-wrapper hidden absolute top right bottom left flex-box col scrollbar">
+								<div id="generator-charts-status" class="generator-charts-status">
+									<div id="generator-charts-status-message">Loading...</div>
+									<div id="generator-charts-close-button" class="generator-charts-close-button">[CLOSE]</div>
+								</div>
+								<div id="generator-charts-content" class="generator-charts-content">
+									<div id="generator-claims-chart-wrapper" class="generator-sub-section flex-box col">
+										<div class="generator-pool-label flex-box">
+											<div class="notch">Claims</div>
+										</div>
+										<canvas id="generator-claims-chart" class="generator-chart"></canvas>
+									</div>							
+								</div>
+							</div>
 						</div>
 					</div>
 					<div id="videos_folder" class="console absolute draggable" data="videos_folder">
@@ -1711,7 +1725,7 @@
 		<script src="alchemy/js/alchemyABI.js"></script>
 		<script src="alchemy/js/alchemy.js"></script>
 		<link rel="stylesheet" href="alchemy/css/alchemy.css">
-		<!-- Lightweight Charts -->
-		<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+		<!-- ChartJs -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 	</body>
 </html>

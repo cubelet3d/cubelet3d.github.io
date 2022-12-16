@@ -3,22 +3,6 @@ let VaultAddress = "0xe4684AFE69bA238E3de17bbd0B1a64Ce7077da42"
 let ethVidyaLP
 
 let Generator = {
-	allEvents: {
-		single: {
-			Claimed: [],
-			CommitmentBroke: [],
-			Commited: [],
-			Withdrew: [],
-			LpDeposited: []
-		},
-		lp: {
-			Claimed: [],
-			CommitmentBroke: [],
-			Commited: [],
-			Withdrew: [],
-			LpDeposited: []
-		}
-	},
 	endCommitClick: 0,
 	daysDrawn: false,
 	notification: false, // When a user has 0 balance the notify() is used to link them to uniswap. This bool prevents the popup from showing over and over again.
@@ -151,6 +135,15 @@ $(document).ready(function() {
 	$("body").on("click", "#generator-event-log-close-button", function() {
 		audio.click.play() 
 		$("#generator-event-log").css("display", "none")
+	})
+	$("body").on("click", "#generator-charts-button", function() {
+		let pool = $(this).attr("pool")
+		audio.click.play() 
+		generatorGetAllEvents(pool)
+	})
+	$("body").on("click", "#generator-charts-close-button", function() {
+		audio.click.play() 
+		$("#generator-charts").css("display", "none")
 	})
 	$("body").on("mouseover", "#generator_button", function() {
 		$("#generator_button .icon").removeClass("generator").addClass("generator-hover")
@@ -860,6 +853,7 @@ async function generatorLoop() {
 		generatorFullyLoaded = true
 		generatorLoadingScreen()
 		$("#generator-event-log-button").removeClass("disabled").attr("pool", User.currentPool)
+		$("#generator-charts-button").removeClass("disabled").attr("pool", User.currentPool)
 	}
 }
 
@@ -885,6 +879,7 @@ function resetUserInstance() {
 	$(".generator-pool-body input").val("") // Reset input fields 
 	$("#generator-balance, #generator-deposited").text("") // These too...
 	$("#generator-event-log-button").addClass("disabled") 
+	$("#generator-charts-button").addClass("disabled")
 	
 	// and these 
 	$('.generator-vesting-option[data="1"]').text('')
@@ -1070,87 +1065,50 @@ LPInUSD = async() => {
 	}
 }
 
-generatorGetAllEvents = async(fromBlock) => {
+generatorGetAllEvents = async(pool) => {
 	try {
 		
 		if(Generator.instance) {
 			
+			$("#generator-claims-chart").remove()
+			$("#generator-claims-chart-wrapper").append('<canvas id="generator-claims-chart" class="generator-chart"></canvas>') 
+			$("#generator-charts-status-message").text("Loading...")
+			$("#generator-charts").css("display", "flex")
+			
 			// Things to declare 
-			let teller, provider, amount, data, blockNumber 
-			
-			// Which is it? 
-			if(User.currentTeller == "0x4E053ac1F6F34A73F5Bbd876eFd20525EAcB5382") {
-				teller = "single"
-			}
-			else if(User.currentTeller == "0xD9BecdB8290077fAf79A2637a5f2FDf5033b2486") {
-				teller = "lp"
-			}
-			else {
-				error("Unknown Teller")
-				teller = "unknown"
-			}
-			
-			// Wipe it 
-			Generator.allEvents[teller].Claimed         = []
-			Generator.allEvents[teller].CommitmentBroke = []
-			Generator.allEvents[teller].Commited        = []
-			Generator.allEvents[teller].Withdrew        = []
-			Generator.allEvents[teller].LpDeposited     = []
-			
-			// Get the events 
-			Generator.teller.events.allEvents({
-				fromBlock: fromBlock 
-			})
-			.on("data", async function(e) {
-				console.log(e)
-				
-				blockNumber = e.blockNumber
+			let provider, amount, data, blockNumber 
 
-				switch(e.event) {
+			let block = await web3.eth.getBlockNumber()
 
-					case "Claimed":
-						provider = e.returnValues.provider
-						await web3.eth.getTransactionReceipt(e.transactionHash).then(function(r) {
-							amount      = web3.utils.fromWei(web3.utils.hexToNumberString(r.logs[0].data))
-							blockNumber = r.blockNumber
-							provider    = r.from
-							data        = [blockNumber, provider, amount]
-							// Generator.allEvents[teller].Claimed[e.transactionHash] = data
-							Generator.allEvents[teller].Claimed.push(data)
-						})
-						break;
+			// Get past events 
+			Generator.teller.getPastEvents("Claimed", {fromBlock: block - 46522}, async function(error, events) {
+				let result = []
+				for(let i = 0; i < events.length; i++) {
+					await web3.eth.getTransactionReceipt(events[i].transactionHash).then(function(r) {
+						amount      = web3.utils.fromWei(web3.utils.hexToNumberString(r.logs[0].data))
+						blockNumber = r.blockNumber
+						provider    = r.from
+						data        = [blockNumber, provider, amount]
 						
-					case "CommitmentBroke": 
-						provider = e.returnValues.provider
-						amount   = web3.utils.fromWei(e.returnValues.tokenSentAmount)
-						data     = [blockNumber, provider, amount]
-						Generator.allEvents[teller].CommitmentBroke.push(data)
-						break;
-						
-					case "Commited":
-						provider = e.returnValues.provider
-						amount   = web3.utils.fromWei(e.returnValues.commitedAmount)
-						data     = [blockNumber, provider, amount]
-						Generator.allEvents[teller].Commited.push(data)
-						break; 
-						
-					case "Withdrew": 
-						provider = e.returnValues.provider
-						amount   = web3.utils.fromWei(e.returnValues.amount)
-						data     = [blockNumber, provider, amount]
-						Generator.allEvents[teller].Withdrew.push(data)
-						break; 
-					
-					case "LpDeposited": 
-						provider = e.returnValues.provider
-						amount   = web3.utils.fromWei(e.returnValues.amount)
-						data     = [blockNumber, provider, amount]
-						Generator.allEvents[teller].LpDeposited.push(data)
-						break; 
+						result.push(data)
+					})
 				}
 				
+				let xValues = []
+				let yValues = []
+				for(let i = 0; i < result.length; i++) {
+					xValues.push(result[i][0].toString())
+					yValues.push(decimal(result[i][2]))
+				}
+				
+				if(xValues.length > 0 && yValues.length > 0) {
+					generatorDrawChart("generator-claims-chart", xValues, yValues)
+					$("#generator-charts-status-message").text("Events from past 7 days")
+				} else {
+					$("#generator-charts-status-message").text("No events found")
+				}
 			})
-			
+
 		}
 		
 	}
@@ -1161,12 +1119,37 @@ generatorGetAllEvents = async(fromBlock) => {
 	
 }
 
-/*
-
-let result = []
-for(let i = 0; i < Generator.allEvents.lp.Commited.length; i++) {
-    let data = {x: Generator.allEvents.lp.Commited[i][0].toString(), y: parseFloat(Generator.allEvents.lp.Commited[i][2])}
-    result.push(data)
+function generatorDrawChart(el, xValues, yValues) {
+	new Chart(el, {
+	  type: "line",
+	  data: {
+		labels: xValues,
+		datasets: [{
+		  fill: false,
+		  lineTension: 0,
+		  backgroundColor: "grey",
+		  borderColor: "grey",
+		  data: yValues
+		}]
+	  },
+	  options: {
+		legend: {display: false},
+		scales: {
+		  yAxes: [{
+			ticks: {
+			  fontColor: "grey",
+			  fontSize: 10,
+			  beginAtZero: true
+			}
+		  }],
+		  xAxes: [{
+			ticks: {
+			  fontColor: "grey",
+			  fontSize: 10,
+			  beginAtZero: false
+			}
+		  }]
+		}
+	  }
+	});
 }
-
-*/

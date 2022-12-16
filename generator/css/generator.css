@@ -211,7 +211,7 @@
 	background: var(--black);
 	overflow-y: auto; 
 }
-.generator-event-log-status {
+.generator-event-log-status, .generator-charts-status {
 	position: absolute; top: .5rem; left: .5rem; right: .5rem; 
 	display: flex; justify-content: space-between; 
 	margin-bottom: 0.5rem; 
@@ -232,6 +232,20 @@
 .generator-event-icon {
 	width: 32px; height: 32px; margin-bottom: 0; margin-right: 5px; background-size: contain; 
 }
-.generator-event-log-close-button, .generator-amount-reveal {
+.generator-event-log-close-button, .generator-amount-reveal, .generator-charts-close-button {
 	cursor: pointer; 
+}
+
+/* Charts */
+.generator-charts-wrapper {
+	width: 100%; padding: 1rem; overflow-y: scroll; background: var(--black); 
+	font-family: "C64", monospace; font-size: 110%;
+}
+.generator-charts-content {
+	margin-top: calc(40px - 0.5rem);
+}
+.generator-chart {
+	border: 1px solid var(--purple);
+	width:100%; max-width:480px;
+	padding: .5rem; 
 }
