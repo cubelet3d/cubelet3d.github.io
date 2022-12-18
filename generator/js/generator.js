@@ -1070,8 +1070,10 @@ generatorGetAllEvents = async(pool) => {
 		
 		if(Generator.instance) {
 			
-			$("#generator-claims-chart").remove()
-			$("#generator-claims-chart-wrapper").append('<canvas id="generator-claims-chart" class="generator-chart"></canvas>') 
+			let noData = []
+			
+			$("#generator-charts-errors").text("")
+			$("#generator-charts-content").empty() 
 			$("#generator-charts-status-message").text("Loading...")
 			$("#generator-charts").css("display", "flex")
 			
@@ -1081,7 +1083,7 @@ generatorGetAllEvents = async(pool) => {
 			let block = await web3.eth.getBlockNumber()
 
 			// Get past events 
-			Generator.teller.getPastEvents("Claimed", {fromBlock: block - 46522}, async function(error, events) {
+			await Generator.teller.getPastEvents("Claimed", {fromBlock: block - 46522}, async function(error, events) {
 				let result = []
 				for(let i = 0; i < events.length; i++) {
 					await web3.eth.getTransactionReceipt(events[i].transactionHash).then(function(r) {
@@ -1102,13 +1104,85 @@ generatorGetAllEvents = async(pool) => {
 				}
 				
 				if(xValues.length > 0 && yValues.length > 0) {
+					$("#generator-charts-content").append('<div id="generator-claims-chart-wrapper" class="generator-sub-section flex-box col"><div class="generator-pool-label flex-box"><div class="notch">Claims</div></div><canvas id="generator-claims-chart" class="generator-chart"></canvas></div>')
 					generatorDrawChart("generator-claims-chart", xValues, yValues)
-					$("#generator-charts-status-message").text("Events from past 7 days")
 				} else {
-					$("#generator-charts-status-message").text("No events found")
+					noData.push("Claimed")
+				}
+				
+			// LpDeposited
+			await Generator.teller.getPastEvents("LpDeposited", {fromBlock: block - 46522}, function(error, events) {
+				let xValues = []
+				let yValues = []
+				for (let i = 0; i < events.length; i++) {
+					xValues.push(events[i].blockNumber)
+					yValues.push(decimal(web3.utils.fromWei(events[i].returnValues.amount)))
+				}
+				if(xValues.length > 0 && yValues.length > 0) {
+					$("#generator-charts-content").append('<div id="generator-lpdeposits-chart-wrapper" class="generator-sub-section flex-box col"><div class="generator-pool-label flex-box"><div class="notch">Deposits</div></div><canvas id="generator-lpdeposits-chart" class="generator-chart"></canvas></div>')
+					generatorDrawChart("generator-lpdeposits-chart", xValues, yValues)
+				} else {
+					noData.push("LpDeposited")
 				}
 			})
-
+			
+			// Withdraws 
+			await Generator.teller.getPastEvents("Withdrew", {fromBlock: block - 46522}, function(error, events) {
+				let xValues = []
+				let yValues = []
+				for (let i = 0; i < events.length; i++) {
+					xValues.push(events[i].blockNumber)
+					yValues.push(decimal(web3.utils.fromWei(events[i].returnValues.amount)))
+				}
+				if(xValues.length > 0 && yValues.length > 0) {
+					$("#generator-charts-content").append('<div id="generator-withdraws-chart-wrapper" class="generator-sub-section flex-box col"><div class="generator-pool-label flex-box"><div class="notch">Withdraws</div></div><canvas id="generator-withdraws-chart" class="generator-chart"></canvas></div>')
+					generatorDrawChart("generator-withdraws-chart", xValues, yValues)
+				} else {
+					noData.push("Withdrew")
+				}
+			})
+			
+			// Commits 
+			await Generator.teller.getPastEvents("Commited", {fromBlock: block - 46522}, function(error, events) {
+				let xValues = []
+				let yValues = []
+				for (let i = 0; i < events.length; i++) {
+					xValues.push(events[i].blockNumber)
+					yValues.push(decimal(web3.utils.fromWei(events[i].returnValues.commitedAmount)))
+				}
+				if(xValues.length > 0 && yValues.length > 0) {
+					$("#generator-charts-content").append('<div id="generator-commited-chart-wrapper" class="generator-sub-section flex-box col"><div class="generator-pool-label flex-box"><div class="notch">Commits</div></div><canvas id="generator-commited-chart" class="generator-chart"></canvas></div>')
+					generatorDrawChart("generator-commited-chart", xValues, yValues)
+				} else {
+					noData.push("Commited")
+				}
+			})
+			
+			// CommitmentBroke
+			await Generator.teller.getPastEvents("CommitmentBroke", {fromBlock: block - 46522}, function(error, events) {
+				let xValues = []
+				let yValues = []
+				for (let i = 0; i < events.length; i++) {
+					xValues.push(events[i].blockNumber)
+					yValues.push(decimal(web3.utils.fromWei(events[i].returnValues.tokenSentAmount)))
+				}
+				if(xValues.length > 0 && yValues.length > 0) {
+					$("#generator-charts-content").append('<div id="generator-commitbroke-chart-wrapper" class="generator-sub-section flex-box col"><div class="generator-pool-label flex-box"><div class="notch">Commit broke</div></div><canvas id="generator-commitbroke-chart" class="generator-chart"></canvas></div>')
+					generatorDrawChart("generator-commitbroke-chart", xValues, yValues)
+				} else {
+					noData.push("CommitmentBroke")
+				}
+			})
+			
+			if(noData.length < 5) {
+				$("#generator-charts-status-message").text("Events from past 7 days")
+			} else {
+				$("#generator-charts-status-message").text("No events found")
+			}
+			$("#generator-charts-errors").text('No data found for the following events: '+noData.join(", "))
+			
+			})
+			
 		}
 		
 	}
