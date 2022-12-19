@@ -1154,7 +1154,7 @@ generatorGetAllEvents = async(pool) => {
 					$("#generator-charts-content").append('<div id="generator-commited-chart-wrapper" class="generator-sub-section flex-box col"><div class="generator-pool-label flex-box"><div class="notch">Commits</div></div><canvas id="generator-commited-chart" class="generator-chart"></canvas></div>')
 					generatorDrawChart("generator-commited-chart", xValues, yValues)
 				} else {
-					noData.push("Commited")
+					noData.push("Committed")
 				}
 			})
 			
