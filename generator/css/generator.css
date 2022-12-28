@@ -255,8 +255,11 @@
 	width: auto 
 }
 .generator-stats-entry {
-	padding: 0.25rem;
+	padding: 0.5rem 0.25rem;
 }
 .generator-stats-entry:hover {
 	background: var(--bg-glass)
+}
+.generator-highlight-amount {
+	color: var(--highlight-bg)
 }
