@@ -1290,7 +1290,7 @@ async function generatorLoadStats() {
 			$("#generator-stats-content").append('<a href="https://etherscan.io/address/'+result[i][0]+'" target="_blank"><div class="flex-box space-between generator-stats-entry"><div class="ellipsis generator-address">'+result[i][0]+'</div><div class="generator-highlight-amount">'+abbr(result[i][1], 2)+'</div></div></a>')
 		}
 		
-		$("#generator-stats-status-message").text("Done!")
+		$("#generator-stats-status-message").text("Total deposits")
 	}
 	catch(e) {
 		console.error(e)
