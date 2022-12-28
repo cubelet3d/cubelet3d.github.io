@@ -211,7 +211,7 @@
 	background: var(--black);
 	overflow-y: auto; 
 }
-.generator-event-log-status, .generator-charts-status {
+.generator-event-log-status, .generator-charts-status, .generator-stats-status {
 	position: absolute; top: .5rem; left: .5rem; right: .5rem; 
 	display: flex; justify-content: space-between; 
 	margin-bottom: 0.5rem; 
@@ -232,16 +232,16 @@
 .generator-event-icon {
 	width: 32px; height: 32px; margin-bottom: 0; margin-right: 5px; background-size: contain; 
 }
-.generator-event-log-close-button, .generator-amount-reveal, .generator-charts-close-button {
+.generator-event-log-close-button, .generator-amount-reveal, .generator-charts-close-button, .generator-stats-close-button {
 	cursor: pointer; 
 }
 
-/* Charts */
-.generator-charts-wrapper {
+/* Charts & Stats */
+.generator-charts-wrapper, .generator-stats-wrapper {
 	width: 100%; padding: 1rem; overflow-y: scroll; background: var(--black); 
 	font-family: "C64", monospace; font-size: 110%;
 }
-.generator-charts-errors {
+.generator-charts-errors, .generator-stats-content {
 	margin-top: calc(40px - 0.5rem);
 	margin-bottom: 1rem; 
 }
@@ -249,4 +249,14 @@
 	border: 1px solid var(--purple);
 	width:100%; max-width:480px;
 	padding: .5rem; 
+}
+
+.generator-address {
+	width: auto 
+}
+.generator-stats-entry {
+	padding: 0.25rem;
+}
+.generator-stats-entry:hover {
+	background: var(--bg-glass)
 }

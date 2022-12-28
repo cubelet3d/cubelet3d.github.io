@@ -199,6 +199,8 @@ canvas#jsdos        {width: 640px; height: 400px}
 #roadmap .row       {width: 100%; display: block; margin: 0.3rem 0;}
 .no-margin-left     {margin-left: 0}
 
+.ellipsis			{text-overflow: ellipsis; white-space: nowrap; display: inline-block; overflow: hidden}
+
 
 /* Videos */
 .video.console {

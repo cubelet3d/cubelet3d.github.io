@@ -21,7 +21,8 @@ let Generator = {
 			token: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", // WETH token address 
 			lptoken: "0xDA3706c9A099077e6BC389D1baf918565212A54D", // The Uniswap V2 LP token for VIDYA/ETH 
 			teller: "0xD9BecdB8290077fAf79A2637a5f2FDf5033b2486", // The Teller contract address for VIDYA/ETH pool 
-			url: "https://app.uniswap.org/#/add/v2/ETH/0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30?chain=mainnet"
+			url: "https://app.uniswap.org/#/add/v2/ETH/0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30?chain=mainnet",
+			startBlock: 14164845
 		},
 		dark: {
 			approved: false,
@@ -34,7 +35,8 @@ let Generator = {
 			token: "0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30",
 			lptoken: "0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30",
 			teller: "0x4E053ac1F6F34A73F5Bbd876eFd20525EAcB5382",
-			url: "https://app.uniswap.org/#/swap?outputCurrency=0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30&chain=mainnet"
+			url: "https://app.uniswap.org/#/swap?outputCurrency=0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30&chain=mainnet",
+			startBlock: 14164866
 		}
 	},
 	commitmentOptions: {
@@ -144,6 +146,14 @@ $(document).ready(function() {
 	$("body").on("click", "#generator-charts-close-button", function() {
 		audio.click.play() 
 		$("#generator-charts").css("display", "none")
+	})
+	$("body").on("click", "#generator-stats-button", function() {
+		audio.click.play()
+		generatorLoadStats()
+	})
+	$("body").on("click", "#generator-stats-close-button", function() {
+		audio.click.play() 
+		$("#generator-stats").css("display", "none")
 	})
 	$("body").on("mouseover", "#generator_button", function() {
 		$("#generator_button .icon").removeClass("generator").addClass("generator-hover")
@@ -854,6 +864,7 @@ async function generatorLoop() {
 		generatorLoadingScreen()
 		$("#generator-event-log-button").removeClass("disabled").attr("pool", User.currentPool)
 		$("#generator-charts-button").removeClass("disabled").attr("pool", User.currentPool)
+		$("#generator-stats-button").removeClass("disabled")
 	}
 }
 
@@ -880,6 +891,7 @@ function resetUserInstance() {
 	$("#generator-balance, #generator-deposited").text("") // These too...
 	$("#generator-event-log-button").addClass("disabled") 
 	$("#generator-charts-button").addClass("disabled")
+	$("#generator-stats-button").addClass("disabled")
 	
 	// and these 
 	$('.generator-vesting-option[data="1"]').text('')
@@ -1233,8 +1245,9 @@ function generatorDrawChart(el, xValues, yValues) {
 }
 
 async function generatorGetAllDeposits() {
-	let startBlock = 14164845
+	let startBlock = Generator.pool[User.currentPool].startBlock
 	let lpDeposits = {}
+	let result 
 	try {
 		await Generator.teller.getPastEvents("LpDeposited", {fromBlock: startBlock}, function(error, events) {
 			for (let i = 0; i < events.length; i++) {
@@ -1254,8 +1267,30 @@ async function generatorGetAllDeposits() {
 			
 			let sorted = Object.entries(lpDeposits).sort((a, b) => a[1] - b[1])
 			let desc   = sorted.reverse()
-			console.log(desc)
+			
+			result     = desc 
 		})
+		
+		return result
+	}
+	catch(e) {
+		console.error(e)
+	}
+}
+
+async function generatorLoadStats() {
+	try {
+		$("#generator-stats-content").empty() 
+		$("#generator-stats-status-message").text("Loading...")
+		$("#generator-stats").css("display", "flex")
+		
+		let result = await generatorGetAllDeposits()
+		
+		for(let i = 0; i < result.length; i++) {
+			$("#generator-stats-content").append('<a href="https://etherscan.io/address/'+result[i][0]+'" target="_blank"><div class="flex-box space-between generator-stats-entry"><div class="ellipsis generator-address">'+result[i][0]+'</div><div>'+generatorTruncateDecimal(result[i][1].toString())+'</div></div></a>')
+		}
+		
+		$("#generator-stats-status-message").text("Done!")
 	}
 	catch(e) {
 		console.error(e)
