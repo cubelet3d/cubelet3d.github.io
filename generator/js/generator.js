@@ -1231,3 +1231,33 @@ function generatorDrawChart(el, xValues, yValues) {
 	})
 	
 }
+
+async function generatorGetAllDeposits() {
+	let startBlock = 14164845
+	let lpDeposits = {}
+	try {
+		await Generator.teller.getPastEvents("LpDeposited", {fromBlock: startBlock}, function(error, events) {
+			for (let i = 0; i < events.length; i++) {
+				let user   = events[i].returnValues.provider
+				let amount = Number(web3.utils.fromWei(events[i].returnValues.amount))
+				let value  = lpDeposits[user]
+				if(!value) {
+					lpDeposits[user] = amount 
+				}
+				else if(value > 0) {
+					lpDeposits[user] = lpDeposits[user] + amount 
+				}
+				else {
+					console.log("idk what happened...")
+				}
+			}
+			
+			let sorted = Object.entries(lpDeposits).sort((a, b) => a[1] - b[1])
+			let desc   = sorted.reverse()
+			console.log(desc)
+		})
+	}
+	catch(e) {
+		console.error(e)
+	}
+}
