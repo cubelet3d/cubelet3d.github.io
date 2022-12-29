@@ -1280,17 +1280,34 @@ async function generatorGetAllDeposits() {
 
 async function generatorLoadStats() {
 	try {
-		$("#generator-stats-content").empty() 
+		$("#generator-stats-content").empty()
+		$("#generator-stats-content").append('<div id="generator-stats-header" class="hidden flex-box space-between generator-stats-entry generator-stats-header"><div class="ellipsis generator-address" style="flex: 1">Address</div><div class="generator-stats-totalDeposited" style="flex: 1; text-align: right">Deposit</div><div style="flex: 1; text-align: right">Commit</div><div class="generator-stats-timeLeft" style="flex: 1; text-align: right">Time left</div></div>')
 		$("#generator-stats-status-message").text("Loading...")
 		$("#generator-stats").css("display", "flex")
 		
 		let result = await generatorGetAllDeposits()
 		
+		let usersInfo = {}
+		
+		let count = 0
+		
 		for(let i = 0; i < result.length; i++) {
-			$("#generator-stats-content").append('<a href="https://etherscan.io/address/'+result[i][0]+'" target="_blank"><div class="flex-box space-between generator-stats-entry"><div class="ellipsis generator-address">'+result[i][0]+'</div><div class="generator-highlight-amount">'+abbr(result[i][1], 2)+'</div></div></a>')
+			await Generator.teller.methods.getUserInfo(result[i][0]).call({from: accounts[0]}).then(function(r) {
+				usersInfo[result[i][0]] = r
+			})
+
+			$("#generator-stats-status-message").text("Loading "+count+" / "+result.length)
+			count++
+		}
+
+		for(let i = 0; i < result.length; i++) {
+			let totalDeposited = abbr(result[i][1], 2) // total ever (from LpDeposited event)
+			let totalCommitted = abbr(Number(web3.utils.fromWei(usersInfo[result[i][0]][1])), 2) // actual committed amount from UserInfo call 
+			$("#generator-stats-content").append('<a href="https://etherscan.io/address/'+result[i][0]+'" target="_blank"><div class="flex-box space-between generator-stats-entry"><div class="ellipsis generator-address" style="flex: 1">'+result[i][0]+'</div><div class="generator-stats-totalDeposited" style="flex: 1; text-align: right">'+totalDeposited+'</div><div class="generator-highlight-amount" style="flex: 1; text-align: right">'+totalCommitted+'</div><div class="generator-stats-timeLeft" style="flex: 1; text-align: right">'+getTimeLeft(usersInfo[result[i][0]][0])+'</div></div></a>')
 		}
 		
-		$("#generator-stats-status-message").text("Total deposits")
+		$("#generator-stats-status-message").text("Finished loading!")
+		$("#generator-stats-header").removeClass("hidden")
 	}
 	catch(e) {
 		console.error(e)

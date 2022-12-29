@@ -257,9 +257,12 @@
 .generator-stats-entry {
 	padding: 0.5rem 0.25rem;
 }
-.generator-stats-entry:hover {
+.generator-stats-entry:not(.generator-stats-header):hover {
 	background: var(--bg-glass)
 }
 .generator-highlight-amount {
 	color: var(--highlight-bg)
+}
+.generator-stats-header {
+	background: var(--input-bg)
 }

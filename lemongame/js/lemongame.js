@@ -176,7 +176,7 @@ async function lemonGameLoop(reload) {
 			$(".lemons-raffleIndex").text(LemonGame.raffleIndex)
 			$(".lemons-lemonsInCurrentRound").text(LemonGame.lemonsInCurrentRound)
 			$(".lemons-pooledeth").text(parseFloat(web3.utils.fromWei(LemonGame.pooledEth)).toFixed(2))
-			$(".lemons-timeleft").text(getTimeLeft(LemonGame.timeLeft))
+			$(".lemons-timeleft").text(getTimeLeft(LemonGame.timeLeft, true))
 			
 
 			// Enable / disable buttons 
@@ -470,7 +470,7 @@ function getTimeLeft(input) {
 } */
 
 // Soya fix 
-function getTimeLeft(input) {
+function getTimeLeft(input, lemonGame) {
     let timeRemaining = input
     let minute = 60
     let hour = 60 * 60
@@ -484,7 +484,11 @@ function getTimeLeft(input) {
         if(LemonGame.lemonsInCurrentRound >= LemonGame.mintCap) {
             return "Finished!"
         } else {
-            return LemonGame.mintCap - parseInt(LemonGame.lemonsInCurrentRound) + " lemons to go"
+			if(lemonGame) {
+				return LemonGame.mintCap - parseInt(LemonGame.lemonsInCurrentRound) + " lemons to go"
+			} else {
+				return "0 days"
+			}
         }
         
     } else {
