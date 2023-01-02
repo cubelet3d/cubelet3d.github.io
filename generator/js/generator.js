@@ -3,6 +3,7 @@ let VaultAddress = "0xe4684AFE69bA238E3de17bbd0B1a64Ce7077da42"
 let ethVidyaLP
 
 let Generator = {
+	stats: [],
 	endCommitClick: 0,
 	daysDrawn: false,
 	notification: false, // When a user has 0 balance the notify() is used to link them to uniswap. This bool prevents the popup from showing over and over again.
@@ -873,6 +874,7 @@ function resetUserInstance() {
 		clearInterval(generatorInterval)
 		generatorInterval = null
 	}
+	Generator.stats = []
 	Generator.endCommitClick = 0
 	Generator.daysDrawn = false
 	User.commitment.matured = false
@@ -1281,7 +1283,7 @@ async function generatorGetAllDeposits() {
 async function generatorLoadStats() {
 	try {
 		$("#generator-stats-content").empty()
-		$("#generator-stats-content").append('<div id="generator-stats-header" class="hidden flex-box space-between generator-stats-entry generator-stats-header"><div class="ellipsis generator-address" style="flex: 1">Address</div><div class="generator-stats-totalDeposited" style="flex: 1; text-align: right">Deposit</div><div style="flex: 1; text-align: right">Commit</div><div class="generator-stats-timeLeft" style="flex: 1; text-align: right">Time left</div></div>')
+		$("#generator-stats-content").append('<div id="generator-stats-header" class="hidden flex-box space-between generator-stats-entry generator-stats-header"><div class="ellipsis generator-address" style="flex: 1">Address</div><div id="generator-stats-header-totalDeposit" class="generator-stats-totalDeposited" style="flex: 1; text-align: right">Deposit</div><div id="generator-stats-header-totalCommit" style="flex: 1; text-align: right">Commit</div><div id="generator-stats-header-timeLeft" class="generator-stats-timeLeft" style="flex: 1; text-align: right">Time left</div></div>')
 		$("#generator-stats-status-message").text("Loading...")
 		$("#generator-stats").css("display", "flex")
 		
@@ -1292,18 +1294,31 @@ async function generatorLoadStats() {
 		let count = 0
 		
 		for(let i = 0; i < result.length; i++) {
-			await Generator.teller.methods.getUserInfo(result[i][0]).call({from: accounts[0]}).then(function(r) {
+			await Generator.teller.methods.getUserInfo(result[i][0]).call({from: result[i][0]}).then(function(r) {
 				usersInfo[result[i][0]] = r
+				Generator.stats.push(usersInfo[result[i][0]])
+				Generator.stats[i][5] = result[i][0] // set the address too
 			})
 
 			$("#generator-stats-status-message").text("Loading "+count+" / "+result.length)
 			count++
 		}
 
-		for(let i = 0; i < result.length; i++) {
-			let totalDeposited = abbr(result[i][1], 2) // total ever (from LpDeposited event)
-			let totalCommitted = abbr(Number(web3.utils.fromWei(usersInfo[result[i][0]][1])), 2) // actual committed amount from UserInfo call 
-			$("#generator-stats-content").append('<a href="https://etherscan.io/address/'+result[i][0]+'" target="_blank"><div class="flex-box space-between generator-stats-entry"><div class="ellipsis generator-address" style="flex: 1">'+result[i][0]+'</div><div class="generator-stats-totalDeposited" style="flex: 1; text-align: right">'+totalDeposited+'</div><div class="generator-highlight-amount" style="flex: 1; text-align: right">'+totalCommitted+'</div><div class="generator-stats-timeLeft" style="flex: 1; text-align: right">'+getTimeLeft(usersInfo[result[i][0]][0])+'</div></div></a>')
+		let sortedByCommit = Generator.stats.sort((a, b) => b[1] - a[1])
+
+		for(let i = 0; i < Generator.stats.length; i++) {
+			let userAddress    = sortedByCommit[i][5]
+			let userTimeLeft   = sortedByCommit[i][0]
+			let totalDeposited = abbr(Number(web3.utils.fromWei(sortedByCommit[i][4])), 2)
+			let totalCommitted = abbr(Number(web3.utils.fromWei(sortedByCommit[i][1])), 2)
+			
+			// let totalDeposited = abbr(result[i][1], 2) // total ever (from LpDeposited event)
+			// let totalDeposited = abbr(Number(web3.utils.fromWei(usersInfo[result[i][0]][4])), 2) // total LP deposited return value from Teller (blame Blastscout if it's bad)
+			// let totalCommitted = abbr(Number(web3.utils.fromWei(usersInfo[result[i][0]][1])), 2) // actual committed amount from UserInfo call 
+			
+			/*$("#generator-stats-content").append('<a href="https://etherscan.io/address/'+result[i][0]+'" target="_blank"><div class="flex-box space-between generator-stats-entry"><div class="ellipsis generator-address" style="flex: 1">'+result[i][0]+'</div><div class="generator-stats-totalDeposited" style="flex: 1; text-align: right">'+totalDeposited+'</div><div class="generator-highlight-amount" style="flex: 1; text-align: right">'+totalCommitted+'</div><div class="generator-stats-timeLeft" style="flex: 1; text-align: right">'+getTimeLeft(usersInfo[result[i][0]][0])+'</div></div></a>')*/
+			
+			$("#generator-stats-content").append('<a href="https://etherscan.io/address/'+userAddress+'" target="_blank"><div class="flex-box space-between generator-stats-entry"><div class="ellipsis generator-address" style="flex: 1">'+userAddress+'</div><div class="generator-stats-totalDeposited" style="flex: 1; text-align: right">'+totalDeposited+'</div><div class="generator-highlight-amount" style="flex: 1; text-align: right">'+totalCommitted+'</div><div class="generator-stats-timeLeft" style="flex: 1; text-align: right">'+getTimeLeft(userTimeLeft)+'</div></div></a>')
 		}
 		
 		$("#generator-stats-status-message").text("Finished loading!")
