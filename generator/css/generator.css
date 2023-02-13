@@ -24,11 +24,15 @@
 	font-family: 'C64', monospace;
     font-size: 110%;
     text-shadow: 2px 2px var(--black);
-    background: var(--purple);
-    margin: 0.2rem;
-    padding: 0.2rem;
-    box-shadow: 2px 2px var(--indigo-dark);
-    border: 1px solid var(--indigo-dark);
+    background: var(--dark-purple);
+    padding: 0.1rem 0.3rem 0.3rem 0.3rem;
+	border-left: 2px solid var(--neon-magenta);
+    border-top: 2px solid var(--neon-magenta);
+    border-right: 2px solid var(--indigo-dark);
+    border-bottom: 2px solid var(--indigo-dark);
+}
+.generator-total-distributed {
+	margin-right: 0.2rem
 }
 .generator-wrapper {
 	height: 100%; width: auto; margin: 1rem;
