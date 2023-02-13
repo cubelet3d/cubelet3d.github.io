@@ -17,11 +17,18 @@
 .genwidth64pxreee {
 	width: 64px;
 }
-.generator-total-distributed {
-    font-family: 'C64', monospace;
-    font-size: 125%;
+.generator-total-distributed,
+.generator-total-valuelocked,
+.generator-total-stakers,
+.generator-average-commitment {
+	font-family: 'C64', monospace;
+    font-size: 110%;
     text-shadow: 2px 2px var(--black);
-	margin-bottom: 1rem; 
+    background: var(--purple);
+    margin: 0.2rem;
+    padding: 0.2rem;
+    box-shadow: 2px 2px var(--indigo-dark);
+    border: 1px solid var(--indigo-dark);
 }
 .generator-wrapper {
 	height: 100%; width: auto; margin: 1rem;

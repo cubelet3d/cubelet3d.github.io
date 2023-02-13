@@ -965,17 +965,31 @@ async function loadGeneratorRates() {
 		let singlevidyaDistRate = (vidyaRate / totalPriority * singlePriority) * 13 
 		$("#singlevidyaDistRate").text(singlevidyaDistRate.toFixed(4) + ' VIDYA per block')
 		
-		$("#GeneratorTotalDistributed").text(abbr(parseFloat(web3.utils.fromWei(totalDistributed)), 1) + ' VIDYA')
+		$("#GeneratorTotalDistributed").text(abbr(parseFloat(web3.utils.fromWei(totalDistributed)), 1) + ' VIDYA') 
+		
+		let vidyasInLp = 0 
+		let vidyasInSingle = 0 
 		
 		// APR things (thanks Soya and Blast)
 		Generator.pool.eth.lptokenTotalSupply = await ethVidyaLP.methods.totalSupply().call()
 		await ethVidyaLP.methods.getReserves().call().then(function(r) {
+			vidyasInLp = generatorTruncateDecimal(web3.utils.fromWei(r[0]))
 			let lmao = (web3.utils.fromWei(r[0]) * 2) * (Generator.vidyaEthBalance / Generator.pool.eth.lptokenTotalSupply)
 			Generator.pool.eth.apr = (vidyaRate * 60 * 60 * 24 * 365 * ethvidyaPriority) / (totalPriority * lmao) * 100
 			$("#ethVidyaApr").text(Generator.pool.eth.apr.toFixed(2) + "%")
 		})
 		Generator.pool.single.apr = (vidyaRate * 60 * 60 * 24 * 365 * singlePriority) / (totalPriority * web3.utils.fromWei(Generator.vidyaSingleBalance)) * 100
-		$("#singleVidyaApr").text(Generator.pool.single.apr.toFixed(2) + "%")		
+		$("#singleVidyaApr").text(Generator.pool.single.apr.toFixed(2) + "%")	
+		
+		await VIDYA.methods.balanceOf(Generator.pool.single.teller).call().then(function(r) {
+			vidyasInSingle = generatorTruncateDecimal(web3.utils.fromWei(r))
+		})
+
+		// More new things 
+		let vidyasToDollars = (Number(vidyasInLp) + Number(vidyasInSingle)) * price_vidya 
+		$("#GeneratorTotalValueLocked").text(abbr(parseFloat(vidyasToDollars), 1) + " USD")
+		$("#GeneratorTotalStakers").text()
+		$("#GeneratorAverageCommitment").text()
 	}
 	catch(e) {
 		console.error(e)
