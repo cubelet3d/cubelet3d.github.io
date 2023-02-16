@@ -25,17 +25,18 @@
     font-size: 110%;
     text-shadow: 2px 2px var(--black);
     background: var(--dark-purple);
-    padding: 0.1rem 0.3rem 0.3rem 0.3rem;
-	border-left: 2px solid var(--neon-magenta);
-    border-top: 2px solid var(--neon-magenta);
-    border-right: 2px solid var(--indigo-dark);
-    border-bottom: 2px solid var(--indigo-dark);
+    padding: 0.1rem 0.2rem 0.3rem 0.2rem;
+	border-left: 2px solid var(--indigo-dark);
+    border-top: 2px solid var(--indigo-dark);
+    border-right: 2px solid var(--neon-magenta);
+    border-bottom: 2px solid var(--neon-magenta);
+	text-align: center; 
 }
 .generator-total-distributed {
 	margin-right: 0.2rem
 }
 .generator-wrapper {
-	height: 100%; width: auto; margin: 1rem;
+	height: 100%; width: auto; margin: .9rem;
 }
 .generator-content {
 	height: calc(100% - 71px);
