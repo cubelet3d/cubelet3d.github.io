@@ -24,8 +24,10 @@
 	font-family: 'C64', monospace;
     font-size: 110%;
     text-shadow: 2px 2px var(--black);
-    background: var(--dark-purple);
-    padding: 0.1rem 0.2rem 0.3rem 0.2rem;
+    /*background: var(--dark-purple);*/
+	background: var(--black);
+	color: lawngreen; 
+    padding: 0.1rem 0.2rem 0.25rem 0.2rem;
 	border-left: 2px solid var(--indigo-dark);
     border-top: 2px solid var(--indigo-dark);
     border-right: 2px solid var(--neon-magenta);
