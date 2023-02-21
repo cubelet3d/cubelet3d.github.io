@@ -990,6 +990,12 @@ async function loadGeneratorRates() {
 		$("#GeneratorTotalValueLocked").text(abbr(parseFloat(vidyasToDollars), 1) + " USD")
 		$("#GeneratorTotalStakers").text()
 		$("#GeneratorAverageCommitment").text()
+		
+		fetch("https://vidyapad.com/info").then(function(r) {
+			let avgLPDays = r.sumLP / countLP 
+			let avgSingleDays = (r.sumShingle / countShingle) / 100 // ghost3d: single teller has different decimals 
+			console.log(avgLPDays, avgSingleDays)
+		})
 	}
 	catch(e) {
 		console.error(e)
