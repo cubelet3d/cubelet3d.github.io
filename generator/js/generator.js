@@ -995,8 +995,6 @@ async function loadGeneratorRates() {
 			let avgSingleDays = parseInt((res.sumShingle / res.countShingle) / 100) // ghost3d: single teller has different decimals 
 			let totalStakers = parseInt(res.countLP + res.countShingle)
 			let avgBetweenPools = avgLPDays + avgSingleDays / 2 
-			console.log(avgLPDays, avgSingleDays)
-			
 			$("#GeneratorTotalStakers").text(totalStakers)
 			$("#GeneratorAverageCommitment").text(avgBetweenPools + " days")
 		}))
