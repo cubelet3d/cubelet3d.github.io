@@ -996,6 +996,9 @@ async function loadGeneratorRates() {
 			let avgSingleDays = (r.sumShingle / countShingle) / 100 // ghost3d: single teller has different decimals 
 			console.log(avgLPDays, avgSingleDays)
 		})
+		.catch(function(e) {
+			// do something on error ie. don't show the boxes on UI
+		})
 	}
 	catch(e) {
 		console.error(e)
