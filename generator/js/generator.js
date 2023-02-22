@@ -988,15 +988,17 @@ async function loadGeneratorRates() {
 		// More new things 
 		let vidyasToDollars = (Number(vidyasInLp) + Number(vidyasInSingle)) * price_vidya 
 		$("#GeneratorTotalValueLocked").text(abbr(parseFloat(vidyasToDollars), 1) + " USD")
-		$("#GeneratorTotalStakers").text()
-		$("#GeneratorAverageCommitment").text()
 		
 		fetch("https://vidyapad.com/info").then(r => r.json().then(r => {
-			console.log(r.result)
 			let res = r.result[0]
-			let avgLPDays = res.sumLP / res.countLP 
-			let avgSingleDays = (res.sumShingle / res.countShingle) / 100 // ghost3d: single teller has different decimals 
+			let avgLPDays = parseInt(res.sumLP / res.countLP)
+			let avgSingleDays = parseInt((res.sumShingle / res.countShingle) / 100) // ghost3d: single teller has different decimals 
+			let totalStakers = parseInt(res.countLP + res.countShingle)
+			let avgBetweenPools = avgLPDays + avgSingleDays / 2 
 			console.log(avgLPDays, avgSingleDays)
+			
+			$("#GeneratorTotalStakers").text(totalStakers)
+			$("#GeneratorAverageCommitment").text(avgBetweenPools)
 		}))
 		.catch(function(e) {
 			// do something on error ie. don't show the boxes on UI
