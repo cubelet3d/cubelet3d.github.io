@@ -17,6 +17,9 @@
 .genwidth64pxreee {
 	width: 64px;
 }
+.generator-global-stats-wrapper {
+	border: 2px solid var(--purple)
+}
 .generator-total-distributed,
 .generator-total-valuelocked,
 .generator-total-stakers,
@@ -24,18 +27,20 @@
 	font-family: 'C64', monospace;
     font-size: 110%;
     text-shadow: 2px 2px var(--black);
-    /*background: var(--dark-purple);*/
-	background: var(--black);
-	color: lawngreen; 
+    background: var(--console-header); 
+	color: var(--white); 
     padding: 0.1rem 0.2rem 0.25rem 0.2rem;
+	/*background: var(--dark-purple);
+	color: lawngreen;
+	background: var(--black);
 	border-left: 2px solid var(--indigo-dark);
     border-top: 2px solid var(--indigo-dark);
     border-right: 2px solid var(--neon-magenta);
     border-bottom: 2px solid var(--neon-magenta);
-	text-align: center; 
+	text-align: center; */
 }
 .generator-total-distributed {
-	margin-right: 0.2rem
+	/*margin-right: 0.2rem*/
 }
 .generator-wrapper {
 	height: 100%; width: auto; margin: .9rem;

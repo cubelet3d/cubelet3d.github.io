@@ -998,7 +998,7 @@ async function loadGeneratorRates() {
 			console.log(avgLPDays, avgSingleDays)
 			
 			$("#GeneratorTotalStakers").text(totalStakers)
-			$("#GeneratorAverageCommitment").text(avgBetweenPools)
+			$("#GeneratorAverageCommitment").text(avgBetweenPools + " days")
 		}))
 		.catch(function(e) {
 			// do something on error ie. don't show the boxes on UI
