@@ -992,12 +992,13 @@ async function loadGeneratorRates() {
 		$("#GeneratorAverageCommitment").text()
 		
 		fetch("https://vidyapad.com/info").then(function(r) {
-			let avgLPDays = r.sumLP / countLP 
-			let avgSingleDays = (r.sumShingle / countShingle) / 100 // ghost3d: single teller has different decimals 
+			let avgLPDays = r.sumLP / r.countLP 
+			let avgSingleDays = (r.sumShingle / r.countShingle) / 100 // ghost3d: single teller has different decimals 
 			console.log(avgLPDays, avgSingleDays)
 		})
 		.catch(function(e) {
 			// do something on error ie. don't show the boxes on UI
+			console.error(e)
 		})
 	}
 	catch(e) {
