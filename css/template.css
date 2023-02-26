@@ -265,3 +265,7 @@
 #connect > .user-icon {
 	width: 32px; height: 32px; border: 0; 
 }
+.video-loading-icon {
+	background-image: url(../img/icons/loading.gif);
+	background-repeat: no-repeat; 
+}
