@@ -712,14 +712,18 @@
 											<div class="icon desktop-icon tv no-pointer-events shortcut"></div>
 											<span class="font-monospace text-align-center">teaser.mp4</span>
 										</div>
-										<div id="aimbots_video_button" class="video-open-btn desktop-icon-container flex-box col center-vertical non-mobile" data="aimbots_video">
+										<div id="aimbots_video_button" class="video-open-btn desktop-icon-container flex-box col center-vertical non-mobile" data="aimbots">
 											<div class="icon desktop-icon tv no-pointer-events shortcut"></div>
 											<span class="font-monospace text-align-center">aimbots.avi</span>
 										</div>
-										<div id="aimbots3d_video_button" class="video-open-btn desktop-icon-container flex-box col center-vertical non-mobile" data="aimbots3d_video">
+										<div id="aimbots3d_video_button" class="video-open-btn desktop-icon-container flex-box col center-vertical non-mobile" data="aimbots3d">
 											<div class="icon desktop-icon tv no-pointer-events shortcut"></div>
 											<span class="font-monospace text-align-center">aimbots3d.avi</span>
 										</div>
+										<div id="gameplay_video_button" class="video-open-btn desktop-icon-container flex-box col center-vertical non-mobile" data="gameplay">
+											<div class="icon desktop-icon tv no-pointer-events shortcut"></div>
+											<span class="font-monospace text-align-center">gameplay.avi</span>
+										</div>										
 									</div>
 								</div>
 							</div>
@@ -1201,11 +1205,12 @@
 							</div>
 						</div>
 					</div>
-					<div id="teaser" class="video console absolute draggable" data="teaser">
+					
+					<div id="videoLoader" class="video console absolute draggable hidden">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
 								<div class="icon tv"></div>
-								<div class="consoleTitle default">C:\team3d\teaser.mp4</div>
+								<div class="consoleTitle default"></div>
 							</div>
 							<div class="flex-box">
 								<button class="minimize_button">_</button>
@@ -1214,90 +1219,6 @@
 						</div>
 						<div class="console-content flex-box flex-center">
 							<video class="full-height full-width">
-								<source src="img/media/Teaser.mp4" type="video/mp4">
-								Your browser does not support the video tag.
-							</video>
-							<div class="video-controls absolute bottom flex-box col">
-								<div class="video-progress full-width">
-									<progress class="progress full-width" value="0" min="0"></progress>
-									<input class="seek" value="0" min="0" type="range" step="1">
-								</div>
-								<div class="flex-box flex-center space-between">
-									<div class="flex-box">
-										<div class="video-play-btn"></div>
-										<div class="volume-icon relative">
-											<div class="volume-icon-muted absolute top right bottom left"></div>
-											<div class="volume-icon-low absolute top right bottom left"></div>
-											<div class="volume-icon-med absolute top right bottom left"></div>
-											<div class="volume-icon-hi absolute top right bottom left"></div>
-										</div>
-										<input class="volume" value="1" type="range" max="1" min="0" step="0.01">
-									</div>
-									<div class="time">
-										<time class="elapsed">00:00</time>
-										<span> / </span>
-										<time class="duration">00:00</time>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="aimbots_video" class="video console absolute draggable" data="aimbots_video">
-						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
-							<div class="flex-box center-vertical">
-								<div class="icon tv"></div>
-								<div class="consoleTitle default">C:\team3d\aimbots.avi</div>
-							</div>
-							<div class="flex-box">
-								<button class="minimize_button">_</button>
-								<button class="close_button">X</button>
-							</div>
-						</div>
-						<div class="console-content flex-box flex-center">
-							<video class="full-height full-width">
-								<source src="img/media/aimbots.mp4" type="video/mp4">
-								Your browser does not support the video tag.
-							</video>
-							<div class="video-controls absolute bottom flex-box col">
-								<div class="video-progress full-width">
-									<progress class="progress full-width" value="0" min="0"></progress>
-									<input class="seek" value="0" min="0" type="range" step="1">
-								</div>
-								<div class="flex-box flex-center space-between">
-									<div class="flex-box">
-										<div class="video-play-btn"></div>
-										<div class="volume-icon relative">
-											<div class="volume-icon-muted absolute top right bottom left"></div>
-											<div class="volume-icon-low absolute top right bottom left"></div>
-											<div class="volume-icon-med absolute top right bottom left"></div>
-											<div class="volume-icon-hi absolute top right bottom left"></div>
-										</div>
-										<input class="volume" value="1" type="range" max="1" min="0" step="0.01">
-									</div>
-									<div class="time">
-										<time class="elapsed">00:00</time>
-										<span> / </span>
-										<time class="duration">00:00</time>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="aimbots3d_video" class="video console absolute draggable" data="aimbots3d_video">
-						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
-							<div class="flex-box center-vertical">
-								<div class="icon tv"></div>
-								<div class="consoleTitle default">C:\team3d\aimbots3d.avi</div>
-							</div>
-							<div class="flex-box">
-								<button class="minimize_button">_</button>
-								<button class="close_button">X</button>
-							</div>
-						</div>
-						<div class="console-content relative flex-box flex-center">
-							<video class="video-wrapper full-height full-width" preload="metadata">
-								<source src="img/media/Aimbots3d.mp4" type="video/mp4">
-								Your browser does not support the video tag.
 							</video>
 							<div class="video-controls absolute bottom flex-box col">
 								<div class="video-progress full-width">

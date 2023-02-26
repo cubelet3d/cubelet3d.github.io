@@ -98,19 +98,34 @@ $(document).ready(function() {
 			centerElement($("#"+item+""))
 		}
 		if($(this).hasClass("video-open-btn")) {
-			let video = $("#"+item+"").find("video")[0]
-			let seek = $("#"+item+"").find(".seek")[0]
-			let volume = $("#"+item+"").find(".volume")
-			let icon = $("#"+item+"").find(".volume-icon")
-			let durationElement = $("#"+item+" .duration")
-			let elapsedElement = $("#"+item+" .elapsed")
-			let seekElement = $("#"+item+" .seek")
-			let progressElement = $("#"+item+" .progress")
+			let video = $("#videoLoader").find("video")[0]
+			let seek = $("#videoLoader").find(".seek")[0]
+			let volume = $("#videoLoader").find(".volume")
+			let icon = $("#videoLoader").find(".volume-icon")
+			let durationElement = $("#videoLoader .duration")
+			let elapsedElement = $("#videoLoader .elapsed")
+			let seekElement = $("#videoLoader .seek")
+			let progressElement = $("#videoLoader .progress")
+			
+			// load src 
+			let source = '<source src="img/media/'+item+'.mp4" type="video/mp4">'
+			$(video).html(source)
+			video.load()
+			$("#videoLoader").find(".consoleTitle").text('C:\\team3d\\videos\\'+item+'.mp4')
 			
 			updateVolumeIcon(video, icon)
-			
+
 			/* Weirdest thing, event loadedmetadata works like this only, but timeupdate event works only when done like below :S */
-			video.addEventListener("loadedmetadata", initializeVideo(video, durationElement, seekElement, progressElement))
+			// video.addEventListener("loadedmetadata", initializeVideo(video, durationElement, seekElement, progressElement))
+			
+			// durationchange is more reliable than loadmetadata 
+			video.addEventListener('durationchange', function() {
+				initializeVideo(video, durationElement, seekElement, progressElement)
+				video.play()
+			})
+			
+			$("#videoLoader").show("fold")
+			
 			video.ontimeupdate = (event) => {
 				updateTimeElapsed(video, elapsedElement)
 				updateProgress(video, seekElement, progressElement)
