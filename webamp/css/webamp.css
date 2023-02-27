@@ -10,7 +10,8 @@
 }*/
 #webamp-wrapper {
 	width: 100%;
-	height: calc(100% - 64px);
+	/*height: calc(100% - 64px);*/
+	height: 100%; 
 }
 #webamp 
 {

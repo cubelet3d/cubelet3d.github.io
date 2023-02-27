@@ -34,7 +34,7 @@ async function init() {
             })
 			
             // Subscribe to network change 
-            window.ethereum.on('networkChanged', function(networkId) {
+            window.ethereum.on('chainChanged', function(networkId) {
                 setup()
             })
 			

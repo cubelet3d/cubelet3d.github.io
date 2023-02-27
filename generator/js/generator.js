@@ -229,11 +229,11 @@ $(document).ready(function() {
 			Generator.online = true
 			loadGeneratorRates()
 			ethVidyaLP = new web3.eth.Contract(ethVidyaLPABI, Generator.pool.eth.lptoken)
-			$("#generator_button").addClass("disabled")
+			$("#generator_button_wrapper").addClass("disabled")
 		} else {
 			Generator.online = false
 			resetUserInstance() 
-			$("#generator_button").removeClass("disabled")
+			$("#generator_button_wrapper").removeClass("disabled")
 		}
 	})
 	
