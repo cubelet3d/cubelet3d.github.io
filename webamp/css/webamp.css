@@ -12,3 +12,7 @@
 	width: 100%;
 	height: calc(100% - 64px);
 }
+#webamp 
+{
+	transform: scale(1.4)
+}

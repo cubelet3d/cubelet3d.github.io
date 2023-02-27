@@ -91,6 +91,9 @@ let webamp = new Webamp({
 	initialSkin: {
 		url: "webamp/team3d.wsz"
 	},
+	
+	enableDoubleSizeMode: true,
+	
 	zIndex: 10000
 })
 
