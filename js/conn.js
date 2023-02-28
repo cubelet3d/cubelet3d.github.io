@@ -165,3 +165,10 @@ function execute() {
     let program     = urlParams.get('open')
 	$("#"+program+"_button").trigger("click")
 }
+
+$("body").on("mouseover", "#connect", function() {
+	$("#connect .icon").removeClass("connect").addClass("connect-hover")
+})
+$("body").on("mouseleave", "#connect", function() {
+	$("#connect .icon").removeClass("connect-hover").addClass("connect")
+})
