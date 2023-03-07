@@ -166,9 +166,27 @@ function execute() {
 	$("#"+program+"_button").trigger("click")
 }
 
-$("body").on("mouseover", "#connect", function() {
-	$("#connect .icon").removeClass("connect").addClass("connect-hover")
-})
-$("body").on("mouseleave", "#connect", function() {
-	$("#connect .icon").removeClass("connect-hover").addClass("connect")
+$(document).ready(function() {
+	let icon = $("#connect .icon")
+	let anim = false
+
+	icon.hover(
+		function() {
+			if(!anim) {
+				anim = true 
+				icon.removeClass("connect").addClass("connect-hover")
+				setTimeout(function() {
+					icon.removeClass("connect, connect-hover").addClass("connect-anim-done")
+					anim = false 
+					if($("#connect .icon:hover").length == 0) {
+						icon.removeClass("connect-hover, connect-anim-done").addClass("connect")
+					}
+				}, 1500)
+			}
+		},
+		function() {
+			icon.removeClass("connect-hover, connect-anim-done").addClass("connect")
+		}
+	)
+
 })

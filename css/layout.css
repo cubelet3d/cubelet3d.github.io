@@ -489,6 +489,7 @@ how to remove the virtical space around the range input in IE*/
 .generator-hover        {background: url(../img/icons/generator-hover.gif); background-size: cover}
 .connect                {background: url(../img/icons/connect.png)}
 .connect-hover			{background: url(../img/icons/connect.gif)}
+.connect-anim-done		{background: url(../img/icons/connect2.png)}
 .connect3               {background: url(../img/icons/connect3.png)}
 .tv                     {background: url(../img/icons/tv.png)}
 .vidyaswap              {background: url(../img/icons/newlogo.png)}
@@ -579,7 +580,8 @@ how to remove the virtical space around the range input in IE*/
 }
 
 .connect,
-.connect-hover {
+.connect-hover,
+.connect-anim-done {
     width: 42px;
     height: 42px;
 }
