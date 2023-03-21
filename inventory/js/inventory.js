@@ -116,7 +116,7 @@ async function loadDistributor() {
                         
                         let msg = "<div class=\"flex-box col flex-center\">\
                         <div class=\"margin-bottom-05rem\">New item arrived!</div>\
-                        <div id=\"claimNewNFT\" data=\""+_template+"\" name=\""+_name+"\" slot=\""+_slot+"\"><img class=\"full-width full-height\" src="+_image+" alt="+_name+"/></div>\
+                        <div id=\"claimNewNFT\" data=\""+_template+"\" name=\""+_name+"\" slot=\""+_slot+"\"><img class=\"full-width full-height pointer\" src="+_image+" alt="+_name+"/></div>\
                         </div>"
                         
                         notify(msg)
@@ -924,5 +924,13 @@ $(document).ready(function() {
         let _name = $(this).attr("name")
         distributeTimedNFT(_id, _slot, _name)
     })
+	
+	// Add some glow 
+	$(document).on("mouseover", "#claimNewNFT", function() {
+		$(this).addClass("glow")
+	})
+	$(document).on("mouseleave", "#claimNewNFT", function() {
+		$(this).removeClass("glow")
+	})
     
 })
