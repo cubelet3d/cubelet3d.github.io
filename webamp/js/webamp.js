@@ -86,6 +86,27 @@ let webamp = new Webamp({
 				title: "Ascension (feat. Iconoclast)"
 			},
 			url: "webamp/tracks/12 - Ascension (feat. Iconoclast).mp3"
+		},
+		{
+			metaData: {
+				artist: "Synthetic Waveforms",
+				title: "Neon Shadows"
+			},
+			url: "webamp/tracks/13 - Neon Shadows.mp3"
+		},
+		{
+			metaData: {
+				artist: "Synthetic Waveforms",
+				title: "Electric Haze"
+			},
+			url: "webamp/tracks/14 - Electric Haze.mp3"
+		},
+		{
+			metaData: {
+				artist: "Synthetic Waveforms",
+				title: "Horizon"
+			},
+			url: "webamp/tracks/15 - Horizon.mp3"
 		}
 	],
 	initialSkin: {
