@@ -60,6 +60,8 @@ async function setup() {
         if(chainID == 1 || chainID == 1337) {
 			$(".testnet_object").fadeOut()
 			
+			await fetchPricesOnChain()
+			
             await loadInventory()
 
             replaceUniswapLink("vidyaswap")
@@ -83,6 +85,7 @@ async function setup() {
 			$("#browser_button_wrapper").show("scale") // browser 
 			
 			$("#alchemy_button_wrapper").show("scale")
+			
         }
 		
 		// "Girly" network  
@@ -111,14 +114,6 @@ async function setup() {
         let blockie = blockies.create({seed:accounts[0].toLowerCase()}).toDataURL()
         $(".user-picture").css("background-image", "url("+blockie+")");
         $("#web3-loading").text("Connected!")
-        
-    	let gasPrice
-    	await web3.eth.getGasPrice().then((result) => {
-    		gasPrice = parseInt(result)
-    	})
-        
-        $("#gas-price-wrapper").css("display","flex")
-        $("#gas-price").text(parseFloat(web3.utils.fromWei(gasPrice.toString(), "gwei")).toFixed(2))
 		
 		$("#startmenu .chat3d-toggle").show() // enable chat
 		
