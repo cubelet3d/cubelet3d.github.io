@@ -79,7 +79,7 @@ async function fetchPricesOnChain() {
     	})
         
 		$("#eth-price").text(price_eth.toFixed(2))
-		$("#vidya-price").text(price_vidya.toFixed(2))
+		$("#vidya-price").text(price_vidya.toFixed(4))
         $("#gas-price").text(parseFloat(web3.utils.fromWei(price_gas.toString(), "gwei")).toFixed(2))
 		
 		if($("#markets").hasClass("hidden")) {$("#markets").removeClass("hidden")}
