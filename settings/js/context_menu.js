@@ -2,8 +2,8 @@ let isFullScreen = false
 
 if (document.addEventListener) {
     document.addEventListener('contextmenu', function(e) {
+	e.preventDefault()
     drawContextMenu(e)
-    e.preventDefault()
     }, false)
 } else {
     document.attachEvent('oncontextmenu', function() {
@@ -12,8 +12,8 @@ if (document.addEventListener) {
 }
 
 function drawContextMenu(e) {
-	if($(e.path[0]).attr("id") == "browser-search-field" || $(e.path[0]).attr("id") == "lemongame-input-address") {
-		$(".context-menu").append('<div class="item paste" data="paste" target="'+$(e.path[0]).attr("id")+'">Paste</div>')
+	if($(e.srcElement[0]).attr("id") == "browser-search-field" || $(e.srcElement[0]).attr("id") == "lemongame-input-address") {
+		$(".context-menu").append('<div class="item paste" data="paste" target="'+$(e.srcElement[0]).attr("id")+'">Paste</div>')
 	}
 	
 	if(notepadRC) {
