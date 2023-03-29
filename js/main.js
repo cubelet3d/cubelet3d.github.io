@@ -98,6 +98,7 @@ $(document).ready(function() {
 			centerElement($("#"+item+""))
 		}
 		if($(this).hasClass("video-open-btn")) {
+			console.log("video-open-btn clicked")
 			let video = $("#videoLoader").find("video")[0]
 			let seek = $("#videoLoader").find(".seek")[0]
 			let volume = $("#videoLoader").find(".volume")
