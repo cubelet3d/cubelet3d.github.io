@@ -295,8 +295,8 @@ function loadGame(game) {
 		wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js" 
 	})
 	.ready((fs, main) => {
-		fs.extract("https://team3d.io/games/"+game+".zip", "/game").then(() => {
-			main(["-c", "CD game/"+game+"", "-c", ""+game+".exe"]).then((ci) => {
+		fs.extract("https://team3d.io/games/"+game+".zip").then(() => {
+			main(["-c", "CD "+game+"", "-c", ""+game+".exe"]).then((ci) => {
 				cmd = ci
 			})
 		})
