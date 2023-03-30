@@ -1,3 +1,5 @@
+Global = {}
+
 window.addEventListener('load', async () => {
     if(window.ethereum) {
         $("#connect").css("display","flex")
@@ -185,3 +187,11 @@ $(document).ready(function() {
 	)
 
 })
+
+// Fetch user's eth balance once per minute
+async function fetchEthBalance() {
+	await web3.eth.getBalance(accounts[0]).then((r) => {
+		if(Global.ethBalance !== r) {Global.ethBalance = r}
+	})
+	setTimeout(fetchEthBalance(), 60000)
+}
