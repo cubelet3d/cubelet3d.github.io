@@ -126,6 +126,7 @@ $(document).ready(function() {
 			})
 			
 			$("#videoLoader").show("fold")
+			console.log("Video loader folded in")
 			
 			video.ontimeupdate = (event) => {
 				updateTimeElapsed(video, elapsedElement)
