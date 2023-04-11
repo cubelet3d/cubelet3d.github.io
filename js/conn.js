@@ -16,6 +16,8 @@ $(document).ready(function() {
 var web3, accounts, connected = false
 
 async function init() {
+	
+	$("#desk").addClass("no-pointer-events");
     
     try {
         if (window.ethereum) {
@@ -116,6 +118,8 @@ async function setup() {
         $("#web3-loading").text("Connected!")
 		
 		$("#startmenu .chat3d-toggle").show() // enable chat
+		
+		$("#desk").removeClass("no-pointer-events");
 		
 		audio.boot.play()
 		
