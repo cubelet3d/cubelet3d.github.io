@@ -16,8 +16,21 @@ $(document).ready(function () {
 	$("#chat3d-toggle").on("click", function () {
 		if (chat3d == void null) {
 			chat3d = new WebSocket("wss://vidyapad.com/chat/");
+			
+			// Heart beat 
+			chat3d.onopen = function () {
+				var t = setInterval(function() {
+					if (chat3d.readyState != 1) {
+						clearInterval(t);
+						return;
+					}
+					chat3d.send(JSON.stringify({"type": "ping"}));
+				}, 55000);
+			};
+			
 			chat3d.onmessage = (event) => {
 				const data = JSON.parse(event.data);
+				console.log(data);
 				chat3d_data.authenticated = data.authenticated;
 				chat3d_data.clientsOnline = data.clientsOnline;
 				chat3d_data.activeUsers = data.activeUsers;
@@ -26,7 +39,7 @@ $(document).ready(function () {
 				switch (data.type) {
 					case "join":
 						$("#chat3d-chat").append(
-							`<p><span style="color: ${data.color};">${sanitize(
+							`<p class="flex-box center-vertical"><span style="color: ${data.color};">${sanitize(
 								data.username,
 							)}</span> joined!</p>`,
 						);
@@ -38,16 +51,27 @@ $(document).ready(function () {
 								$(".chat3d-sign-wrapper").remove();
 							}
 						}
-						$("#chat3d-chat").append(
-							`<p style="color: ${data.color};">${sanitize(
+						let msg; 
+						if(data.tokenId > 0) {
+							msg = `<p style="color: ${data.color};" class="flex-box center-vertical"><img src="https://team3d.io/inventory/json/${data.tokenId}.png" style="width: 16px; height: 16px; margin-right: 4px;"/>${sanitize(
 								data.username,
-							)}: ${sanitize(data.msg)}</p>`,
-						);
+							)}: ${sanitize(data.msg)}</p>`
+						} else {
+							msg = `<p style="color: ${data.color};" class="flex-box center-vertical">${sanitize(
+								data.username,
+							)}: ${sanitize(data.msg)}</p>`
+						}
+						$("#chat3d-chat").append(msg);
+						
+						// Sound 
+						if(chat3d_data.uid !== data.uid) {
+							audio.msage.play(); 
+						}
 						break;
 
 					case "leave":
 						$("#chat3d-chat").append(
-							`<p><span style="color: ${data.color};">${sanitize(
+							`<p class="flex-box center-vertical"><span style="color: ${data.color};">${sanitize(
 								data.username,
 							)}</span> left...</p>`,
 						);
@@ -55,7 +79,7 @@ $(document).ready(function () {
 
 					case "welcome":
 						$("#chat3d-chat").append(
-							`<p style="color: ${data.color};">${sanitize(
+							`<p class="flex-box center-vertical" style="color: ${data.color};">${sanitize(
 								data.username,
 							)}: ${sanitize(data.msg)}</p>`,
 						);
@@ -121,17 +145,18 @@ function handleMessage() {
 }
 
 function sanitize(string) {
-	const map = {
-		"&": "&amp;",
-		"<": "&lt;",
-		">": "&gt;",
-		'"': "&quot;",
-		"'": "&#x27;",
-		"/": "&#x2F;",
-		"`": "&grave;",
-	};
-	const reg = /[&<>"'/]/gi;
-	return string.replace(reg, (match) => map[match]);
+    const htmlEscapeMap = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+        '/': '&#x2F;',
+        '`': '&#x60;',
+        '=': '&#x3D;'
+    };
+
+    return string.replace(/[&<>"'`=/]/g, (char) => htmlEscapeMap[char]);
 }
 
 Object.values = function (object) {
