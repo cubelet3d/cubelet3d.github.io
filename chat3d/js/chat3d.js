@@ -55,11 +55,11 @@ $(document).ready(function () {
 						if(data.tokenId > 0) {
 							msg = `<p style="color: ${data.color};" class="flex-box center-vertical"><img src="https://team3d.io/inventory/json/${data.tokenId}.png" style="width: 16px; height: 16px; margin-right: 4px;"/>${sanitize(
 								data.username,
-							)}: ${sanitize(data.msg)}</p>`
+							)}: ${sanitizeText(data.msg)}</p>`
 						} else {
 							msg = `<p style="color: ${data.color};" class="flex-box center-vertical">${sanitize(
 								data.username,
-							)}: ${sanitize(data.msg)}</p>`
+							)}: ${sanitizeText(data.msg)}</p>`
 						}
 						$("#chat3d-chat").append(msg);
 						
@@ -157,6 +157,20 @@ function sanitize(string) {
     };
 
     return string.replace(/[&<>"'`=/]/g, (char) => htmlEscapeMap[char]);
+}
+
+function sanitizeText(text) {
+  const htmlEntities = {
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&#39;': "'",
+    '&quot;': '"'
+  };
+
+  return text.replace(/&amp;|&lt;|&gt;|&#39;|&quot;/g, function(match) {
+    return htmlEntities[match];
+  });
 }
 
 Object.values = function (object) {
