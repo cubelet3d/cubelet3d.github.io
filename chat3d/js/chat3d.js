@@ -30,11 +30,14 @@ $(document).ready(function () {
 			
 			chat3d.onmessage = (event) => {
 				const data = JSON.parse(event.data);
-				console.log(data);
 				chat3d_data.authenticated = data.authenticated;
 				chat3d_data.clientsOnline = data.clientsOnline;
 				chat3d_data.activeUsers = data.activeUsers;
-				chat3d_data.uid = data.uid;
+				
+				// Set uid 
+				if(!chat3d_data.uid) {
+					chat3d_data.uid = data.uid;
+				}
 
 				switch (data.type) {
 					case "join":
@@ -67,6 +70,7 @@ $(document).ready(function () {
 						if(chat3d_data.uid !== data.uid) {
 							audio.msage.play(); 
 						}
+						
 						break;
 
 					case "leave":
