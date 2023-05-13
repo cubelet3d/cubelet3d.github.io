@@ -59,7 +59,7 @@ async function setup() {
         let chainID = await web3.eth.getChainId()
 		
 		// MainNet Functionality 
-        if(chainID == 1 || chainID == 1337) {
+        if(chainID == 1 || chainID == 1337 || chainID == 369) {
 			$(".testnet_object").fadeOut()
 			
 			await fetchPricesOnChain()

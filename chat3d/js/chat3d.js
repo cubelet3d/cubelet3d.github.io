@@ -184,3 +184,21 @@ Object.values = function (object) {
 	}
 	return values;
 };
+
+// Sends typing event when user types in the input
+function sendTypingEvent() {
+  chat3d.send({ type: "typing" });
+}
+
+// Add event listener to input element
+function initTypingEvent() {
+  const input = document.querySelector(".chat3d-input");
+  if (input) {
+    input.addEventListener("input", sendTypingEvent);
+  } else {
+    console.error("Input element with class 'chat3d-input' not found.");
+  }
+}
+
+// Initialize the event listener
+initTypingEvent();
