@@ -1,0 +1,27 @@
+#cake3d {
+     width: 250px;
+     height: 290px;
+}
+#board {
+     display: flex;
+     flex-wrap: wrap;
+     width: 200px;
+     margin: auto;
+}
+.cell {
+     font-family: "C64", monospace;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 20px;
+     height: 20px;
+     border: 1px solid var(--dark-purple);
+     cursor: pointer;
+}
+.revealed {
+     background-color: var(--console-header);
+}
+.mine,
+.start-cake3d-icon {
+     background: url(../img/cake3d.png) no-repeat center center/cover;
+}

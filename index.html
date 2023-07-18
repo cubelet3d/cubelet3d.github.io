@@ -81,6 +81,21 @@
 			<!-- Main content wrapper -->
 			<div id="Main" class="main-content-wrapper absolute top right bottom left">
 				<div id="desk" class="panel absolute top right bottom left flex-box flex-center">
+					<div id="cake3d" class="hidden console absolute draggable" data="cake3d">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon desktop-exe"></div>
+								<div class="consoleTitle default">cake3d.exe</div>
+							</div>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
+						</div>
+						<div class="console-content flex-box flex-center scrollbar">
+							<div id="board"></div>
+						</div>
+					</div>
 					<!-- Happy halloween -->
 					<div id="alchemy" class="hidden console absolute draggable" data="alchemy">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
@@ -1550,6 +1565,10 @@
 						<div class="start-quickswap-icon start-icon"></div>
 						<div class="noselect no-pointer-events">QuickSwap</div>
 					</div>
+					<div id="cake3d_button" class="button flex-box center-vertical item" data="cake3d">
+						<div class="start-cake3d-icon start-icon"></div>
+						<div class="noselect no-pointer-events">Cake3D</div>
+					</div>					
 				</div>
 				<div class="flex-box col item" data="social">
 					<div class="start-item-label noselect no-pointer-events flex-box center-vertical">
@@ -1649,7 +1668,7 @@
 		<!-- Connect web3 dapp -->
 		<script src="js/conn.js"></script>
 		<!-- Context menu -->
-		<script src="settings/js/context_menu.js"></script> 
+		<script src="settings/js/context_menu.js"></script>
 		<!-- Browser -->
 		<script src="browser/js/browser.js"></script>
 		<link rel="stylesheet" href="browser/css/browser.css">
@@ -1664,5 +1683,8 @@
 		<link rel="stylesheet" href="alchemy/css/alchemy.css">
 		<!-- ChartJs -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+		<!-- Cake3D -->
+		<script src="games/cake3d/js/cake3d.js"></script>
+		<link rel="stylesheet" href="games/cake3d/css/cake3d.css"/>
 	</body>
 </html>
