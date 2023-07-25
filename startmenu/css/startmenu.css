@@ -144,6 +144,10 @@
     background: url(../img/chart.png);
 }
 
+.apps {
+	background: url(../img/apps.png);
+}
+
 #startmenu .icon {
     width: 32px;
     height: 32px;

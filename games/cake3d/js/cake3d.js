@@ -5,6 +5,7 @@ let mineLocations = new Set();
 let revealedCells = 0;
 
 $(document).on("click", "#cake3d_button", function() {
+	audio.open.play(); 
 	$("#cake3d").show("fold"); 
 }); 
 
@@ -74,6 +75,7 @@ function createBoard() {
             cell.classList.add('cell');
             let index = i * boardSize + j;
             cell.addEventListener('click', () => {
+				audio.click.play(); 
                 revealCell(index, cell);
             });
             row.appendChild(cell);
