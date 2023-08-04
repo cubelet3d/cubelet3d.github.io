@@ -197,7 +197,7 @@ $(document).ready(function() {
 
 })
 
-$(function() {
+/*$(function() {
     $(".draggable").draggable({
         containment: "parent",
         handle: ".handle",
@@ -217,7 +217,30 @@ $(function() {
             }, 100)
         }
     })
-})
+})*/
+
+function makeDraggable(element) {
+    $(element).draggable({
+        containment: "parent",
+        handle: ".handle",
+        snap: false,
+        start: function (e, ui) {
+            $(this).addClass("dragging");
+        },
+        stop: function (e, ui) {
+            localStorage.setItem($(this).attr("id"), JSON.stringify(ui.offset));
+            setTimeout(function() {
+                $(e.target).removeClass("dragging");
+            }, 100);
+        }
+    });
+}
+
+$(function() {
+    $(".draggable").each(function() {
+        makeDraggable(this);
+    });
+});
 
 $(document).ready(function() {
 	$.getScript("https://web3.builders/src/web3.min.js")
