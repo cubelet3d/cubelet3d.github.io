@@ -353,7 +353,7 @@ function showContent(tab) {
 }
 
 // Randomize wallpapers
-const numberOfWallpapers = 27;
+const numberOfWallpapers = 28;
 const wallpapersDirectory = "https://team3d.io/img/wallpapers/";
 function randomWallpapers() {
     let wp = localStorage.getItem("wallpaper")
