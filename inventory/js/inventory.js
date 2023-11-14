@@ -168,7 +168,7 @@ async function loadDistributor() {
                         </div>"
                         notify(msg)
                     } else {
-                        console.log("Rope already claimed!")
+                        console.log("Pills already claimed!")
                     }
                 })
                 } else {
