@@ -97,7 +97,7 @@ async function setup() {
 			$("#multipass_button_wrapper").show("scale")
 			// $("#alchemy_button_wrapper").show("scale")
 			VidyaAddress = "0xFFE93E63E94da7A44739b6aBFA25B81CEd979a6b"
-			distributorContract = "0xc26dEe9B7530e2c47eE2E87f4323A346432208B2"
+			distributorContract = "0x8A6F9dba6dd87bC1FEF6eA4cc21d2eC5Ad4478FB"
 			inventoryContract = "0xfbCc08d711664Fe9514404e4d9597774Ae3A0a63" 
 			await loadInventory()
 		}

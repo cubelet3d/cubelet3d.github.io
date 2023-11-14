@@ -1,0 +1,22 @@
+{
+  "template": "66",
+  "name": "Liberation pills",
+  "description": "Specially crafted by the finest alchemists to help navigate through challenging and constricted pathways.", 
+  "image": "https://team3d.io/inventory/json/66.png",
+  "ipfs": "",
+  "slot": "",
+  "attributes": [
+	{
+      "trait_type": "Category", 
+      "value": "Easter egg"
+    },
+	{
+      "trait_type": "Name", 
+      "value": "Liberation pills"
+    },
+	{
+      "trait_type": "Slot", 
+      "value": "1"
+    }
+  ]
+}

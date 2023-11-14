@@ -9,7 +9,7 @@ let VidyaAddress = "0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30",
 	inventoryContract = "0x9680223F7069203E361f55fEFC89B7c1A952CDcc",
     Inventory
     
-let distributorContract = "0x9Ff7D98442e4169b0e4d0Eea40E778ba86b72fC8",
+let distributorContract = "0xF507F0C86078734f89C30fE3d0a1d731d31B83ec",
     Distributor
  
 let VIDYA_ABI
@@ -18,7 +18,7 @@ let tokenBalance
 
 let hasMakeitStack = false
 
-let totalTemplates = 60
+let totalTemplates = 66
     
 let inventoryUserItems = [] // Array of tokenId's the user owns 
 let inventoryUserTemplates = [] // Array of templateId's the user owns 
@@ -154,17 +154,17 @@ async function loadDistributor() {
 			
 			
 			
-            /*  An event 2022
-                Available until Sat Jun 25 2022 21:00:00 GMT+0000
-			
-            if(i = 55) {
+            /*  An event 2023
+                Available until Thu Nov 16 2023 14:01:48 GMT+0000
+			*/
+            if(i = 66) {
                 let now = Math.round(new Date().getTime()/1000)
-                if(now < 1656190800) {
-                await Distributor.methods.claimed(55,inventoryUser).call().then(function(r) {
+                if(now < 1700143308) {
+                await Distributor.methods.claimed(66,inventoryUser).call().then(function(r) {
                     if(!r) {
                         let msg = "<div class=\"flex-box col flex-center\">\
                         <div class=\"margin-bottom-05rem\">Free stuff!</div>\
-                        <div id=\"claimTimedNFT\" data=\"55\" name=\"Rope\" slot=\"2\"><img class=\"full-width full-height pointer\" src=\"https://team3d.io/inventory/json/55.png\" alt=\"Rope\"/></div>\
+                        <div id=\"claimTimedNFT\" data=\"66\" name=\"Pills\" slot=\"1\" class='pointer'><img class=\"full-width full-height pointer\" src=\"https://team3d.io/inventory/json/66.png\" alt=\"Pills\"/></div>\
                         </div>"
                         notify(msg)
                     } else {
@@ -175,7 +175,7 @@ async function loadDistributor() {
                     console.log("Event is over..")
                 }
             }
-			*/
+			
 			
 			
             
@@ -211,7 +211,7 @@ async function distributeNFT(id, slot, name) {
 // Claim Timed NFT
 async function distributeTimedNFT(id, slot, name) {
     try {
-        await Distributor.methods.claimTimedItem(id,slot).send({
+        await Distributor.methods.claimHolidayItem(id,slot).send({
             from: inventoryUser
         })
         .on("transactionHash", function(hash) {
