@@ -156,7 +156,7 @@ async function loadDistributor() {
 			
             /*  An event 2023
                 Available until Thu Nov 16 2023 14:01:48 GMT+0000
-			*/
+			
             if(i = 66) {
                 let now = Math.round(new Date().getTime()/1000)
                 if(now < 1700143308) {
@@ -174,7 +174,7 @@ async function loadDistributor() {
                 } else {
                     console.log("Event is over..")
                 }
-            }
+            }*/
 			
 			
 			
