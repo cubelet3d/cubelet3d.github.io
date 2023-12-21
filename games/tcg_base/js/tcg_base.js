@@ -28,8 +28,8 @@ AAAAAAA                   AAAAAAA gggggggg::::::g   nnnnnn    nnnnnn   ooooooooo
 
 ***/
 
-let player1Color = 'linear-gradient(315deg, rgb(193 233 114) 0%, rgb(45 89 85) 100%)'; // "linear-gradient(315deg, #91b2d3 0%, #527fa4 100%)"; 
-let player2Color = 'linear-gradient(315deg, rgb(125 78 239) 0%, rgb(32 30 79) 100%)'; // "linear-gradient(315deg, #e68888 0%, #c53f3f 100%)"; 
+let player1Color = 'linear-gradient(315deg, rgba(193, 233, 114, 0.1) 0%, rgba(45, 89, 85, 0.1) 100%)'; // "linear-gradient(315deg, #91b2d3 0%, #527fa4 100%)"; 
+let player2Color = 'linear-gradient(315deg, rgba(125, 78, 239, 0.1) 0%, rgba(32, 30, 79, 0.1) 100%)'; // "linear-gradient(315deg, #e68888 0%, #c53f3f 100%)"; 
 
 const tcg_base_audio = {
 	'your_turn': new Audio('games/tcg_base/sounds/sfx/your_turn.wav'),
@@ -68,7 +68,7 @@ tcg_base_system = {
 	pack_address: "0x4061ACF3ee36fe2C6a1594928ff278fcfc56fd51", // old > "0x27Cb29B6ddBae13146E50F546D806E04dBc4e739",
 	game_address: "0xD2E3ACB122B6eEcbb60353A737b34A2c17B080A2", // old > "0x5E49E898C18Bd504170c926dD5b244165905F175",
 	card_address: "0xFdf664aE84c6D959cE4D72f07F08CB8a58B55579", // old > "0x7B4aB1B6f20aF6555B24C2BccAfBB82b1c5a60aE", 
-	caul_address: "0x1782f590E149BFf48A06Dd0ce19426458a7Fa7FE", // old > "0x1360398fFD6E9148Bd3FEc2910afa0660DFcE4cB",
+	caul_address: "0x9aa8D9dee5F55dBaA1D20B9534bB4c8f834453a0", // old > "0x1360398fFD6E9148Bd3FEc2910afa0660DFcE4cB",
 	pack: null,
 	game: null,
 	card: null
@@ -1248,8 +1248,8 @@ $(document).ready(function() {
 		let totalCardsDeposited = await tcg_base_system.game.methods.getDepositedAvailableCards(address).call();
 		let highestLevelCard = await tcg_base_system.card.methods.getHighestLevelCard(address).call(); 
 		let packPoints = await tcg_base_system.pack.methods.userPoints(address).call(); 
-		let totalCardsBurned = 0; // await tcg_base_system.caul.methods.totalCardsBurnedPerUser(address).call(); <- not yet in contract 
-		let highestLevelBurned = 0; // await tcg_base_system.caul.methods.highestLevelBurnedPerUser(address).call(); <- not yet in contract 
+		let totalCardsBurned = await tcg_base_system.caul.methods.totalCardsBurnedPerUser(address).call(); 
+		let highestLevelBurned = await tcg_base_system.caul.methods.highestLevelBurnedPerUser(address).call();
 		let weights = await tcg_base_system.caul.methods.weights(address).call(); 
 		let rewardsClaimed = await tcg_base_system.caul.methods.rewardsClaimed(address).call(); 
 		let lastClaimTime = await tcg_base_system.caul.methods.lastClaim(address).call();
@@ -3503,9 +3503,11 @@ async function tcg_base_openGameUpdateBoard(gameWindow, boardData) {
 				if (card) {
 					// Check the owner and set the background accordingly
 					if (cardData[2] === player1) {
-						inner.css('background', 'url(' + card.image + ') center center/cover, '+player1Color);
+						// inner.css('background', 'url(' + card.image + ') center center/cover, '+player1Color);
+						inner.css('background', `${player1Color}, url(${card.image}) center center/cover`);
 					} else if (cardData[2] === player2) {
-						inner.css('background', 'url(' + card.image + ') center center/cover, '+player2Color);
+						// inner.css('background', 'url(' + card.image + ') center center/cover, '+player2Color);
+						inner.css('background', `${player2Color}, url(${card.image}) center center/cover`);
 					}
 
 					// Clear any existing card values div
@@ -3758,7 +3760,7 @@ function createHandHTML(tokenUris, defaultColor, tradeRule, boardData, loserToke
 		let canClick = loserTokenIds.includes(tokenId) && (tradeRule === "One" || tradeRule === "Diff") && isWinner;
 
         handHTML += `
-        <div class="tcg_base_game_modal_card relative ${canClick ? 'tcg_base_game_modal_card_loser' : ''}" tokenId="${tokenId}" ${canClick ? 'onclick="tcg_base_loserCardClickHandler(this)"' : ''} style="background: url(${image}) center center/cover, ${cardColor};" data-traderule="${tradeRule}" data-player1points="${player1Points}" data-player2points="${player2Points}">
+        <div class="tcg_base_game_modal_card relative ${canClick ? 'tcg_base_game_modal_card_loser' : ''}" tokenId="${tokenId}" ${canClick ? 'onclick="tcg_base_loserCardClickHandler(this)"' : ''} style="background: ${cardColor}, url(${image}) center center/cover;" data-traderule="${tradeRule}" data-player1points="${player1Points}" data-player2points="${player2Points}">
 			<div class="tcg_base_game_modal_card_values">
 				<div class="tcg_base_game_modal_card_value_top">${topValue}</div>
 				<div class="tcg_base_game_modal_card_value_left">${leftValue}</div>
@@ -3988,7 +3990,8 @@ async function tcg_base_openGameUpdateHands(gameId, gameWindow, gameDetails) {
         for (let i = 0; i < player1tokenUris.length; i++) {
             let cardData = player1tokenUris[i];
             let cardDiv = gameWindow.find('.tcg_base_player_cards_list .tcg_base_player_card').eq(i);
-            cardDiv.css('background', 'url(' + cardData.image + ') center center/cover, ' + player1Color + '');
+            // cardDiv.css('background', 'url(' + cardData.image + ') center center/cover, ' + player1Color + '');
+			cardDiv.css('background', `${player1Color}, url(${cardData.image}) center center/cover`); 
             cardDiv.attr('tokenId', cardData.tokenId);
 
             // Update card values
@@ -4009,7 +4012,8 @@ async function tcg_base_openGameUpdateHands(gameId, gameWindow, gameDetails) {
         for (let i = 0; i < player2tokenUris.length; i++) {
             let cardData = player2tokenUris[i];
             let cardDiv = gameWindow.find('.tcg_base_opponent_cards_list .tcg_base_player_card').eq(i);
-            cardDiv.css('background', 'url(' + cardData.image + ') center center/cover, ' + player2Color + '');
+            // cardDiv.css('background', 'url(' + cardData.image + ') center center/cover, ' + player2Color + '');
+			cardDiv.css('background', `${player2Color}, url(${cardData.image}) center center/cover`); 
             cardDiv.attr('tokenId', cardData.tokenId);
 
             // Update card values
@@ -4966,7 +4970,7 @@ function playbackSetupCards(gameWindow, cardUris, cardListClass, playerColor) {
         let cardData = cardUris[i];
         let cardDiv = gameWindow.find(`${cardListClass} .tcg_base_player_card`).eq(i);
 
-        cardDiv.css('background', `url(${cardData.image}) center center/cover, ${playerColor}`);
+        cardDiv.css('background', `${playerColor}, url(${cardData.image}) center center/cover`);
         cardDiv.attr('tokenId', cardData.tokenId);
 
         ['Top', 'Left', 'Bottom', 'Right'].forEach(direction => {
@@ -4994,7 +4998,8 @@ async function playbackPlaceCards(cardSlots, creatorUris, opponentUris, cardsPla
             if (cardDetails) {
                 let backgroundColor = creatorUris.some(uri => uri.tokenId === card.tokenId) ? player1Color : player2Color;
                 // console.log(`Card ${card.tokenId} is from ${backgroundColor === player1Color ? "creator's" : "opponent's"} hand.`);
-                inner.css('background', `url(${cardDetails.image}) center center/cover, ${backgroundColor}`);
+                // inner.css('background', `url(${cardDetails.image}) center center/cover, ${backgroundColor}`);
+				inner.css('background', `${backgroundColor}, url(${cardDetails.image}) center center/cover`);
 
                 let cardValuesDiv = $('<div>').addClass('tcg_base_player_card_values');
                 ['Top', 'Left', 'Right', 'Bottom'].forEach(position => {
@@ -5190,7 +5195,7 @@ function captureCard(cardSlots, position, cardDetails, capturingPlayerColor, gam
 		$('.tcg_base_card_on_board').removeClass('flip');
 		
 		// Directly change the background color of the captured card
-		let newBackground = `url("${cardDetails.image}") center center / cover, ${capturingPlayerColor}`; 
+		let newBackground = `${capturingPlayerColor}, url("${cardDetails.image}") center center / cover`; 
 		cardElement.css('background', newBackground);		
 	}, 600); // Match CSS animation 
 
@@ -5291,10 +5296,10 @@ async function practice() {
 					attributes: [
 						{ trait_type: "Name", value: card.name },
 						{ trait_type: "Level", value: card.level },
-						{ trait_type: "Top", value: card.top },
-						{ trait_type: "Left", value: card.left },
-						{ trait_type: "Right", value: card.right },
-						{ trait_type: "Bottom", value: card.bottom }
+						{ trait_type: "Top", value: card.top === "10" ? "A" : card.top },
+						{ trait_type: "Left", value: card.left === "10" ? "A" : card.left },
+						{ trait_type: "Right", value: card.right === "10" ? "A" : card.right },
+						{ trait_type: "Bottom", value: card.bottom === "10" ? "A" : card.bottom }
 					],
 					
 					// Generate pseudo tokenId for the opponent 
@@ -5377,7 +5382,8 @@ async function practice() {
 			for (let i = 0; i < practiceData[gameId].creatorUris.length; i++) {
 				let cardData = practiceData[gameId].creatorUris[i];
 				let cardDiv = gameWindow.find('.tcg_base_player_cards_list .tcg_base_player_card').eq(i);
-				cardDiv.css('background', 'url(' + cardData.image + ') center center/cover, ' + player1Color + '');
+				// cardDiv.css('background', 'url(' + cardData.image + ') center center/cover, ' + player1Color + '');
+				cardDiv.css('background', '' + player1Color + ', url(' + cardData.image + ') center center/cover');
 				cardDiv.attr('tokenId', cardData.tokenId);
 				cardDiv.addClass('practice');
 
@@ -5399,7 +5405,8 @@ async function practice() {
 			for (let i = 0; i < practiceData[gameId].opponentUris.length; i++) {
 				let cardData = practiceData[gameId].opponentUris[i];
 				let cardDiv = gameWindow.find('.tcg_base_opponent_cards_list .tcg_base_player_card').eq(i);
-				cardDiv.css('background', 'url(' + cardData.image + ') center center/cover, ' + player2Color + '');
+				// cardDiv.css('background', 'url(' + cardData.image + ') center center/cover, ' + player2Color + '');
+				cardDiv.css('background', '' + player2Color + ', url(' + cardData.image + ') center center/cover');
 				cardDiv.attr('tokenId', cardData.tokenId);
 
 				// Update card values
@@ -5469,7 +5476,7 @@ function practicePlaceCard(gameId, slotId, cardElement) {
 	if (cardDetails) {
 		let backgroundColor = practiceData[gameId].creatorUris.some(uri => uri.tokenId === tokenId) ? player1Color : player2Color;
 		// console.log(`Card ${tokenId} is from ${backgroundColor === player1Color ? "creator's" : "opponent's"} hand.`);
-		inner.css('background', `url(${cardDetails.image}) center center/cover, ${backgroundColor}`);
+		inner.css('background', `${backgroundColor}, url(${cardDetails.image}) center center/cover`);
 
 		let cardValuesDiv = $('<div>').addClass('tcg_base_player_card_values');
 		['Top', 'Left', 'Right', 'Bottom'].forEach(position => {
@@ -5569,7 +5576,7 @@ function practicePlaceCardBot(gameId, gameWindow, allUris) {
 	let backgroundColor = practiceData[gameId].creatorUris.some(uri => uri.tokenId === tokenId) ? player1Color : player2Color;
 
 	// console.log(`Card ${tokenId} is from ${backgroundColor === player1Color ? "creator's" : "opponent's"} hand.`);
-	inner.css('background', `url(${oppCard.image}) center center/cover, ${backgroundColor}`);
+	inner.css('background', `${backgroundColor}, url(${oppCard.image}) center center/cover`);
 
 	let cardValuesDiv = $('<div>').addClass('tcg_base_player_card_values');
 	['Top', 'Left', 'Right', 'Bottom'].forEach(position => {
@@ -5653,31 +5660,46 @@ async function getPfpsForPlayers(gameId, playerAddress, opponentAddress) {
         tcg_base_games.pfpCache = {};
     }
 
-    // Check if PFPs for this gameId are already cached and return them in the expected structure
-    if (tcg_base_games.pfpCache[gameId]) {
-        return {
-            playerPfp: tcg_base_games.pfpCache[gameId][playerAddress],
-            opponentPfp: tcg_base_games.pfpCache[gameId][opponentAddress]
-        };
-    }
-
-    // Destructure and get token IDs
-    let { _tokenId: playerPfpId } = await tcg_base_system.game.methods.playerData(playerAddress).call();
-    let { _tokenId: opponentPfpId } = await tcg_base_system.game.methods.playerData(opponentAddress).call();
-
-    // Fetch PFPs
-    let [playerPfp, opponentPfp] = await Promise.all([
-        fetchPfp(playerPfpId, playerAddress),
-        fetchPfp(opponentPfpId, opponentAddress)
-    ]);
-
-    // Cache the PFPs for future use
+    // Initialize the game ID cache if it doesn't exist
     if (!tcg_base_games.pfpCache[gameId]) {
         tcg_base_games.pfpCache[gameId] = {};
     }
+
+    // Check if PFPs for this gameId are already cached
+    let cachedData = tcg_base_games.pfpCache[gameId];
+    let playerCached = cachedData[playerAddress];
+    let opponentCached = opponentAddress === '0x0000000000000000000000000000000000000000' ? cachedData[opponentAddress] : cachedData[opponentAddress] || cachedData['0x0000000000000000000000000000000000000000'];
+
+    // If both player and opponent PFPs are cached, return them
+    if (playerCached && opponentCached) {
+        // If the opponent address has updated from zero to a real address, update the cache
+        if (opponentAddress !== '0x0000000000000000000000000000000000000000' && cachedData['0x0000000000000000000000000000000000000000']) {
+            cachedData[opponentAddress] = cachedData['0x0000000000000000000000000000000000000000'];
+            delete cachedData['0x0000000000000000000000000000000000000000'];
+        }
+        return {
+            playerPfp: playerCached,
+            opponentPfp: cachedData[opponentAddress]
+        };
+    }
+
+    // Fetch PFPs
+    let [playerPfp, opponentPfp] = await Promise.all([
+        playerCached ? playerCached : fetchPfp(await getPlayerTokenId(playerAddress), playerAddress),
+        opponentCached ? opponentCached : fetchPfp(await getPlayerTokenId(opponentAddress), opponentAddress)
+    ]);
+
+    // Cache the PFPs for future use
     tcg_base_games.pfpCache[gameId][playerAddress] = playerPfp;
-    tcg_base_games.pfpCache[gameId][opponentAddress] = opponentPfp;
+    if (opponentAddress !== '0x0000000000000000000000000000000000000000') {
+        tcg_base_games.pfpCache[gameId][opponentAddress] = opponentPfp;
+    }
 
     return { playerPfp, opponentPfp };
+}
+
+async function getPlayerTokenId(address) {
+    let { _tokenId } = await tcg_base_system.game.methods.playerData(address).call();
+    return _tokenId;
 }
 
