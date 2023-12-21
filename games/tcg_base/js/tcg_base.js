@@ -28,8 +28,8 @@ AAAAAAA                   AAAAAAA gggggggg::::::g   nnnnnn    nnnnnn   ooooooooo
 
 ***/
 
-let player1Color = 'linear-gradient(315deg, rgba(193, 233, 114, 0.1) 0%, rgba(45, 89, 85, 0.1) 100%)'; // "linear-gradient(315deg, #91b2d3 0%, #527fa4 100%)"; 
-let player2Color = 'linear-gradient(315deg, rgba(125, 78, 239, 0.1) 0%, rgba(32, 30, 79, 0.1) 100%)'; // "linear-gradient(315deg, #e68888 0%, #c53f3f 100%)"; 
+let player1Color = 'linear-gradient(315deg, rgba(193, 233, 114, 0.2) 0%, rgba(45, 89, 85, 0.2) 100%)'; // "linear-gradient(315deg, #91b2d3 0%, #527fa4 100%)"; 
+let player2Color = 'linear-gradient(315deg, rgba(125, 78, 239, 0.2) 0%, rgba(32, 30, 79, 0.2) 100%)'; // "linear-gradient(315deg, #e68888 0%, #c53f3f 100%)"; 
 
 const tcg_base_audio = {
 	'your_turn': new Audio('games/tcg_base/sounds/sfx/your_turn.wav'),
