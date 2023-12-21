@@ -1340,3 +1340,11 @@
 .flip .tcg_base_card_on_board_inner {
     transform: rotateY(180deg);
 }
+
+/* Card name overflow fix */
+.tcg_base_card_title_standout {
+	max-width: 134.4px; 
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	white-space: nowrap; 
+}
