@@ -1,0 +1,15 @@
+Agnosia is finally here! 
+
+Fastest way to get started: 
+
+0. connect wallet to goerli network 
+1. get goerli eth from testnetbridge.com 
+2. buy starter pack to get 7 cards 
+3. upload the cards from deck to game 
+4. play practice mode
+5. look for open games or create a new game 
+6. win cards 
+7. ascend cards 
+8. brew cards 
+9. get rewards
+10. expect nice things 

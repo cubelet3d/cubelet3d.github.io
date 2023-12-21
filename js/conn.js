@@ -94,12 +94,14 @@ async function setup() {
 		else if(chainID == 5) {
 			notify("Connected to Goerli testnet!")
 			$(".mainnet_object").fadeOut()
-			$("#multipass_button_wrapper").show("scale")
+			// $("#multipass_button_wrapper").show("scale")
 			// $("#alchemy_button_wrapper").show("scale")
 			VidyaAddress = "0xFFE93E63E94da7A44739b6aBFA25B81CEd979a6b"
 			distributorContract = "0x8A6F9dba6dd87bC1FEF6eA4cc21d2eC5Ad4478FB"
 			inventoryContract = "0xfbCc08d711664Fe9514404e4d9597774Ae3A0a63" 
 			await loadInventory()
+			
+			tcg_base_init(); // Agnosia 
 		}
 		
 		// The useless Polygon 

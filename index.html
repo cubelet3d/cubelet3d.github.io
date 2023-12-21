@@ -81,6 +81,541 @@
 			<!-- Main content wrapper -->
 			<div id="Main" class="main-content-wrapper absolute top right bottom left">
 				<div id="desk" class="panel absolute top right bottom left flex-box flex-center">
+					<!-- GAME / BOARD 
+						 These open as new executables from the "Play" section 
+						 1 game per executable & you can play multiple games at the same time 
+					-->
+					<div id="tcg_base_game_window" class="tcg_base_gameplay_wrapper console absolute draggable hidden" data="tcg_base_gameplay">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon desktop-exe"></div>
+								<div class="consoleTitle default">C:\team3d\agnosia.exe - Game #<span class="tcg_base_gameIndex">0</span></div>
+							</div>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
+						</div>
+						<div class="tcg_base_game_wrapper tcg_table_bg" gameIndex="0">
+							<div class="tcg_base_game_content tcg_base_hologram flex-box relative">
+								<!-- Loading screen -->
+								<div id="tcg_base_game_wrapper_loading_screen" class="template-loading-outer flex-box flex-center">
+									<div class="template-loading-inner"></div>
+								</div>
+								<div class="tcg_base_player flex-box col align-center">
+									<div class="tcg_base_player_profile tcg_base_monitor_left flex-box col flex-center">
+										<div class="tcg_base_player_pfp agnosia_button_hover agnosia_button_click"></div>
+										<div class="tcg_base_player_points"><span class="tcg_base_player1_points">5</span></div>
+									</div>
+									<div class="tcg_base_player_cards_list tcg_base_cardmat_left flex-box col align-center">
+										<div class="tcg_base_player_card agnosia_card_hover hidden">
+											<div class="tcg_base_player_card_values">
+												<div class="tcg_base_player_card_value_top"></div>
+												<div class="tcg_base_player_card_value_left"></div>
+												<div class="tcg_base_player_card_value_bottom"></div>
+												<div class="tcg_base_player_card_value_right"></div>
+											</div>
+										</div>
+										<div class="tcg_base_player_card agnosia_card_hover hidden">
+											<div class="tcg_base_player_card_values">
+												<div class="tcg_base_player_card_value_top"></div>
+												<div class="tcg_base_player_card_value_left"></div>
+												<div class="tcg_base_player_card_value_bottom"></div>
+												<div class="tcg_base_player_card_value_right"></div>
+											</div>
+										</div>
+										<div class="tcg_base_player_card agnosia_card_hover hidden">
+											<div class="tcg_base_player_card_values">
+												<div class="tcg_base_player_card_value_top"></div>
+												<div class="tcg_base_player_card_value_left"></div>
+												<div class="tcg_base_player_card_value_bottom"></div>
+												<div class="tcg_base_player_card_value_right"></div>
+											</div>
+										</div>
+										<div class="tcg_base_player_card agnosia_card_hover hidden">
+											<div class="tcg_base_player_card_values">
+												<div class="tcg_base_player_card_value_top"></div>
+												<div class="tcg_base_player_card_value_left"></div>
+												<div class="tcg_base_player_card_value_bottom"></div>
+												<div class="tcg_base_player_card_value_right"></div>
+											</div>
+										</div>
+										<div class="tcg_base_player_card agnosia_card_hover hidden">
+											<div class="tcg_base_player_card_values">
+												<div class="tcg_base_player_card_value_top"></div>
+												<div class="tcg_base_player_card_value_left"></div>
+												<div class="tcg_base_player_card_value_bottom"></div>
+												<div class="tcg_base_player_card_value_right"></div>
+											</div>
+										</div>										
+									</div>
+								</div>
+								<div class="tcg_base_middle_game_area tcg_base_board_bg flex-box col space-between">
+									<div class="tcg_base_game_details_wrapper flex-box space-between relative">
+										<div>Wager: <span class="tcg_base_wagerAmount"></span></div>
+										<div>Trade rule: <span class="tcg_base_tradeRule"></span></div>
+									</div>
+									<div class="tcg_base_board relative">
+										<div class="tcg_base_card_on_board" data="0">
+											<div class="tcg_base_card_on_board_inner relative"></div>
+										</div>
+										<div class="tcg_base_card_on_board" data="1">
+											<div class="tcg_base_card_on_board_inner relative"></div>
+										</div>
+										<div class="tcg_base_card_on_board" data="2">
+											<div class="tcg_base_card_on_board_inner relative"></div>
+										</div>
+										<div class="tcg_base_card_on_board" data="3">
+											<div class="tcg_base_card_on_board_inner relative"></div>
+										</div>
+										<div class="tcg_base_card_on_board" data="4">
+											<div class="tcg_base_card_on_board_inner relative"></div>
+										</div>
+										<div class="tcg_base_card_on_board" data="5">
+											<div class="tcg_base_card_on_board_inner relative"></div>
+										</div>
+										<div class="tcg_base_card_on_board" data="6">
+											<div class="tcg_base_card_on_board_inner relative"></div>
+										</div>
+										<div class="tcg_base_card_on_board" data="7">
+											<div class="tcg_base_card_on_board_inner relative"></div>
+										</div>
+										<div class="tcg_base_card_on_board" data="8">
+											<div class="tcg_base_card_on_board_inner relative"></div>
+										</div>
+									</div>
+									<div class="tcg_base_game_forfeit_info flex-box space-between hidden">
+										<div class="C64">Forfeit time reached! You can wait for the other player or forfeit now and claim all of their cards.</div>
+										<div class="tcg_base_forfeit_button agnosia_button_hover agnosia_button_click">Forfeit</div>
+									</div>
+									<div class="tcg_base_lastMoveTime C64 absolute flex-box col"></div>							
+								</div>
+								<div class="tcg_base_opponent flex-box col align-center">
+									<div class="tcg_base_opponent_profile tcg_base_monitor_right flex-box col flex-center">
+										<div class="tcg_base_opponent_pfp agnosia_button_hover agnosia_button_click"></div>
+										<div class="tcg_base_opponent_points"><span class="tcg_base_player2_points">5</span></div>
+									</div>
+									<div class="tcg_base_opponent_cards_list tcg_base_cardmat_right flex-box col align-center">
+										<div class="tcg_base_player_card agnosia_card_hover hidden">
+											<div class="tcg_base_player_card_values">
+												<div class="tcg_base_player_card_value_top"></div>
+												<div class="tcg_base_player_card_value_left"></div>
+												<div class="tcg_base_player_card_value_bottom"></div>
+												<div class="tcg_base_player_card_value_right"></div>
+											</div>
+										</div>
+										<div class="tcg_base_player_card agnosia_card_hover hidden">
+											<div class="tcg_base_player_card_values">
+												<div class="tcg_base_player_card_value_top"></div>
+												<div class="tcg_base_player_card_value_left"></div>
+												<div class="tcg_base_player_card_value_bottom"></div>
+												<div class="tcg_base_player_card_value_right"></div>
+											</div>
+										</div>
+										<div class="tcg_base_player_card agnosia_card_hover hidden">
+											<div class="tcg_base_player_card_values">
+												<div class="tcg_base_player_card_value_top"></div>
+												<div class="tcg_base_player_card_value_left"></div>
+												<div class="tcg_base_player_card_value_bottom"></div>
+												<div class="tcg_base_player_card_value_right"></div>
+											</div>
+										</div>
+										<div class="tcg_base_player_card agnosia_card_hover hidden">
+											<div class="tcg_base_player_card_values">
+												<div class="tcg_base_player_card_value_top"></div>
+												<div class="tcg_base_player_card_value_left"></div>
+												<div class="tcg_base_player_card_value_bottom"></div>
+												<div class="tcg_base_player_card_value_right"></div>
+											</div>
+										</div>
+										<div class="tcg_base_player_card agnosia_card_hover hidden">
+											<div class="tcg_base_player_card_values">
+												<div class="tcg_base_player_card_value_top"></div>
+												<div class="tcg_base_player_card_value_left"></div>
+												<div class="tcg_base_player_card_value_bottom"></div>
+												<div class="tcg_base_player_card_value_right"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>	
+					</div>
+				
+					<!-- TCG Base -->
+					<div id="tcg_base" class=" console absolute draggable hidden" data="tcg_base">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon desktop-exe"></div>
+								<div class="consoleTitle default">C:\team3d\agnosia.exe</div>
+							</div>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
+						</div>
+						<div class="tcg_base_content">
+							<!-- Modal -->
+							<div class="tcg_base_modal hidden">
+								<div class="tcg_base_modal_header flex-box space-between flex-center">
+									<div class="tcg_base_modal_header_title C64 uppercase">Default</div>
+									<div class="C64 tcg_base_modal_close_button agnosia_button_stone_hover agnosia_button_stone_click">Close</div>
+								</div>
+								<div class="tcg_base_modal_body">
+									<!-- Modal content here --->
+								</div>
+							</div>
+							<div class="tcg_base_content_inner flex-box full-height full-width">
+								<!-- Sidebar / Main menu --> 
+								<div class="tcg_base_menu flex-box col relative">
+									<div class="tcg_base_menu_wrapper">
+										<div class="tcg_base_menu_option flex-box space-between" data="play"><div class="no-pointer-events"></div></div>
+										<div class="tcg_base_menu_option flex-box space-between" data="deck"><div class="no-pointer-events"></div></div>
+										<div class="tcg_base_menu_option flex-box space-between" data="cauldron"><div class="no-pointer-events"></div></div>
+										<div class="tcg_base_menu_option flex-box space-between disabled" data="conjure"><div class="no-pointer-events"></div></div>
+										<div class="tcg_base_menu_option flex-box space-between" data="options"><div class="no-pointer-events"></div></div>
+									</div>
+									<div class="tcg_base_menu_profile_link C64 absolute"></div>
+								</div>
+								<!-- Main content -->
+								<div class="tcg_base_main flex-box col full-width full-height relative">
+									<!-- Loading screen -->
+									<div id="tcg_base_loading_screen" class="template-loading-outer flex-box flex-center">
+										<div class="template-loading-inner"></div>
+									</div>								
+									<!-- Play -->
+									<div class="tcg_base_main_wrapper hidden" data="play">
+										<div class="tcg_base_main_content flex-box col">
+											<div class="flex-box space-between full-height">
+												<div class="tcg_base_play_half flex-box col relative">
+													<div class="tcg_base_available_cards_header C64 tcg_base_green_text_black_outline absolute" style="left: 8px; top: 8px;">Available cards</div>
+													<div class="tcg_base_play_available_cards_list_outer_wrapper">
+														<div class="tcg_base_play_available_cards_list_outer flex-box col">
+															<div class="tcg_base_play_available_cards_list_inner flex-box col"></div>
+														</div>
+													</div>
+													<div class="tcg_base_create_new_game_wrapper flex-box col relative">
+														<div class="flex-box space-between">
+															<div class="tcg_base_create_new_game_header C64">Your hand <span id="saveHand" class="agnosia_button_card_click_1 disabled">[save]</span> <span id="loadHand" class="agnosia_button_card_click_1 disabled">[load]</span></div>
+															<div id="tcg_base_advancedSettingsOpenButton" class="tcg_base_create_new_game_header agnosia_button_card_click_1 C64">[Options]</div>
+														</div>														
+														<div class="tcg_base_create_new_game_content flex-box col">
+															<div class="tcg_base_cards_to_start_game_container flex-box space-between">
+																<div class="tcg_base_card_to_start_game agnosia_button_card_click_2" data-tokenId="0" data-saved="true"></div>
+																<div class="tcg_base_card_to_start_game agnosia_button_card_click_2" data-tokenId="0" data-saved="true"></div>
+																<div class="tcg_base_card_to_start_game agnosia_button_card_click_2" data-tokenId="0" data-saved="true"></div>
+																<div class="tcg_base_card_to_start_game agnosia_button_card_click_2" data-tokenId="0" data-saved="true"></div>
+																<div class="tcg_base_card_to_start_game agnosia_button_card_click_2" data-tokenId="0" data-saved="true"></div>
+															</div>
+														</div>
+														<div class="tcg_base_wager_to_start_game_container flex-box col">
+															<div class="tcg_base_wager_to_start_game_header tcg_base_blue_text C64 flex-box space-between">
+																<div class="C64">Set wager (optional)</div>
+																<div id="vidyaBalance" class="C64 tcg_base_golden_text">0 VIDYA</div>
+															</div>
+															<div id="tcg_base_setWager" class="flex-box space-between hidden">
+																<div id="gameStartWager" class="tcg_base_start_game_wager_input C64" contenteditable="true">0</div>
+																<div id="gameStartWagerMax" class="tcg_base_start_game_wager_max agnosia_button_stone_hover agnosia_button_stone_click">MAX</div>
+															</div>
+															<div id="tcg_base_approveWager" class="flex-box flex-end hidden"><div id="tcg_base_approveVidya" class="tcg_base_green_text_black_outline tcg_base_button_default agnosia_button_stone_hover agnosia_button_stone_click">Approve</div></div>
+														</div>
+														<div class="tcg_base_traderule_start_game_container flex-box col C64">
+															<div class="tcg_base_traderule_start_game_header tcg_base_blue_text C64">Trade rule</div>
+															<div class="flex-box space-between">
+																<div class="flex-box">
+																	<div class="tcg_base_traderule_select selected tcg_base_green_text_black_outline agnosia_button_stone_hover agnosia_button_stone_click" data-traderule="0">One</div>
+																	<div class="tcg_base_traderule_select tcg_base_green_text_black_outline agnosia_button_stone_hover agnosia_button_stone_click" data-traderule="1">Diff</div>
+																	<div class="tcg_base_traderule_select tcg_base_green_text_black_outline agnosia_button_stone_hover agnosia_button_stone_click" data-traderule="2">Direct</div>
+																	<div class="tcg_base_traderule_select tcg_base_green_text_black_outline agnosia_button_stone_hover agnosia_button_stone_click" data-traderule="3">All</div>
+																</div>
+																<div class="flex-box col">
+																	<div id="createNewGame" class="tcg_base_newgame_create agnosia_button_stone_hover agnosia_button_stone_click disabled" style="width:100%; text-align:center;">New game</div>
+																	<div id="practiceGame" class="tcg_base_newgame_create agnosia_button_stone_hover agnosia_button_stone_click disabled" style="width:100%; text-align:center;">Practice</div>
+																</div>
+															</div>
+														</div>														
+														<!-- Advanced options -->
+														<div class="tcg_base_create_new_game_advanced_options_wrapper tcg_base_blue_background flex-box col C64 hidden">
+															<div class="tcg_base_create_new_game_advanced_options_header flex-box space-between">
+																<div class="tcg_base_create_new_game_header">Advanced settings</div>
+																<div id="tcg_base_advancedSettingsCloseButton" class="tcg_base_create_new_game_header agnosia_button_card_click_2">[x]</div>
+															</div>
+															<div class="tcg_base_create_new_game_advanced_options_content tcg_base_blue_text flex-box col">
+																<div class="tcg_base_create_new_game_header tcg_base_tooltip flex-box" data-tip="timerlimiter">
+																	<span class="flex-box">Forfeit time:</span>
+																	<span id="tcg_base_timeLimiterValue" class="tcg_base_timeLimiterValue flex-box">1 hr</span>
+																</div>
+																<div class="flex-box space-between tcg_base_advanced_settings_labels">
+																	<span>5 mins</span>
+																	<span>15 mins</span>
+																	<span>30 mins</span>
+																	<span>1 hr</span>
+																	<span>12 hrs</span>
+																	<span>24 hrs</span>
+																</div>
+																<div class="tcg_base_create_new_game_advanced_option_wrapper">
+																	<input type="range" id="tcg_base_timeLimiter" class="tcg_base_timeLimiter" min="0" max="5" step="1" value="3">
+																</div>
+																<div class="tcg_base_create_new_game_header tcg_base_tooltip flex-box" data-tip="handlimiter">
+																	<span>Level range:</span>
+																	<span id="tcg_base_handLimiterValue" class="tcg_base_handLimiterValue">100%</span>
+																</div>
+																<div class="tcg_base_create_new_game_advanced_option_wrapper">
+																	<input type="range" id="tcg_base_handLimiter" class="tcg_base_handLimiter" min="0" max="45" step="1" value="45">
+																</div>
+																<div class="tcg_base_create_new_game_header tcg_base_tooltip" data-tip="friend">Friend</div>
+																	<div id="tcg_base_friendAddress" class="tcg_base_friendAddress C64" contenteditable="true">0x0000000000000000000000000000000000000000</div>							
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="tcg_base_play_half flex-box col">
+													<div class="tcg_base_available_cards_header_outer tcg_base_green_text_black_outline flex-box">
+														<div class="tcg_base_available_cards_header available_games C64 tcg_base_game_tab_selected agnosia_button_card_click_1">All games</div>
+														<div class="tcg_base_available_cards_header your_games C64 agnosia_button_card_click_1">Your games</div>
+													</div>
+													<div class="tcg_base_available_cards_sorting_tabs flex-box space-between C64">
+														<div class="tcg_base_available_cards_sorting_tab" data-sortingOption="gameId">Game ID</div>
+														<div class="tcg_base_available_cards_sorting_tab" data-sortingOption="tradeRule">Trade Rule</div>
+														<div class="tcg_base_available_cards_sorting_tab" data-sortingOption="wager">Wager</div>
+													</div>
+													<div class="tcg_base_play_games_list_outer_wrapper">
+														<div class="tcg_base_play_games_list_outer flex-box col relative">
+															<div id="tcg_base_play_games_list_loading_screen" class="template-loading-outer flex-box flex-center hidden">
+																<div class="template-loading-inner"></div>
+															</div>														
+															<div class="tcg_base_play_games_list_inner flex-box col"></div>
+														</div>
+													</div>													
+													<!-- Replay / Playback -->
+													<div class="flex-box space-between align-center margin-top-05rem C64 tcg_base_replayWrapper">
+														<div id="replayTitle">Replay</div>
+														<div class="flex-box">
+															<div id="playbackInputId" contenteditable="true" class="tcg_base_playbackInputId">#id</div>
+															<div class="tcg_base_playbackGo agnosia_button_stone_hover agnosia_button_stone_click">Go</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>								
+									<!-- Deck -->
+									<div class="tcg_base_main_wrapper relative hidden" data="deck">
+										<div class="tcg_base_main_content flex-box col">
+											<!-- Starter pack seller -->
+											<div class="tcg_base_help tcg_base_starterpack_wrapper tcg_base_blue_background relative flex-box col">
+												<div class="tcg_base_starterpack_header tcg_base_green_text_black_outline C64 absolute">Starter pack</div>
+												<div class="tcg_base_starterpack_wrap flex-box space-between align-center">
+													<div class="C64" style="width: 420px; ">Buy a new Starter Pack for 0.1 ETH to get 7 random Level 1 cards. You can get Goerli ETH <a class="tcg_base_link" href="https://testnetbridge.com/" target="_blank">here</a>.</div>
+													<div class="flex-box flex-end">
+														<div class="tcg_base_starterpack_button tcg_base_buypack_button tcg_base_green_text_black_outline hidden agnosia_button_stone_hover agnosia_button_stone_click">Buy pack</div>
+														<div class="tcg_base_starterpack_button tcg_base_pendingpack_button hidden disabled">Printing pack...</div>
+														<div class="tcg_base_starterpack_button tcg_base_openpack_button tcg_base_green_text_black_outline hidden agnosia_button_stone_hover agnosia_button_stone_click">Open pack</div>
+														<div class="tcg_base_starterpack_button tcg_base_openingpack_button hidden disabled">Opening pack...</div>
+														<div class="tcg_base_starterpack_button tcg_base_notenougheth_button hidden disabled">Not enough ETH...</div>
+													</div>
+												</div>
+											</div>											
+											<div class="tcg_base_card_details_wrapper relative flex-box space-between">
+												<div class="tcg_base_card_details_header tcg_base_green_text_black_outline C64 absolute">Deck details</div>
+												<div class="tcg_base_card_list tcg_base_blue_background flex-box col half-width">
+													<div class="tcg_base_card_list_outer">
+														<div class="tcg_base_card_list_inner C64"></div> <!-- Cards list -->
+													</div>
+													<div class="tcg_base_card_list_nav_wrapper flex-box space-between">
+														<div class="flex-box flex-center C64"><span>Level</span><span class="tcg_base_card_list_pagenumber"></span><span>cards</span></div>
+														<div class="flex-box">
+															<div class="tcg_base_card_list_nav agnosia_button_stone_hover agnosia_button_stone_click disabled" data-direction="left"></div>
+															<div class="tcg_base_card_list_nav agnosia_button_stone_hover agnosia_button_stone_click disabled" data-direction="right"></div>
+														</div>
+													</div>
+												</div>
+												<!-- Card details / right side -->
+												<div class="tcg_base_card_info tcg_base_blue_background flex-box col half-width">
+													<div class="tcg_base_card_info_top flex-box space-between">
+														<div>
+															<div class="tcg_base_card_info_details_cardimage relative">
+																<div id="tcg_base_card_info_image_loading" class="template-loading-outer flex-box flex-center hidden">
+																	<div class="template-loading-inner"></div>
+																</div>
+																<div class="tcg_base_card_values absolute top left C64 hidden">
+																	<div class="card_value_top">?</div><div class="card_value_left">?</div><div class="card_value_right">?</div><div class="card_value_bottom">?</div>
+																</div>
+																<div class="tcg_base_card_stats flex-box col absolute bottom left right C64 hidden">
+																	<div class="flex-box space-between">
+																		<div>Win count</div>
+																		<div class="tcg_base_card_wincount"></div>
+																	</div>
+																	<div class="flex-box space-between">
+																		<div>Played count</div>
+																		<div class="tcg_base_card_playcount"></div>
+																	</div>
+																	<div class="flex-box space-between">
+																		<div>Brew pts</div>
+																		<div class="tcg_base_card_brewingBonus"></div>
+																	</div>																	
+																</div>
+															</div>
+														</div>													
+														<div class="full-width relative">
+															<div id="tcg_base_card_info_top_loading" class="template-loading-outer flex-box flex-center hidden">
+																<div class="template-loading-inner"></div>
+															</div>
+															<div class="tcg_base_card_info_tokenIdlist_outer">
+																<div class="tcg_base_card_info_tokenIdlist_inner C64"></div>
+															</div>
+														</div>
+													</div>												
+													<div class="tcg_base_card_info_bottom relative C64">
+														<div class="tcg_base_card_info_outer scrollbar">
+															<div class="tcg_base_card_info_inner flex-box col space-between">
+																<div>
+																	<div class="tcg_base_card_name"></div>
+																	<div class="tcg_base_card_description"></div>
+																</div>
+																<div class="tcg_base_card_actions_wrapper flex-box flex-end">
+																	<div class="tcg_base_tokenId_mark tcg_base_green_text_black_outline disabled agnosia_button_stone_hover agnosia_button_card_click_1">Ascend</div>
+																	<div class="tcg_base_tokenId_brew tcg_base_green_text_black_outline relative disabled agnosia_button_stone_hover agnosia_button_stone_click" data-count="0">Brew</div>
+																	<div class="tcg_base_tokenId_deposit tcg_base_green_text_black_outline relative disabled agnosia_button_stone_hover agnosia_button_stone_click" data-count="0">Upload</div>
+																	<div class="tcg_base_tokenId_withdraw tcg_base_green_text_black_outline relative disabled agnosia_button_stone_hover agnosia_button_stone_click" data-count="0">Download</div>
+																</div>
+															</div>
+														</div>
+													</div>												
+												</div>
+											</div>
+											<!-- Ascension -->
+											<div class="tcg_base_help tcg_base_ascension_wrapper tcg_base_blue_background relative flex-box col">
+												<div class="tcg_base_ascension_header tcg_base_green_text_black_outline C64 absolute">Ascension</div>
+												<div class="tcg_base_starterpack_wrap flex-box col">
+													<div class="tcg_base_ascension_helper C64">Collect every card of the same level to ascend to the next level. The sacrificed cards will be burned in exchange for a new Starter Pack containing a random card from the next level.</div>
+													<div class="flex-box col">
+														<div class="tcg_base_ascend_cards_container flex-box space-between">
+															<div class="tcg_base_ascend_card agnosia_button_card_click_2" data-slotid="1"></div>
+															<div class="tcg_base_ascend_card agnosia_button_card_click_2" data-slotid="2"></div>
+															<div class="tcg_base_ascend_card agnosia_button_card_click_2" data-slotid="3"></div>
+															<div class="tcg_base_ascend_card agnosia_button_card_click_2" data-slotid="4"></div>
+															<div class="tcg_base_ascend_card agnosia_button_card_click_2" data-slotid="5"></div>
+															<div class="tcg_base_ascend_card agnosia_button_card_click_2" data-slotid="6"></div>
+															<div class="tcg_base_ascend_card agnosia_button_card_click_2" data-slotid="7"></div>
+															<div class="tcg_base_ascend_card agnosia_button_card_click_2" data-slotid="8"></div>
+															<div class="tcg_base_ascend_card agnosia_button_card_click_2" data-slotid="9"></div>
+															<div class="tcg_base_ascend_card agnosia_button_card_click_2" data-slotid="10"></div>
+															<div class="tcg_base_ascend_card agnosia_button_card_click_2" data-slotid="11"></div>
+														</div>
+														<div class="tcg_base_ascend_button_wrapper flex-box space-between">
+															<div class="tcg_base_ascend_tokeninfo C64"></div>
+															<div class="tcg_base_approve_button tcg_base_green_text_black_outline hidden agnosia_button_stone_hover agnosia_button_stone_click">Approve</div>
+															<div class="tcg_base_ascend_button tcg_base_green_text_black_outline hidden disabled agnosia_button_stone_hover agnosia_button_stone_click">Ascend</div>
+														</div>
+													</div>
+												</div>
+											</div>										
+										</div>
+									</div>
+									<!-- Cauldron -->
+									<div class="tcg_base_main_wrapper relative hidden" data="cauldron">
+										<div class="tcg_base_main_content cauldron_main cauldron_calm relative">
+											<div class="tcg_base_cauldron_claim"></div>
+											<div class="tcg_base_cauldron_stats tcg_base_blue_background tcg_base_blue_text">
+												<div class="tcg_base_cauldron_stats_button agnosia_button_stone_hover agnosia_button_stone_click C64"></div>
+												<div class="tcg_base_cauldron_stats_content C64">
+													<div class="tcg_base_cauldron_heading tcg_base_green_text_black_outline">User</div>
+													<div class="tcg_base_cauldron_data_row">
+														<div class="tcg_base_cauldron_data_label">User weight</div>
+														<div class="tcg_base_cauldron_data tcg_base_cauldron_userWeight"></div>
+													</div>
+													<div class="tcg_base_cauldron_data_row">
+														<div class="tcg_base_cauldron_data_label">Total claimed</div>
+														<div class="tcg_base_cauldron_data tcg_base_cauldron_totalClaimed"></div>
+													</div>	
+													<div class="tcg_base_cauldron_data_row">
+														<div class="tcg_base_cauldron_data_label">Outstanding rewards</div>
+														<div class="tcg_base_cauldron_data tcg_base_cauldron_tokensClaimable"></div>
+													</div>													
+													<div class="tcg_base_cauldron_heading tcg_base_green_text_black_outline">Global</div>
+													<div class="tcg_base_cauldron_data_row">
+														<div class="tcg_base_cauldron_data_label">Total weight</div>
+														<div class="tcg_base_cauldron_data tcg_base_cauldron_totalWeight"></div>
+													</div>		
+													<div class="tcg_base_cauldron_data_row">
+														<div class="tcg_base_cauldron_data_label">Total brewed</div>
+														<div class="tcg_base_cauldron_data tcg_base_cauldron_totalBurned"></div>
+													</div>	
+													<div class="tcg_base_cauldron_data_row">
+														<div class="tcg_base_cauldron_data_label">Total claimed</div>
+														<div class="tcg_base_cauldron_data tcg_base_cauldron_totalGlobalClaimed"></div>
+													</div>		
+													<div class="tcg_base_cauldron_data_row">
+														<div class="tcg_base_cauldron_data_label">VIDYA balance</div>
+														<div class="tcg_base_cauldron_data tcg_base_cauldron_totalVidyaBalance"></div>
+													</div>														
+												</div>
+											</div>
+											<!-- Sip -->
+											<div class="cauldron_sip_wrapper"></div>
+										</div>
+									</div>
+									<!-- Options -->
+									<div class="tcg_base_main_wrapper hidden" data="options">
+										<div class="tcg_base_main_content flex-box col">
+											<!-- Rewards claim -->
+											<div class="tcg_base_help relative flex-box col tcg_base_settings_ref_rewards_border tcg_base_blue_background tcg_base_blue_text">
+												<div class="tcg_base_rewardsclaim_header C64 absolute tcg_base_settings_custom_header tcg_base_green_text_black_outline">Referral rewards</div>
+												<div class="flex-box space-between flex-center">
+													<div class="C64">Claim your existing referral rewards here. <span id="outstandingReferralRewards"></span></div>
+													<div class="flex-box flex-end">
+														<div class="tcg_base_claimrewards_button C64 hidden tcg_base_green_text_black_outline agnosia_button_stone_hover agnosia_button_stone_click">Claim!</div>
+														<div class="tcg_base_nothingtoclaim_button tcg_base_claimrewards_button C64 tcg_base_green_text_black_outline hidden disabled">Claim!</div><!-- said: "Nothing to claim" before -->
+													</div>
+												</div>
+											</div>
+											<!-- Referral link -->
+											<div class="tcg_base_help relative flex-box col tcg_base_settings_ref_link_border tcg_base_blue_background tcg_base_blue_text">
+												<div class="tcg_base_rewardsclaim_header C64 absolute tcg_base_settings_custom_header tcg_base_green_text_black_outline">Referral link</div>
+												<div class="flex-box col">
+													<div class="flex-box C64">This is your unique referral link. Share it with your friends and earn VIDYA every time someone buys a Starter Pack.</div>
+													<div class="flex-box col">
+														<input class="tcg_base_referral_link tcg_base_settings_ref_link_input tcg_base_blue_text C64"/>
+													</div>
+												</div>
+											</div>
+											<!-- Sound settings -->
+											<div class="tcg_base_help relative flex-box col tcg_base_settings_music_border tcg_base_blue_background">
+												<div class="tcg_base_rewardsclaim_header C64 absolute tcg_base_settings_custom_header tcg_base_green_text_black_outline">Music volume</div>
+												<div class="flex-box col tcg_base_cursor tcg_base_settings_volume_slider_wrapper">
+													<input type="range" id="tcg_base_volumeSlider" class="tcg_base_volumeSlider" min="0" max="1" step="0.1" value="0.4">
+												</div>
+												<div class="tcg_base_trackSettings flex-box space-between flex-center">
+													<div class="tcg_base_currentTrack C64 tcg_base_blue_text"></div>
+													<div class="flex-box">
+														<div class="tcg_base_trackNav agnosia_button_stone_hover agnosia_button_stone_click" data-track="previous"></div>
+														<div class="tcg_base_trackNav agnosia_button_stone_hover agnosia_button_stone_click" data-track="next"></div>
+													</div>
+												</div>
+											</div>
+											<!-- Discord ID -->
+											<div class="tcg_base_help relative flex-box col tcg_base_settings_discordId_border tcg_base_blue_background">
+												<div class="tcg_base_rewardsclaim_header C64 absolute tcg_base_settings_custom_header tcg_base_green_text_black_outline">Discord ID</div>
+												<div class="flex-box space-between tcg_base_discordId_wrapper">
+													<div id="tcg_base_discordId" class="tcg_base_discordId C64" contenteditable="true"></div>
+													<div id="tcg_base_discordIdSetButton" class="tcg_base_settings_discordId_button C64 tcg_base_green_text_black_outline agnosia_button_stone_hover agnosia_button_stone_click">Set</div><!-- removed .template-button class-->
+												</div>
+											</div>
+											<!-- NFT pfp -->
+											<div class="tcg_base_help relative flex-box col tcg_base_settings_tokenId_border tcg_base_blue_background">
+												<div class="tcg_base_rewardsclaim_header C64 absolute tcg_base_settings_custom_header tcg_base_green_text_black_outline">Inventory pfp</div>
+												<div class="flex-box space-between tcg_base_settings_tokenId_wrapper">
+													<div id="tcg_base_inventory_tokenId" class="tcg_base_inventory_tokenId C64" contenteditable="true"></div>
+													<div id="tcg_base_inventory_tokenIdSetButton" class="tcg_base_inventory_tokenId_button C64 tcg_base_green_text_black_outline agnosia_button_stone_hover agnosia_button_stone_click">Set</div>
+												</div>
+											</div>												
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>				
 					<div id="cake3d" class="hidden console absolute draggable" data="cake3d">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
@@ -330,7 +865,7 @@
 							<div id="notesWrapper" class="template-wrapper scrollbar"></div>
 						</div>
 					</div>				
-					<!-- Multipass -->
+					<!-- Multipass
 					<div id="multipass" class="hidden console absolute draggable" data="multipass">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
@@ -353,7 +888,6 @@
 								<div id="multipass-tab" class="flex-box col full-height">
 									<div class="flex-box space-between multipass-wrapper full-height">
 										<div class="flex-box col multipass-left-sidebar full-height space-between">
-											<!-- Multipass detailed view -->
 											<div class="flex-box multipass-logo relative">
 												<div class="multipass-details-overlay absolute top right bottom left">
 													<div class="flex-box space-between mp-rank-lv-wrapper">
@@ -373,14 +907,12 @@
 												</div>
 												<video autoplay muted loop id="multipassLogo"><source id="mp-video-source" src="" type="video/mp4"></video>
 											</div>										
-											<!-- Owned passes list -->
 											<div class="flex-box col multipass-list-wrapper">
 												<div class="uppercase template-notch multipass-subtitle">Owned passes</div>
 												<div id="mp-list-of-passes" class="relative flex-box multipass-list multipass-scrollbar">						
 												</div>
 											</div>								
 										</div>
-										<!-- Right sidebar -->
 										<div class="flex-box col multipass-right-sidebar space-between">
 											<div class="flex-box col multipass-menu">
 												<div class="flex-box col">
@@ -477,7 +1009,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div id="tokenInfo" class="hidden console absolute draggable" data="tokenInfo">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
@@ -1419,12 +1951,12 @@
 								<span class="font-monospace text-align-center no-pointer-events">generator</span>
 							</div>
 						</div>
-						<div id="multipass_button_wrapper" class="desktop-icon-container hidden testnet_object">
+						<!--<div id="multipass_button_wrapper" class="desktop-icon-container hidden testnet_object">
 							<div id="multipass_button" class="flex-box col center-vertical non-mobile" data="multipass">
 								<div class="icon desktop-icon multipass-exe no-pointer-events shortcut"></div>
 								<span class="font-monospace text-align-center no-pointer-events">MultiPass</span>
 							</div>
-						</div>
+						</div>-->
 						<div id="lemongame_button_wrapper" class="desktop-icon-container lemongame_button_wrapper hidden non-mobile mainnet_object">
 							<div id="lemongame_button" class="flex-box col center-vertical non-mobile" data="lemongame">
 								<div class="icon desktop-icon lemons-floppy no-pointer-events"></div>
@@ -1437,6 +1969,12 @@
 								<span class="font-monospace text-align-center no-pointer-events">?</span>
 							</div>
 						</div>
+						<div id="tcg_base_button_wrapper" class="tcg_base_button_wrapper hidden non-mobile">
+							<div id="tcg_base_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="tcg_base">
+								<div class="icon desktop-icon agnosia-exe no-pointer-events"></div>
+								<span class="font-monospace text-align-center no-pointer-events">Agnosia.exe</span>
+							</div>
+						</div>						
 					</div>
 					</div>
 				</div>
@@ -1667,10 +2205,10 @@
 		<!-- Notepad -->
 		<script src="notepad/js/notepad.js"></script>
 		<link rel="stylesheet" href="notepad/css/notepad.css">		
-		<!-- Multipass -->
+		<!-- Multipass 
 		<script src="multipass/js/multipassABI.js"></script>
 		<script src="multipass/js/multipass.js"></script>
-		<link rel="stylesheet" href="multipass/css/multipass.css">
+		<link rel="stylesheet" href="multipass/css/multipass.css"> -->
 		<!-- DOSBox -->
 		<script src="https://js-dos.com/6.22/current/js-dos.js"></script>
 		<!-- Connect web3 dapp -->
@@ -1694,5 +2232,11 @@
 		<!-- Cake3D -->
 		<script src="games/cake3d/js/cake3d.js"></script>
 		<link rel="stylesheet" href="games/cake3d/css/cake3d.css"/>
+		<!-- Agnosia -->
+		<script src="games/tcg_base/js/tcg_base_abi.js"></script>
+		<script src="games/tcg_base/js/tcg_base.js"></script>
+		<link rel="stylesheet" href="games/tcg_base/css/tcg_base.css">
+		<link rel="stylesheet" href="games/tcg_base/css/tcg_assets.css">
+		<link rel="stylesheet" href="games/tcg_base/css/custom_graphics.css">
 	</body>
 </html>

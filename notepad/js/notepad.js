@@ -10,9 +10,9 @@ let notepadID = null // Used in context menu to indicate which note to delete
 // Notes from the management 
 let Notepad = {
 	0: "readme",
-	1: "multipass",
-	2: "browser",
-	3: "lemons"
+	1: "browser",
+	2: "lemons",
+	3: "agnosia"
 }
 
 // Loads text files into the folder on UI 
