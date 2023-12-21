@@ -2608,7 +2608,7 @@ async function tcg_base_handleDeposit(tokenId, cardName, level) {
 		if(!approved) {
 			let title   = 'Approval needed';
 			let id      = (((1+Math.random())*0x10000)|0).toString(16).substring(1);
-			let content = '<div class="flex-box col flex-center full-width full-height C64 padding-1rem"><p class="margin-bottom-1rem">In order to proceed you need to approve your cards for transfer within our game smart contract. This is a one time transaction and will grant our game contract full access to your cards.</p><div class="tcg_base_approve_deposit_button tcg_base_green_text_black_outline agnosia_button_stone_hover agnosia_button_stone_click">Approve</div></div>'; 
+			let content = `<div class="flex-box col flex-center full-width full-height C64 padding-1rem"><p class="margin-bottom-1rem">In order to proceed you need to approve your cards for transfer within our game smart contract. This is a one time transaction and will grant our game contract full access to your cards.</p><div class="tcg_base_approve_deposit_button tcg_base_green_text_black_outline agnosia_button_stone_hover agnosia_button_stone_click">Approve</div></div>`; 
 			tcg_base_launch_modal(title, id, content);
 		} else {
 			// Deposit 
