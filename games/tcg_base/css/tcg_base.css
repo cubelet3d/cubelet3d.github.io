@@ -380,7 +380,7 @@
 .tcg_base_card_list_inner {font-size: 150%;}
 .tcg_base_deckview_carditem:hover,
 .tcg_base_tokenIds_list_row:hover {background: var(--bg-glass);}
-.tcg_base_deckview_emptyslot {color: var(--bg-glass);}
+.tcg_base_deckview_emptyslot {color: grey;}
 .tcg_base_deckview_carditem_active,
 .tcg_base_tokenIds_list_row_active {background: var(--bg-glass);}
 .tcg_base_count_depositcards {color: green}
