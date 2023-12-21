@@ -2635,6 +2635,8 @@ async function tcg_base_setApprovalForAll(data) {
 			notify('<div class="flex-box flex-center">Approved cards successfully!</div>');
 			$(".tcg_base_approve_deposit_button").removeClass("disabled");
 			closeModal(data);
+			
+			// Trigger the upload here.. 
 		})
 	}
 	catch(e) {
