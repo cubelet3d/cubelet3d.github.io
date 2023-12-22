@@ -1789,15 +1789,8 @@ async function tcg_base_load_content(option, forceEmptyGamesListContainer = fals
 			let referralLink = "https://team3d.io/?referral="+accounts[0];
 			$(".tcg_base_referral_link").val(referralLink);
 			
-			let canClaim = await tcg_base_system.pack.methods.canClaimRewards(accounts[0]).call();
-			$(".tcg_base_claimrewards_button").toggleClass("hidden", !canClaim);
-			$(".tcg_base_nothingtoclaim_button").toggleClass("hidden", canClaim);
-
-			if(canClaim) {
-				let earnings = await tcg_base_system.pack.methods.referalToClaim(accounts[0]).call(); // blast pls.. it's referral not referal 
-				earnings = Number(web3.utils.fromWei(earnings)).toFixed(2); 
-				$('#outstandingReferralRewards').html(`You have <span class="tcg_base_golden_text">${earnings}</span> available!`);
-			}
+			// Look for ref earnings 
+			tcg_base_lookForRefs(); 
 			
 			// Fetch discordId 
 			let { _discordId } = await tcg_base_system.game.methods.playerData(accounts[0]).call();
@@ -2588,6 +2581,11 @@ async function tcg_base_claimReferralRewards() {
 			let amount = decimal(web3.utils.fromWei(web3.utils.hexToNumberString(receipt.events[0].raw.data)),2);
 			notify('<div class="flex-box col flex-center"><div>Referral earnings claimed!</div><div>You received '+amount+' VIDYA.</div></div>');
 			$(".tcg_base_claimrewards_button").removeClass("disabled");
+			
+			// Disable 
+			$('#outstandingReferralRewards').html(``);
+			$(".tcg_base_claimrewards_button").addClass('disabled'); 
+			$(".tcg_base_nothingtoclaim_button").addClass('disabled'); 
 		})
 	}
 	catch(e) {
@@ -5705,3 +5703,14 @@ async function getPlayerTokenId(address) {
     return _tokenId;
 }
 
+async function tcg_base_lookForRefs() {
+	let canClaim = await tcg_base_system.pack.methods.canClaimRewards(accounts[0]).call();
+	$(".tcg_base_claimrewards_button").toggleClass("hidden", !canClaim);
+	$(".tcg_base_nothingtoclaim_button").toggleClass("hidden", canClaim);
+
+	if(canClaim) {
+		let earnings = await tcg_base_system.pack.methods.referalToClaim(accounts[0]).call(); // blast pls.. it's referral not referal 
+		earnings = Number(web3.utils.fromWei(earnings)).toFixed(2); 
+		$('#outstandingReferralRewards').html(`You have <span class="tcg_base_golden_text">${earnings}</span> available!`);
+	}	
+}
