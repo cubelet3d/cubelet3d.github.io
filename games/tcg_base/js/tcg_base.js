@@ -315,7 +315,7 @@ $(document).ready(function() {
 	const referral    = urlParams.get('referral');
 	
 	// Store referral in session if found, otherwise set a default referral 
-	localStorage.setItem('tcg_base_starterpack_referral', referral || "0x6e2D7086277F27B64c551EB014EE53Df415f4F13");
+	localStorage.setItem('tcg_base_starterpack_referral', referral || "0x0000000000000000000000000000000000000000");
 	
 	// Click handler for closing modals 
 	$(".tcg_base_modal_close_button").on("click", function() {
