@@ -3360,6 +3360,10 @@ function tcg_base_closeGame(gameId) {
 	unsubscribeFromCollectWinnings(gameId); // Unsub from end game events too 
 	let $gameWindow = $(`#tcg_base_game_window_${gameId}`);
 	$gameWindow.find('.samePlusNotif').remove();   
+	
+	// NANSLAPPER88 sir 
+	tcg_base_games.contentAppended[gameId] = false; 
+	finalizeNotified.delete(gameId); 	
 }
 
 /*	This function updates the UI for a specific game 
