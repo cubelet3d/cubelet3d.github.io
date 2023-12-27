@@ -102,6 +102,8 @@ async function setup() {
 			await loadInventory()
 			
 			tcg_base_init(); // Agnosia 
+			
+			$('#tcg_base_button_wrapper_mobile').show('scale'); // Agnosia mobile link 
 		}
 		
 		// The useless Polygon 
