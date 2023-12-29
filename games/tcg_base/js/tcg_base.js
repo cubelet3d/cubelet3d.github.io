@@ -323,10 +323,10 @@ $(document).ready(function() {
 	localStorage.setItem('tcg_base_starterpack_referral', referral || "0x0000000000000000000000000000000000000000");
 	
 	// Click handler for closing modals 
-	$(".tcg_base_modal_close_button").on("click", function() {
+	$(document).on('click', '.tcg_base_modal_close_button', function() {
 		let id = $(this).attr("data");
 		closeModal(id); 
-	});
+	}); 
 	
 	// Click handler for close button in the endgame modal  
 	$(document).on("click", ".tcg_base_modal_close_button_endgame", function() {
@@ -525,7 +525,7 @@ $(document).ready(function() {
 	
 	// Click handler for Approve button in card's details view 
 	$(document).on("click", ".tcg_base_approve_deposit_button", function() {
-		let data = $(this).closest(".tcg_base_modal").attr("data");
+		let data = $(this).closest(".tcg_base_modal").attr("id");
 		tcg_base_setApprovalForAll(data); 
 	});
 	
@@ -1249,7 +1249,6 @@ $(document).ready(function() {
 		}
 
 		let address = $(this).attr('data-address'); 
-		let id      = (((1+Math.random())*0x10000)|0).toString(16).substring(1);
 		let playerData = await tcg_base_system.game.methods.playerData(address).call();
 		let ethBalance = await web3.eth.getBalance(address);
 		let vidyaBalance = await VIDYA.methods.balanceOf(address).call();
@@ -1342,15 +1341,13 @@ $(document).ready(function() {
 		</div>
 		`; 
 		
-		tcg_base_launch_modal("Player profile", id, html); 
+		tcg_base_launch_modal("Player profile", html); 
 		
 		if($element.closest('.tcg_base_play_games_list_item').length > 0) {
 			$element.text(originalText); 
 		} else {
 			$element.removeClass('disabled'); 
 		}
-		
-		$(`.tcg_base_modal[data=${id}]`).appendTo('body'); 
 	}); 
 	
 	
@@ -1736,16 +1733,20 @@ function tcg_base_finish_loading() {
 
 /*	This function launches modals 
 	title title of the modal 
-	id unique identifier for each modal window 
 	content the HTML content for modal 
 	*/
-function tcg_base_launch_modal(title, id, content) {
-	$(".tcg_base_modal_body").empty(); 
-	$(".tcg_base_modal").removeClass("hidden"); 
-	$(".tcg_base_modal").attr("data", id); 
-	$(".tcg_base_modal_close_button").attr("data", id); 
-	$(".tcg_base_modal_header_title").text(title.toString()); 
-	$(".tcg_base_modal_body").append(content); 
+function tcg_base_launch_modal(title, content) {
+    let id = (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    let modalId = `modal-${id}`;
+    let clonedModal = $(".tcg_base_modal.hidden").first().clone().attr("id", modalId).removeClass("hidden");
+
+    clonedModal.find(".tcg_base_modal_header_title").text(title);
+    clonedModal.find(".tcg_base_modal_body").html(content);
+    clonedModal.find(".tcg_base_modal_close_button").attr("data", modalId);
+
+    $('body').append(clonedModal);
+
+    return modalId;
 }
 
 /*	This function opens different tabs on the UI (Play, Deck, Settings, etc.) */
@@ -2021,7 +2022,6 @@ async function tcg_base_openStarterPack() {
 			let tokenUris = await tcg_base_fetchTokenUris(tokenIds); 
 			
 			let title   = 'Starter pack opened';
-			let id      = (((1+Math.random())*0x10000)|0).toString(16).substring(1); // for close button 
 			let content = '';
 			
 			for(let i = 0; i < tokenUris.length; i++) {
@@ -2046,7 +2046,7 @@ async function tcg_base_openStarterPack() {
 			content = '<div class="flex-box col flex-center full-height"><div class="C64" style="font-size: 200%; margin-bottom: 0.75rem;">Here are your cards!</div><div class="flex-box" style="flex-wrap: wrap; justify-content: center;">' + content + '</div></div>';
 
 			// Draw these tokenIds in a popup modal 
-			tcg_base_launch_modal(title, id, content);
+			tcg_base_launch_modal(title, content);
 			
 			// reload all user cards too here 
 			tcg_base_load_playerdeck();
@@ -2614,9 +2614,8 @@ async function tcg_base_handleDeposit(tokenId, cardName, level) {
 		let approved = await tcg_base_system.card.methods.isApprovedForAll(accounts[0], tcg_base_system.game_address).call();		
 		if(!approved) {
 			let title   = 'Approval needed';
-			let id      = (((1+Math.random())*0x10000)|0).toString(16).substring(1);
 			let content = `<div class="flex-box col flex-center full-width full-height C64 padding-1rem"><p class="margin-bottom-1rem">In order to proceed you need to approve your cards for transfer within our game smart contract. This is a one time transaction and will grant our game contract full access to your cards.</p><div class="tcg_base_approve_deposit_button tcg_base_green_text_black_outline agnosia_button_stone_hover agnosia_button_stone_click">Approve</div></div>`; 
-			tcg_base_launch_modal(title, id, content);
+			tcg_base_launch_modal(title, content);
 		} else {
 			// Deposit 
 			// Array with length 1 created for consistency as the function really takes an array of tokenIds but for now I couldn't figure out the UI part. 
@@ -2653,9 +2652,7 @@ async function tcg_base_setApprovalForAll(data) {
 
 // Closes the modal 
 function closeModal(id) {
-	$(".tcg_base_modal[data="+id+"]").addClass("hidden");
-	$(".tcg_base_modal[data="+id+"] .tcg_base_modal_header_title").text("Default");
-	$(".tcg_base_modal_body").empty();
+	$(".tcg_base_modal[id="+id+"]").remove(); 
 }
 
 // Closes the modal on end game screen 
@@ -4656,9 +4653,8 @@ async function tcg_base_handleDepositForMultiUpload(selectedTokenIds) {
 		let approved = await tcg_base_system.card.methods.isApprovedForAll(accounts[0], tcg_base_system.game_address).call();
 		if(!approved) {
 			let title   = 'Approval needed';
-			let id      = (((1+Math.random())*0x10000)|0).toString(16).substring(1);
 			let content = '<div class="flex-box col flex-center full-width full-height C64 padding-1rem"><p class="margin-bottom-1rem">In order to proceed you need to approve your cards for transfer within our game smart contract. This is a one time transaction and will grant our game contract full access to your cards.</p><div class="tcg_base_approve_deposit_button tcg_base_green_text_black_outline agnosia_button_stone_hover agnosia_button_stone_click">Approve</div></div>'; 
-			tcg_base_launch_modal(title, id, content);
+			tcg_base_launch_modal(title, content);
 			
 			return; 
 		}
