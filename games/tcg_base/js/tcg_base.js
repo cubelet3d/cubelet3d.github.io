@@ -1249,31 +1249,18 @@ $(document).ready(function() {
 		}
 
 		let address = $(this).attr('data-address'); 
-		let playerData = await tcg_base_system.game.methods.playerData(address).call();
-		let ethBalance = await web3.eth.getBalance(address);
-		let vidyaBalance = await VIDYA.methods.balanceOf(address).call();
-		let totalCards = await tcg_base_system.card.methods.balanceOf(address).call(); 
-		let totalCardsDeposited = await tcg_base_system.game.methods.getDepositedAvailableCards(address).call();
-		let highestLevelCard = await tcg_base_system.card.methods.getHighestLevelCard(address).call(); 
-		let packPoints = await tcg_base_system.pack.methods.userPoints(address).call(); 
-		let totalCardsBurned = await tcg_base_system.caul.methods.totalCardsBurnedPerUser(address).call(); 
-		let highestLevelBurned = await tcg_base_system.caul.methods.highestLevelBurnedPerUser(address).call();
-		let weights = await tcg_base_system.caul.methods.weights(address).call(); 
-		let rewardsClaimed = await tcg_base_system.caul.methods.rewardsClaimed(address).call(); 
-		let lastClaimTime = await tcg_base_system.caul.methods.lastClaim(address).call();
-		lastClaimTime = lastClaimTime > 0 ? new Date(lastClaimTime * 1000).toLocaleDateString('en-US', { day: '2-digit', month: 'long', year: 'numeric' }) : 'N/A'; 
-		let blockie = 'url('+blockies.create({seed: address.toLowerCase()}).toDataURL()+')'; 
+		let profileData = await profileDataFor(address); 
 		
 		let html = `
 		<div class="tcg_base_profile_wrapper flex-box C64">
 			<div class="tcg_base_profile_cube_wrapper">
 				<div class="tcg_base_profile_cube">
-					<div class="tcg_base_profile_cube_face front" style="background: ${blockie}"></div>
-					<div class="tcg_base_profile_cube_face back" style="background: ${blockie}"></div>
-					<div class="tcg_base_profile_cube_face left" style="background: ${blockie}"></div>
-					<div class="tcg_base_profile_cube_face right" style="background: ${blockie}"></div>
-					<div class="tcg_base_profile_cube_face top" style="background: ${blockie}"></div>
-					<div class="tcg_base_profile_cube_face bottom" style="background: ${blockie}"></div>
+					<div class="tcg_base_profile_cube_face front" style="background: ${profileData.blockie}"></div>
+					<div class="tcg_base_profile_cube_face back" style="background: ${profileData.blockie}"></div>
+					<div class="tcg_base_profile_cube_face left" style="background: ${profileData.blockie}"></div>
+					<div class="tcg_base_profile_cube_face right" style="background: ${profileData.blockie}"></div>
+					<div class="tcg_base_profile_cube_face top" style="background: ${profileData.blockie}"></div>
+					<div class="tcg_base_profile_cube_face bottom" style="background: ${profileData.blockie}"></div>
 				</div>
 				<div class="tcg_base_profile_address C64"><a href="https://goerli.etherscan.io/address/${address}" target="_blank">${formatAddress(address)}</a></div>
 			</div>
@@ -1282,60 +1269,60 @@ $(document).ready(function() {
 				<div class="tcg_base_profile_details_title">Wallet</div>
 				<div class="tcg_base_profile_details_row flex-box space-between">
 					<div class="tcg_base_profile_details_label">ETH</div>
-					<div class="tcg_base_profile_details_value">${Number(web3.utils.fromWei(ethBalance)).toFixed(2)}</div>
+					<div class="tcg_base_profile_details_value">${Number(web3.utils.fromWei(profileData.ethBalance)).toFixed(2)}</div>
 				</div>
 				<div class="tcg_base_profile_details_row flex-box space-between">
 					<div class="tcg_base_profile_details_label">VIDYA</div>
-					<div class="tcg_base_profile_details_value">${Number(web3.utils.fromWei(vidyaBalance)).toFixed(2)}</div>
+					<div class="tcg_base_profile_details_value">${Number(web3.utils.fromWei(profileData.vidyaBalance)).toFixed(2)}</div>
 				</div>
 				<div class="tcg_base_profile_details_row flex-box space-between">
 					<div class="tcg_base_profile_details_label">Cards</div>
-					<div class="tcg_base_profile_details_value">${totalCards}/<span class="tcg_base_count_depositcards">${totalCardsDeposited.length}</span></div>
+					<div class="tcg_base_profile_details_value">${profileData.totalCards}/<span class="tcg_base_count_depositcards">${profileData.totalCardsDeposited.length}</span></div>
 				</div>
 				<div class="tcg_base_profile_details_row flex-box space-between">
 					<div class="tcg_base_profile_details_label">Highest level card</div>
-					<div class="tcg_base_profile_details_value">${highestLevelCard}</div>
+					<div class="tcg_base_profile_details_value">${profileData.highestLevelCard}</div>
 				</div>				
 
 				<div class="tcg_base_profile_details_title">Game</div>
 				<div class="tcg_base_profile_details_row flex-box space-between">
 					<div class="tcg_base_profile_details_label">Games won</div>
-					<div class="tcg_base_profile_details_value">${playerData._wins}</div>
+					<div class="tcg_base_profile_details_value">${profileData.playerData._wins}</div>
 				</div>	
 				<div class="tcg_base_profile_details_row flex-box space-between">
 					<div class="tcg_base_profile_details_label">Games lost</div>
-					<div class="tcg_base_profile_details_value">${playerData._losses}</div>
+					<div class="tcg_base_profile_details_value">${profileData.playerData._losses}</div>
 				</div>	
 				<div class="tcg_base_profile_details_row flex-box space-between">
 					<div class="tcg_base_profile_details_label">Win to loss ratio</div>
-					<div class="tcg_base_profile_details_value">${playerData._losses === '0' || playerData._wins === '0' ? 'N/A' : parseFloat(playerData._wins / playerData._losses).toFixed(2)}</div>
+					<div class="tcg_base_profile_details_value">${profileData.playerData._losses === '0' || profileData.playerData._wins === '0' ? 'N/A' : parseFloat(profileData.playerData._wins / profileData.playerData._losses).toFixed(2)}</div>
 				</div>
 				
 
 				<div class="tcg_base_profile_details_title">Cauldron</div>
 				<div class="tcg_base_profile_details_row flex-box space-between">
 					<div class="tcg_base_profile_details_label">Starter pack points</div>
-					<div class="tcg_base_profile_details_value">${packPoints}</div>
+					<div class="tcg_base_profile_details_value">${profileData.packPoints}</div>
 				</div>	
 				<div class="tcg_base_profile_details_row flex-box space-between">
 					<div class="tcg_base_profile_details_label">Total cards brewed</div>
-					<div class="tcg_base_profile_details_value">${totalCardsBurned}</div>
+					<div class="tcg_base_profile_details_value">${profileData.totalCardsBurned}</div>
 				</div>
 				<div class="tcg_base_profile_details_row flex-box space-between">
 					<div class="tcg_base_profile_details_label">Highest level brewed</div>
-					<div class="tcg_base_profile_details_value">${highestLevelBurned}</div>
+					<div class="tcg_base_profile_details_value">${profileData.highestLevelBurned}</div>
 				</div>				
 				<div class="tcg_base_profile_details_row flex-box space-between">
 					<div class="tcg_base_profile_details_label">User weight</div>
-					<div class="tcg_base_profile_details_value">${weights.userW}/${weights.totalW}</div>
+					<div class="tcg_base_profile_details_value">${profileData.weights.userW}/${profileData.weights.totalW}</div>
 				</div>
 				<div class="tcg_base_profile_details_row flex-box space-between">
 					<div class="tcg_base_profile_details_label">Rewards claimed</div>
-					<div class="tcg_base_profile_details_value">${abbr(Number(web3.utils.fromWei(rewardsClaimed)), 1)} VIDYA</div>
+					<div class="tcg_base_profile_details_value">${abbr(Number(web3.utils.fromWei(profileData.rewardsClaimed)), 1)} VIDYA</div>
 				</div>	
 				<div class="tcg_base_profile_details_row flex-box space-between">
 					<div class="tcg_base_profile_details_label">Last claim</div>
-					<div class="tcg_base_profile_details_value">${lastClaimTime}</div>
+					<div class="tcg_base_profile_details_value">${profileData.lastClaimTime}</div>
 				</div>				
 			</div>
 		</div>
@@ -5741,4 +5728,64 @@ async function tcg_base_lookForRefs() {
 		earnings = Number(web3.utils.fromWei(earnings)).toFixed(2); 
 		$('#outstandingReferralRewards').html(`You have <span class="tcg_base_golden_text">${earnings}</span> available!`);
 	}	
+}
+
+async function profileDataFor(address) {
+    try {
+        // Wrapping each async call in a promise
+        let playerDataPromise = tcg_base_system.game.methods.playerData(address).call();
+        let ethBalancePromise = web3.eth.getBalance(address);
+        let vidyaBalancePromise = VIDYA.methods.balanceOf(address).call();
+        let totalCardsPromise = tcg_base_system.card.methods.balanceOf(address).call();
+        let totalCardsDepositedPromise = tcg_base_system.game.methods.getDepositedAvailableCards(address).call();
+        let highestLevelCardPromise = tcg_base_system.card.methods.getHighestLevelCard(address).call();
+        let packPointsPromise = tcg_base_system.pack.methods.userPoints(address).call();
+        let totalCardsBurnedPromise = tcg_base_system.caul.methods.totalCardsBurnedPerUser(address).call();
+        let highestLevelBurnedPromise = tcg_base_system.caul.methods.highestLevelBurnedPerUser(address).call();
+        let weightsPromise = tcg_base_system.caul.methods.weights(address).call();
+        let rewardsClaimedPromise = tcg_base_system.caul.methods.rewardsClaimed(address).call();
+        let lastClaimTimePromise = tcg_base_system.caul.methods.lastClaim(address).call();
+
+        // Executing all promises in parallel
+        let [playerData, ethBalance, vidyaBalance, totalCards, totalCardsDeposited, highestLevelCard, packPoints, totalCardsBurned, highestLevelBurned, weights, rewardsClaimed, lastClaimTime] = await Promise.all([
+            playerDataPromise,
+            ethBalancePromise,
+            vidyaBalancePromise,
+            totalCardsPromise,
+            totalCardsDepositedPromise,
+            highestLevelCardPromise,
+            packPointsPromise,
+            totalCardsBurnedPromise,
+            highestLevelBurnedPromise,
+            weightsPromise,
+            rewardsClaimedPromise,
+            lastClaimTimePromise
+        ]);
+
+        // Formatting the last claim time
+        lastClaimTime = lastClaimTime > 0 ? new Date(lastClaimTime * 1000).toLocaleDateString('en-US', { day: '2-digit', month: 'long', year: 'numeric' }) : 'N/A'; 
+
+        // Creating blockie
+        let blockie = 'url('+blockies.create({seed: address.toLowerCase()}).toDataURL()+')';
+
+        // Returning a structured object with all the data
+        return {
+            playerData,
+            ethBalance,
+            vidyaBalance,
+            totalCards,
+            totalCardsDeposited,
+            highestLevelCard,
+            packPoints,
+            totalCardsBurned,
+            highestLevelBurned,
+            weights,
+            rewardsClaimed,
+            lastClaimTime,
+            blockie
+        };
+    } catch (e) {
+        console.error(e); 
+        throw e; // or handle the error as needed
+    }
 }
