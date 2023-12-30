@@ -63,8 +63,17 @@ function notify(msg, action) {
     }); 
 	
 	setTimeout(function() {
-		$('.notify[data='+thisNotificationId+']').animate({"opacity":"0", "bottom":"-250px"}); 
-	}, 5000);
+		var notification = $('.notify[data='+thisNotificationId+']');
+		
+		// Start the transition
+		notification.css({"opacity":"0", "bottom":"-250px"});
+
+		// Listen for the end of the transition
+		notification.one('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function() {
+			// This function is called after the transition completes
+			notification.remove();
+		});
+	}, 5000); // Wait 5000 milliseconds (5 seconds)
 }
 
 function error(msg, warn) {
@@ -87,12 +96,12 @@ function error(msg, warn) {
 $(document).ready(function() {
     $("body").on("click", ".notify-btn", function() {
         let id = $(this).attr("data"); 
-        $(".notify[data="+id+"]").hide(); 
+        $(".notify[data="+id+"]").remove(); 
     }); 
 	
     $("body").on("click", ".error-btn", function() {
         let id = $(this).attr("data"); 
-        $(".error-box[data="+id+"]").hide(); 
+        $(".error-box[data="+id+"]").remove(); 
     }); 
     
     // sign.js special 
@@ -102,7 +111,7 @@ $(document).ready(function() {
             signMessage(messageToSign); 
         }
         let id = $(this).attr("data"); 
-        $(".notify[data="+id+"]").hide(); 
+        $(".notify[data="+id+"]").remove(); 
     })
     
     // reload action
