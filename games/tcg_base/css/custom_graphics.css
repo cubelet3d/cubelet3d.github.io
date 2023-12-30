@@ -278,14 +278,16 @@
 .tcg_base_play_available_cards_list_outer::-webkit-scrollbar,
 .tcg_base_play_games_list_outer::-webkit-scrollbar,
 .tcg_base_card_info_tokenIdlist_outer::-webkit-scrollbar,
-.tcg_base_modal_body::-webkit-scrollbar {
+.tcg_base_modal_body::-webkit-scrollbar,
+.tcg_base_card_description::-webkit-scrollbar {
 	width: 10px;
 }
 
 .tcg_base_play_available_cards_list_outer::-webkit-scrollbar-track,
 .tcg_base_play_games_list_outer::-webkit-scrollbar-track,
 .tcg_base_card_info_tokenIdlist_outer::-webkit-scrollbar-track,
-.tcg_base_modal_body::-webkit-scrollbar-track {
+.tcg_base_modal_body::-webkit-scrollbar-track,
+.tcg_base_card_description::-webkit-scrollbar-track {
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAHSAgMAAABduDloAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAxQTFRFCywuAAAAGjRFI0VbiPPh2gAAAAR0Uk5T/wD//9OwcpQAAAA1SURBVHicY2DNYAAi6RUMehkMmSoMmSEMmSwwBGRvYcjKYZAAq0FGo+pH1Y+qH1U/qp4s9QAU/AyZsXL7/wAAAABJRU5ErkJggg==') repeat-y center center;
   /*background-size: cover;*/
 }
@@ -293,7 +295,8 @@
 .tcg_base_play_available_cards_list_outer::-webkit-scrollbar-thumb,
 .tcg_base_play_games_list_outer::-webkit-scrollbar-thumb,
 .tcg_base_card_info_tokenIdlist_outer::-webkit-scrollbar-thumb,
-.tcg_base_modal_body::-webkit-scrollbar-thumb {
+.tcg_base_modal_body::-webkit-scrollbar-thumb,
+.tcg_base_card_description::-webkit-scrollbar-thumb {
   /*background: url('data:image/gif;base64,R0lGODdhCgA+AHcAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJEgAAACwAAAAACgA+AIMAAAAEGicLLC4IOzkjRVsZXXExVnAidIswfIoAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwRDIQIO8QRAhLCbB1l2AFXIeGQ4pVoxkSbBxYLxtecxtcNww3Y2HMewGMNsx6APShDvcxDh8Nguz5PBFU1Y9zahWbP1hkWDqGfwTp8nsKrOdfX8n5voUjjcSpCVqREJnY38CaHt/g2GHb4dlcnZrfW6KXGyLiY2YgXmRhY+dGQVbIydYlCEGAqESGqydALActRQErAQiHTYbugastxQCwMDCCMQUwSIGFayzsCA2AtDGNs+wBtLL1sodxNrKzxlJHBEAIfkECRIAAAAsAAAAAAoAPgCDAAAABBonCywuCDs5I0VbGV1xMVZwInSLMHyKAAAAAAAAAAAAAAAAAAAAAAAAAAAABLYQhAmqDUSIYG/eXYWB4Uh2QXF6A1ceRFsaqnvB9U3HdmDgJB+OJzrsBsEfQSWTGIEu4TFqLMSSwGbgucROi0dsV8vNSX5fZziqZFLbXit5LYLPofUqUS0Xu8F4Z3pzfWxZb4FScm+FeWOIXYZpW3QBAgSHEhlLkZoGl4sVl59XLqMaqBMEpB8bPpurn6oTAga2BrMItROyH7i8AgAaqwTAwrW/tsGjBsU+G7ETwJa2zsoSGlEaEQAh+QQJEgAAACwAAAAACgA+AIMAAAAEGicLLC4IOzkjRVsZXXExVnAidIswfIoAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwxCEAKqVRNCLhebddgVEJlpB8XHkcFbBQbisob4xcaOHPYsBg2wH6xVmq+BQQJP0lhulrxmbrpw6JlBo0xaF2ShYRTUixebyOLlWk9lQGPfoPsuX6rhk/vvSP1V4FFJ0UU9hd1l1A3BThmtoio9/aGCMlYV+dnuCEgIFPjsknzp9JAaklxUCBKhkG6yoHh4TrawZtEEZJQaotRMCvb2/CMETvrgGE0ECAB6tBMfNHsNBqM6tBtHMp8rLvsHax9cBtDAeEQAh+QQFEgAAACwAAAAACgA+AIMAAAAEGicLLC4IOzkjRVsZXXExVnAidIswfIoAAAAAAAAAAAAAAAAAAAAAAAAAAAAEthCECaoNRIhgb95dhYHhSHZBcXoDVx5EWxqqe8H1Tcd2YOAkH44nOuwGwR9BJZMYgS7hMWosxJLAZuC5xE6LR2xXy81Jfl9nOKpkUtteK3ktgs+h9SpRLRe7wXhnenN9bFlvgVJyb4V5Y4hdhmlbdAECBIcSGUuRmgaXixWXn1cuoxqoEwSkHxs+m6ufqhMCBrYGswi1E7IfuLwCABqrBMDCtb+2waMGxT4bsRPAlrbOyhIaURoRADs=') no-repeat; 
   border-radius: 0; 
   background-color: red;*/
@@ -311,7 +314,8 @@
 .tcg_base_play_available_cards_list_outer::-webkit-scrollbar-button,
 .tcg_base_play_games_list_outer::-webkit-scrollbar-button,
 .tcg_base_card_info_tokenIdlist_outer::-webkit-scrollbar-button,
-.tcg_base_modal_body::-webkit-scrollbar-button {
+.tcg_base_modal_body::-webkit-scrollbar-button,
+.tcg_base_card_description::-webkit-scrollbar-button {
   display: none;
 }
 /* end of snake scroller */
@@ -1493,4 +1497,10 @@
 
 #replayTitle {
 	padding-left: 3px; 
+}
+
+.tcg_base_card_description {
+	height: 70px; 
+	overflow-x: hidden; 
+	overflow-y: auto; 
 }
