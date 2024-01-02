@@ -930,6 +930,10 @@
 	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAAAWCAYAAAB0S0oJAAAAAXNSR0IArs4c6QAAAQNJREFUWIXtl7EOgjAQhn+RqCVRwyA1Dg44svoKPoXP7coODBcgoUhicGkUobiZqu23NG3vkr9/cr12sjueWh5GMJkkvsDlYYSCMt1atMLDCI7pJgBAQRkc3SK+BVe1eLsKNFX5mM+8JZqqfIzfTldnX/PMW2I6Z4McpRFNVYL5AVb+5kNS9VBQBkEpmMoIQSmYH4wmmoCgFG5eJwC9buR1Aga1Ob/O2Hnd9YKj+44oKBsE/hPrBR+WfSzvCFNKoEv/zLZ9SqwREmuExBohse0Ttn0+F2Ngcjid236w/WtIpnMGvt1/SKZext5MSiPeJfwrtmtIHEGpbg3aGf19mkZeJ7gDy7GDIldXFJQAAAAOZVhJZk1NACoAAAAIAAAAAAAAANJTkwAAAABJRU5ErkJggg=='); 
 }
 
+.tcg_base_starterpack_button.tcg_base_buypack_button {
+	font-size: 90%; /* Fixes the weird error of some browsers */
+}
+
 .tcg_base_starterpack_button.tcg_base_buypack_button:hover,
 .tcg_base_approve_button:hover,
 .tcg_base_approve_deposit_button:hover {
