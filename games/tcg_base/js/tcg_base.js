@@ -3307,7 +3307,17 @@ async function tcg_base_joinGameId(cards, gameId, creator, gameIndex) {
 	gameId the game id we want to open */
 async function tcg_base_openGame(gameId, isPlayback = false) { 
 	try {
-		let gameDetails = tcg_base_games.gameDetails[gameId];
+        let gameDetails = tcg_base_games.gameDetails[gameId];
+
+        if (!gameDetails) {
+            await tcg_base_gamesLoop(); // Run the loop to fetch gameDetails if not present
+            gameDetails = tcg_base_games.gameDetails[gameId]; // Re-fetch after the loop
+        }
+
+        if (!gameDetails) {
+            throw new Error(`Game details for game ID ${gameId} could not be found.`);
+        }
+		
 		let wager = gameDetails[9] > 0 ? `${Number(web3.utils.fromWei(gameDetails[9]))} VIDYA` : 'N/A'; 
 		let tradeRuleMap = ['One', 'Diff', 'Direct', 'All'];
 		let tradeRule = tradeRuleMap[gameDetails[10]];
