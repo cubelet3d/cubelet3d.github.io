@@ -617,7 +617,9 @@ $(document).ready(function() {
 		})
 		.on('receipt', async function(receipt) {
 			resetMultiUpload(); 
-			await tcg_base_open_tab("deck"); 
+			
+			// If in Deck tab, reload it 
+			if($('.tcg_base_menu_option_active').attr('data') === 'deck') await tcg_base_open_tab("deck");
 			
 			// Check if vidya was claimed or not 
 			if (receipt.events.Claimed && receipt.events.Claimed.returnValues) {
@@ -1164,7 +1166,7 @@ $(document).ready(function() {
 			notify(`<div class="flex-box flex-center">Executing forfeit..</div>`); 
 		})
 		.on('receipt', async function(receipt) {
-			await tcg_base_open_tab('play', true);
+			if($('.tcg_base_menu_option_active').attr('data') === 'play') await tcg_base_open_tab("play", true);
 			notify(`<div class="flex-box flex-center">Forfeit successful!</div>`);
 			let gameWindow = $(`#tcg_base_game_window_${gameId}`); 
 			gameWindow.remove(); 
@@ -2243,7 +2245,7 @@ async function tcg_base_ascendToNextLevel(tokenIds) {
 		})
 		.on("receipt", async function(receipt) {
 			$(".tcg_base_buypack_button").removeClass("disabled"); // Re-enable buy button 
-			await tcg_base_open_tab("deck"); 
+			if($('.tcg_base_menu_option_active').attr('data') === 'deck') await tcg_base_open_tab("deck"); 
 		})
 	}
 	catch(e) {
@@ -3002,7 +3004,7 @@ async function initializeGame(selectedAvailableCards, wagerInputAmount, selected
 			notify('<div class="flex-box flex-center">Creating a new game...</div>');
 		})
 		.on("receipt", async function(receipt) {
-			await tcg_base_open_tab('play'); // Unsure if force empty list is necessary here.. seems to work without it. 
+			if($('.tcg_base_menu_option_active').attr('data') === 'play') await tcg_base_open_tab("play"); // Unsure if force empty list is necessary here.. seems to work without it. 
 			let gameId = receipt.events.GameInitialized.returnValues._gameId; // gameId from the event return 
 			await tcg_base_openGame(gameId); // Open the newly created game 
 		})
@@ -3270,7 +3272,7 @@ async function tcg_base_cancelGameId(gameIndex, gameId) {
 		})
 		.on("receipt", async function(receipt) {
 			tcg_base_games.playerGames = tcg_base_games.playerGames.filter(id => id !== gameId); // Remove from the playerGames array 
-			await tcg_base_open_tab("play", true); 
+			if($('.tcg_base_menu_option_active').attr('data') === 'play') await tcg_base_open_tab("play", true);
 			notify('<div class="flex-box flex-center">Game with id '+gameId+' has been canceled successfully!</div>');
 		})
 	}
@@ -3294,7 +3296,7 @@ async function tcg_base_joinGameId(cards, gameId, creator, gameIndex) {
 			tcg_base_games.playerGames = tcg_base_games.playerGames.filter(id => id !== gameId);
 			notify('<div class="flex-box flex-center">You have joined gameId '+gameId+' successfully!</div>');
 			
-			await tcg_base_open_tab("play"); // Force load the play tab..
+			if($('.tcg_base_menu_option_active').attr('data') === 'play') await tcg_base_open_tab("play"); // Force load the play tab..
 			await tcg_base_openGame(gameId); // ..so that the game data exists for opening the game window 
 		})
 	}
@@ -4123,7 +4125,7 @@ async function tcg_base_collectWinnings(gameId, tokenIds) {
 			notify(`<div class="flex-box flex-center">Finalizing game #${gameId}</div>`);
 		})
 		.on('receipt', async function(receipt) {
-			await tcg_base_open_tab("play", true);
+			if($('.tcg_base_menu_option_active').attr('data') === 'play') await tcg_base_open_tab("play", true);
 			notify(`<div class="flex-box flex-center">Game #${gameId} has been finalized successfully!</div>`);
 		})
 		.on('error', function(error) {
@@ -4405,7 +4407,7 @@ function listenForCollectWinnings(gameId) {
                 gameWindow.remove();
 				let taskIcon = $(`.task[data=tcg_base_game_window_${gameId}]`);
 				taskIcon.remove(); 
-				await tcg_base_open_tab('play', true); 
+				if($('.tcg_base_menu_option_active').attr('data') === 'play') await tcg_base_open_tab("play", true);
 				
                 return;
             }
@@ -4498,7 +4500,7 @@ function listenForCollectWinnings(gameId) {
 			// Delete finalize button 
 			$('.tcg_base_game_modal_finalizeButton[data-gameid="'+gameId+'"]').remove(); 
 			
-			await tcg_base_open_tab('play', true); 
+			if($('.tcg_base_menu_option_active').attr('data') === 'play') await tcg_base_open_tab("play", true); 
 			
             unsubscribeFromCollectWinnings(gameId);
         });
@@ -4683,7 +4685,7 @@ async function tcg_base_handleDepositForMultiUpload(selectedTokenIds) {
 		.on('receipt', function(receipt) {
 			notify(`<div class="flex-box flex-center">Multiple cards upload was successful!</div>`);
 			resetMultiUpload(); 
-			tcg_base_open_tab('deck');
+			if($('.tcg_base_menu_option_active').attr('data') === 'deck') await tcg_base_open_tab("deck");
 		})
 		.on('error', function(error) {
 			console.error(error); 
@@ -4703,7 +4705,7 @@ async function tcg_base_handleWithdrawForMultiDownload(selectedTokenIds) {
 		.on('receipt', function(receipt) {
 			notify(`<div class="flex-box flex-center">Multiple cards download was successful!</div>`);
 			resetMultiDownload(); 
-			tcg_base_open_tab('deck');
+			if($('.tcg_base_menu_option_active').attr('data') === 'deck') await tcg_base_open_tab("deck");
 		})
 		.on('error', function(error) {
 			console.error(error); 
