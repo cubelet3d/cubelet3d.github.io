@@ -30,6 +30,7 @@ $(document).ready(function () {
 			
 			chat3d.onmessage = (event) => {
 				const data = JSON.parse(event.data);
+				console.log(data); 
 				chat3d_data.authenticated = data.authenticated;
 				chat3d_data.clientsOnline = data.clientsOnline;
 				chat3d_data.activeUsers = data.activeUsers;
@@ -187,7 +188,7 @@ Object.values = function (object) {
 
 // Sends typing event when user types in the input
 function sendTypingEvent() {
-  chat3d.send({ type: "typing" });
+  chat3d.send(JSON.stringify({"type": "typing"}));
 }
 
 // Add event listener to input element

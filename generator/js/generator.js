@@ -989,8 +989,8 @@ async function loadGeneratorRates() {
 		let vidyasToDollars = (Number(vidyasInLp) + Number(vidyasInSingle)) * price_vidya 
 		$("#GeneratorTotalValueLocked").text(abbr(parseFloat(vidyasToDollars), 1) + " USD")
 		
-		fetch("https://vidyapad.com/info").then(r => r.json().then(r => {
-			let res = r.result[0]
+		fetch("https://vidyapad.com/info/").then(r => r.json().then(r => {
+			let res = r.result
 			let avgLPDays = parseInt(res.sumLP / res.countLP)
 			let avgSingleDays = parseInt((res.sumShingle / res.countShingle) / 100) // ghost3d: single teller has different decimals 
 			let totalStakers = parseInt(res.countLP + res.countShingle)
