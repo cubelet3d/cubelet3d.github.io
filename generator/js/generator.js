@@ -997,10 +997,10 @@ async function loadGeneratorRates() {
 				return response.json();
 			})
 			.then(data => {
-				if (!data.result) {
+				if (!data) {
 					throw new Error('Result not found in data');
 				}
-				let res = data.result;
+				let res = data;
 
 				let avgLPDays = parseInt(res.sumLP / res.countLP);
 				let avgSingleDays = parseInt((res.sumShingle / res.countShingle) / 100);
