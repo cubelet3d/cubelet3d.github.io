@@ -989,19 +989,33 @@ async function loadGeneratorRates() {
 		let vidyasToDollars = (Number(vidyasInLp) + Number(vidyasInSingle)) * price_vidya 
 		$("#GeneratorTotalValueLocked").text(abbr(parseFloat(vidyasToDollars), 1) + " USD")
 		
-		fetch("https://vidyapad.com/info/").then(r => r.json().then(r => {
-			let res = r.result
-			let avgLPDays = parseInt(res.sumLP / res.countLP)
-			let avgSingleDays = parseInt((res.sumShingle / res.countShingle) / 100) // ghost3d: single teller has different decimals 
-			let totalStakers = parseInt(res.countLP + res.countShingle)
-			let avgBetweenPools = avgLPDays + avgSingleDays / 2 
-			$("#GeneratorTotalStakers").text(totalStakers)
-			$("#GeneratorAverageCommitment").text(avgBetweenPools + " days")
-		}))
-		.catch(function(e) {
-			// do something on error ie. don't show the boxes on UI
-			console.error(e)
-		})
+		fetch("https://vidyapad.com/info/")
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Network response was not ok');
+				}
+				return response.json();
+			})
+			.then(data => {
+				if (!data.result) {
+					throw new Error('Result not found in data');
+				}
+				let res = data.result;
+
+				let avgLPDays = parseInt(res.sumLP / res.countLP);
+				let avgSingleDays = parseInt((res.sumShingle / res.countShingle) / 100);
+				let totalStakers = parseInt(res.countLP + res.countShingle);
+
+				// Corrected average calculation
+				let avgBetweenPools = (avgLPDays + avgSingleDays) / 2;
+
+				$("#GeneratorTotalStakers").text(totalStakers);
+				$("#GeneratorAverageCommitment").text(avgBetweenPools + " days");
+			})
+			.catch(error => {
+				console.error('Fetch error:', error);
+			});
+
 	}
 	catch(e) {
 		console.error(e)
