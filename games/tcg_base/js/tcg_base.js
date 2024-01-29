@@ -4682,7 +4682,7 @@ async function tcg_base_handleDepositForMultiUpload(selectedTokenIds) {
 			$('.tcg_base_tokenId_brew').addClass('disabled');
 			notify(`<div class="flex-box flex-center">Uploading multiple cards..</div>`);
 		})
-		.on('receipt', function(receipt) {
+		.on('receipt', async function(receipt) {
 			notify(`<div class="flex-box flex-center">Multiple cards upload was successful!</div>`);
 			resetMultiUpload(); 
 			if($('.tcg_base_menu_option_active').attr('data') === 'deck') await tcg_base_open_tab("deck");
@@ -4702,7 +4702,7 @@ async function tcg_base_handleWithdrawForMultiDownload(selectedTokenIds) {
 		.on('transactionHash', function(hash) {
 			notify(`<div class="flex-box flex-center">Downloading multiple cards..</div>`);
 		})
-		.on('receipt', function(receipt) {
+		.on('receipt', async function(receipt) {
 			notify(`<div class="flex-box flex-center">Multiple cards download was successful!</div>`);
 			resetMultiDownload(); 
 			if($('.tcg_base_menu_option_active').attr('data') === 'deck') await tcg_base_open_tab("deck");
