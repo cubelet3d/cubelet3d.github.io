@@ -93,16 +93,36 @@ function updateActiveUsers() {
 $(document).ready(function () {
     $("#chat3d-toggle").on("click", initWebSocket);
 
-    $(".chat3d-send, .chat3d-sign").on("click", handleMessage);
-    
+    // Attach event handler to dynamically added elements
+    $(document).on("click", ".chat3d-sign", chat3dSignIn);
+    $(document).on("click", ".chat3d-send", handleMessage);
+
     $("#chat3d .close_button").on("click", () => {
         resetChat3d();
         chat3d.close();
         chat3d = null;
     });
-    
+
     initTypingEvent();
 });
+
+async function chat3dSignIn() {
+    // Ensure web3 and accounts are defined
+    if (!web3 || !accounts) {
+        console.error("web3 or accounts not defined");
+        return;
+    }
+
+    const message = web3.utils.sha3(chat3dData.uid);
+    try {
+        const signature = await web3.eth.personal.sign(message, accounts[0]);
+        const payload = web3.utils.toHex("TeamOSAuth") + accounts[0].substr(2) + signature.substr(2);
+        chat3d.send(JSON.stringify({ adr: payload }));
+    } catch (error) {
+        console.error("Error signing in:", error);
+    }
+}
+
 
 function resetChat3d() {
     Object.assign(chat3dData, {
