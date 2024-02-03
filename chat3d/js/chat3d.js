@@ -35,7 +35,7 @@ $(document).ready(function () {
 			
 			chat3d.onmessage = (event) => {
 				const data = JSON.parse(event.data);
-				console.log(data); 
+				//console.log(data); 
 				chat3d_data.authenticated = data.authenticated;
 				chat3d_data.clientsOnline = data.clientsOnline;
 				chat3d_data.activeUsers = data.activeUsers;
@@ -66,8 +66,7 @@ $(document).ready(function () {
 							msg = `<p style="color: ${data.color}; padding: 5px 0;" class="flex-box"><img src="https://team3d.io/inventory/json/${data.tokenId}.png" style="width: 16px; height: 16px; margin-right: 4px;"/>${formatAddress(sanitize(data.username))}: ${sanitizeText(data.msg)}</p>`;
 						} else {
 							// Users without a tokenId get a blockie as their profile image
-							let blockieImage = blockies.create({size: 8, scale: 2, seed: data.username.toLowerCase()}).toDataURL();
-							console.log(data.username.toLowerCase()); 
+							let blockieImage = blockies.create({size: 8, scale: 2, seed: data.username.toLowerCase()}).toDataURL(); 
 							msg = `<p style="color: ${data.color}; padding: 5px 0;" class="flex-box"><img src="${blockieImage}" style="width: 16px; height: 16px; margin-right: 4px;"/>${formatAddress(sanitize(data.username))}: ${sanitizeText(data.msg)}</p>`;
 						}
 						$("#chat3d-chat").append(msg);
@@ -94,6 +93,10 @@ $(document).ready(function () {
 							)}: ${sanitize(data.msg)}</p>`,
 						);
 						break;
+						
+					case "typing": 
+						console.log(formatAddress(data.username) + " is typing...");
+						break;
 				}
 
 				if (chat3d_data.authenticated) {
@@ -103,7 +106,6 @@ $(document).ready(function () {
 						let pfp = arr[i].tokenId > 0 
 							? `<img src="https://team3d.io/inventory/json/${arr[i].tokenId}.png" style="width: 16px; height: 16px; margin-right: 4px;"/>` 
 							: `<span style="display: inline-block; width: 16px; height: 16px; margin-right: 4px; background: url(${blockies.create({size: 8, scale: 2, seed: arr[i].username.toLowerCase()}).toDataURL()});"></span>`;
-							console.log(arr[i].username.toLowerCase()); 
 						$(".chat3d-userlist").append(
 							`<div style="color:${arr[i]["color"]}; display: flex; align-items: center; padding: 5px 0;">${pfp}<span style="cursor: pointer;" class="chat3d_name" address="${arr[i]["username"]}">${formatAddress(arr[i]["username"])}</span></div>`,
 						);
@@ -185,6 +187,11 @@ function sanitizeText(text) {
   return text.replace(/&amp;|&lt;|&gt;|&#39;|&quot;/g, function(match) {
     return htmlEntities[match];
   });
+}
+
+function enhanceTextWithEmojis(text) {
+    let sanitizedText = sanitize(text);
+    return sanitizedText.replace(/:\@/g, '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/angry_smile.png" alt="angry_face" />');
 }
 
 Object.values = function (object) {
