@@ -43,9 +43,9 @@ $(document).ready(function () {
 				switch (data.type) {
 					case "join":
 						$("#chat3d-chat").append(
-							`<p class="flex-box center-vertical"><span style="color: ${data.color};">${sanitize(
+							`<p class="flex-box flex-center"><span style="color: ${data.color};">${formatAddress(sanitize(
 								data.username,
-							)}</span> joined!</p>`,
+							))}</span> joined!</p>`,
 						);
 						break;
 
@@ -58,12 +58,12 @@ $(document).ready(function () {
 						let msg;
 						if (data.tokenId > 0) {
 							// Users with a tokenId get their image from a URL
-							msg = `<p style="color: ${data.color};" class="flex-box center-vertical"><img src="https://team3d.io/inventory/json/${data.tokenId}.png" style="width: 16px; height: 16px; margin-right: 4px;"/>${formatAddress(sanitize(data.username))}: ${sanitizeText(data.msg)}</p>`;
+							msg = `<p style="color: ${data.color}; padding: 5px 0;" class="flex-box"><img src="https://team3d.io/inventory/json/${data.tokenId}.png" style="width: 16px; height: 16px; margin-right: 4px;"/>${formatAddress(sanitize(data.username))}: ${sanitizeText(data.msg)}</p>`;
 						} else {
 							// Users without a tokenId get a blockie as their profile image
 							let blockieImage = blockies.create({size: 8, scale: 2, seed: data.username.toLowerCase()}).toDataURL();
 							console.log(data.username.toLowerCase()); 
-							msg = `<p style="color: ${data.color};" class="flex-box center-vertical"><img src="${blockieImage}" style="width: 16px; height: 16px; margin-right: 4px;"/>${formatAddress(sanitize(data.username))}: ${sanitizeText(data.msg)}</p>`;
+							msg = `<p style="color: ${data.color}; padding: 5px 0;" class="flex-box"><img src="${blockieImage}" style="width: 16px; height: 16px; margin-right: 4px;"/>${formatAddress(sanitize(data.username))}: ${sanitizeText(data.msg)}</p>`;
 						}
 						$("#chat3d-chat").append(msg);
 						
