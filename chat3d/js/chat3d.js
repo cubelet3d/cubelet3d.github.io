@@ -189,24 +189,14 @@ function sanitizeText(text) {
   });
 }
 
+function transformEmojis(text) {
+    // Example of transforming :@ into an emoji image
+    return text.replace(/:\@/g, '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/angry_smile.png" alt="angry">');
+}
+
 function sanitizeAndTransformText(text) {
-    const htmlEntities = {
-        '&amp;': '&',
-        '&lt;': '<',
-        '&gt;': '>',
-        '&#39;': "'",
-        '&quot;': '"'
-    };
-
-    // First, replace HTML entities with their corresponding characters
-    text = text.replace(/&amp;|&lt;|&gt;|&#39;|&quot;/g, function(match) {
-        return htmlEntities[match];
-    });
-
-    // Then, transform ":@" into an emoji image
-    text = text.replace(/:\@/g, '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/angry_smile.png" alt="angry_face" />');
-
-    return text;
+    let sanitizedText = sanitizeText(text);
+    return transformEmojis(sanitizedText);
 }
 
 Object.values = function (object) {
