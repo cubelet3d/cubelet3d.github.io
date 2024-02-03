@@ -8,7 +8,7 @@ const chat3d_data = {
 
 $(document).on("click", ".chat3d_name", function() {
 	let address = $(this).attr("address");
-	console.log(address); 
+	window.open(`https://etherscan.io/address/${address}`, '_blank');
 });
 
 $(document).on("keypress", function (e) {
@@ -105,7 +105,7 @@ $(document).ready(function () {
 							: `<span style="display: inline-block; width: 16px; height: 16px; margin-right: 4px; background: url(${blockies.create({size: 8, scale: 2, seed: arr[i].username.toLowerCase()}).toDataURL()});"></span>`;
 							console.log(arr[i].username.toLowerCase()); 
 						$(".chat3d-userlist").append(
-							`<div style="color:${arr[i]["color"]}; display: flex; align-items: center; padding: 5px 0;">${pfp}<span class="chat3d_name" address="arr[i]["username"]">${formatAddress(arr[i]["username"])}</span></div>`,
+							`<div style="color:${arr[i]["color"]}; display: flex; align-items: center; padding: 5px 0;">${pfp}<span style="cursor: pointer;" class="chat3d_name" address="${arr[i]["username"]}">${formatAddress(arr[i]["username"])}</span></div>`,
 						);
 					}
 				}
