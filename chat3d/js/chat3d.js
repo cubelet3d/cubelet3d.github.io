@@ -206,7 +206,7 @@ function transformEmojis(text) {
 		':|': '<img style="width: 16px; height: 16px;" src="chat3d/img/what_face.png" alt="what">',
 		';)': '<img style="width: 16px; height: 16px;" src="chat3d/img/wink_smile.gif" alt="wink">',
 		'(A)': '<img style="width: 16px; height: 16px;" src="chat3d/img/angel_smile.png" alt="angel">',
-		":'(": '<img style="width: 16px; height: 16px;" src="chat3d/img/cry_smile.gif" alt="cry">',
+		':((': '<img style="width: 16px; height: 16px;" src="chat3d/img/cry_smile.gif" alt="cry">',
 		'(6)': '<img style="width: 16px; height: 16px;" src="chat3d/img/devil_smile.png" alt="devil">',
 		':$': '<img style="width: 16px; height: 16px;" src="chat3d/img/red_smile.png" alt="red">',
 		'(V)': '<img style="width: 16px; height: 16px;" src="img/icons/vidyarotate.gif" alt="vidya">',
