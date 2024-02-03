@@ -11,6 +11,14 @@ $(document).on("click", ".chat3d_name", function() {
 	window.open(`https://etherscan.io/address/${address}`, '_blank');
 });
 
+$(document).on("click", ".chat3d_usertag", function() {
+	let tag = $(this).attr("tag"); 
+	$('.chat3d-input').val(function(index, val) {
+		return val + ` ${tag} `;
+	});	
+	$('.chat3d-input').focus(); 
+}); 
+
 $(document).on("keypress", function (e) {
 	if (e.which == 13) {
 		handleMessage();
@@ -55,6 +63,10 @@ $(document).ready(function () {
 						break;
 
 					case "message":
+						let { text, containsTag } = sanitizeAndTransformText(data.msg); 
+						// let messageClass = containsTag ? "highlight-message" : "";
+						let messageClass = text.includes(formatAddress(accounts[0])) ? "highlight-message" : "";
+						
 						if (chat3d_data.authenticated) {
 							if ($(".chat3d-sign-wrapper").is(":visible")) {
 								$(".chat3d-sign-wrapper").remove();
@@ -63,11 +75,11 @@ $(document).ready(function () {
 						let msg;
 						if (data.tokenId > 0) {
 							// Users with a tokenId get their image from a URL
-							msg = `<p style="color: ${data.color}; padding: 5px 0; width: 100%; word-wrap: break-word; display: inline-block;" class="flex-box"><img src="https://team3d.io/inventory/json/${data.tokenId}.png" style="width: 16px; height: 16px; margin-right: 4px;"/>${formatAddress(sanitize(data.username))}: ${sanitizeAndTransformText(data.msg)}</p>`;
+							msg = `<p class="${messageClass}" style="color: ${data.color}; padding: 5px; width: 100%; word-wrap: break-word; display: inline-block;" class="flex-box"><img src="https://team3d.io/inventory/json/${data.tokenId}.png" style="width: 16px; height: 16px; margin-right: 4px;"/><span class="chat3d_usertag" tag="${formatAddress(sanitize(data.username))}">${formatAddress(sanitize(data.username))}</span>: ${text}</p>`;
 						} else {
 							// Users without a tokenId get a blockie as their profile image
 							let blockieImage = blockies.create({size: 8, scale: 2, seed: data.username.toLowerCase()}).toDataURL(); 
-							msg = `<p style="color: ${data.color}; padding: 5px 0; width: 100%; word-wrap: break-word; display: inline-block;" class="flex-box"><img src="${blockieImage}" style="width: 16px; height: 16px; margin-right: 4px;"/>${formatAddress(sanitize(data.username))}: ${sanitizeAndTransformText(data.msg)}</p>`;
+							msg = `<p class="${messageClass}" style="color: ${data.color}; padding: 5px; width: 100%; word-wrap: break-word; display: inline-block;" class="flex-box"><img src="${blockieImage}" style="width: 16px; height: 16px; margin-right: 4px;"/><span class="chat3d_usertag" tag="${formatAddress(sanitize(data.username))}">${formatAddress(sanitize(data.username))}</span>: ${text}</p>`;
 						}
 						$("#chat3d-chat").append(msg);
 						
@@ -206,7 +218,7 @@ function transformEmojis(text) {
 		':|': '<img style="width: 16px; height: 16px;" src="chat3d/img/what_face.png" alt="what">',
 		';)': '<img style="width: 16px; height: 16px;" src="chat3d/img/wink_smile.gif" alt="wink">',
 		'(A)': '<img style="width: 16px; height: 16px;" src="chat3d/img/angel_smile.png" alt="angel">',
-		':((': '<img style="width: 16px; height: 16px;" src="chat3d/img/cry_smile.gif" alt="cry">',
+		';(': '<img style="width: 16px; height: 16px;" src="chat3d/img/cry_smile.gif" alt="cry">',
 		'(6)': '<img style="width: 16px; height: 16px;" src="chat3d/img/devil_smile.png" alt="devil">',
 		':$': '<img style="width: 16px; height: 16px;" src="chat3d/img/red_smile.png" alt="red">',
 		'(V)': '<img style="width: 16px; height: 16px;" src="img/icons/vidyarotate.gif" alt="vidya">',
@@ -223,7 +235,18 @@ function transformEmojis(text) {
 
 function sanitizeAndTransformText(text) {
     let sanitizedText = sanitizeText(text);
-    return transformEmojis(sanitizedText);
+    let transformedText = transformEmojis(sanitizedText);
+    transformedText = highlightUserTags(transformedText);
+    return {
+        text: transformedText,
+        containsTag: transformedText.includes('<span class="tagged-user">')
+    };
+}
+
+function highlightUserTags(text) {
+    // Regex to match @ followed by '0x' and then any combination of 0-9, A-F characters, considering shortened addresses
+    const regex = /@(0x[0-9A-Fa-f]{4}\.\.\.[0-9A-Fa-f]{4})/g;
+    return text.replace(regex, '<span class="tagged-user">@$1</span>');
 }
 
 Object.values = function (object) {
