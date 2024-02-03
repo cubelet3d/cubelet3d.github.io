@@ -196,15 +196,20 @@ function sanitizeText(text) {
 
 function transformEmojis(text) {
     const emojiReplacements = {
-        ':@': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/angry_smile.png" alt="angry">',
-        ':)': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/regular_smile.png" alt="happy">',
-        ':(': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/sad_smile.png" alt="sad">',
-        ':O': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/omg_smile.png" alt="omg">',
-		':S': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/confused_smile.png" alt="confused">',
-		'(H)': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/shades_smile.png" alt="shades">',
-		':P': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/tongue_smile.png" alt="tongue">',
-		':|': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/what_face.png" alt="what">',
-		';)': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/wink_smile.gif" alt="wink">',
+        ':@': '<img style="width: 16px; height: 16px;" src="chat3d/img/angry_smile.png" alt="angry">',
+        ':)': '<img style="width: 16px; height: 16px;" src="chat3d/img/regular_smile.png" alt="happy">',
+        ':(': '<img style="width: 16px; height: 16px;" src="chat3d/img/sad_smile.png" alt="sad">',
+        ':O': '<img style="width: 16px; height: 16px;" src="chat3d/img/omg_smile.png" alt="omg">',
+		':S': '<img style="width: 16px; height: 16px;" src="chat3d/img/confused_smile.png" alt="confused">',
+		'(H)': '<img style="width: 16px; height: 16px;" src="chat3d/img/shades_smile.png" alt="shades">',
+		':P': '<img style="width: 16px; height: 16px;" src="chat3d/img/tongue_smile.png" alt="tongue">',
+		':|': '<img style="width: 16px; height: 16px;" src="chat3d/img/what_face.png" alt="what">',
+		';)': '<img style="width: 16px; height: 16px;" src="chat3d/img/wink_smile.gif" alt="wink">',
+		'(A)': '<img style="width: 16px; height: 16px;" src="chat3d/img/angel_smile.png" alt="angel">',
+		":'(": '<img style="width: 16px; height: 16px;" src="chat3d/img/cry_smile.gif" alt="cry">',
+		'(6)': '<img style="width: 16px; height: 16px;" src="chat3d/img/devil_smile.png" alt="devil">',
+		':$': '<img style="width: 16px; height: 16px;" src="chat3d/img/red_smile.png" alt="red">',
+		'(V)': '<img style="width: 16px; height: 16px;" src="img/icons/vidyarotate.gif" alt="vidya">',
     };
 
     Object.keys(emojiReplacements).forEach(pattern => {
