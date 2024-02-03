@@ -95,7 +95,7 @@ $(document).ready(function () {
 						break;
 						
 					case "typing": 
-						console.log(formatAddress(data.username) + " is typing...");
+						// console.log(formatAddress(data.username) + " is typing...");
 						break;
 				}
 
@@ -189,9 +189,31 @@ function sanitizeText(text) {
   });
 }
 
-function transformEmojis(text) {
+/*function transformEmojis(text) {
     // Example of transforming :@ into an emoji image
     return text.replace(/:\@/g, '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/angry_smile.png" alt="angry">');
+}*/
+
+function transformEmojis(text) {
+    const emojiReplacements = {
+        ':@': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/angry_smile.png" alt="angry">',
+        ':)': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/regular_smile.png" alt="happy">',
+        ':(': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/sad_smile.png" alt="sad">',
+        ':O': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/omg_smile.png" alt="omg">',
+		':S': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/confused_smile.png" alt="confused">',
+		'(H)': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/shades_smile.png" alt="shades">',
+		':P': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/tongue_smile.png" alt="tongue">',
+		':|': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/what_face.png" alt="what">',
+		';)': '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/wink_smile.gif" alt="wink">',
+    };
+
+    Object.keys(emojiReplacements).forEach(pattern => {
+        const escapedPattern = pattern.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1'); // Escape special characters
+        const regex = new RegExp(escapedPattern, 'g');
+        text = text.replace(regex, emojiReplacements[pattern]);
+    });
+
+    return text;
 }
 
 function sanitizeAndTransformText(text) {
