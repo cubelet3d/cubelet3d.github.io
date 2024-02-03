@@ -58,12 +58,12 @@ $(document).ready(function () {
 						let msg;
 						if (data.tokenId > 0) {
 							// Users with a tokenId get their image from a URL
-							msg = `<p style="color: ${data.color};" class="flex-box center-vertical"><img src="https://team3d.io/inventory/json/${data.tokenId}.png" style="width: 16px; height: 16px; margin-right: 4px;"/>${sanitize(data.username)}: ${sanitizeText(data.msg)}</p>`;
+							msg = `<p style="color: ${data.color};" class="flex-box center-vertical"><img src="https://team3d.io/inventory/json/${data.tokenId}.png" style="width: 16px; height: 16px; margin-right: 4px;"/>${formatAddress(sanitize(data.username))}: ${sanitizeText(data.msg)}</p>`;
 						} else {
 							// Users without a tokenId get a blockie as their profile image
 							let blockieImage = blockies.create({size: 8, scale: 2, seed: data.username.toLowerCase()}).toDataURL();
 							console.log(data.username.toLowerCase()); 
-							msg = `<p style="color: ${data.color};" class="flex-box center-vertical"><img src="${blockieImage}" style="width: 16px; height: 16px; margin-right: 4px;"/>${sanitize(data.username)}: ${sanitizeText(data.msg)}</p>`;
+							msg = `<p style="color: ${data.color};" class="flex-box center-vertical"><img src="${blockieImage}" style="width: 16px; height: 16px; margin-right: 4px;"/>${formatAddress(sanitize(data.username))}: ${sanitizeText(data.msg)}</p>`;
 						}
 						$("#chat3d-chat").append(msg);
 						
@@ -100,7 +100,7 @@ $(document).ready(function () {
 							: `<span style="display: inline-block; width: 16px; height: 16px; margin-right: 4px; background: url(${blockies.create({size: 8, scale: 2, seed: arr[i].username.toLowerCase()}).toDataURL()});"></span>`;
 							console.log(arr[i].username.toLowerCase()); 
 						$(".chat3d-userlist").append(
-							`<div style="color:${arr[i]["color"]}; display: flex; align-items: center;">${pfp}<span>${arr[i]["username"]}</span></div>`,
+							`<div style="color:${arr[i]["color"]}; display: flex; align-items: center;">${pfp}<span>${formatAddress(arr[i]["username"])}</span></div>`,
 						);
 					}
 				}
