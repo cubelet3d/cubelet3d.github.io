@@ -95,8 +95,11 @@ $(document).ready(function () {
 					$(".chat3d-userlist").empty();
 					const arr = Object.values(chat3d_data.activeUsers);
 					for (let i = 0; i < arr.length; i++) {
+						let pfp = arr[i].tokenId > 0 
+							? `<img src="https://team3d.io/inventory/json/${arr[i].tokenId}.png" style="width: 16px; height: 16px; margin-right: 4px;"/>` 
+							: `<span style="display: inline-block; width: 16px; height: 16px; margin-right: 4px; background: url(${blockies.create({size: 8, scale: 2, seed: arr[i].username}).toDataURL()});"></span>`;
 						$(".chat3d-userlist").append(
-							`<div style="color:${arr[i]["color"]}">${arr[i]["username"]}</div>`,
+							`<div style="color:${arr[i]["color"]}; display: flex; align-items: center;">${pfp}<span>${arr[i]["username"]}</span></div>`,
 						);
 					}
 				}
