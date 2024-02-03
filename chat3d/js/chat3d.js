@@ -63,11 +63,11 @@ $(document).ready(function () {
 						let msg;
 						if (data.tokenId > 0) {
 							// Users with a tokenId get their image from a URL
-							msg = `<p style="color: ${data.color}; padding: 5px 0;" class="flex-box"><img src="https://team3d.io/inventory/json/${data.tokenId}.png" style="width: 16px; height: 16px; margin-right: 4px;"/>${formatAddress(sanitize(data.username))}: ${sanitizeText(data.msg)}</p>`;
+							msg = `<p style="color: ${data.color}; padding: 5px 0;" class="flex-box"><img src="https://team3d.io/inventory/json/${data.tokenId}.png" style="width: 16px; height: 16px; margin-right: 4px;"/>${formatAddress(sanitize(data.username))}: ${enhanceTextWithEmojis(data.msg)}</p>`;
 						} else {
 							// Users without a tokenId get a blockie as their profile image
 							let blockieImage = blockies.create({size: 8, scale: 2, seed: data.username.toLowerCase()}).toDataURL(); 
-							msg = `<p style="color: ${data.color}; padding: 5px 0;" class="flex-box"><img src="${blockieImage}" style="width: 16px; height: 16px; margin-right: 4px;"/>${formatAddress(sanitize(data.username))}: ${sanitizeText(data.msg)}</p>`;
+							msg = `<p style="color: ${data.color}; padding: 5px 0;" class="flex-box"><img src="${blockieImage}" style="width: 16px; height: 16px; margin-right: 4px;"/>${formatAddress(sanitize(data.username))}: ${enhanceTextWithEmojis(data.msg)}</p>`;
 						}
 						$("#chat3d-chat").append(msg);
 						
@@ -190,7 +190,7 @@ function sanitizeText(text) {
 }
 
 function enhanceTextWithEmojis(text) {
-    let sanitizedText = sanitize(text);
+    let sanitizedText = sanitizeText(text);
     return sanitizedText.replace(/:\@/g, '<img style="width: 16px; height: 16px; padding: 1px;" src="chat3d/img/angry_smile.png" alt="angry_face" />');
 }
 
