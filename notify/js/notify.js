@@ -101,6 +101,13 @@ $(document).ready(function() {
 	
     $("body").on("click", ".error-btn", function() {
         let id = $(this).attr("data"); 
+		
+		// cake3d special 
+		let hiddenData = $(".error-box[data=" + id + "]").find(".resetCake3D");
+		if (hiddenData.length) {
+			resetGame();
+		}		
+		
         $(".error-box[data="+id+"]").remove(); 
     }); 
     
