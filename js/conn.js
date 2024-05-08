@@ -90,13 +90,14 @@ async function setup() {
 			
         }
 		
-		// "Girly" network  
-		else if(chainID == 5) {
-			notify("Connected to Goerli testnet!")
+		// Sepolia network  
+		else if(chainID == 11155111) {
+			notify("Connected to Sepolia testnet!");
 			$(".mainnet_object").fadeOut()
 			// $("#multipass_button_wrapper").show("scale")
 			// $("#alchemy_button_wrapper").show("scale")
-			VidyaAddress = "0xFFE93E63E94da7A44739b6aBFA25B81CEd979a6b"
+			VidyaAddress = "0xf51986be66acec5bb671fec00503e877f66006b6"; 
+			
 			distributorContract = "0x8A6F9dba6dd87bC1FEF6eA4cc21d2eC5Ad4478FB"
 			inventoryContract = "0xfbCc08d711664Fe9514404e4d9597774Ae3A0a63" 
 			await loadInventory()
@@ -111,7 +112,7 @@ async function setup() {
             replaceUniswapLink("quickswap")
 			$(".mainnet_object").fadeOut() // Hide all mainnet things
         } else {
-			notify("Please connect either to Ethereum mainNet, Ropsten testNet or Polygon network")
+			notify("Please connect either to Ethereum mainnet, Sepolia testnet or Polygon network"); 
 		}
 
         // Hide spinner
