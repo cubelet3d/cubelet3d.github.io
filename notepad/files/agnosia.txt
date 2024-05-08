@@ -2,8 +2,8 @@ Agnosia is finally here!
 
 Fastest way to get started: 
 
-0. connect wallet to goerli network 
-1. get goerli eth from testnetbridge.com 
+0. connect wallet to Sepolia network 
+1. get Sepolia eth from testnetbridge.com 
 2. buy starter pack to get 7 cards 
 3. upload the cards from deck to game 
 4. play practice mode
