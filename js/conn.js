@@ -99,7 +99,7 @@ async function setup() {
 			VidyaAddress = "0xf51986be66acec5bb671fec00503e877f66006b6"; 
 			
 			distributorContract = "0x8A6F9dba6dd87bC1FEF6eA4cc21d2eC5Ad4478FB"
-			inventoryContract = "0xD67aAa127BE6cB91b65708c82942fcC581bd1b20" 
+			inventoryContract = "0xb4aF2A2F18AC71879eE5391a33f71De5840BCA77" 
 			await loadInventory()
 			
 			tcg_base_init(); // Agnosia 
