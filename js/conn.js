@@ -1,4 +1,4 @@
-let chainID = null;
+let chainID, alchemy = null;
 let web3, 
     accounts, 
     connected = false;
@@ -74,6 +74,7 @@ async function setup() {
         web3 = new Web3(window.ethereum);
         accounts = await web3.eth.getAccounts();
         chainID = await web3.eth.getChainId();
+		alchemy = null; 
 		
 		// Mainnet & localhost  
         if(chainID == 1 || chainID == 1337) {
@@ -112,6 +113,9 @@ async function setup() {
 			VidyaAddress = "0x3d48ae69a2F35D02d6F0c5E84CFE66bE885f3963"; 
 			inventoryContract = "0x2Ce68A50a0e5738E675ed9a9899D86a01f2a9a0B"; 
 			await loadInventory(); 
+			
+			// Agnosia 
+			alchemy = new Web3(new Web3.providers.HttpProvider('https://arb-mainnet.g.alchemy.com/v2/WaECH19QGPKr0R83WmeJyVc7UC8-cLzU'));
 			await tcg_base_init();
 		}
 		

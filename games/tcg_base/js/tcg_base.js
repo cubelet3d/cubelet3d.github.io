@@ -1764,6 +1764,11 @@ function tcg_base_init() {
 	tcg_base_system.game = new web3.eth.Contract(tcg_base_game_abi, tcg_base_system.game_address); 
 	tcg_base_system.card = new web3.eth.Contract(tcg_base_card_abi, tcg_base_system.card_address); 
 	tcg_base_system.caul = new web3.eth.Contract(tcg_base_caul_abi, tcg_base_system.caul_address); 
+	
+	// init alchemy 
+	tcg_base_system.cardAlchemy = new alchemy.eth.Contract(tcg_base_card_abi, tcg_base_system.card_address);
+	tcg_base_system.gameAlchemy = new alchemy.eth.Contract(tcg_base_game_abi, tcg_base_system.game_address);	
+	
 	// Show button on desktop 
 	$("#tcg_base_button_wrapper").show("scale"); 
 }
@@ -2110,10 +2115,33 @@ async function tcg_base_openStarterPack() {
 }
 
 /*	This function fetches all player's cards both deposited and not deposited 
-	Returns tokenUris for all of these cards */
+	Returns tokenUris for all of these cards 
 async function tcg_base_fetchUserCards(player) {
     try {
         let userCards = await tcg_base_system.card.methods.ownerTokenArray(player).call();
+        let deckInfo = await tcg_base_system.game.methods.deckInfo(accounts[0]).call();
+        let deck = deckInfo.deck;
+        
+        // Mark user cards as not deposited
+        let userCardUris = await tcg_base_fetchTokenUris(userCards);
+        userCardUris.forEach(card => card.deposited = false);
+
+        // Mark deck cards as deposited
+        let deckCardUris = await tcg_base_fetchTokenUris(deck);
+        deckCardUris.forEach(card => card.deposited = true);
+
+        // Combine all cards
+        let allCardUris = [...userCardUris, ...deckCardUris];
+        
+        return allCardUris;
+    }
+    catch(e) {
+        console.error(e);
+    }
+}*/
+async function tcg_base_fetchUserCards(player) {
+    try {
+        let userCards = await tcg_base_system.cardAlchemy.methods.ownerTokenArray(player).call();
         let deckInfo = await tcg_base_system.game.methods.deckInfo(accounts[0]).call();
         let deck = deckInfo.deck;
         
@@ -2154,11 +2182,28 @@ async function tcg_base_fetchUserCards(player) {
 }*/
 
 // Returns tokenUris based on array of tokenIds in parallel 
-async function tcg_base_fetchTokenUris(tokenIds) {
+/* async function tcg_base_fetchTokenUris(tokenIds) {
     try {
         // Create an array of promises for each token URI fetch
         const uriPromises = tokenIds.map(tokenId => 
             tcg_base_system.card.methods.tokenURI(tokenId).call().then(uri => {
+                let json = JSON.parse(atob(uri.slice(29)));
+                json.tokenId = tokenId;
+                return json;
+            })
+        );
+
+        // Wait for all promises to resolve
+        return await Promise.all(uriPromises);
+    } catch (e) {
+        console.error(e);
+    }
+} */
+async function tcg_base_fetchTokenUris(tokenIds) {
+    try {
+        // Create an array of promises for each token URI fetch
+        const uriPromises = tokenIds.map(tokenId => 
+            tcg_base_system.cardAlchemy.methods.tokenURI(tokenId).call().then(uri => {
                 let json = JSON.parse(atob(uri.slice(29)));
                 json.tokenId = tokenId;
                 return json;
@@ -2948,7 +2993,7 @@ async function tcg_base_initPlaySection(forceEmptyGamesListContainer = false) {
 	}
 }
 
-/*	This function fetches all games currently waiting for 2nd player */
+/*	This function fetches all games currently waiting for 2nd player 
 async function tcg_base_fetchGamesWaitingPlayer() {
 	try {
 		let newList = await tcg_base_system.game.methods.gamesNeedPlayer().call(); 
@@ -2968,12 +3013,41 @@ async function tcg_base_fetchGamesWaitingPlayer() {
 	catch(e) {
 		console.error(e); 
 	}
+}*/
+async function tcg_base_fetchGamesWaitingPlayer() {
+	try {
+		let newList = await tcg_base_system.gameAlchemy.methods.gamesNeedPlayer().call(); 
+		for (let gameId of newList) {
+			let gameDetails = await tcg_base_system.gameAlchemy.methods.getGameDetails(gameId).call();
+			tcg_base_games.gameDetails[gameId] = gameDetails;
+			
+			// Also fetch the new custom timer 
+			if(!('forfeitTime' in gameDetails)) {
+				let forfeitTime = await tcg_base_system.gameAlchemy.methods.gameIndexToTimerRule(gameId).call();
+				tcg_base_games.gameDetails[gameId]['forfeitTime'] = forfeitTime;
+			}
+		}
+
+		tcg_base_games.gamesNeedPlayer = newList;
+	}
+	catch(e) {
+		console.error(e); 
+	}
 }
 
-/*	This function returns all deposited cards for player */
+/*	This function returns all deposited cards for player 
 async function tcg_base_deckOfPlayer(player) {
 	try {
 		let { deck } = await tcg_base_system.game.methods.deckInfo(player).call(); 
+		return deck; 
+	}
+	catch(e) {
+		console.error(e); 
+	}
+}*/
+async function tcg_base_deckOfPlayer(player) {
+	try {
+		let { deck } = await tcg_base_system.gameAlchemy.methods.deckInfo(player).call(); 
 		return deck; 
 	}
 	catch(e) {
@@ -3023,7 +3097,7 @@ async function tcg_base_gamesLoop(forceEmptyGamesListContainer = false) {
 
 		/*	The new and hopefully better way to deliver Your Games (check line above for old) 
 			Something didn't quite work as the games never showed up after pageload.. maybe the below function reacted differently? idk 
-			edit: I forgot to fetch details per each gameId, duh. */
+			edit: I forgot to fetch details per each gameId, duh. 
 		await tcg_base_system.game.methods.getActivePlayerGames(accounts[0]).call().then(async function(result) {
 			// Overwrite the global playerGames array with fresh ID's 
 			tcg_base_games.playerGames = result; 
@@ -3050,7 +3124,34 @@ async function tcg_base_gamesLoop(forceEmptyGamesListContainer = false) {
 					isForfeit ? elem.addClass('forfeit') : elem.removeClass('forfeit'); 
 				}); 
 			}
-		}); 
+		}); */
+		await tcg_base_system.gameAlchemy.methods.getActivePlayerGames(accounts[0]).call().then(async function(result) {
+			// Overwrite the global playerGames array with fresh ID's 
+			tcg_base_games.playerGames = result; 
+			
+			for (gameId of tcg_base_games.playerGames) {
+				// Fetch details for each gameId 
+				let details = await tcg_base_system.gameAlchemy.methods.getGameDetails(gameId).call();
+				tcg_base_games.gameDetails[gameId] = details;	
+
+				// Also fetch the new custom timer 
+				if(!('forfeitTime' in details)) {
+					let forfeitTime = await tcg_base_system.gameAlchemy.methods.gameIndexToTimerRule(gameId).call();
+					tcg_base_games.gameDetails[gameId]['forfeitTime'] = forfeitTime;
+				}				
+				
+				// If the game window for this game is open, update its UI
+				if (tcg_base_games.openGames.has(gameId)) {
+					tcg_base_openGameUpdateUI(gameId, true); // boolean true means call is coming from gamesLoop(); 
+				}
+				
+				// Forfeit check (adds or removes .forfeit class for the game in the list)
+				await tcg_base_system.gameAlchemy.methods.forfeit(gameId).call().then(function(isForfeit) {
+					let elem = $(`.tcg_base_play_games_list_item_container[data-gameid="${gameId}"]`).addClass('forfeit');
+					isForfeit ? elem.addClass('forfeit') : elem.removeClass('forfeit'); 
+				}); 
+			}
+		});		
 
 		// Load games into UI list 
 		await tcg_base_loadGamesList(forceEmptyGamesListContainer);
@@ -6337,6 +6438,15 @@ $(document).ready(function() {
 		$(".tcg_base_transfer_form").removeClass("hidden");
 		$("#tcg_base_tokenId_transfer").text(tcg_base_player.lookingAtCard);
 	}); 
+	
+    $('.tcg_base_card_transfer').hover(
+        function() {
+            $(this).addClass('tcg_base_card_transfer_hover');
+        }, 
+        function() {
+            $(this).removeClass('tcg_base_card_transfer_hover');
+        }
+    );	
 	
 	$(document).on("click", ".tcg_base_transfer_form_send_button", async function() {
 		let tokenIdToSend = $("#tcg_base_tokenId_transfer").text();
