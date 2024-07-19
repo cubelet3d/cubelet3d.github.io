@@ -282,7 +282,35 @@
 									<!-- Loading screen -->
 									<div id="tcg_base_loading_screen" class="template-loading-outer flex-box flex-center">
 										<div class="template-loading-inner"></div>
-									</div>								
+									</div>	
+									<!-- Intro -->
+									<div class="tcg_base_main_intro C64 scrollbar" data="intro">
+										<div class="tcg_base_main_intro_inner">
+										<div class="full-width full-height">
+											<p>In the year 2484, a relic of the past, an enigmatic device, was found under the barren wasteland where the Arctic once flourished. The ice caps had surrendered to the relentless march of global warming, and in their retreat, they unveiled a secret buried for eons. The world's leading scientists, driven by an insatiable thirst for knowledge, descended upon the site, eager to unlock the artifact's mysteries.</p>
+											<p>For decades, the device, a monolith of unknown metal humming with forgotten energies, resisted all attempts at activation. It wasn't until Dr. Elara Kostas theorized that the device operated not on principles of electricity or quantum mechanics, but on an unknown form of harmonic resonance, that progress was made. By applying a multidimensional field theory, her team successfully awakened the dormant giant.</p>
+
+											<p>With a shudder that echoed through the fabric of reality, the device unveiled its purpose: a portal, a tear in the veil between universes. Dr. Kostas and her team, adorned in suits of experimental material to protect them from the unknown, stepped through the gateway, their signals winking out one by one, lost to the silence between worlds.</p>
+
+											<p>The portal was believed to be sealed, the device shut down. But the truth was far more sinister. It remained open, a one-way street from that other dimension to ours. Creatures of that realm, beings of energy and thought, slipped through the cracks in our universe, drawn to the echoes of the device's activation.</p>
+
+											<p>Due to the extreme gravitational forces near the device, time dilation occurred, a byproduct of the portal's mechanics warping the continuum. The creatures didn't step into the distant future from whence the call originated; they spilled into our present, riding the waves of a temporal backwash.</p>
+
+											<p>These beings, composed of what could only be described as living probabilities, began to alter the very reality they touched. They were not bound by our physical laws, and the Earth became a canvas for their expression, their very presence an anomaly that science could not comprehend, let alone combat.</p>
+
+											<p>Attempts to destroy the portal only resulted in disaster, as conventional weapons and strategies proved not only ineffective but dangerously unpredictable in their outcomes. It was as if the creatures were a living paradox, immune to our reality's attempts to correct itself.</p>
+
+											<p>And so, the world stood on the brink, staring into the abyss of the unknown, as the flow of creatures became a deluge. The ancient device, a harbinger of doom, had bridged a gap never meant to be crossed, and humanity was left scrambling for solutions in the shadow of the impossible.</p>
+
+											<p>Amidst the chaos, a whisper of hope lingered. The world's greatest minds, no longer separated by petty squabbles or borders, united in clandestine fervor. For each bizarre creature that emerged, a new field of study bloomed. They labored to categorize the uncategorizable, to understand the unfathomable, their data coalescing into a map of patterns, a lexicon of the otherworldly ecology.</p>
+
+											<p>In the labyrinthine halls of the United Research Coalition, a plan was cautiously being nurtured. If each entity was indeed a piece of a larger puzzle, then perhaps, just perhaps, they could reverse-engineer the cosmic anomaly. There were whispers of an expedition, one that would require adventurers of extraordinary caliber to venture through the portal's maw, to explore and perhaps to close the aperture from the other side. It was a mission that hummed with the promise of discovery, of new horizons beyond imagination's scope, akin to the fabled quests of old.</p>
+
+											<p>Yet, this potential odyssey was spoken of only in shadows, its true purpose veiled in secrecy. The prospect of a new world was there, hinted at in the encrypted messages that fluttered through the dark web, a promise of an adventure that could redefine existence itself. But for now, it was but a glimmer in the night, a distant star whose light had yet to reach the eager eyes of the world.</p>
+											</p>
+										</div>
+										</div>
+									</div>									
 									<!-- Play -->
 									<div class="tcg_base_main_wrapper hidden" data="play">
 										<div class="tcg_base_main_content flex-box col">
@@ -432,9 +460,20 @@
 												</div>
 												<!-- Card details / right side -->
 												<div class="tcg_base_card_info tcg_base_blue_background flex-box col half-width">
-													<div class="tcg_base_card_info_top flex-box space-between">
+													<div class="tcg_base_card_info_top flex-box space-between relative">
+														<div class="tcg_base_transfer_form tcg_base_blue_background flex-box col space-between hidden C64">
+															<div class="tcg_base_transfer_form_header flex-box space-between">
+																<div>Transfer tokenId #<span id="tcg_base_tokenId_transfer"></span></div>
+																<div class="tcg_base_transfer_form_close_button agnosia_button_card_click_2 tcg_base_green_text_black_outline">[ close ]</div>
+															</div>
+															<div class="flex-box">
+																<div class="tcg_base_transfer_form_receiver" contenteditable="true">0x000000000000000000000000000000...</div>
+																<div class="tcg_base_transfer_form_send_button tcg_base_green_text_black_outline agnosia_button_stone_hover agnosia_button_stone_click">Send</div>
+															</div>
+														</div>													
 														<div>
 															<div class="tcg_base_card_info_details_cardimage relative">
+																<div class="tcg_base_card_transfer agnosia_button_card_click_1 hidden"></div>
 																<div id="tcg_base_card_info_image_loading" class="template-loading-outer flex-box flex-center hidden">
 																	<div class="template-loading-inner"></div>
 																</div>
@@ -2219,8 +2258,8 @@
 		<script src="https://js-dos.com/6.22/current/js-dos.js"></script>
 		<!-- Connect web3 dapp -->
 		<script src="js/conn.js"></script>
-		<!-- Context menu  -->
-		<script src="settings/js/context_menu.js"></script>
+		<!-- Context menu  
+		<script src="settings/js/context_menu.js"></script>-->
 		<!-- Browser -->
 		<script src="browser/js/browser.js"></script>
 		<link rel="stylesheet" href="browser/css/browser.css">

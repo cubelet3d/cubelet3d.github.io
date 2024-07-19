@@ -79,6 +79,9 @@ async function setup() {
         if(chainID == 1 || chainID == 1337) {
 			$(".testnet_object").fadeOut();
 			$(".l2_object").fadeOut(); 
+			
+			VidyaAddress = "0x3d3d35bb9bec23b06ca00fe472b50e7a4c692c30"; 
+			inventoryContract = "0x9680223f7069203e361f55fefc89b7c1a952cdcc"; 			
 
 			await fetchPricesOnChain();
             await loadInventory();

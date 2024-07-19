@@ -1508,3 +1508,44 @@
 	overflow-x: hidden; 
 	overflow-y: auto; 
 }
+
+.tcg_base_card_transfer {
+	width: 20px; 
+	height: 13px; 
+	position: absolute; 
+	top: 5px; right: 7px; 
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANAgMAAADUPqbNAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAlQTFRFCDIwBBonDpJuOPdp9QAAAEhJREFUeJxjFHVgYPjPGBXAwPCbMc2FgeE9Y6YjA8N+xiwGh/8MjFkGfwSYGbNsPrDwM2bZMx6wZ8xyWB36H0iCdCGToQxAAAAxnRSmJY6BBwAAAABJRU5ErkJggg==') no-repeat center center/cover;
+	z-index: 1; 
+}
+
+.tcg_base_transfer_form {
+	position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    z-index: 1;
+    padding: 5px;
+    border-top: 2px solid rgb(30, 50, 60);
+    border-left: 2px solid rgb(30, 50, 60);
+    border-right: 2px solid rgb(30, 50, 60);
+}
+
+.tcg_base_transfer_form_header {
+	padding-bottom: 3px; 
+	border-bottom: 1px solid rgb(30, 50, 60); 
+}
+
+.tcg_base_transfer_form_receiver {
+	flex: 1; 
+	outline: none; 
+	background: var(--bg-glass);
+	border: 1px solid rgb(30, 50, 60);
+	padding: 2px 5px;
+}
+
+.tcg_base_transfer_form_send_button {
+	width: 44px; 
+	height: 22px; 
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAWCAYAAAC7ZX7KAAAAAXNSR0IArs4c6QAAAPVJREFUSIntlr0KwjAYRa9tUSOodLARB4c6dvUVfAqf29W9yfDRCk0tSF1EqjZStZoGPFP+OSHhJr3FelPyMIINxPsdPB5GSEmadmkEDyM4tsgCQEoSjmmJV/HqGk9HhSI7XOv90fhar5Y/5dm6/dEY7oA1Ey6yA5gfYOLPWhF7lZQkFAmwOmFFAswPtBO7hCIBL8ljgG47kjwGQ/0mfoXOy5sOOao5nJJ8GGiC6ZA/Xsv95Q537eir3LtZF2t/4W9jnfA/1tpCF2u91WZb3g+27i/hDhj4fNmK1Lvo3oZa4WcTTGNdSjiKhGmHxmh/a10lyWOcAX6ZgyLfVjFeAAAADmVYSWZNTQAqAAAACAAAAAAAAADSU5MAAAAASUVORK5CYII='); 
+	padding: 3px; 
+}

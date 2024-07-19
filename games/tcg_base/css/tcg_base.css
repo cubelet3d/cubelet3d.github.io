@@ -943,7 +943,7 @@
 	width: 100%; 
 	height: 100%; 
     background: rgba(255, 255, 255, 0.05);
-    pointer-events: none; /* This will disable all pointer events */
+    /* pointer-events: none;  This will disable all pointer events */
     transition: background 0.3s ease;
 }
 .tcg_base_card_on_board_inner.open_slot {
@@ -1330,6 +1330,23 @@
     transform: rotateY(180deg);
 }
 
+.tcg_base_card_on_board_inner .card-back-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    font-size: 14px;
+	padding: 15px; 
+	text-shadow: 1px 1px black; 
+}
+
+.tcg_base_card_on_board_inner.flip .card-back-content {
+    transform: rotateY(0);
+}
+
 .tcg_base_player_card_values {
     backface-visibility: hidden;
     position: relative;
@@ -1347,4 +1364,33 @@
 	overflow: hidden; 
 	text-overflow: ellipsis; 
 	white-space: nowrap; 
+}
+
+.tcg_base_games_list_item_detail_card_slot .card-level {
+    font-size: 10px;
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+}
+
+/* intro */
+.tcg_base_main_intro {
+  font-size: 24px;
+  line-height: 1.05;
+  text-shadow: -1px -1px 0 rgba(0,0,0,0.5), 
+               1px -1px 0 rgba(0,0,0,0.5), 
+               -1px 1px 0 rgba(0,0,0,0.5), 
+               1px 1px 0 rgba(0,0,0,0.5); 
+  position: relative;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);  
+  padding-top: 100px; 
+  padding-bottom: 100px; 
+  padding-left: 50px; 
+  padding-right: 50px; 
+  overflow: auto; 
+}
+
+.tcg_base_main_intro p {
+  margin-bottom: 50px;  
 }

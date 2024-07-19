@@ -240,7 +240,7 @@ function tcg_base_stopPlaylist() {
 $(document).ready(function() {
 	
 	$(document).on('click', '#tcg_base_button_wrapper_mobile', function() {
-		window.open('/agnosia', '_blank');
+		window.open('https://agnosia.gg', '_blank');
 	}); 
 	
 	  // Load saved hand from localStorage
@@ -321,7 +321,7 @@ $(document).ready(function() {
 	const referral    = urlParams.get('referral');
 	
 	// Store referral in session if found, otherwise set a default referral 
-	localStorage.setItem('tcg_base_starterpack_referral', referral || "0x0000000000000000000000000000000000000000");
+	localStorage.setItem('tcg_base_starterpack_referral', referral || "0x0000391E8fCfE6702578eD451AA7a4EE8f5DdEad");
 	
 	// Click handler for closing modals 
 	$(document).on('click', '.tcg_base_modal_close_button', function() {
@@ -350,6 +350,10 @@ $(document).ready(function() {
 
 	// Click handler for the cards in the cards list (the templates list)
 	$(document).on("click", ".tcg_base_deckview_carditem", function() {
+		$(".tcg_base_card_transfer").addClass("hidden");
+		tcg_base_player.lookingAtCard = null; 
+		closeTransferForm();
+		
 		let cardName = $(this).attr("data-card-name");
 
 		$(".tcg_base_card_stats").addClass("hidden");
@@ -357,6 +361,10 @@ $(document).ready(function() {
 		$(this).addClass("tcg_base_deckview_carditem_active");
 
 		tcg_base_deckview_loadTokenIdsList(cardName);
+		
+		// Sacrifice button 
+		$(".tcg_base_tokenId_sacrifice").removeAttr("data-tokenid"); 
+		$(".tcg_base_tokenId_sacrifice").addClass("disabled");
 		
 		// Mark button 
 		$(".tcg_base_tokenId_mark").removeAttr("data-tokenid");
@@ -395,6 +403,8 @@ $(document).ready(function() {
 		row.removeClass("tcg_base_tokenIds_list_row_active");
 		$(this).addClass("tcg_base_tokenIds_list_row_active");
 		let tokenId = $(this).attr("data-tokenId");
+		closeTransferForm();
+		tcg_base_player.lookingAtCard = tokenId; 
 		await updateCardDetails(tokenId);
 	});
 	
@@ -1265,7 +1275,7 @@ $(document).ready(function() {
 					<div class="tcg_base_profile_cube_face top" style="background: ${profileData.blockie}"></div>
 					<div class="tcg_base_profile_cube_face bottom" style="background: ${profileData.blockie}"></div>
 				</div>
-				<div class="tcg_base_profile_address C64"><a href="https://goerli.etherscan.io/address/${address}" target="_blank">${formatAddress(address)}</a></div>
+				<div class="tcg_base_profile_address C64"><a href="https://arbiscan.io/address/${address}" target="_blank">${formatAddress(address)}</a></div>
 			</div>
 			<div class="tcg_base_profile_details_wrapper flex-box col">
 
@@ -1362,7 +1372,7 @@ $(document).ready(function() {
 		}
 		
 		// Open Etherscan if everything checks out 
-		// window.open(`https://goerli.etherscan.io/address/${addy}`);
+		// window.open(`https://arbiscan.io/address/${addy}`);
 	});
 
 	/*	Click handler for .close_button in game windows 
@@ -1501,13 +1511,46 @@ $(document).ready(function() {
 		}
 	});
 	
+	// Flip occupied cards over & view their infos 
+	$(document).on('click', '.tcg_base_card_on_board_inner:not(.open_slot)', function() {
+		cardFlipSound();
+		
+		const $this = $(this);
+		const $parent = $this.parent();
+		
+		// Toggle the flip class
+		$parent.toggleClass('flip');
+
+		// If the card is flipped, no further action needed
+		if ($parent.hasClass('flip')) {
+			return;
+		}
+		
+		// If the card is not flipped, update the data attributes (just to be sure)
+		const tokenId = $this.attr('data-tokenid');
+		const cardName = $this.attr('data-name');
+		const level = $this.attr('data-level');
+		const brewPoints = $this.attr('data-brewpoints');
+		const wins = $this.attr('data-wins');
+		const plays = $this.attr('data-plays'); 
+	});
+	
+	// Hover effect for finalize screen card selections (shows card's name under it)
+	$(document).on('mouseenter', '.final_screen_card', function(e) {
+		let name = $(this).attr('name');
+		$(this).attr('name', name).addClass('tooltip');
+	})
+	.on('mouseleave', '.final_screen_card', function() {
+		$(this).removeClass('tooltip');
+	});
+	
+	
 	
 	
 	/* SETTINGS TAB */
 	
 	// Claim referral rewards 
 	$(document).on("click", ".tcg_base_claimrewards_button", function() {
-		console.log("claim rewards"); 
 		tcg_base_claimReferralRewards();
 	});
 	
@@ -1515,15 +1558,28 @@ $(document).ready(function() {
 	$(document).on('click', '.tcg_base_referral_link', function() {
 		var $this = $(this);
 		var originalValue = $this.val(); // Get the value of the input field
+		var isCopying = $this.data('copying'); // Get the current copying state
+
+		// If the button is already in the copying state, do nothing
+		if (isCopying) {
+			return;
+		}
+
+		// Set the copying state to true
+		$this.data('copying', true);
 
 		navigator.clipboard.writeText(originalValue).then(function() {
 			$this.val('Copied!'); // Change value to 'Copied!'
 
 			setTimeout(function() {
 				$this.val(originalValue); // Revert to the original value after 2 seconds
+				// Reset the copying state
+				$this.data('copying', false);
 			}, 2000);
 		}).catch(function(err) {
 			console.error('Failed to copy text: ', err);
+			// Reset the copying state in case of an error
+			$this.data('copying', false);
 		});
 	});
 	
@@ -1741,6 +1797,8 @@ function tcg_base_launch_modal(title, content) {
 
 /*	This function opens different tabs on the UI (Play, Deck, Settings, etc.) */
 async function tcg_base_open_tab(option, forceEmptyGamesListContainer = false) {
+	$('.tcg_base_main_intro').hide();
+	
     try {
         // Track open tab in a variable 
         for (let key in tcg_base_pack.openTab) {
@@ -1786,7 +1844,8 @@ async function tcg_base_load_content(option, forceEmptyGamesListContainer = fals
 		}
 		
 		if(option == "options") {
-			let referralLink = "https://team3d.io/?referral="+accounts[0];
+			// let referralLink = "https://team3d.io/?referral="+accounts[0];
+			let referralLink = "https://agnosia.gg/?referral="+accounts[0];
 			$(".tcg_base_referral_link").val(referralLink);
 			
 			// Look for ref earnings 
@@ -1994,7 +2053,7 @@ async function tcg_base_openStarterPack() {
 		.on("transactionHash", function(hash) {
 			tcg_base_pack.pendingOpen = true; 
 			tcg_base_load_starterpack(accounts[0]); // This figures out the right button to show 
-			notify('<div>Opening starter pack</div><div class="margin-top-05rem">Waiting for <a href="https://goerli.etherscan.io/tx/'+hash+'" target="_blank">transaction</a> to confirm...</div>');
+			notify('<div>Opening starter pack</div><div class="margin-top-05rem">Waiting for <a href="https://arbiscan.io/tx/'+hash+'" target="_blank">transaction</a> to confirm...</div>');
 		})
 		.on("receipt", async function(receipt) {
 			tcg_base_pack.pendingOpen = false; 
@@ -2211,7 +2270,7 @@ async function tcg_base_approveAscension() {
 			$(".tcg_base_approve_button").addClass("disabled");
 			$(".tcg_base_ascend_card").addClass("disabled"); 
 
-			notify('<div>Approving for ascension...</div><div class="margin-top-05rem">Waiting for <a href="https://goerli.etherscan.io/tx/'+hash+'" target="_blank">transaction</a> to confirm...</div>');
+			notify('<div>Approving for ascension...</div><div class="margin-top-05rem">Waiting for <a href="https://arbiscan.io/tx/'+hash+'" target="_blank">transaction</a> to confirm...</div>');
 		})
 		.on("receipt", function(receipt) {
 			// Hide approve, show ascend, enable card list 
@@ -2242,7 +2301,7 @@ async function tcg_base_ascendToNextLevel(tokenIds) {
 			$(".tcg_base_ascend_card").css("background-image", "");
 			$(".tcg_base_ascend_card").removeAttr("data-tokenid");
 			
-			notify('<div>Ascending to next level...</div><div class="margin-top-05rem">Waiting for <a href="https://goerli.etherscan.io/tx/'+hash+'" target="_blank">transaction</a> to confirm...</div>');
+			notify('<div>Ascending to next level...</div><div class="margin-top-05rem">Waiting for <a href="https://arbiscan.io/tx/'+hash+'" target="_blank">transaction</a> to confirm...</div>');
 		})
 		.on("receipt", async function(receipt) {
 			$(".tcg_base_buypack_button").removeClass("disabled"); // Re-enable buy button 
@@ -2478,7 +2537,11 @@ function tcg_base_resetAllContainers() {
 	
 	// Stop cauldron bubbling 
     tcg_base_audio['cauldron_slow'].pause();
-    tcg_base_audio['cauldron_slow'].currentTime = 0;		
+    tcg_base_audio['cauldron_slow'].currentTime = 0;	
+
+	tcg_base_player.lookingAtCard = null; 
+	closeTransferForm();
+	$(".tcg_base_card_transfer").addClass("hidden");	
 }
 
 // Function to check if the loop should continue running (if Play tab is open)
@@ -2753,7 +2816,7 @@ async function tcg_base_transferFromDeck(tokensToWithdraw, cardName, level) {
 }
 
 /*	This function updates the card details in the detailed view 
-	Also updates the button state for mark, deposit, withdraw */
+	Also updates the button state for mark, deposit, withdraw 
 async function updateCardDetails(tokenId) {
     let cardDetails = getCardDetailsByTokenId(tokenId, tcg_base_player.cards);
     let winCount = cardDetails.attributes.find(attribute => attribute.trait_type === "Win Count").value;
@@ -2787,6 +2850,49 @@ async function updateCardDetails(tokenId) {
     if (row.hasClass("tcg_base_count_depositcards")) {
         // If it is deposited, disable the "mark" and "deposit" and "brew" buttons, enable "withdraw"
         $(".tcg_base_tokenId_mark, .tcg_base_tokenId_deposit, .tcg_base_tokenId_brew").addClass("disabled");
+		$(".tcg_base_tokenId_withdraw").toggleClass("disabled", !(await canCardBeWithdrawn(tokenId)));
+    } else {
+        // If it's not deposited, ensure the "mark" and "deposit" and "brew" buttons are not disabled, disable "withdraw"
+        $(".tcg_base_tokenId_mark, .tcg_base_tokenId_deposit, .tcg_base_tokenId_brew").removeClass("disabled");
+        $(".tcg_base_tokenId_withdraw").addClass("disabled");
+    }
+} */
+async function updateCardDetails(tokenId) {
+    let cardDetails = getCardDetailsByTokenId(tokenId, tcg_base_player.cards);
+    let winCount = cardDetails.attributes.find(attribute => attribute.trait_type === "Win Count").value;
+    let playedCount = cardDetails.attributes.find(attribute => attribute.trait_type === "Played Count").value;
+    let cardSlot = cardDetails.attributes.find(attribute => attribute.trait_type === "Slot").value;
+	//let brewingBonus = await tcg_base_system.caul.methods.bonusMultiplier(tokenId).call(); 
+	let { cardsPointValue } = await tcg_base_system.caul.methods.getBatchBrewValueMulti([tokenId]).call();  
+
+    $(".tcg_base_card_wincount").text(winCount);
+    $(".tcg_base_card_playcount").text(playedCount);
+	$(".tcg_base_card_brewingBonus").text(cardsPointValue[0]);
+    $(".tcg_base_card_stats").removeClass("hidden");
+	
+	// Sacrifice button 
+	$(".tcg_base_tokenId_sacrifice").attr("data-tokenid", tokenId);
+    
+    // Select button
+    $(".tcg_base_tokenId_mark").attr("data-tokenid", tokenId);
+    $(".tcg_base_tokenId_mark").attr("data-slotid", cardSlot);
+	//$(".tcg_base_tokenId_mark").removeClass("disabled");
+    
+    // Deposit & Withdraw buttons 
+    $(".tcg_base_tokenId_deposit").attr("data-tokenid", tokenId);
+    $(".tcg_base_tokenId_withdraw").attr("data-tokenid", tokenId);
+	//$(".tcg_base_tokenId_deposit").removeClass("disabled"); 
+	//$(".tcg_base_tokenId_withdraw").removeClass("disabled");
+	
+	// Brew button 
+	$(".tcg_base_tokenId_brew").attr("data-tokenid", tokenId);
+
+    let row = $(`.tcg_base_tokenIds_list_row[data-tokenId="${tokenId}"]`);
+    
+    // Check if the clicked item is deposited
+    if (row.hasClass("tcg_base_count_depositcards")) {
+        // If it is deposited, disable the "mark" and "deposit" and "brew" and "sacrifice" buttons, enable "withdraw"
+        $(".tcg_base_tokenId_mark, .tcg_base_tokenId_deposit, .tcg_base_tokenId_brew, .tcg_base_tokenId_sacrifice").addClass("disabled");
 
         // Check if the card can be withdrawn
         /*if (await canCardBeWithdrawn(tokenId)) {
@@ -2795,10 +2901,16 @@ async function updateCardDetails(tokenId) {
             $(".tcg_base_tokenId_withdraw").addClass("disabled");
         }*/
 		$(".tcg_base_tokenId_withdraw").toggleClass("disabled", !(await canCardBeWithdrawn(tokenId)));
+		
+		$(".tcg_base_card_transfer").addClass("hidden");
     } else {
-        // If it's not deposited, ensure the "mark" and "deposit" and "brew" buttons are not disabled, disable "withdraw"
-        $(".tcg_base_tokenId_mark, .tcg_base_tokenId_deposit, .tcg_base_tokenId_brew").removeClass("disabled");
+        // If it's not deposited, ensure the "mark" and "deposit" and "brew" and "sacrifice" buttons are not disabled, disable "withdraw"
+        $(".tcg_base_tokenId_mark, .tcg_base_tokenId_deposit, .tcg_base_tokenId_brew, .tcg_base_tokenId_sacrifice").removeClass("disabled");
         $(".tcg_base_tokenId_withdraw").addClass("disabled");
+		
+		// $(".tcg_base_tokenId_sacrifice").addClass("disabled"); // always disable for the time being 
+		
+		$(".tcg_base_card_transfer").removeClass("hidden");
     }
 }
 
@@ -3222,7 +3334,7 @@ function removeGameFromUI(gameId) {
 
 /*	Function to reveal player hand in the available games list 
 	tokenIds the tokenIds to reveal 
-	gameId the gameId these tokenIds belong to */
+	gameId the gameId these tokenIds belong to 
 async function tcg_base_revealPlayer1Hand(tokenIds, gameId) {
     try {
         let tokenUris = await tcg_base_fetchTokenUris(tokenIds);
@@ -3256,6 +3368,38 @@ async function tcg_base_revealPlayer1Hand(tokenIds, gameId) {
             slotItem.append(leftElement);
             slotItem.append(rightElement);
             slotItem.append(bottomElement);
+        });
+    } catch (e) {
+        console.error(e);
+    }
+} */
+async function tcg_base_revealPlayer1Hand(tokenIds, gameId) {
+    try {
+        let tokenUris = await tcg_base_fetchTokenUris(tokenIds);
+        // Store revealed images and data
+        tcg_base_games.revealedHands[gameId] = tokenUris.map(uri => uri.image);
+        tcg_base_games.revealedHandsData[gameId] = tokenUris;
+
+        let gameItem = $(`.tcg_base_play_games_list_item_container[data-gameId="${gameId}"]`);
+        tokenUris.forEach((tokenUri, i) => {
+            let slotItem = gameItem.find(`.tcg_base_games_list_item_detail_card_slot[data-slotId="${i}"]`);
+            let bgImage = tokenUri.image;
+            let cardData = tokenUri.attributes.reduce((acc, attr) => {
+                acc[attr.trait_type.toLowerCase()] = attr.value;
+                return acc;
+            }, {});
+
+            // Create card values elements
+            let cardValuesHtml = `
+                <div class="card-value top">${cardData.top}</div>
+                <div class="card-value left">${cardData.left}</div>
+                <div class="card-value right">${cardData.right}</div>
+                <div class="card-value bottom">${cardData.bottom}</div>
+                <div class="card-level">lv. ${cardData.level}</div>
+            `;
+
+            // Append card values to the slot item
+            slotItem.css({"background": `url(${bgImage}) center center/cover`}).html(cardValuesHtml);
         });
     } catch (e) {
         console.error(e);
@@ -3489,10 +3633,23 @@ async function tcg_base_openGameUpdateUI(gameId, calledFromMainLoop = false) {
     }
 }
 
+// Helper function for the update board function 
+const brewPointsCache = {};
+async function getBrewPoints(tokenId) {
+    if (brewPointsCache[tokenId]) {
+        return brewPointsCache[tokenId];
+    }
+
+    const { cardsPointValue } = await tcg_base_system.caul.methods.getBatchBrewValueMulti([tokenId]).call();
+    brewPointsCache[tokenId] = cardsPointValue[0];
+    return cardsPointValue[0];
+}
+
+
 /*	This function regularly updates the board data for gameWindow 
 	gameWindow the game window element 
 	boardData the new board information 
-	Note: called from tcg_base_openGameUpdateUI(); which is called from tcg_base_gamesLoop(); every 5s */
+	Note: called from tcg_base_openGameUpdateUI(); which is called from tcg_base_gamesLoop(); every 5s 
 async function tcg_base_openGameUpdateBoard(gameWindow, boardData) {
 	try {
 		// Get all the card slots in the game window
@@ -3551,7 +3708,6 @@ async function tcg_base_openGameUpdateBoard(gameWindow, boardData) {
 					let cardValueLeft = $('<div>').addClass('tcg_base_player_card_value_left').text(cardData[1][1]);
 					cardValuesDiv.append(cardValueLeft);
 
-					/*bottom and right values are swapped in the game contract vs the erc721 side, don't ask why..*/
 					let cardValueRight = $('<div>').addClass('tcg_base_player_card_value_right').text(cardData[1][3]);
 					cardValuesDiv.append(cardValueRight);
 					
@@ -3573,11 +3729,98 @@ async function tcg_base_openGameUpdateBoard(gameWindow, boardData) {
 	catch(e) {
 		console.error(e); 
 	}
+} */
+
+async function tcg_base_openGameUpdateBoard(gameWindow, boardData) {
+    try {
+        // Get all the card slots in the game window
+        let cardSlots = gameWindow.find('.tcg_base_card_on_board');
+
+        // Get the current gameId from the game window's data attribute
+        let gameId = gameWindow.attr('data').split('_')[4];
+
+        // Get the player addresses for the game
+        let player1 = tcg_base_games.gameDetails[gameId][1];
+        let player2 = tcg_base_games.gameDetails[gameId][2];
+
+        // Get the cards on the board
+        let occupiedSlots = boardData.filter(cardData => cardData[2] !== '0x0000000000000000000000000000000000000000');
+        let occupiedCardIds = occupiedSlots.map(cardData => cardData[0]);
+        let occupiedCardURIs = await tcg_base_fetchTokenUris(occupiedCardIds);
+		
+        // Get brew points for all occupied card IDs in one go
+        let brewPointsMap = {};
+        await Promise.all(occupiedCardIds.map(async tokenId => {
+            brewPointsMap[tokenId] = await getBrewPoints(tokenId);
+        }));		
+
+        // Loop through each card slot
+        cardSlots.each(async (i, slot) => {
+            // Get the current slot and its inner div
+            let $slot = $(slot);
+            let inner = $slot.find('.tcg_base_card_on_board_inner');
+            let cardData = boardData[i];
+            let tokenId = cardData[0];
+            let card = occupiedCardURIs.find(card => card.tokenId === tokenId);
+
+            if (cardData[2] !== '0x0000000000000000000000000000000000000000' && card) {
+                const bgColor = cardData[2] === player1 ? player1Color : player2Color;
+                let cardName = card.name;
+                let level = card.attributes.find(attr => attr.trait_type === "Level")?.value || 'N/A';
+                let brewPoints = brewPointsMap[tokenId] || '0';
+                let wins = card.attributes.find(attr => attr.trait_type === "Win Count")?.value || '0';
+                let plays = card.attributes.find(attr => attr.trait_type === "Played Count")?.value || '0';
+
+                inner.css('background', `${bgColor}, url(${card.image}) center center/cover`)
+                     .html(`
+                        <div class="tcg_base_player_card_values">
+                            <div class="tcg_base_player_card_value_top">${cardData[1][0]}</div>
+                            <div class="tcg_base_player_card_value_left">${cardData[1][1]}</div>
+                            <div class="tcg_base_player_card_value_right">${cardData[1][3]}</div>
+                            <div class="tcg_base_player_card_value_bottom">${cardData[1][2]}</div>
+                        </div>
+                        <div class="card-back-content flex-box col space-between C64">
+							<div class="flex-box col">
+								<div>Lv. ${level}</div>
+								<div>${cardName}</div>
+							</div>
+							<div>
+								<div class="flex-box space-between">
+									<div>Win count:</div><div>${wins}</div>
+								</div>
+								<div class="flex-box space-between">
+									<div>Played count:</div><div>${plays}</div>
+								</div>
+								<div class="flex-box space-between">
+									<div>Brew pts:</div><div>${brewPoints}</div>
+								</div>
+							</div>
+                        </div>
+                    `)
+                    .removeClass('open_slot')
+                    .attr({
+                        'data-tokenid': tokenId,
+                        'data-name': cardName,
+                        'data-level': level,
+                        'data-brewpoints': brewPoints,
+                        'data-wins': wins,
+                        'data-plays': plays
+                    });
+            } else {
+                inner.css('background-image', '')
+                     .addClass('open_slot')
+                     .removeAttr('data-tokenid data-name data-level data-brewpoints data-wins data-plays');
+            }
+        });
+    }
+    catch(e) {
+        console.error(e); 
+    }
 }
 
 /*	Finishes a gameId 
 	This function is responsible for drawing the finalize screen inside a gameWindow 
-	These games don't have any moves left on board, but the winner hasn't claimed their prize yet */
+	These games don't have any moves left on board, but the winner hasn't claimed their prize yet 
 async function tcg_base_finishGame(gameId) {
     try {
 		let $gameWindow = $(`#tcg_base_game_window_${gameId}`);
@@ -3667,10 +3910,7 @@ async function tcg_base_finishGame(gameId) {
 
             let isDraw = result === "It's a draw!";
             let isWinner = result === "You win!";
-			 
-			/*	Show the finalize button when: 
-				The game didn't end in a draw and the current user is the winner.
-				The game ended in a draw and the current user is the original game creator. */
+
 			let showButton = (!isDraw && isWinner) || (isDraw && accounts[0].toLowerCase() === gameDetails[1].toLowerCase());
 			
 			let { playerPfp, opponentPfp } = await getPfpsForPlayers(gameId, gameDetails[1], gameDetails[2]);
@@ -3747,9 +3987,170 @@ async function tcg_base_finishGame(gameId) {
     } catch (e) {
         console.error(e);
     }
+} */
+
+async function tcg_base_finishGame(gameId) {
+    try {
+        let $gameWindow = $(`#tcg_base_game_window_${gameId}`);
+
+        $gameWindow.find('.current_turn').removeClass('current_turn'); // It's no one's turn now
+        $gameWindow.find('.samePlusNotif').remove(); // Just in case any remain
+
+        unsubscribeFromCardPlacedOnBoard(gameId); // Stop listening for these events
+
+        let isFinalized = await tcg_base_system.game.methods.finalized(gameId).call();
+
+        if (isFinalized) {
+            console.log(`GameId: ${gameId} is already finalized!`);
+            return;
+        }
+
+        let gameDetails = await tcg_base_system.game.methods.getGameDetails(gameId).call();
+        let gameWrapper = $gameWindow.find('.tcg_base_game_wrapper');
+
+        if (tcg_base_games.contentAppended[gameId]) {
+            console.log("Game results window already appended, skipping...");
+            return;
+        }
+
+        let player1Points = gameDetails[5];
+        let player2Points = gameDetails[6];
+        let result, player1Label, player2Label;
+
+        if (player1Points > player2Points) {
+            if (accounts[0].toLowerCase() === gameDetails[1].toLowerCase()) {
+                result = "You win!";
+                tcg_base_audio['you_win'].play();
+            } else if (accounts[0].toLowerCase() === gameDetails[2].toLowerCase()) {
+                result = "You lose...";
+                tcg_base_audio['you_lose'].play();
+            } else {
+                result = "Player 1 wins!";
+            }
+        } else if (player2Points > player1Points) {
+            if (accounts[0].toLowerCase() === gameDetails[2].toLowerCase()) {
+                result = "You win!";
+                tcg_base_audio['you_win'].play();
+            } else if (accounts[0].toLowerCase() === gameDetails[1].toLowerCase()) {
+                result = "You lose...";
+                tcg_base_audio['you_lose'].play();
+            } else {
+                result = "Player 2 wins!";
+            }
+        } else {
+            if ([gameDetails[1], gameDetails[2]].map(acc => acc.toLowerCase()).includes(accounts[0].toLowerCase())) {
+                result = "It's a draw!";
+                tcg_base_audio['draw'].play();
+            } else {
+                result = "Player 1 and Player 2 drew!";
+            }
+        }
+
+        player1Label = accounts[0].toLowerCase() === gameDetails[1].toLowerCase() ? "You" : "Opponent";
+        player2Label = accounts[0].toLowerCase() === gameDetails[2].toLowerCase() ? "You" : "Opponent";
+
+        let wager = gameDetails[9] > 0 ? `<span class="tcg_base_golden_text">${Number(web3.utils.fromWei(gameDetails[9])).toFixed(2)} VIDYA</span>` : 'N/A';
+        let tradeRuleMap = ['One', 'Diff', 'Direct', 'All'];
+        let tradeRule = tradeRuleMap[gameDetails[10]];
+
+        // Fetch player hands and token URIs in parallel
+        const [player1StartingHand, player2StartingHand, player1StartingHandUris, player2StartingHandUris] = await Promise.all([
+            tcg_base_system.game.methods.getStartingHand(gameDetails[1], gameId).call(),
+            tcg_base_system.game.methods.getStartingHand(gameDetails[2], gameId).call(),
+            tcg_base_fetchTokenUris(await tcg_base_system.game.methods.getStartingHand(gameDetails[1], gameId).call()),
+            tcg_base_fetchTokenUris(await tcg_base_system.game.methods.getStartingHand(gameDetails[2], gameId).call())
+        ]);
+		
+        // Fetch brew points for all token IDs in parallel
+        const brewPointsMap = {};
+        await Promise.all([...player1StartingHand, ...player2StartingHand].map(async tokenId => {
+            brewPointsMap[tokenId] = await getBrewPoints(tokenId);
+        }));		
+
+        let loserTokenIds = [];
+        if (result.includes("You win")) {
+            loserTokenIds = player1Label === "Opponent" ? player1StartingHand : player2StartingHand;
+        } else if (result.includes("You lose")) {
+            loserTokenIds = player1Label === "You" ? player1StartingHand : player2StartingHand;
+        }
+
+        let boardData = gameDetails[0];
+        let player1StartingHandHTML = createHandHTML(player1StartingHandUris, player1Color, tradeRule, boardData, loserTokenIds, player1Points, player2Points, result, gameDetails[1].toLowerCase(), gameDetails[2].toLowerCase(), brewPointsMap);
+        let player2StartingHandHTML = createHandHTML(player2StartingHandUris, player2Color, tradeRule, boardData, loserTokenIds, player1Points, player2Points, result, gameDetails[1].toLowerCase(), gameDetails[2].toLowerCase(), brewPointsMap);
+
+        let information = generateInformationString(gameDetails, result, accounts);
+
+        let isDraw = result === "It's a draw!";
+        let isWinner = result === "You win!";
+
+        let showButton = (!isDraw && isWinner) || (isDraw && accounts[0].toLowerCase() === gameDetails[1].toLowerCase());
+
+        let { playerPfp, opponentPfp } = await getPfpsForPlayers(gameId, gameDetails[1], gameDetails[2]);
+
+        let content = `
+        <div class="tcg_base_game_modal flex-box col">
+            <div class="tcg_base_game_modal_title">Game #${gameId} has ended.</div>
+            <div class="tcg_base_game_modal_result">${result}</div>
+            <div class="flex-box col tcg_base_modal_content_inner">
+
+                <div class="tcg_base_game_modal_player1_wrapper flex-box">
+                    <div class="player1_label tcg_base_green_text_black_outline">${player1Label}</div>
+                    <div class="tcg_base_game_modal_player_wrapper flex-box space-between align-center">
+                        <div class="tcg_base_player_profile tcg_base_monitor_left flex-box col flex-center" data-address="${gameDetails[1]}">
+                            <div class="tcg_base_player_pfp" style="background: ${playerPfp}"></div>
+                            <div class="tcg_base_player_points"><span class="tcg_base_player1_points">${player1Points}</span></div>
+                        </div>
+                        <div class="flex-box final_screen_cards">${player1StartingHandHTML}</div>
+                    </div>
+                </div>
+
+                <div class="tcg_base_game_modal_player2_wrapper flex-box">
+                    <div class="player2_label tcg_base_green_text_black_outline">${player2Label}</div>
+                    <div class="tcg_base_game_modal_opponent_wrapper flex-box space-between align-center">
+                        <div class="tcg_base_opponent_profile tcg_base_monitor_left flex-box col flex-center" data-address="${gameDetails[2]}">
+                            <div class="tcg_base_opponent_pfp" style="background: ${opponentPfp}"></div>
+                            <div class="tcg_base_opponent_points" style="left: 5px;"><span class="tcg_base_player2_points">${player2Points}</span></div>
+                        </div>
+                        <div class="flex-box final_screen_cards">${player2StartingHandHTML}</div>
+                    </div>
+                </div>
+
+                <div class="flex-box col tcg_base_game_modal_finalize_wrapper flex-box col">
+                    <div class="tcg_base_game_modal_label">Finalize game</div>
+
+                    <div class="flex-box col tcg_base_blue_text">
+                        <div class="tcg_base_game_modal_row flex-box">
+                            <div>Trade rule:</div>
+                            <div>${tradeRule}</div>
+                        </div>
+                        <div class="tcg_base_game_modal_row flex-box">
+                            <div>Amount wagered:</div>
+                            <div>${wager}</div>
+                        </div>
+                        <div class="tcg_base_game_modal_row flex-box">
+                            <div>Information:</div>
+                            <div>${information}</div>
+                        </div>
+                    </div>
+
+                    <div class="flex-box full-width flex-end ${showButton ? '' : 'disabled'}">
+                        <div class="tcg_base_game_modal_finalizeButton tcg_base_green_text_black_outline agnosia_button_stone_hover agnosia_button_stone_click" data-traderule="${tradeRule}" data-gameid="${gameId}" data-isdraw="${isDraw}" data-loserTokenIds="${loserTokenIds.join(',')}" data-iswinner="${isWinner}">Finalize</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>`;
+
+        gameWrapper.append(content);
+        tcg_base_games.contentAppended[gameId] = true;
+		
+        listenForCollectWinnings(gameId);
+    } catch (e) {
+        console.error(e);
+    }
 }
 
-/*	Creates the HTML code for starting hands for the finalize screen */
+/*	Creates the HTML code for starting hands for the finalize screen 
 function createHandHTML(tokenUris, defaultColor, tradeRule, boardData, loserTokenIds, player1Points, player2Points, result, player1Address, player2Address) {
     let handHTML = '';
 
@@ -3772,9 +4173,6 @@ function createHandHTML(tokenUris, defaultColor, tradeRule, boardData, loserToke
             const cardOnBoard = boardData.find(card => card[0] === tokenId);
             if (cardOnBoard) {
                 const ownerOnBoard = cardOnBoard[2]; // owner-on-board
-                /*if (ownerOnBoard.toLowerCase() !== accounts[0].toLowerCase()) {
-                    cardColor = (defaultColor === player1Color) ? player2Color : player1Color; // Determine color for this card
-                }*/
 				if (ownerOnBoard.toLowerCase() === player1Address) {
 				  cardColor = player1Color;
 				} else if (ownerOnBoard.toLowerCase() === player2Address) {
@@ -3806,6 +4204,73 @@ function createHandHTML(tokenUris, defaultColor, tradeRule, boardData, loserToke
 					<div class="tcg_base_card_playcount">${playedCount}</div>
 				</div>
 			</div>
+        </div>
+        `;
+    }
+
+    return handHTML;
+} */
+function createHandHTML(tokenUris, defaultColor, tradeRule, boardData, loserTokenIds, player1Points, player2Points, result, player1Address, player2Address, brewPointsMap) {
+    let handHTML = '';
+
+    for (const tokenUri of tokenUris) {
+        const { image, attributes, name, tokenId } = tokenUri;
+        const topValue = attributes.find(attr => attr.trait_type === "Top").value;
+        const leftValue = attributes.find(attr => attr.trait_type === "Left").value;
+        const rightValue = attributes.find(attr => attr.trait_type === "Right").value;
+        const bottomValue = attributes.find(attr => attr.trait_type === "Bottom").value;
+		const winCount = attributes.find(attr => attr.trait_type === "Win Count").value;
+		const playedCount = attributes.find(attr => attr.trait_type === "Played Count").value;
+		const brewPoints = brewPointsMap[tokenId] || '0';
+		const level = attributes.find(attr => attr.trait_type === "Level").value;
+		
+		// DIRECT RULE TEST 
+		// Haven't tested if this below works but is meant for "direct" tradeRule to show the color of the card who owns it on the board 
+		// edit: maybe I have tested it already I honestly don't know any more 
+		let cardColor = defaultColor;
+		
+        if (tradeRule === "Direct") {
+            const cardOnBoard = boardData.find(card => card[0] === tokenId);
+            if (cardOnBoard) {
+                const ownerOnBoard = cardOnBoard[2]; // owner-on-board
+                /*if (ownerOnBoard.toLowerCase() !== accounts[0].toLowerCase()) {
+                    cardColor = (defaultColor === player1Color) ? player2Color : player1Color; // Determine color for this card
+                }*/
+				if (ownerOnBoard.toLowerCase() === player1Address) {
+				  cardColor = player1Color;
+				} else if (ownerOnBoard.toLowerCase() === player2Address) {
+				  cardColor = player2Color;
+				}
+            }
+        }
+		
+		let isWinner = result.includes("You win");
+		
+		// True when tokenId is a loser and tradeRule is either One or Diff (Direct and All don't require user selection) also checks for if user is winner 
+		let canClick = loserTokenIds.includes(tokenId) && (tradeRule === "One" || tradeRule === "Diff") && isWinner;
+
+        handHTML += `
+        <div class="tcg_base_game_modal_card final_screen_card relative ${canClick ? 'tcg_base_game_modal_card_loser' : ''}" name="${name}" tokenId="${tokenId}" ${canClick ? 'onclick="tcg_base_loserCardClickHandler(this)"' : ''} style="background: ${cardColor}, url(${image}) center center/cover;" data-traderule="${tradeRule}" data-player1points="${player1Points}" data-player2points="${player2Points}">
+			<div class="tcg_base_game_modal_card_values">
+				<div class="tcg_base_game_modal_card_value_top">${topValue}</div>
+				<div class="tcg_base_game_modal_card_value_left">${leftValue}</div>
+				<div class="tcg_base_game_modal_card_value_right">${rightValue}</div>
+				<div class="tcg_base_game_modal_card_value_bottom">${bottomValue}</div>
+			</div>
+			<div class="tcg_base_game_modal_card_stats flex-box col absolute bottom left right C64">
+				<div class="flex-box space-between">
+					<div>Wins</div>
+					<div class="tcg_base_card_wincount">${winCount}</div>
+				</div>
+				<div class="flex-box space-between">
+					<div>Plays</div>
+					<div class="tcg_base_card_playcount">${playedCount}</div>
+				</div>
+				<div class="flex-box space-between">
+					<div>Brew</div><div>${brewPoints}</div>
+                </div>
+			</div>
+			<div style="position: absolute; top: 10px; right: 10px; font-size: 12px;">Lv. ${level}</div>
         </div>
         `;
     }
@@ -4825,7 +5290,7 @@ function forfeitSecondsToLabel(seconds) {
 }
 
 // Cauldron 
-async function tcg_base_loadCauldron() {
+/* async function tcg_base_loadCauldron() {
 	try {
 		await tcg_base_system.caul.methods.UIHelperForUser(accounts[0]).call().then(data => Object.assign(tcg_base_player.cauldron, {
 			totalWeight: data.totalWeight,
@@ -4848,6 +5313,41 @@ async function tcg_base_loadCauldron() {
 		$('.tcg_base_cauldron_totalBurned').text(abbr(parseFloat(tcg_base_player.cauldronGlobal.totalBurned)), 1);
 		$('.tcg_base_cauldron_totalGlobalClaimed').text(abbr(parseFloat(web3.utils.fromWei(tcg_base_player.cauldronGlobal.totalClaimed))), 1); 		
 		$('.tcg_base_cauldron_totalVidyaBalance').text(abbr(parseFloat(web3.utils.fromWei(totalVidya))), 1); 
+		
+		// Bubbles 
+		tcg_base_audio['cauldron_slow'].play();
+	}
+	catch(e) {
+		console.error(e); 
+	}
+} */
+async function tcg_base_loadCauldron() {
+	try {
+		await tcg_base_system.caul.methods.UIHelperForUser(accounts[0]).call().then(data => Object.assign(tcg_base_player.cauldron, {
+			totalWeight: data.totalWeight,
+			userWeight: data.userWeight,
+			rewardsClaimed: data._rewardsClaimed,
+			tokensClaimable: data._tokensClaimable
+		}));
+		await tcg_base_system.caul.methods.UIHelperForGeneralInformation().call().then(data => Object.assign(tcg_base_player.cauldronGlobal, {
+			totalBurned: data._totalBurned,
+			totalClaimed: data._totalClaimed
+		}));
+		
+		// last minute add
+		let uTotalBrewed = await tcg_base_system.caul.methods.totalCardsBurnedPerUser(accounts[0]).call(); 
+
+		let totalVidya = await VIDYA.methods.balanceOf(tcg_base_system.caul_address).call(); 
+		
+		// UI 
+		$('.tcg_base_cauldron_userWeight').text(abbr(parseFloat(tcg_base_player.cauldron.userWeight), 1)); 
+		$('.tcg_base_cauldron_totalClaimed').text(abbr(parseFloat(web3.utils.fromWei(tcg_base_player.cauldron.rewardsClaimed))), 1); 
+		$('.tcg_base_cauldron_tokensClaimable').text(abbr(parseFloat(web3.utils.fromWei(tcg_base_player.cauldron.tokensClaimable))), 1); 
+		$('.tcg_base_cauldron_totalWeight').text(abbr(parseFloat(tcg_base_player.cauldron.totalWeight)), 1); 
+		$('.tcg_base_cauldron_totalBurned').text(abbr(parseFloat(tcg_base_player.cauldronGlobal.totalBurned)), 1);
+		$('.tcg_base_cauldron_totalGlobalClaimed').text(abbr(parseFloat(web3.utils.fromWei(tcg_base_player.cauldronGlobal.totalClaimed))), 1); 		
+		$('.tcg_base_cauldron_totalVidyaBalance').text(abbr(parseFloat(web3.utils.fromWei(totalVidya))), 1); 
+		$('.tcg_base_cauldron_userBrewed').text(uTotalBrewed);
 		
 		// Bubbles 
 		tcg_base_audio['cauldron_slow'].play();
@@ -5737,7 +6237,7 @@ async function tcg_base_lookForRefs() {
 	$(".tcg_base_nothingtoclaim_button").toggleClass("hidden", canClaim);
 
 	if(canClaim) {
-		let earnings = await tcg_base_system.pack.methods.referalToClaim(accounts[0]).call(); // blast pls.. it's referral not referal 
+		let earnings = await tcg_base_system.pack.methods.referralToClaim(accounts[0]).call();
 		earnings = Number(web3.utils.fromWei(earnings)).toFixed(2); 
 		$('#outstandingReferralRewards').html(`You have <span class="tcg_base_golden_text">${earnings}</span> available!`);
 	}	
@@ -5801,4 +6301,74 @@ async function profileDataFor(address) {
         console.error(e); 
         throw e; // or handle the error as needed
     }
+}
+
+// Token transfer form 
+$(document).ready(function() {
+	const receiver = $('.tcg_base_transfer_form_receiver')[0]; 
+	
+	receiver.addEventListener('paste', async (event) => {
+		event.preventDefault();
+		const pastedData = (event.clipboardData || window.clipboardData).getData('text');
+        if (web3.utils.isAddress(pastedData)) {
+            const truncated = pastedData.length > 32 ? pastedData.substring(0, 32) + '...' : pastedData;
+            document.execCommand('insertText', false, truncated);
+            $(receiver).attr('address', pastedData);
+        } else {
+			error("Invalid address!");
+        }
+	});	
+	
+	receiver.addEventListener('click', clearTransferForm);
+    receiver.addEventListener('focus', clearTransferForm);	
+
+	$(document).on("click", ".tcg_base_transfer_form_close_button", function() {
+		closeTransferForm();
+	}); 
+	
+	$(document).on("click", ".tcg_base_card_transfer", async function() {
+		$(".tcg_base_transfer_form").addClass("hidden"); 
+		if(!tcg_base_player.lookingAtCard > 0) return; // do nothing more if not looking at any card (tcg_base_player.lookingAtCard set at list item click)
+		let owner = await tcg_base_system.card.methods.ownerOf(tcg_base_player.lookingAtCard).call();
+		if(owner !== accounts[0]) {
+			error("Can't transfer an uploaded card! You need to download the card first."); 
+			return; 
+		}
+		$(".tcg_base_transfer_form").removeClass("hidden");
+		$("#tcg_base_tokenId_transfer").text(tcg_base_player.lookingAtCard);
+	}); 
+	
+	$(document).on("click", ".tcg_base_transfer_form_send_button", async function() {
+		let tokenIdToSend = $("#tcg_base_tokenId_transfer").text();
+		let receiverAddress = $(".tcg_base_transfer_form_receiver").attr("address"); 
+		
+		// Player looking at same card and receiver is address? Fire away!
+		if(tcg_base_player.lookingAtCard == tokenIdToSend && web3.utils.isAddress(receiverAddress)) {
+			await tcg_base_system.card.methods.transferFrom(accounts[0], receiverAddress, tokenIdToSend).send({from: accounts[0]})
+				.on('transactionHash', function(hash) {
+					console.log(hash);
+				})
+				.on('receipt', async function(receipt) {
+					notify('Card transfer successful!');
+					if ($('.tcg_base_menu_option_active').attr('data') === 'deck') await tcg_base_open_tab("deck");
+				})
+		} else if (receiverAddress == "") {
+			error("Input a receiver address first!");
+		} else {
+			console.error("Error during token transfer");
+		}
+	}); 
+}); 
+
+function clearTransferForm() {
+	const receiver = $('.tcg_base_transfer_form_receiver')[0]; 
+	$(receiver).attr('address', '');
+	receiver.innerText = '';
+}
+
+function closeTransferForm() {
+	clearTransferForm();
+	$(".tcg_base_transfer_form").addClass("hidden"); 
+	$("#tcg_base_tokenId_transfer").text("");
+	$(".tcg_base_transfer_form_receiver").text("0x000000000000000000000000000000...");	
 }
