@@ -70,6 +70,7 @@ tcg_base_system = {
 	card_address: "0x83D4137A37c1e4DB8eB804f3e29e724fB79B26a6", // old > "0x7B4aB1B6f20aF6555B24C2BccAfBB82b1c5a60aE", 
 	caul_address: "0x84928CcDE2e0a6615c03C4964b5dd65CBb950333", // old > "0x5D00524Ca34C9311DED75b89393ec9f64079965d",
 	conj_address: "0x946508f50263fD1330aE6D8701496b0d753e651C", // conjure address 
+	cntr_address: "0x5C43bef2129f2D4BC978bcC31Cc5e0a90cd886a1", // template counter 
 	pack: null,
 	game: null,
 	card: null
@@ -104,7 +105,8 @@ let tcg_base_player = {
 	cauldronGlobal: {
 		totalBurned: 0,
 		totalClaimed: 0
-	}
+	},
+	templateCounts: {}
 }
 
 // Games 
@@ -1537,8 +1539,16 @@ $(document).ready(function() {
 	
 	// Hover effect for finalize screen card selections (shows card's name under it)
 	$(document).on('mouseenter', '.final_screen_card', function(e) {
-		let name = $(this).attr('name');
-		$(this).attr('name', name).addClass('tooltip');
+		let bgImageUrl = $(this).css('background-image');  // Get the background image URL
+		let matches = bgImageUrl.match(/(\d+)\.gif/);      // Use regex to extract the digits before ".gif"
+
+		if (matches && matches[1]) {
+			let templateId = parseInt(matches[1], 10);     // Convert the matched string to an integer
+			let count = tcg_base_player.templateCounts[templateId] || '0';
+			let name = $(this).attr('name');
+			let tooltipText = `${name} (${count})`;
+			$(this).attr('data-tooltip', tooltipText).addClass('tooltip');
+		}
 	})
 	.on('mouseleave', '.final_screen_card', function() {
 		$(this).removeClass('tooltip');
@@ -1764,6 +1774,7 @@ function tcg_base_init() {
 	tcg_base_system.game = new web3.eth.Contract(tcg_base_game_abi, tcg_base_system.game_address); 
 	tcg_base_system.card = new web3.eth.Contract(tcg_base_card_abi, tcg_base_system.card_address); 
 	tcg_base_system.caul = new web3.eth.Contract(tcg_base_caul_abi, tcg_base_system.caul_address); 
+	tcg_base_system.cntr = new web3.eth.Contract(tcg_base_cntr_abi, tcg_base_system.cntr_address);
 	
 	// init alchemy 
 	tcg_base_system.cardAlchemy = new alchemy.eth.Contract(tcg_base_card_abi, tcg_base_system.card_address);
@@ -4108,6 +4119,11 @@ async function tcg_base_finishGame(gameId) {
 
         let gameDetails = await tcg_base_system.game.methods.getGameDetails(gameId).call();
         let gameWrapper = $gameWindow.find('.tcg_base_game_wrapper');
+		await tcg_base_system.cntr.methods.countTemplatesByOwner(accounts[0]).call().then(function(r) {
+			r.forEach(function(item) {
+				tcg_base_player.templateCounts[item[0]] = item[1];
+			});
+		}); 		
 
         if (tcg_base_games.contentAppended[gameId]) {
             console.log("Game results window already appended, skipping...");
