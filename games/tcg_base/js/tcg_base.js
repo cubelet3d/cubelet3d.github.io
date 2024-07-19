@@ -64,11 +64,12 @@ tcg_base_audio['cauldron_fast'].loop = true;
 tcg_base_audio['ladle_dunk'].volume = 0.25; // was too noisy 
 
 tcg_base_system = {
-	vidy_address: "0xf51986be66acec5bb671fec00503e877f66006b6",
-	pack_address: "0x071AA632185a0C5b4D30A3afd75b8f2EddFd2A86", // old > "0x27Cb29B6ddBae13146E50F546D806E04dBc4e739",
-	game_address: "0xd9f9512E85c8766509F71D7B4A5bb43b815844e6", // old > "0x5E49E898C18Bd504170c926dD5b244165905F175",
-	card_address: "0xe000654B0af94fdd3d6A836155987EDa6a63000D", // old > "0x7B4aB1B6f20aF6555B24C2BccAfBB82b1c5a60aE", 
-	caul_address: "0xd7DBA5fc2dcbE2C0476935DfB8A6e97ec8eb40a5", // old > "0x1360398fFD6E9148Bd3FEc2910afa0660DFcE4cB",
+	vidy_address: "0x3d48ae69a2F35D02d6F0c5E84CFE66bE885f3963",
+	pack_address: "0xce87962B3ec0DBE88a48dADC94F3f0c1e755c970", // old > "0x27Cb29B6ddBae13146E50F546D806E04dBc4e739",
+	game_address: "0xff6F9a516cC1C07b19d157eDeC7eA7A578074D1f", // old > "0x5E49E898C18Bd504170c926dD5b244165905F175",
+	card_address: "0x83D4137A37c1e4DB8eB804f3e29e724fB79B26a6", // old > "0x7B4aB1B6f20aF6555B24C2BccAfBB82b1c5a60aE", 
+	caul_address: "0x84928CcDE2e0a6615c03C4964b5dd65CBb950333", // old > "0x5D00524Ca34C9311DED75b89393ec9f64079965d",
+	conj_address: "0x946508f50263fD1330aE6D8701496b0d753e651C", // conjure address 
 	pack: null,
 	game: null,
 	card: null

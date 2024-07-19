@@ -1,15 +1,17 @@
-Agnosia is finally here! 
+Agnosia is finally live!
 
 Fastest way to get started: 
 
-0. connect wallet to Sepolia network 
-1. get Sepolia eth from testnetbridge.com 
-2. buy starter pack to get 7 cards 
+0. connect wallet to Arbitrum mainnet
+1. bridge eth at https://bridge.arbitrum.io
+2. buy starter pack to get 7 cards (0.01e each) 
 3. upload the cards from deck to game 
 4. play practice mode
 5. look for open games or create a new game 
 6. win cards 
 7. ascend cards 
-8. brew cards 
+8. brew cards (very important) 
 9. get rewards
 10. expect nice things 
+
+Notes: to get the latest experience always refer to https://agnosia.gg since the version running on TeamOS might not have all the latest bells and whistles. I'm working on it, but the standalone version takes priority. 
