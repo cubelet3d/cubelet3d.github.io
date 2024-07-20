@@ -1548,6 +1548,10 @@ $(document).ready(function() {
 			let name = $(this).attr('name');
 			let tooltipText = `${name} (${count})`;
 			$(this).attr('data-tooltip', tooltipText).addClass('tooltip');
+			
+			if (count === '0') {
+				$(this).addClass('tcg_base_green_text_black_outline');
+			}			
 		}
 	})
 	.on('mouseleave', '.final_screen_card', function() {
