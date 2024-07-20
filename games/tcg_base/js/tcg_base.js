@@ -352,7 +352,7 @@ $(document).ready(function() {
 
 	// Click handler for the cards in the cards list (the templates list)
 	$(document).on("click", ".tcg_base_deckview_carditem", function() {
-		$(".tcg_base_card_transfer").addClass("hidden");
+		$(".tcg_base_card_transfer, .tcg_base_card_market").addClass("hidden");
 		tcg_base_player.lookingAtCard = null; 
 		closeTransferForm();
 		
@@ -2597,7 +2597,7 @@ function tcg_base_resetAllContainers() {
 
 	tcg_base_player.lookingAtCard = null; 
 	closeTransferForm();
-	$(".tcg_base_card_transfer").addClass("hidden");	
+	$(".tcg_base_card_transfer, .tcg_base_card_market").addClass("hidden");	
 }
 
 // Function to check if the loop should continue running (if Play tab is open)
@@ -2958,7 +2958,7 @@ async function updateCardDetails(tokenId) {
         }*/
 		$(".tcg_base_tokenId_withdraw").toggleClass("disabled", !(await canCardBeWithdrawn(tokenId)));
 		
-		$(".tcg_base_card_transfer").addClass("hidden");
+		$(".tcg_base_card_transfer, .tcg_base_card_market").addClass("hidden");
     } else {
         // If it's not deposited, ensure the "mark" and "deposit" and "brew" and "sacrifice" buttons are not disabled, disable "withdraw"
         $(".tcg_base_tokenId_mark, .tcg_base_tokenId_deposit, .tcg_base_tokenId_brew, .tcg_base_tokenId_sacrifice").removeClass("disabled");
@@ -2966,7 +2966,7 @@ async function updateCardDetails(tokenId) {
 		
 		// $(".tcg_base_tokenId_sacrifice").addClass("disabled"); // always disable for the time being 
 		
-		$(".tcg_base_card_transfer").removeClass("hidden");
+		$(".tcg_base_card_transfer, .tcg_base_card_market").removeClass("hidden");
     }
 }
 
@@ -6446,11 +6446,11 @@ $(document).ready(function() {
 	$(document).on("click", ".tcg_base_card_transfer", async function() {
 		$(".tcg_base_transfer_form").addClass("hidden"); 
 		if(!tcg_base_player.lookingAtCard > 0) return; // do nothing more if not looking at any card (tcg_base_player.lookingAtCard set at list item click)
-		let owner = await tcg_base_system.card.methods.ownerOf(tcg_base_player.lookingAtCard).call();
+		/* let owner = await tcg_base_system.card.methods.ownerOf(tcg_base_player.lookingAtCard).call();
 		if(owner !== accounts[0]) {
 			error("Can't transfer an uploaded card! You need to download the card first."); 
 			return; 
-		}
+		} */ 
 		$(".tcg_base_transfer_form").removeClass("hidden");
 		$("#tcg_base_tokenId_transfer").text(tcg_base_player.lookingAtCard);
 	}); 
@@ -6462,7 +6462,23 @@ $(document).ready(function() {
         function() {
             $(this).removeClass('tcg_base_card_transfer_hover');
         }
+    );
+
+	// market button here too because they're close 
+    $('.tcg_base_card_market').hover(
+        function() {
+            $(this).addClass('tcg_base_card_market_hover');
+        }, 
+        function() {
+            $(this).removeClass('tcg_base_card_market_hover');
+        }
     );	
+
+	// and its click handler 
+	$(document).on("click", ".tcg_base_card_market", async function() {
+		if(!tcg_base_player.lookingAtCard > 0) return;
+		window.open(`https://opensea.io/assets/arbitrum/${tcg_base_system.card_address}/${tcg_base_player.lookingAtCard}`);
+	});	
 	
 	$(document).on("click", ".tcg_base_transfer_form_send_button", async function() {
 		let tokenIdToSend = $("#tcg_base_tokenId_transfer").text();

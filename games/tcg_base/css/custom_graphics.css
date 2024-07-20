@@ -1510,8 +1510,8 @@
 }
 
 .tcg_base_card_transfer {
-	width: 20px; 
-	height: 13px; 
+	width: 24px; 
+	height: 24px; 
 	position: absolute; 
 	top: 5px; right: 7px; 
 	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAL5JREFUSIljYBgFo4BSwAhj8KUkMHzbdvw/NQzl8rJk/DRnAaoFLFLq/xkYGBi4KtwpMvxbx04GBgYGhj/PbjIyMDAwMKHYXOEOV0Cu4egOZEJXRK4l2AzHagE+S/7tvAXHxBjOwMDAwILLReiWcBgqQlwkKcHw7/kLFDl88YbTAnSN/3beYmCSlIBbwuWuhk8rHGANIqwK3dUY/j1/AeHo8RGrDb8PsFlCKiDaB+SCoW8BRlFBLQArKkbBCAAAAnw9SaKPt1QAAAAOZVhJZk1NACoAAAAIAAAAAAAAANJTkwAAAABJRU5ErkJggg==') no-repeat center center/cover;
@@ -1520,6 +1520,19 @@
 
 .tcg_base_card_transfer_hover {
 	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAALJJREFUSIljYBgFo4BSwIjMYZFS/08NQ/88uwk3F86AGf55QxRFhvMGLEOxhAlZ8vOGKLgCcg1HdyATuiJyLcFmOAMDAwMLNsUwS9A1bI/dC2d7LnYmaDhOC5AtgYFVvOIMDAwMDGIqSgyv7txDkcMXbzgtQNe4PXYvg5iKEtySz/XOuLShAIw4wAU8FzszvLpzj4GBgYHBuF6RWG34fYDNElIB0T4gFwx9C2heFo2CEQAAu5U7+4eYkAEAAAAOZVhJZk1NACoAAAAIAAAAAAAAANJTkwAAAABJRU5ErkJggg==') no-repeat center center/cover; 
+}
+
+.tcg_base_card_market {
+	width: 16px; 
+	height: 16px; 
+	position: absolute; 
+	top: 9px; right: 34px; 
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAL9JREFUSIljYBjqgJGBgYGBLyUBIaLH95/h0idGskxD0/tpzgIGFpwKqQRQLYC4AM799/wFijSTpARecSQz4L5gwmU42eDSJ5QQYMKlDp8rUVyMRS2KPgYGBuq5HgaQfIHVB3jDGIcYLl/gDCJqAUQq0uND2IrExgeIUQex4NInRgY9vv//dt5iYHJXY6Ako6GbQfMgGvoWQOIAveyhRlkEMYMRnor+7byFQlMC4BHNMBziYOhbAI9kWKSMAnQAAPPYSSydzZOcAAAADmVYSWZNTQAqAAAACAAAAAAAAADSU5MAAAAASUVORK5CYII=') no-repeat center center/cover; 
+	z-index: 1; 
+}
+
+.tcg_base_card_market_hover {
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAXtJREFUSInVVMtKw0AUPZHQ6aYPSd2kRChU6qZ04VoQ/AQJbl34GV3mMxTcFuknCH6Ckk2LomBpdtE2gWLcjIs6ce5M2vqISM9q7vOcezMZYN1hAED59IQ43cDnl3bb+E6jrJro7AKmmuhZVQ5rHx2A311fkdjOwSEAQPWLWAfg3XBCSAiBZ1V5o9kCAAz6PWxvWqSJiCW3NxqBiHkYEpKNrOa/QaPZmm9BJZAx6Pc03+7RceZ5WU1KkJd6AXkKbYJV6pf5smozV5Qn0lv0eD8EADy9hFoS+4ip+EquCQDdcGK4gc8du46ZVYD2k4WTbHntPWK6gc+fwweMgnHa489XtP4EJjDfnexU7Z/ADXx+DhjpLXLsOgBgq1YjiUmSrGxWKZWJ7dh1jIIxAOWxe32jzYoFhmKBEd80jjQC2ccYrSEEqlphM/ZZIJ+FCFWgLJQQVErlNCiTyWd5HdM40kSp61q4InXURTmqgGkckSlTAvFRckEc59fr3/EONVOcgbtSyTgAAAAOZVhJZk1NACoAAAAIAAAAAAAAANJTkwAAAABJRU5ErkJggg==') no-repeat center center/cover; 
 }
 
 .tcg_base_transfer_form {
