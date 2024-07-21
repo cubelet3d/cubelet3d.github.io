@@ -1625,7 +1625,7 @@ $(document).ready(function() {
 		let discordId = $('#tcg_base_discordId').text();
 
 		// Check if the ID is numerical and exactly 18 digits long
-		if (/^\d{18}$/.test(discordId)) {
+		if (/^\d{17,19}$/.test(discordId)) {
 		  // Trigger the tx 
 		  await tcg_base_system.game.methods.registerId(discordId).send({from: accounts[0]})
 		  .on('transactionHash', function(hash) {
