@@ -9,6 +9,7 @@ window.addEventListener('load', async () => {
     } else {
         $("#connect").html("Web3 not found");
         $("#connect").css("display", "flex");
+		$(".nowallet").show();
     }
 });
 
