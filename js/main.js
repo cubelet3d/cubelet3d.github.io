@@ -19,7 +19,7 @@ var telegramURL = "https://t.me/Team3D_Official";
 var discordURL = "https://discord.gg/g4X2R38";
 var uniswapURL = "https://app.uniswap.org/#/swap?outputCurrency=0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30"
 var twitterURL = "https://twitter.com/Team3D_Official"
-var openseaURL = "https://opensea.io/assets/inventory-v2"
+var openseaURL = "https://opensea.io/collection/inventory-v2"
 var mediumURL = "https://team3d.medium.com/"
 var bitcoinURL = "https://bitcointalk.org/index.php?topic=5272225"
 var raribleURL = "https://app.rarible.com/vidyamemes/"
