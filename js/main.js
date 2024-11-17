@@ -195,7 +195,7 @@ $(document).ready(function() {
 		}
 	})
 	
-	loadMemes(); 
+	loadPepes(); 
 
 })
 
@@ -489,7 +489,7 @@ function updateVolumeIcon(video, icon) {
 	}
 }
 
-function loadMemes() {
+function loadPepes() {
 	const dirPath = "../img/pepes/";
 	const fileRange = 18;
 	const fileExceptions = { 8: "gif", 17: "jpg"};
