@@ -491,7 +491,7 @@ function updateVolumeIcon(video, icon) {
 
 function loadPepes() {
 	const dirPath = "../img/pepes/";
-	const fileRange = 18;
+	const fileRange = 27;
 	const fileExceptions = { 8: "gif", 17: "jpg"};
 	const $thumbnailsContainer = $("#memes_thumbnails");
 
