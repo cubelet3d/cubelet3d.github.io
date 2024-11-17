@@ -15,6 +15,9 @@
 	height: 100%; 
 	margin: 1rem;
 }
+#notepad .template-wrapper {
+	margin: 0; 
+}
 .template-loading-outer,
 .template-gateway-wrapper,
 .template-screen {

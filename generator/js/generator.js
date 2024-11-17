@@ -989,7 +989,7 @@ async function loadGeneratorRates() {
 		let vidyasToDollars = (Number(vidyasInLp) + Number(vidyasInSingle)) * price_vidya 
 		$("#GeneratorTotalValueLocked").text(abbr(parseFloat(vidyasToDollars), 1) + " USD")
 		
-		fetch("https://vidyapad.com/info/")
+		/* fetch("https://vidyapad.com/info/")
 			.then(response => {
 				if (!response.ok) {
 					throw new Error('Network response was not ok');
@@ -1014,7 +1014,9 @@ async function loadGeneratorRates() {
 			})
 			.catch(error => {
 				console.error('Fetch error:', error);
-			});
+			}); */
+			
+		await computeTotalStakersAndAvgCommitment();
 
 	}
 	catch(e) {
@@ -1286,7 +1288,7 @@ function generatorDrawChart(el, xValues, yValues) {
 	
 }
 
-async function generatorGetAllDeposits() {
+/* async function generatorGetAllDeposits() {
 	let startBlock = Generator.pool[User.currentPool].startBlock
 	let lpDeposits = {}
 	let result 
@@ -1318,6 +1320,44 @@ async function generatorGetAllDeposits() {
 	catch(e) {
 		console.error(e)
 	}
+} */
+async function generatorGetAllDeposits() {
+    let startBlock = Generator.pool[User.currentPool].startBlock;
+    let lpBalances = {};
+    try {
+        // Fetch LpDeposited events
+        let depositEvents = await Generator.teller.getPastEvents("LpDeposited", { fromBlock: startBlock });
+        // Fetch Withdrew events
+        let withdrewEvents = await Generator.teller.getPastEvents("Withdrew", { fromBlock: startBlock });
+
+        // Process deposit events
+        depositEvents.forEach(event => {
+            let user = event.returnValues.provider;
+            let amount = Number(web3.utils.fromWei(event.returnValues.amount));
+            lpBalances[user] = (lpBalances[user] || 0) + amount;
+        });
+
+        // Process withdrew events
+        withdrewEvents.forEach(event => {
+            let user = event.returnValues.provider;
+            let amount = Number(web3.utils.fromWei(event.returnValues.amount));
+            lpBalances[user] = (lpBalances[user] || 0) - amount;
+        });
+
+        // Remove users with zero or negative balances
+        for (let user in lpBalances) {
+            if (lpBalances[user] <= 0) {
+                delete lpBalances[user];
+            }
+        }
+
+        // Sort the balances
+        let sortedBalances = Object.entries(lpBalances).sort((a, b) => b[1] - a[1]);
+
+        return sortedBalances;
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 async function generatorLoadStats() {
@@ -1327,38 +1367,47 @@ async function generatorLoadStats() {
 		$("#generator-stats-status-message").text("Loading...")
 		$("#generator-stats").css("display", "flex")
 		
-		let result = await generatorGetAllDeposits()
+        let result = await generatorGetAllDeposits();
 		
-		let usersInfo = {}
-		
-		let count = 0
-		
-		for(let i = 0; i < result.length; i++) {
-			await Generator.teller.methods.getUserInfo(result[i][0]).call({from: result[i][0]}).then(function(r) {
-				usersInfo[result[i][0]] = r
-				Generator.stats.push(usersInfo[result[i][0]])
-				Generator.stats[i][5] = result[i][0] // set the address too
-			})
+		let count = 0;
+		$("#generator-stats-status-message").text(`Loading ${count} / ${result.length}`);
 
-			$("#generator-stats-status-message").text("Loading "+count+" / "+result.length)
-			count++
-		}
+		let userPromises = result.map(async ([userAddress]) => {
+			try {
+				let userInfo = await Generator.teller.methods.getUserInfo(userAddress).call({ from: userAddress });
+				if (userInfo[4] > 0) {
+					return {
+						userAddress: userAddress,
+						timeLeft: userInfo[0],
+						committedAmount: userInfo[1],
+						totalDeposited: userInfo[4],
+					};
+				}
+			} catch (error) {
+				console.error(`Error fetching data for user ${userAddress}:`, error);
+			} finally {
+				count++;
+				$("#generator-stats-status-message").text(`Loading ${count} / ${result.length}`);
+			}
+			return null;
+		});
 
-		let sortedByCommit = Generator.stats.sort((a, b) => b[1] - a[1])
+		let usersInfo = await Promise.all(userPromises);
 
-		for(let i = 0; i < Generator.stats.length; i++) {
-			let userAddress    = sortedByCommit[i][5]
-			let userTimeLeft   = sortedByCommit[i][0]
-			let totalDeposited = abbr(Number(web3.utils.fromWei(sortedByCommit[i][4])), 2)
-			let totalCommitted = abbr(Number(web3.utils.fromWei(sortedByCommit[i][1])), 2)
-			
-			// let totalDeposited = abbr(result[i][1], 2) // total ever (from LpDeposited event)
-			// let totalDeposited = abbr(Number(web3.utils.fromWei(usersInfo[result[i][0]][4])), 2) // total LP deposited return value from Teller (blame Blastscout if it's bad)
-			// let totalCommitted = abbr(Number(web3.utils.fromWei(usersInfo[result[i][0]][1])), 2) // actual committed amount from UserInfo call 
-			
-			/*$("#generator-stats-content").append('<a href="https://etherscan.io/address/'+result[i][0]+'" target="_blank"><div class="flex-box space-between generator-stats-entry"><div class="ellipsis generator-address" style="flex: 1">'+result[i][0]+'</div><div class="generator-stats-totalDeposited" style="flex: 1; text-align: right">'+totalDeposited+'</div><div class="generator-highlight-amount" style="flex: 1; text-align: right">'+totalCommitted+'</div><div class="generator-stats-timeLeft" style="flex: 1; text-align: right">'+getTimeLeft(usersInfo[result[i][0]][0])+'</div></div></a>')*/
-			
-			$("#generator-stats-content").append('<a href="https://etherscan.io/address/'+userAddress+'" target="_blank"><div class="flex-box space-between generator-stats-entry"><div class="ellipsis generator-address" style="flex: 1">'+userAddress+'</div><div class="generator-stats-totalDeposited" style="flex: 1; text-align: right">'+totalDeposited+'</div><div class="generator-highlight-amount" style="flex: 1; text-align: right">'+totalCommitted+'</div><div class="generator-stats-timeLeft" style="flex: 1; text-align: right">'+getTimeLeft(userTimeLeft)+'</div></div></a>')
+        // Filter out any null values (users with zero deposits or errors)
+        usersInfo = usersInfo.filter(user => user !== null);
+
+        // Sort users by committed amount
+        usersInfo.sort((a, b) => Number(b.committedAmount) - Number(a.committedAmount));
+
+        // Display user stats
+        for (let i = 0; i < usersInfo.length; i++) {
+            let user = usersInfo[i];
+            let totalDeposited = abbr(Number(web3.utils.fromWei(user.totalDeposited)), 2);
+            let totalCommitted = abbr(Number(web3.utils.fromWei(user.committedAmount)), 2);
+            let timeLeft = getTimeLeft(user.timeLeft);
+
+			$("#generator-stats-content").append('<a href="https://etherscan.io/address/'+user.userAddress+'" target="_blank"><div class="flex-box space-between generator-stats-entry"><div class="ellipsis generator-address" style="flex: 1">'+user.userAddress+'</div><div class="generator-stats-totalDeposited" style="flex: 1; text-align: right">'+totalDeposited+'</div><div class="generator-highlight-amount" style="flex: 1; text-align: right">'+totalCommitted+'</div><div class="generator-stats-timeLeft" style="flex: 1; text-align: right">'+timeLeft+'</div></div></a>')
 		}
 		
 		$("#generator-stats-status-message").text("Finished loading!")
@@ -1367,4 +1416,98 @@ async function generatorLoadStats() {
 	catch(e) {
 		console.error(e)
 	}
+}
+
+async function computeTotalStakersAndAvgCommitment() {
+    try {
+        let totalStakers = 0;
+        let totalCommitmentDuration = 0; // in days
+
+        // List of pools to process
+        let pools = ['eth', 'single'];
+
+        for (let pool of pools) {
+            // Set up the teller and commitment options for the pool
+            let tellerAddress = Generator.pool[pool].teller;
+            let teller = new web3.eth.Contract(TellerABI, tellerAddress);
+            let commitmentOptions;
+            if (pool === 'eth') {
+                commitmentOptions = Generator.commitmentOptions;
+            } else if (pool === 'single') {
+                commitmentOptions = Generator.commitmentOptionsSingle;
+            }
+
+            // Get all deposits and withdrawals for the pool
+            let startBlock = Generator.pool[pool].startBlock;
+            let depositEvents = await teller.getPastEvents("LpDeposited", { fromBlock: startBlock });
+            let withdrewEvents = await teller.getPastEvents("Withdrew", { fromBlock: startBlock });
+
+            // Process deposit and withdraw events to calculate net balances
+            let lpBalances = {};
+
+            depositEvents.forEach(event => {
+                let user = event.returnValues.provider;
+                let amount = Number(web3.utils.fromWei(event.returnValues.amount));
+                lpBalances[user] = (lpBalances[user] || 0) + amount;
+            });
+
+            withdrewEvents.forEach(event => {
+                let user = event.returnValues.provider;
+                let amount = Number(web3.utils.fromWei(event.returnValues.amount));
+                lpBalances[user] = (lpBalances[user] || 0) - amount;
+            });
+
+            // Remove users with zero or negative balances
+            for (let user in lpBalances) {
+                if (lpBalances[user] <= 0) {
+                    delete lpBalances[user];
+                }
+            }
+
+            // Get user info for each user
+            let userAddresses = Object.keys(lpBalances);
+
+            let userPromises = userAddresses.map(async (userAddress) => {
+                try {
+                    let userInfo = await teller.methods.getUserInfo(userAddress).call({from: userAddress});
+                    if (userInfo[4] > 0) {
+                        return {
+                            userAddress: userAddress,
+                            commitmentIndex: userInfo[2],
+                        };
+                    }
+                } catch (error) {
+                    console.error(`Error fetching data for user ${userAddress} in pool ${pool}:`, error);
+                }
+                return null;
+            });
+
+            let usersInfo = await Promise.all(userPromises);
+
+            usersInfo = usersInfo.filter(user => user !== null);
+
+            // Update total stakers
+            totalStakers += usersInfo.length;
+
+            // Calculate total commitment duration
+            for (let user of usersInfo) {
+                let commitmentIndex = Number(user.commitmentIndex);
+                let commitmentDays = 0;
+                if (commitmentIndex > 0 && commitmentOptions[commitmentIndex]) {
+                    commitmentDays = commitmentOptions[commitmentIndex].days;
+                }
+                totalCommitmentDuration += commitmentDays;
+            }
+        }
+
+        // Calculate average commitment duration
+        let avgBetweenPools = totalStakers > 0 ? totalCommitmentDuration / totalStakers : 0;
+
+        // Update the DOM elements
+        $("#GeneratorTotalStakers").text(totalStakers);
+        $("#GeneratorAverageCommitment").text(avgBetweenPools.toFixed(1) + " days");
+
+    } catch (error) {
+        console.error('Error computing total stakers and average commitment:', error);
+    }
 }
