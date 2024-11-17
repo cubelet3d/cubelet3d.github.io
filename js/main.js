@@ -194,6 +194,8 @@ $(document).ready(function() {
 			$("#"+task+"").show()
 		}
 	})
+	
+	loadMemes(); 
 
 })
 
@@ -485,4 +487,30 @@ function updateVolumeIcon(video, icon) {
 	else {
 		$(high).removeClass("hidden")
 	}
+}
+
+function loadMemes() {
+	const dirPath = "../img/pepes/";
+	const fileRange = 18;
+	const fileExceptions = { 8: "gif", 17: "jpg"};
+	const $thumbnailsContainer = $("#memes_thumbnails");
+
+	const fileList = [];
+	for (let i = 1; i <= fileRange; i++) {
+		const extension = fileExceptions[i] || "png";
+		fileList.push(`${i}.${extension}`);
+	}
+
+	fileList.forEach(function (fileName) {
+		const fileExtension = fileName.split(".").pop().toLowerCase();
+		const validExtensions = ["png", "gif", "jpg", "jpeg"];
+		if (validExtensions.includes(fileExtension)) {
+		const imageUrl = dirPath + fileName;
+		const thumbnail = `
+		<a href="${imageUrl}" target="_blank" class="thumbnail">
+		<img src="${imageUrl}" alt="${fileName}" />
+		</a>`;
+		$thumbnailsContainer.append(thumbnail);
+		}
+	});
 }
