@@ -500,23 +500,27 @@ how to remove the virtical space around the range input in IE*/
 .p-float-left           {clear: right; float: left;}
 .p-float-right          {clear: left; float: right;}
 
-#memes_folder {
+#memes_folder,
+#memus_folder {
 	width: 600px; height: 512px; 
 }
-#memes_thumbnails {
+#memes_thumbnails,
+#memus_thumbnails {
 	padding: 1rem;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
 }
-#memes_thumbnails .thumbnail {
+#memes_thumbnails .thumbnail,
+#memus_thumbnails .thumbnail {
 	display: block;
 	width: 100px;
 	height: 100px;
 	overflow: hidden;
 }
 
-#memes_thumbnails .thumbnail img {
+#memes_thumbnails .thumbnail img,
+#memus_thumbnails .thumbnail img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
@@ -524,7 +528,8 @@ how to remove the virtical space around the range input in IE*/
 	transition: transform 0.2s ease-in-out;
 }
 
-#memes_thumbnails .thumbnail:hover img {
+#memes_thumbnails .thumbnail:hover img,
+#memus_thumbnails .thumbnail:hover img {
 	transform: scale(1.1);
 }
 

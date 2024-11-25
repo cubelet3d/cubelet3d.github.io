@@ -198,8 +198,3 @@ function execute() {
     let program     = urlParams.get('open')
 	$("#"+program+"_button").trigger("click")
 }
-
-$(document).ready(function() {
-
-
-})

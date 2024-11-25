@@ -1292,6 +1292,23 @@
 							</div>
 						</div>
 					</div>
+					<div id="memus_folder" class="console absolute draggable hidden" data="memus_folder">
+						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+							<div class="flex-box center-vertical">
+								<div class="icon folder-icon"></div>
+								<div class="consoleTitle default">C:\team3d\memes</div>
+							</div>
+							<div class="flex-box">
+								<button class="minimize_button">_</button>
+								<button class="close_button">X</button>
+							</div>
+						</div>
+						<div class="console-content flex-box scrollbar">
+							<div id="memus_thumbnails" class="flex-box">
+								
+							</div>
+						</div>
+					</div>	
 					<div id="memes_folder" class="console absolute draggable hidden" data="memes_folder">
 						<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
 							<div class="flex-box center-vertical">
@@ -1970,6 +1987,12 @@
 					<!-- Desktop icons -->
 					<div id="desktop_icons" class="flex-box col center-horizontal absolute top bottom left">
 					<div id="desktop_icons_inner" class="flex-box col">
+						<div id="memus-folder-button-wrapper" class="desktop-icon-container flex-box row flex-end memus-folder-button-wrapper">
+							<div id="memus_folder_button" class="flex-box col center-vertical non-mobile" data="memus_folder">
+								<div class="icon desktop-icon folder-icon no-pointer-events shortcut"></div>
+								<span class="font-monospace text-align-center no-pointer-events">memes</span>
+							</div>
+						</div>						
 						<div id="memes-folder-button-wrapper" class="desktop-icon-container flex-box row flex-end memes-folder-button-wrapper">
 							<div id="memes_folder_button" class="flex-box col center-vertical non-mobile" data="memes_folder">
 								<div class="icon desktop-icon folder-icon no-pointer-events shortcut"></div>

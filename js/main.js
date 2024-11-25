@@ -196,6 +196,7 @@ $(document).ready(function() {
 	})
 	
 	loadPepes(); 
+	loadMemes(); 
 
 })
 
@@ -513,4 +514,38 @@ function loadPepes() {
 		$thumbnailsContainer.append(thumbnail);
 		}
 	});
+}
+
+function loadMemes() {
+    const dirPath = "../img/memes/";
+    const fileRange = 50;
+    const fileExceptions = {
+        1: "gif", 2: "gif", 3: "gif", 4: "webp", 5: "gif", 6: "gif", 7: "webp", 8: "gif",
+        9: "webp", 10: "gif", 11: "gif", 12: "webp", 13: "webp", 14: "gif", 15: "gif", 16: "gif", 17: "gif", 18: "webp", 19: "webp", 20: "webp",
+        21: "webp", 22: "webp", 23: "webp", 24: "webp", 25: "webp", 26: "webp", 27: "gif",
+        28: "mp4", 29: "gif", 30: "mp4", 31: "gif", 32: "gif", 33: "gif",
+        34: "mp4", 35: "gif", 36: "mp4", 37: "mp4", 38: "mp4", 39: "mp4",
+        40: "mp4", 41: "mp4", 42: "mp4", 43: "gif", 44: "gif", 45: "gif",
+        46: "gif", 47: "gif", 48: "mp4", 49: "gif", 50: "webp"
+    };
+    const $thumbnailsContainer = $("#memus_thumbnails");
+
+    for (let i = 1; i <= fileRange; i++) {
+        const paddedIndex = String(i).padStart(2, '0'); // Ensures numbers are two digits
+        const extension = fileExceptions[i] || "png"; // Default to "png" if not specified
+        const fileName = `${paddedIndex}.${extension}`;
+        const fileUrl = dirPath + fileName;
+
+        let thumbnailUrl = fileUrl;
+        if (extension === "mp4") {
+            // Use PNG thumbnail for MP4 files
+            thumbnailUrl = dirPath + `${paddedIndex}.png`;
+        }
+
+        const thumbnail = `
+            <a href="${fileUrl}" target="_blank" class="thumbnail">
+                <img src="${thumbnailUrl}" alt="${fileName}" />
+            </a>`;
+        $thumbnailsContainer.append(thumbnail);
+    }
 }
