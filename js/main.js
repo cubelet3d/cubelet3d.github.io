@@ -194,10 +194,6 @@ $(document).ready(function() {
 			$("#"+task+"").show()
 		}
 	})
-	
-	loadPepes(); 
-	loadMemes(); 
-
 })
 
 /*$(function() {
@@ -490,32 +486,6 @@ function updateVolumeIcon(video, icon) {
 	}
 }
 
-function loadPepes() {
-	const dirPath = "../img/pepes/";
-	const fileRange = 27;
-	const fileExceptions = { 8: "gif", 17: "jpg"};
-	const $thumbnailsContainer = $("#memes_thumbnails");
-
-	const fileList = [];
-	for (let i = 1; i <= fileRange; i++) {
-		const extension = fileExceptions[i] || "png";
-		fileList.push(`${i}.${extension}`);
-	}
-
-	fileList.forEach(function (fileName) {
-		const fileExtension = fileName.split(".").pop().toLowerCase();
-		const validExtensions = ["png", "gif", "jpg", "jpeg"];
-		if (validExtensions.includes(fileExtension)) {
-		const imageUrl = dirPath + fileName;
-		const thumbnail = `
-		<a href="${imageUrl}" target="_blank" class="thumbnail">
-		<img src="${imageUrl}" alt="${fileName}" />
-		</a>`;
-		$thumbnailsContainer.append(thumbnail);
-		}
-	});
-}
-
 function loadMemes() {
     const dirPath = "../img/memes/";
     const fileRange = 50;
@@ -544,8 +514,39 @@ function loadMemes() {
 
         const thumbnail = `
             <a href="${fileUrl}" target="_blank" class="thumbnail">
-                <img src="${thumbnailUrl}" alt="${fileName}" />
+                <img src="${thumbnailUrl}" alt="${fileName}" loading="lazy" />
             </a>`;
         $thumbnailsContainer.append(thumbnail);
     }
 }
+
+function loadPepes() {
+    const dirPath = "../img/pepes/";
+    const fileRange = 27;
+    const fileExceptions = { 8: "gif", 17: "jpg"};
+    const $thumbnailsContainer = $("#memes_thumbnails");
+
+    const fileList = [];
+    for (let i = 1; i <= fileRange; i++) {
+        const extension = fileExceptions[i] || "png";
+        fileList.push(`${i}.${extension}`);
+    }
+
+    fileList.forEach(function (fileName) {
+        const fileExtension = fileName.split(".").pop().toLowerCase();
+        const validExtensions = ["png", "gif", "jpg", "jpeg"];
+        if (validExtensions.includes(fileExtension)) {
+            const imageUrl = dirPath + fileName;
+            const thumbnail = `
+            <a href="${imageUrl}" target="_blank" class="thumbnail">
+            <img src="${imageUrl}" alt="${fileName}" loading="lazy"/>
+            </a>`;
+            $thumbnailsContainer.append(thumbnail);
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    loadPepes();
+	loadMemes(); 
+});
