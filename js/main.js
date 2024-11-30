@@ -553,4 +553,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 $(document).on('click', '#aimbots_button_wrapper, #aimbots_button_wrapper_mobile', function() {
 	window.open('https://aimbots.io', '_blank');
+});
+$(document).on('click', '#cubescape_button_wrapper', function() {
+	window.open('http://cubescape.lol', '_blank');
 }); 
