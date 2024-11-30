@@ -550,3 +550,7 @@ document.addEventListener("DOMContentLoaded", function() {
     loadPepes();
 	loadMemes(); 
 });
+
+$(document).on('click', '#aimbots_button_wrapper, #aimbots_button_wrapper_mobile', function() {
+	window.open('https://aimbots.io', '_blank');
+}); 

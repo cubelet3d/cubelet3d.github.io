@@ -113,6 +113,10 @@ async function setup() {
 			$(".mainnet_object").fadeOut();
 			VidyaAddress = "0x3d48ae69a2F35D02d6F0c5E84CFE66bE885f3963"; 
 			inventoryContract = "0x2Ce68A50a0e5738E675ed9a9899D86a01f2a9a0B"; 
+			
+			$("#tcg_base_button_wrapper_nowallet").hide(); 
+			uniswapURL = "https://app.uniswap.org/#/swap?outputCurrency="+VidyaAddress+"";			
+			
 			await loadInventory(); 
 			
 			// Agnosia 
