@@ -5,7 +5,7 @@ let Alchemy = {
 	oldAddress: "0xf9360e25f4f47a0de4b456c9db55f7a953b819db",
 	online: false,
 	interval: null,
-	backgroundSound: new Audio("alchemy/sounds/background.mp3"),
+	backgroundSound: null,
 	putItemSound: new Audio("alchemy/sounds/putitem.mp3"),
 	hoverSound: new Audio("alchemy/sounds/hoversound.mp3"),
 	placedKeys: [],
@@ -119,6 +119,7 @@ async function alchemyCheckForKeys() {
 
 async function initAlchemy() {
 	try {
+		Alchemy.backgroundSound = new Audio("alchemy/sounds/background.mp3"); 
 		Alchemy.instance = new web3.eth.Contract(AlchemyABI, Alchemy.address)
 		Alchemy.oldInstance = new web3.eth.Contract(OldAlchemyABI, Alchemy.oldAddress)
 		Alchemy.backgroundSound.loop = true

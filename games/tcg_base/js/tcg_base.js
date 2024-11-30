@@ -31,37 +31,7 @@ AAAAAAA                   AAAAAAA gggggggg::::::g   nnnnnn    nnnnnn   ooooooooo
 let player1Color = 'linear-gradient(315deg, rgba(193, 233, 114, 0.2) 0%, rgba(45, 89, 85, 0.2) 100%)'; // "linear-gradient(315deg, #91b2d3 0%, #527fa4 100%)"; 
 let player2Color = 'linear-gradient(315deg, rgba(125, 78, 239, 0.2) 0%, rgba(32, 30, 79, 0.2) 100%)'; // "linear-gradient(315deg, #e68888 0%, #c53f3f 100%)"; 
 
-const tcg_base_audio = {
-	'your_turn': new Audio('games/tcg_base/sounds/sfx/your_turn.wav'),
-	'you_win': new Audio('games/tcg_base/sounds/sfx/you_win.wav'),
-	'you_lose': new Audio('games/tcg_base/sounds/sfx/you_lose.wav'),
-	'same': new Audio('games/tcg_base/sounds/sfx/same.wav'),
-	'plus': new Audio('games/tcg_base/sounds/sfx/plus.wav'),
-	'new_match_found': new Audio('games/tcg_base/sounds/sfx/new_match_found.wav'),
-	'ladle_sip': new Audio('games/tcg_base/sounds/sfx/ladle_sip.wav'),
-	'ladle_dunk': new Audio('games/tcg_base/sounds/sfx/ladle_dunk.wav'),
-	'draw': new Audio('games/tcg_base/sounds/sfx/draw.wav'),
-	'cauldron_slow': new Audio('games/tcg_base/sounds/sfx/cauldron_slow.wav'),
-	'cauldron_fast': new Audio('games/tcg_base/sounds/sfx/cauldron_fast.wav'),
-	'card_place_01': new Audio('games/tcg_base/sounds/sfx/card_place_01.wav'),
-	'card_place_02': new Audio('games/tcg_base/sounds/sfx/card_place_02.wav'),
-	'card_place_03': new Audio('games/tcg_base/sounds/sfx/card_place_03.wav'),
-	'card_place_04': new Audio('games/tcg_base/sounds/sfx/card_place_04.wav'),
-	'card_flip_01': new Audio('games/tcg_base/sounds/sfx/card_flip_01.wav'),
-	'card_flip_02': new Audio('games/tcg_base/sounds/sfx/card_flip_02.wav'),
-	'card_flip_03': new Audio('games/tcg_base/sounds/sfx/card_flip_03.wav'),
-	'button_press': new Audio('games/tcg_base/sounds/sfx/button_press.wav'),
-	'button_hover': new Audio('games/tcg_base/sounds/sfx/button_hover.wav'),
-	'card_flip_03_rev': new Audio('games/tcg_base/sounds/sfx/card_flip_03_rev.wav'),
-	'stone_button_hover': new Audio('games/tcg_base/sounds/sfx/stone_button_hover.wav'),
-	'stone_button_press': new Audio('games/tcg_base/sounds/sfx/stone_button_press.wav')
-}
-
-// Ensure looping 
-tcg_base_audio['cauldron_slow'].loop = true;
-tcg_base_audio['cauldron_fast'].loop = true;
-
-tcg_base_audio['ladle_dunk'].volume = 0.25; // was too noisy 
+let tcg_base_audio = {};
 
 tcg_base_system = {
 	vidy_address: "0x3d48ae69a2F35D02d6F0c5E84CFE66bE885f3963",
@@ -141,16 +111,7 @@ let percentage = ((tcg_base_baseVolume - $volumeSlider.attr("min")) / ($volumeSl
 $volumeSlider.css('--slider-percentage', percentage + '%');
 
 // Initialize the audio playlist
-const tcg_base_gameAudio = {
-  playlist: [
-    new Audio('games/tcg_base/sounds/Over_the_Horizon.mp3'),
-	new Audio('games/tcg_base/sounds/Fabled.mp3'),
-	new Audio('games/tcg_base/sounds/Journey_Across_The_Valley.mp3'),
-	new Audio('games/tcg_base/sounds/Transitory_Mists.mp3'),
-    // Add more tracks here as you go along
-  ],
-  currentTrackIndex: 0,
-};
+let tcg_base_gameAudio = {};
 
 // Function to play the previous track in the playlist
 function tcg_base_playPreviousTrack() {
@@ -190,31 +151,73 @@ function tcg_base_playNextTrack() {
   currentTrack.play();
 }
 
-// Attach an 'ended' event listener to each track
-tcg_base_gameAudio.playlist.forEach((track, index) => {
-  track.addEventListener('ended', function() {
-    tcg_base_playNextTrack();
-  });
-});
-
 // Function to start the playlist with fade-in
 function tcg_base_startPlaylist() {
-  let volume = 0;
-  let currentTrack = tcg_base_gameAudio.playlist[tcg_base_gameAudio.currentTrackIndex];
-  currentTrack.volume = volume;
-  currentTrack.play();
-  
-  let trackTitle = currentTrack.src.split('/').pop().split('.mp3')[0].replace(/_/g, ' ');
-  $('.tcg_base_currentTrack').text(`Currently playing: ${trackTitle}`);
-
-  let fade = setInterval(function() {
-    if (volume < tcg_base_baseVolume) {
-      volume = Math.min(volume + 0.1, tcg_base_baseVolume); // Cap at baseVolume
-      currentTrack.volume = volume;
-    } else {
-      clearInterval(fade);
+    tcg_base_audio = {
+        'your_turn': new Audio('games/tcg_base/sounds/sfx/your_turn.wav'),
+        'you_win': new Audio('games/tcg_base/sounds/sfx/you_win.wav'),
+        'you_lose': new Audio('games/tcg_base/sounds/sfx/you_lose.wav'),
+        'same': new Audio('games/tcg_base/sounds/sfx/same.wav'),
+        'plus': new Audio('games/tcg_base/sounds/sfx/plus.wav'),
+        'new_match_found': new Audio('games/tcg_base/sounds/sfx/new_match_found.wav'),
+        'ladle_sip': new Audio('games/tcg_base/sounds/sfx/ladle_sip.wav'),
+        'ladle_dunk': new Audio('games/tcg_base/sounds/sfx/ladle_dunk.wav'),
+        'draw': new Audio('games/tcg_base/sounds/sfx/draw.wav'),
+        'cauldron_slow': new Audio('games/tcg_base/sounds/sfx/cauldron_slow.wav'),
+        'cauldron_fast': new Audio('games/tcg_base/sounds/sfx/cauldron_fast.wav'),
+        'card_place_01': new Audio('games/tcg_base/sounds/sfx/card_place_01.wav'),
+        'card_place_02': new Audio('games/tcg_base/sounds/sfx/card_place_02.wav'),
+        'card_place_03': new Audio('games/tcg_base/sounds/sfx/card_place_03.wav'),
+        'card_place_04': new Audio('games/tcg_base/sounds/sfx/card_place_04.wav'),
+        'card_flip_01': new Audio('games/tcg_base/sounds/sfx/card_flip_01.wav'),
+        'card_flip_02': new Audio('games/tcg_base/sounds/sfx/card_flip_02.wav'),
+        'card_flip_03': new Audio('games/tcg_base/sounds/sfx/card_flip_03.wav'),
+        'button_press': new Audio('games/tcg_base/sounds/sfx/button_press.wav'),
+        'button_hover': new Audio('games/tcg_base/sounds/sfx/button_hover.wav'),
+        'card_flip_03_rev': new Audio('games/tcg_base/sounds/sfx/card_flip_03_rev.wav'),
+        'stone_button_hover': new Audio('games/tcg_base/sounds/sfx/stone_button_hover.wav'),
+        'stone_button_press': new Audio('games/tcg_base/sounds/sfx/stone_button_press.wav')
     }
-  }, 100);
+
+    // Ensure looping 
+    tcg_base_audio['cauldron_slow'].loop = true;
+    tcg_base_audio['cauldron_fast'].loop = true;
+    tcg_base_audio['ladle_dunk'].volume = 0.25; // was too noisy 
+
+    tcg_base_gameAudio = {
+        playlist: [
+            new Audio('games/tcg_base/sounds/Over_the_Horizon.mp3'),
+            new Audio('games/tcg_base/sounds/Fabled.mp3'),
+            new Audio('games/tcg_base/sounds/Journey_Across_The_Valley.mp3'),
+            new Audio('games/tcg_base/sounds/Transitory_Mists.mp3'),
+            // Add more tracks here as you go along
+        ],
+        currentTrackIndex: 0,
+    };
+
+    // Attach an 'ended' event listener to each track
+    tcg_base_gameAudio.playlist.forEach((track, index) => {
+        track.addEventListener('ended', function() {
+            tcg_base_playNextTrack();
+        });
+    });
+
+    let volume = 0;
+    let currentTrack = tcg_base_gameAudio.playlist[tcg_base_gameAudio.currentTrackIndex];
+    currentTrack.volume = volume;
+    currentTrack.play();
+
+    let trackTitle = currentTrack.src.split('/').pop().split('.mp3')[0].replace(/_/g, ' ');
+    $('.tcg_base_currentTrack').text(`Currently playing: ${trackTitle}`);
+
+    let fade = setInterval(function() {
+        if (volume < tcg_base_baseVolume) {
+            volume = Math.min(volume + 0.1, tcg_base_baseVolume); // Cap at baseVolume
+            currentTrack.volume = volume;
+        } else {
+            clearInterval(fade);
+        }
+    }, 100);
 }
 
 // Function to stop the playlist with fade-out
