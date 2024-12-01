@@ -488,7 +488,7 @@ function updateVolumeIcon(video, icon) {
 
 function loadMemes() {
     const dirPath = "../img/memes/";
-    const fileRange = 50;
+    const fileRange = 51;
     const fileExceptions = {
         1: "gif", 2: "gif", 3: "gif", 4: "webp", 5: "gif", 6: "gif", 7: "webp", 8: "gif",
         9: "webp", 10: "gif", 11: "gif", 12: "webp", 13: "webp", 14: "gif", 15: "gif", 16: "gif", 17: "gif", 18: "webp", 19: "webp", 20: "webp",
@@ -496,7 +496,7 @@ function loadMemes() {
         28: "mp4", 29: "gif", 30: "mp4", 31: "gif", 32: "gif", 33: "gif",
         34: "mp4", 35: "gif", 36: "mp4", 37: "mp4", 38: "mp4", 39: "mp4",
         40: "mp4", 41: "mp4", 42: "mp4", 43: "gif", 44: "gif", 45: "gif",
-        46: "gif", 47: "gif", 48: "mp4", 49: "gif", 50: "webp"
+        46: "gif", 47: "gif", 48: "mp4", 49: "gif", 50: "webp", 51: "png"
     };
     const $thumbnailsContainer = $("#memus_thumbnails");
 
