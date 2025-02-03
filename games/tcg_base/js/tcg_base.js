@@ -245,7 +245,7 @@ function tcg_base_stopPlaylist() {
 $(document).ready(function() {
 	
 	$(document).on('click', '#tcg_base_button_wrapper_mobile, #tcg_base_button_wrapper_nowallet', function() {
-		window.open('https://agnosia.gg', '_blank');
+		window.open('https://agnosia.app', '_blank');
 	}); 
 	
 	  // Load saved hand from localStorage
