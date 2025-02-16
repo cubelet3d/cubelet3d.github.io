@@ -562,3 +562,7 @@ $(document).on('click', '#cubescape_button_wrapper', function() {
 $(document).on('click', '#cubex_button_wrapper', function() {
 	window.open('https://cubex.one/', '_blank');
 }); 
+
+$(document).on('click', '#paint_button_wrapper', function() {
+	window.open('https://w3.lol', '_blank');
+}); 
