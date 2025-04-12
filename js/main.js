@@ -566,3 +566,7 @@ $(document).on('click', '#cubex_button_wrapper', function() {
 $(document).on('click', '#paint_button_wrapper', function() {
 	window.open('https://w3.lol', '_blank');
 }); 
+
+$(document).on('click', '#androidagnosia_button_wrapper_mobile', function() {
+	window.open('https://agnosia.app/apk/', '_blank');
+}); 
