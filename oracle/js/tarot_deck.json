@@ -1,0 +1,470 @@
+[
+  {
+    "name": "The Fool",
+    "arcana": "Major",
+    "upright": "Beginnings, innocence, spontaneity",
+    "reversed": "Recklessness, taken advantage of, inconsideration"
+  },
+  {
+    "name": "The Magician",
+    "arcana": "Major",
+    "upright": "Manifestation, resourcefulness, power",
+    "reversed": "Manipulation, poor planning, untapped talents"
+  },
+  {
+    "name": "The High Priestess",
+    "arcana": "Major",
+    "upright": "Intuition, unconscious, mystery",
+    "reversed": "Secrets, disconnected from intuition, withdrawal"
+  },
+  {
+    "name": "The Empress",
+    "arcana": "Major",
+    "upright": "Femininity, beauty, nature",
+    "reversed": "Dependence, smothering, emptiness"
+  },
+  {
+    "name": "The Emperor",
+    "arcana": "Major",
+    "upright": "Authority, structure, control",
+    "reversed": "Domination, excessive control, rigidity"
+  },
+  {
+    "name": "The Pope",
+    "arcana": "Major",
+    "upright": "Tradition, conformity, morality",
+    "reversed": "Rebellion, subversiveness, freedom"
+  },
+  {
+    "name": "The Lovers",
+    "arcana": "Major",
+    "upright": "Love, union, partnerships",
+    "reversed": "Imbalance, misalignment, disharmony"
+  },
+  {
+    "name": "The Chariot",
+    "arcana": "Major",
+    "upright": "Determination, victory, willpower",
+    "reversed": "Lack of control, aggression, self-doubt"
+  },
+  {
+    "name": "Strength",
+    "arcana": "Major",
+    "upright": "Courage, persuasion, influence",
+    "reversed": "Self-doubt, weakness, insecurity"
+  },
+  {
+    "name": "The Hermit",
+    "arcana": "Major",
+    "upright": "Soul-searching, introspection, guidance",
+    "reversed": "Isolation, loneliness, withdrawal"
+  },
+  {
+    "name": "The Wheel of Fortune",
+    "arcana": "Major",
+    "upright": "Change, cycles, fate",
+    "reversed": "Bad luck, resistance to change, breaking cycles"
+  },
+  {
+    "name": "Justice",
+    "arcana": "Major",
+    "upright": "Fairness, truth, law",
+    "reversed": "Dishonesty, imbalance, corruption"
+  },
+  {
+    "name": "The Hanged Man",
+    "arcana": "Major",
+    "upright": "Sacrifice, release, new perspective",
+    "reversed": "Stalling, needless sacrifice, fear of sacrifice"
+  },
+  {
+    "name": "Death",
+    "arcana": "Major",
+    "upright": "Endings, transformation, transition",
+    "reversed": "Resistance to change, fear of endings"
+  },
+  {
+    "name": "Temperance",
+    "arcana": "Major",
+    "upright": "Balance, patience, moderation",
+    "reversed": "Imbalance, excess, extremes"
+  },
+  {
+    "name": "The Devil",
+    "arcana": "Major",
+    "upright": "Addiction, materialism, playfulness",
+    "reversed": "Freedom, release, restoring control"
+  },
+  {
+    "name": "The Tower",
+    "arcana": "Major",
+    "upright": "Sudden upheaval, chaos, revelation",
+    "reversed": "Avoidance of disaster, fear of change"
+  },
+  {
+    "name": "The Star",
+    "arcana": "Major",
+    "upright": "Hope, inspiration, renewal",
+    "reversed": "Despair, lack of faith, disconnection"
+  },
+  {
+    "name": "The Moon",
+    "arcana": "Major",
+    "upright": "Illusion, fear, anxiety",
+    "reversed": "Clarity, truth, understanding"
+  },
+  {
+    "name": "The Sun",
+    "arcana": "Major",
+    "upright": "Joy, success, celebration",
+    "reversed": "Negativity, sadness, unrealistic expectations"
+  },
+  {
+    "name": "Judgement",
+    "arcana": "Major",
+    "upright": "Reflection, reckoning, awakening",
+    "reversed": "Self-doubt, refusal of self-examination"
+  },
+  {
+    "name": "The World",
+    "arcana": "Major",
+    "upright": "Completion, integration, accomplishment",
+    "reversed": "Lack of closure, incomplete goals"
+  },
+  {
+    "name": "Ace of Cups",
+    "arcana": "Minor",
+    "upright": "New beginnings, potential (Cups)",
+    "reversed": "Reversed new beginnings, potential (Cups)"
+  },
+  {
+    "name": "Two of Cups",
+    "arcana": "Minor",
+    "upright": "Balance, partnership (Cups)",
+    "reversed": "Reversed balance, partnership (Cups)"
+  },
+  {
+    "name": "Three of Cups",
+    "arcana": "Minor",
+    "upright": "Teamwork, initial fulfillment (Cups)",
+    "reversed": "Reversed teamwork, initial fulfillment (Cups)"
+  },
+  {
+    "name": "Four of Cups",
+    "arcana": "Minor",
+    "upright": "Stability, contemplation (Cups)",
+    "reversed": "Reversed stability, contemplation (Cups)"
+  },
+  {
+    "name": "Five of Cups",
+    "arcana": "Minor",
+    "upright": "Conflict, loss (Cups)",
+    "reversed": "Reversed conflict, loss (Cups)"
+  },
+  {
+    "name": "Six of Cups",
+    "arcana": "Minor",
+    "upright": "Harmony, generosity (Cups)",
+    "reversed": "Reversed harmony, generosity (Cups)"
+  },
+  {
+    "name": "Seven of Cups",
+    "arcana": "Minor",
+    "upright": "Challenges, perseverance (Cups)",
+    "reversed": "Reversed challenges, perseverance (Cups)"
+  },
+  {
+    "name": "Eight of Cups",
+    "arcana": "Minor",
+    "upright": "Movement, change (Cups)",
+    "reversed": "Reversed movement, change (Cups)"
+  },
+  {
+    "name": "Nine of Cups",
+    "arcana": "Minor",
+    "upright": "Fruition, satisfaction (Cups)",
+    "reversed": "Reversed fruition, satisfaction (Cups)"
+  },
+  {
+    "name": "Ten of Cups",
+    "arcana": "Minor",
+    "upright": "Completion, legacy (Cups)",
+    "reversed": "Reversed completion, legacy (Cups)"
+  },
+  {
+    "name": "Page of Cups",
+    "arcana": "Minor",
+    "upright": "Curiosity, messages (Cups)",
+    "reversed": "Reversed curiosity, messages (Cups)"
+  },
+  {
+    "name": "Knight of Cups",
+    "arcana": "Minor",
+    "upright": "Action, pursuit (Cups)",
+    "reversed": "Reversed action, pursuit (Cups)"
+  },
+  {
+    "name": "Queen of Cups",
+    "arcana": "Minor",
+    "upright": "Nurturing, intuition (Cups)",
+    "reversed": "Reversed nurturing, intuition (Cups)"
+  },
+  {
+    "name": "King of Cups",
+    "arcana": "Minor",
+    "upright": "Leadership, control (Cups)",
+    "reversed": "Reversed leadership, control (Cups)"
+  },
+  {
+    "name": "Ace of Pentacles",
+    "arcana": "Minor",
+    "upright": "New beginnings, potential (Pentacles)",
+    "reversed": "Reversed new beginnings, potential (Pentacles)"
+  },
+  {
+    "name": "Two of Pentacles",
+    "arcana": "Minor",
+    "upright": "Balance, partnership (Pentacles)",
+    "reversed": "Reversed balance, partnership (Pentacles)"
+  },
+  {
+    "name": "Three of Pentacles",
+    "arcana": "Minor",
+    "upright": "Teamwork, initial fulfillment (Pentacles)",
+    "reversed": "Reversed teamwork, initial fulfillment (Pentacles)"
+  },
+  {
+    "name": "Four of Pentacles",
+    "arcana": "Minor",
+    "upright": "Stability, contemplation (Pentacles)",
+    "reversed": "Reversed stability, contemplation (Pentacles)"
+  },
+  {
+    "name": "Five of Pentacles",
+    "arcana": "Minor",
+    "upright": "Conflict, loss (Pentacles)",
+    "reversed": "Reversed conflict, loss (Pentacles)"
+  },
+  {
+    "name": "Six of Pentacles",
+    "arcana": "Minor",
+    "upright": "Harmony, generosity (Pentacles)",
+    "reversed": "Reversed harmony, generosity (Pentacles)"
+  },
+  {
+    "name": "Seven of Pentacles",
+    "arcana": "Minor",
+    "upright": "Challenges, perseverance (Pentacles)",
+    "reversed": "Reversed challenges, perseverance (Pentacles)"
+  },
+  {
+    "name": "Eight of Pentacles",
+    "arcana": "Minor",
+    "upright": "Movement, change (Pentacles)",
+    "reversed": "Reversed movement, change (Pentacles)"
+  },
+  {
+    "name": "Nine of Pentacles",
+    "arcana": "Minor",
+    "upright": "Fruition, satisfaction (Pentacles)",
+    "reversed": "Reversed fruition, satisfaction (Pentacles)"
+  },
+  {
+    "name": "Ten of Pentacles",
+    "arcana": "Minor",
+    "upright": "Completion, legacy (Pentacles)",
+    "reversed": "Reversed completion, legacy (Pentacles)"
+  },
+  {
+    "name": "Page of Pentacles",
+    "arcana": "Minor",
+    "upright": "Curiosity, messages (Pentacles)",
+    "reversed": "Reversed curiosity, messages (Pentacles)"
+  },
+  {
+    "name": "Knight of Pentacles",
+    "arcana": "Minor",
+    "upright": "Action, pursuit (Pentacles)",
+    "reversed": "Reversed action, pursuit (Pentacles)"
+  },
+  {
+    "name": "Queen of Pentacles",
+    "arcana": "Minor",
+    "upright": "Nurturing, intuition (Pentacles)",
+    "reversed": "Reversed nurturing, intuition (Pentacles)"
+  },
+  {
+    "name": "King of Pentacles",
+    "arcana": "Minor",
+    "upright": "Leadership, control (Pentacles)",
+    "reversed": "Reversed leadership, control (Pentacles)"
+  },
+  {
+    "name": "Ace of Swords",
+    "arcana": "Minor",
+    "upright": "New beginnings, potential (Swords)",
+    "reversed": "Reversed new beginnings, potential (Swords)"
+  },
+  {
+    "name": "Two of Swords",
+    "arcana": "Minor",
+    "upright": "Balance, partnership (Swords)",
+    "reversed": "Reversed balance, partnership (Swords)"
+  },
+  {
+    "name": "Three of Swords",
+    "arcana": "Minor",
+    "upright": "Teamwork, initial fulfillment (Swords)",
+    "reversed": "Reversed teamwork, initial fulfillment (Swords)"
+  },
+  {
+    "name": "Four of Swords",
+    "arcana": "Minor",
+    "upright": "Stability, contemplation (Swords)",
+    "reversed": "Reversed stability, contemplation (Swords)"
+  },
+  {
+    "name": "Five of Swords",
+    "arcana": "Minor",
+    "upright": "Conflict, loss (Swords)",
+    "reversed": "Reversed conflict, loss (Swords)"
+  },
+  {
+    "name": "Six of Swords",
+    "arcana": "Minor",
+    "upright": "Harmony, generosity (Swords)",
+    "reversed": "Reversed harmony, generosity (Swords)"
+  },
+  {
+    "name": "Seven of Swords",
+    "arcana": "Minor",
+    "upright": "Challenges, perseverance (Swords)",
+    "reversed": "Reversed challenges, perseverance (Swords)"
+  },
+  {
+    "name": "Eight of Swords",
+    "arcana": "Minor",
+    "upright": "Movement, change (Swords)",
+    "reversed": "Reversed movement, change (Swords)"
+  },
+  {
+    "name": "Nine of Swords",
+    "arcana": "Minor",
+    "upright": "Fruition, satisfaction (Swords)",
+    "reversed": "Reversed fruition, satisfaction (Swords)"
+  },
+  {
+    "name": "Ten of Swords",
+    "arcana": "Minor",
+    "upright": "Completion, legacy (Swords)",
+    "reversed": "Reversed completion, legacy (Swords)"
+  },
+  {
+    "name": "Page of Swords",
+    "arcana": "Minor",
+    "upright": "Curiosity, messages (Swords)",
+    "reversed": "Reversed curiosity, messages (Swords)"
+  },
+  {
+    "name": "Knight of Swords",
+    "arcana": "Minor",
+    "upright": "Action, pursuit (Swords)",
+    "reversed": "Reversed action, pursuit (Swords)"
+  },
+  {
+    "name": "Queen of Swords",
+    "arcana": "Minor",
+    "upright": "Nurturing, intuition (Swords)",
+    "reversed": "Reversed nurturing, intuition (Swords)"
+  },
+  {
+    "name": "King of Swords",
+    "arcana": "Minor",
+    "upright": "Leadership, control (Swords)",
+    "reversed": "Reversed leadership, control (Swords)"
+  },
+  {
+    "name": "Ace of Wands",
+    "arcana": "Minor",
+    "upright": "New beginnings, potential (Wands)",
+    "reversed": "Reversed new beginnings, potential (Wands)"
+  },
+  {
+    "name": "Two of Wands",
+    "arcana": "Minor",
+    "upright": "Balance, partnership (Wands)",
+    "reversed": "Reversed balance, partnership (Wands)"
+  },
+  {
+    "name": "Three of Wands",
+    "arcana": "Minor",
+    "upright": "Teamwork, initial fulfillment (Wands)",
+    "reversed": "Reversed teamwork, initial fulfillment (Wands)"
+  },
+  {
+    "name": "Four of Wands",
+    "arcana": "Minor",
+    "upright": "Stability, contemplation (Wands)",
+    "reversed": "Reversed stability, contemplation (Wands)"
+  },
+  {
+    "name": "Five of Wands",
+    "arcana": "Minor",
+    "upright": "Conflict, loss (Wands)",
+    "reversed": "Reversed conflict, loss (Wands)"
+  },
+  {
+    "name": "Six of Wands",
+    "arcana": "Minor",
+    "upright": "Harmony, generosity (Wands)",
+    "reversed": "Reversed harmony, generosity (Wands)"
+  },
+  {
+    "name": "Seven of Wands",
+    "arcana": "Minor",
+    "upright": "Challenges, perseverance (Wands)",
+    "reversed": "Reversed challenges, perseverance (Wands)"
+  },
+  {
+    "name": "Eight of Wands",
+    "arcana": "Minor",
+    "upright": "Movement, change (Wands)",
+    "reversed": "Reversed movement, change (Wands)"
+  },
+  {
+    "name": "Nine of Wands",
+    "arcana": "Minor",
+    "upright": "Fruition, satisfaction (Wands)",
+    "reversed": "Reversed fruition, satisfaction (Wands)"
+  },
+  {
+    "name": "Ten of Wands",
+    "arcana": "Minor",
+    "upright": "Completion, legacy (Wands)",
+    "reversed": "Reversed completion, legacy (Wands)"
+  },
+  {
+    "name": "Page of Wands",
+    "arcana": "Minor",
+    "upright": "Curiosity, messages (Wands)",
+    "reversed": "Reversed curiosity, messages (Wands)"
+  },
+  {
+    "name": "Knight of Wands",
+    "arcana": "Minor",
+    "upright": "Action, pursuit (Wands)",
+    "reversed": "Reversed action, pursuit (Wands)"
+  },
+  {
+    "name": "Queen of Wands",
+    "arcana": "Minor",
+    "upright": "Nurturing, intuition (Wands)",
+    "reversed": "Reversed nurturing, intuition (Wands)"
+  },
+  {
+    "name": "King of Wands",
+    "arcana": "Minor",
+    "upright": "Leadership, control (Wands)",
+    "reversed": "Reversed leadership, control (Wands)"
+  }
+]

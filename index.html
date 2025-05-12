@@ -80,6 +80,31 @@
 			</div>
 			<!-- Main content wrapper -->
 			<div id="Main" class="main-content-wrapper absolute top right bottom left">
+				<div id="oracle3d" class="console absolute draggable" data="oracle3d">
+					<div class="consoleHeader handle ui-draggable-handle flex-box space-between center-vertical">
+						<div class="flex-box center-vertical">
+							<div class="icon desktop-exe"></div>
+							<div class="consoleTitle default">C:\team3d\oracle3d.exe</div>
+						</div>
+						<div class="flex-box">
+							<button class="minimize_button">_</button>
+							<button class="close_button">X</button>
+						</div>
+					</div>
+					<div class="console-content flex-box flex-center scrollbar" data="oracle3d_content">
+						<div id="oracle_bg"></div>
+						<div id="oracle_seer" class="hidden">
+							<div id="oracle_deck_button"></div>
+						</div>
+						<div id="oracle_drew" class="hidden">
+							<div id="oracle_cards"></div>
+							<div id="oracle_reading" class="C64">
+								<div id="oracle_reading_content"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
 				<div id="desk" class="panel absolute top right bottom left flex-box flex-center">
 					<!-- GAME / BOARD 
 						 These open as new executables from the "Play" section 
@@ -2105,7 +2130,11 @@
 								<div class="icon desktop-icon paint-icon no-pointer-events"></div>
 								<span class="font-monospace text-align-center no-pointer-events">paint3d</span>
 							</div>
-						</div>						
+						</div>
+						<div id="oracle3d_button" class="desktop-icon-container flex-box col center-vertical non-mobile" data="oracle3d">
+							<div class="icon desktop-icon desktop-exe no-pointer-events"></div>
+							<span class="font-monospace text-align-center no-pointer-events">oracle3d</span>
+						</div>					
 					</div>
 					</div>
 				</div>
@@ -2388,5 +2417,8 @@
 		<link rel="stylesheet" href="games/tcg_base/css/tcg_base.css">
 		<link rel="stylesheet" href="games/tcg_base/css/tcg_assets.css">
 		<link rel="stylesheet" href="games/tcg_base/css/custom_graphics.css?v=0.0.2">
+		<!-- Oracle -->
+		<script src="oracle/js/main.js"></script>
+		<link rel="stylesheet" href="oracle/css/main.css">
 	</body>
 </html>
